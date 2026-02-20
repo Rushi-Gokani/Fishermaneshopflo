@@ -1,0 +1,469 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .hero-slider {
+    position: relative;
+    display: block;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    /* Default height to prevent collapse */
+    min-height: 450px; 
+  }
+
+  .hero-slider .slideshow.banner--small {
+    min-height: 42rem;
+  }
+  .hero-slider .slideshow.banner--medium {
+    min-height: 56rem;
+  }
+  .hero-slider .slideshow.banner--large {
+    min-height: 72rem;
+  }
+  .hero-slider .slideshow.banner--adapt_image {
+    min-height: 56rem; /* Fallback */
+    height: auto;
+  }
+  .hero-slider .slideshow.banner--custom {
+    min-height: {{ section.settings.desktop_height }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-slider {
+      min-height: 350px;
+    }
+    .hero-slider .slideshow.banner--small,
+    .hero-slider .slideshow.banner--medium,
+    .hero-slider .slideshow.banner--large {
+      min-height: 39rem;
+    }
+    .hero-slider .slideshow.banner--custom {
+      min-height: {{ section.settings.mobile_height }}px;
+    }
+  }
+
+  .hero-slider-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .hero-slider-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-top: 0;
+  }
+
+  .hero-slider-subtitle {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    margin-bottom: 3rem;
+    color: #f0f0f0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-slider-btn {
+    display: inline-block;
+    background-color: #1e2d5a;
+    color: #fff;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hero-slider-btn:hover {
+    background-color: #152040;
+    opacity: 0.9;
+  }
+
+  .hero-slider .slideshow__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slider .slideshow__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-slider-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1;
+  }
+
+  .hero-slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-slider-control {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .hero-slider-control:hover {
+    transform: scale(1.1);
+  }
+
+  .hero-slider-control svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-slider-title {
+      font-size: 2.4rem;
+    }
+    .hero-slider-subtitle {
+      font-size: 1.4rem;
+    }
+    .hero-slider-controls {
+      padding: 0 10px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <slideshow-component class="slider-mobile-gutter hero-slider" role="region" aria-roledescription="{{ 'sections.slideshow.carousel' | t }}" aria-label="{{ section.settings.accessibility_info | escape }}">
+    <div class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere"
+      id="Slider-{{ section.id }}"
+      aria-live="polite"
+      aria-atomic="true"
+      data-autoplay="{{ section.settings.autoplay }}"
+      data-speed="{{ section.settings.change_slides_speed }}"
+    >
+      {%- for block in section.blocks -%}
+        <div class="slideshow__slide grid__item grid--1-col slider__slide"
+          id="Slide-{{ section.id }}-{{ forloop.index }}"
+          {{ block.shopify_attributes }}
+          role="group"
+          aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
+          aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+          tabindex="-1"
+        >
+          <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}">
+            {%- if block.settings.image -%}
+              {%- assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round -%}
+              {%- if block.settings.image_mobile != blank -%}
+                 <picture>
+                    <source media="(max-width: 749px)" srcset="{{ block.settings.image_mobile | image_url: width: 800 }}">
+                    {{ block.settings.image | image_url: width: 3840 | image_tag:
+                      loading: 'lazy',
+                      height: height,
+                      sizes: "100vw",
+                      widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+                    }}
+                 </picture>
+              {%- else -%}
+                {{ block.settings.image | image_url: width: 3840 | image_tag:
+                  loading: 'lazy',
+                  height: height,
+                  sizes: "100vw",
+                  widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+                }}
+              {%- endif -%}
+            {%- else -%}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          
+          <div class="hero-slider-overlay" style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+
+          <div class="hero-slider-content" style="text-align: {{ block.settings.text_alignment }};">
+            {%- if block.settings.heading != blank -%}
+              <h2 class="hero-slider-title" style="color: {{ block.settings.text_color }}">{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if block.settings.subheading != blank -%}
+              <div class="hero-slider-subtitle" style="color: {{ block.settings.text_color }}">{{ block.settings.subheading }}</div>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.link }}" class="hero-slider-btn" style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}">{{ block.settings.button_label }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="hero-slider-controls no-js-hidden">
+        <button type="button" class="hero-slider-control slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(90 5 3)">
+          </svg>
+        </button>
+        <button type="button" class="hero-slider-control slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(-90 5 3)">
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+  </slideshow-component>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "slide_height",
+      "options": [
+        {
+          "value": "adapt_image",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "medium",
+      "label": "Slide height"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Height (Custom)",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Height (Custom)",
+      "default": 400
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 9,
+      "step": 2,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (Desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (Mobile)"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Overlay opacity",
+          "default": 30
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Tested for the Outdoors, Ready for You",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "default": "Durable, high-performance gear built for tough trails and extreme weather.",
+          "label": "Subheading"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "SHOP NOW",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button background",
+          "default": "#1e2d5a"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

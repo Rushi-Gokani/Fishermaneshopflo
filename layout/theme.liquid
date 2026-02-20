@@ -1,0 +1,252 @@
+<!doctype html>
+<html
+  {% if request.design_mode %}
+    class="shopify-design-mode"
+  {% endif %}
+  lang="{{ request.locale.iso_code }}"
+>
+  <head>
+    {%- if settings.favicon != blank -%}
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
+    {%- endif -%}
+
+    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    {% if settings.transition_to_main_product or settings.page_transition_enabled %}
+      <link
+        rel="expect"
+        href="#MainContent"
+        blocking="render"
+        id="view-transition-render-blocker"
+      >
+    {% endif %}
+
+    <script src="https://bridge.shopflo.com/js/shopflo.bundle.js" defer onerror="console.error('Shopflo script failed to load!')" onload="console.log('Shopflo script loaded successfully')"></script>
+
+    {%- render 'meta-tags' -%}
+    {%- render 'stylesheets' -%}
+    {%- render 'fonts' -%}
+    {%- render 'scripts' -%}
+    {%- render 'theme-styles-variables' -%}
+    {%- render 'color-schemes' -%}
+
+    {% if request.design_mode %}
+      {%- render 'theme-editor' -%}
+    {% endif %}
+
+    
+    <script>
+        function handleFloCheckoutBtn() {
+            if (window.shopflo && window.shopflo.checkout) {
+                window.shopflo.checkout();
+            } else {
+                console.warn('Shopflo not loaded, falling back to default checkout');
+                window.location.href = '/checkout';
+            }
+        }
+
+        function handleFloBuyNow(variantId, specificQty, btnElement) {
+            console.log("Shopflo: handleFloBuyNow called", {variantId, specificQty, btnElement});
+            
+            // Resolve variantId: Use provided, or find input[name="id"] in closest form/container
+            let finalVariantId = variantId;
+            
+            if (!finalVariantId && btnElement) {
+                // 1. Try finding input inside the closest form
+                const form = btnElement.closest('form');
+                if (form) {
+                    const idInput = form.querySelector('input[name="id"]');
+                    if (idInput) finalVariantId = idInput.value;
+                    
+                    // 2. If not in form, try finding input linked to this form by form attribute
+                    if (!finalVariantId && form.id) {
+                         const linkedInput = document.querySelector(`input[name="id"][form="${form.id}"]`);
+                         if(linkedInput) finalVariantId = linkedInput.value;
+                    }
+                }
+                
+                // 3. Try finding input in the product section container
+                if(!finalVariantId) {
+                     const section = btnElement.closest('.modern-product-section') || btnElement.closest('.product-section') || btnElement.closest('section');
+                     if(section) {
+                         const idInput = section.querySelector('input[name="id"]');
+                         if(idInput) finalVariantId = idInput.value;
+                     }
+                }
+            }
+            // 4. Last resort: Global search (risky if multiple products, but fallback)
+            if(!finalVariantId) {
+                 const idInput = document.querySelector('input[name="id"]');
+                 if(idInput) finalVariantId = idInput.value;
+            }
+            
+            console.log("Shopflo: Resolved Variant ID:", finalVariantId);
+
+            // Resolve quantity: Use specificQty, or find input[name="quantity"]
+            let quantity = specificQty;
+            if (!quantity) {
+                 let qtyInput;
+                 // Try finding relative to button first
+                 if(btnElement) {
+                     const form = btnElement.closest('form');
+                     if(form) {
+                        qtyInput = form.querySelector('input[name="quantity"]');
+                        if(!qtyInput && form.id) {
+                            qtyInput = document.querySelector(`input[name="quantity"][form="${form.id}"]`);
+                        }
+                     }
+                     if(!qtyInput) {
+                        const section = btnElement.closest('.modern-product-section') || btnElement.closest('section');
+                        if(section) qtyInput = section.querySelector('input[name="quantity"]');
+                     }
+                 }
+                // Global fallback
+                if(!qtyInput) qtyInput = document.querySelector('input[name="quantity"]');
+                
+                quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+            }
+            console.log("Shopflo: Resolved Quantity:", quantity);
+            
+            if(!finalVariantId) {
+                console.error("Shopflo: Could not resolve variant ID");
+                alert("Error: Could not resolve product variant. Please try again.");
+                return;
+            }
+
+            // UI Feedback: Change button text if possible
+            let originalText = "";
+            if(btnElement) {
+                originalText = btnElement.innerText || btnElement.textContent;
+                btnElement.innerText = "Processing...";
+                btnElement.disabled = true;
+            }
+
+            function attemptCheckout() {
+                if (window.shopflo && window.shopflo.checkout) {
+                    console.log("Shopflo: Invoking checkout");
+                    window.shopflo.checkout([{
+                        variant_id: parseInt(finalVariantId),
+                        quantity: quantity
+                    }]);
+                    // Reset button after short delay (or navigation will happen)
+                    if(btnElement) {
+                        setTimeout(() => {
+                            btnElement.innerText = originalText;
+                            btnElement.disabled = false;
+                        }, 2000);
+                    }
+                } else {
+                     console.warn("Shopflo: Integration not ready, using fallback");
+                     window.location.href = '/cart/' + finalVariantId + ':' + quantity;
+                }
+            }
+
+            // If Shopflo is ready, go immediately
+            if (window.shopflo && window.shopflo.checkout) {
+                attemptCheckout();
+            } else {
+                console.log("Shopflo: Script not ready, polling...");
+                let attempts = 0;
+                const maxAttempts = 15; // 3 seconds total (15 * 200ms)
+                
+                const pollInterval = setInterval(() => {
+                    attempts++;
+                    if (window.shopflo && window.shopflo.checkout) {
+                        clearInterval(pollInterval);
+                        attemptCheckout();
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(pollInterval);
+                        console.warn("Shopflo: Polling timed out.");
+                        attemptCheckout(); // Trigger fallback
+                    }
+                }, 200);
+            }
+        }
+    </script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+    <div id="header-group">
+      {% sections 'header-group' %}
+    </div>
+
+    <script>
+      // Inline header height calculation to prevent layout shift
+      // Note: Updates in calculateHeaderGroupHeight() and updateTransparentHeaderOffset()utilities.js should be kept in sync with this function
+      (function setHeaderHeighCustomProperties() {
+        /*
+         * Header calculation functions for maintaining CSS variables
+         * Mimic calculateHeaderGroupHeight() in utilities.js
+         */
+        const header = document.querySelector('header-component');
+        const headerGroup = document.querySelector('#header-group');
+        const hasHeaderSection = headerGroup?.querySelector('.header-section');
+
+        if (!header || !headerGroup) return;
+
+        const headerHeight = header.offsetHeight;
+
+        // Calculate the total height of the header group
+        let headerGroupHeight = 0;
+        const children = headerGroup.children;
+        for (let i = 0; i < children.length; i++) {
+          const element = children[i];
+          if (element === header || !(element instanceof HTMLElement)) continue;
+          headerGroupHeight += element.offsetHeight;
+        }
+
+        // Check for transparent header special case
+        if (header.hasAttribute('transparent') && header.parentElement?.nextElementSibling) {
+          headerGroupHeight += headerHeight;
+        }
+
+        // Set CSS variables
+        document.body.style.setProperty('--header-height', `${headerHeight}px`);
+        document.body.style.setProperty('--header-group-height', `${headerGroupHeight}px`);
+
+        /**
+         * Updates CSS custom properties for transparent header offset calculation
+         * Mimic updateTransparentHeaderOffset() in utilities.js
+         */
+
+        if (!hasHeaderSection || !header?.hasAttribute('transparent')) {
+          document.body.style.setProperty('--transparent-header-offset-boolean', '0');
+          return;
+        }
+
+        const hasImmediateSection = hasHeaderSection.nextElementSibling?.classList.contains('shopify-section');
+
+        const shouldApplyOffset = !hasImmediateSection ? '1' : '0';
+        document.body.style.setProperty('--transparent-header-offset-boolean', shouldApplyOffset);
+      })();
+    </script>
+
+    <main
+      id="MainContent"
+      class="content-for-layout"
+      role="main"
+      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+      data-product-transition="{{ settings.transition_to_main_product }}"
+      data-template="{{ template }}"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% render 'search-modal' %}
+
+    {% render 'globo.preorder.custom' %}
+
+    {% if settings.quick_add or settings.mobile_quick_add %}
+      {% render 'quick-add-modal' %}
+    {% endif %}
+
+  </body>
+</html>

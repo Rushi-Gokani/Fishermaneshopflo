@@ -1,0 +1,847 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "brands-grid",
+      "blocks": {
+        "brand_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "abu-garcia",
+            "image": "shopify://shop_images/abu_garcia.png"
+          }
+        },
+        "brand_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "allblue",
+            "image": "shopify://shop_images/Untitled_design_16_c2b67c8d-6739-466e-8fad-a3b649f04e03.png"
+          }
+        },
+        "brand_4": {
+          "type": "collection",
+          "settings": {
+            "collection": "anglers"
+          }
+        },
+        "brand_5": {
+          "type": "collection",
+          "settings": {
+            "collection": "atc",
+            "image": "shopify://shop_images/ATC_2.png"
+          }
+        },
+        "brand_8": {
+          "type": "collection",
+          "settings": {
+            "collection": "benthic",
+            "image": "shopify://shop_images/Benthic_25a19af8-efb9-409a-bd17-b8ceaf08ce43.png"
+          }
+        },
+        "brand_9": {
+          "type": "collection",
+          "settings": {
+            "collection": "berkley",
+            "image": "shopify://shop_images/Berklye.png"
+          }
+        },
+        "brand_10": {
+          "type": "collection",
+          "settings": {
+            "collection": "berkley-owner",
+            "image": "shopify://shop_images/OWNER.png"
+          }
+        },
+        "brand_12": {
+          "type": "collection",
+          "settings": {
+            "collection": "birage"
+          }
+        },
+        "brand_13": {
+          "type": "collection",
+          "settings": {
+            "collection": "bkk",
+            "image": "shopify://shop_images/BKK_LOGO_2.png"
+          }
+        },
+        "brand_14": {
+          "type": "collection",
+          "settings": {
+            "collection": "blue-fox",
+            "image": "shopify://shop_images/blue_fox.png"
+          }
+        },
+        "brand_15": {
+          "type": "collection",
+          "settings": {
+            "collection": "bravvo-fishing",
+            "image": "shopify://shop_images/bravvo_600_x_600_b969bdcc-4447-43db-bc65-97352a11adb7.png",
+            "title": "Bravvo Fishing"
+          }
+        },
+        "brand_16": {
+          "type": "collection",
+          "settings": {
+            "collection": "btx",
+            "image": "shopify://shop_images/BTX_600_X_600.png",
+            "title": "BTX"
+          }
+        },
+        "brand_17": {
+          "type": "collection",
+          "settings": {
+            "collection": "carpzoom",
+            "image": "shopify://shop_images/Carp_zoom_600_X_600.png",
+            "title": "CarpZoom"
+          }
+        },
+        "brand_18": {
+          "type": "collection",
+          "settings": {
+            "collection": "cassan",
+            "image": "shopify://shop_images/CASSAN.png"
+          }
+        },
+        "brand_19": {
+          "type": "collection",
+          "settings": {
+            "collection": "cast-catch",
+            "image": "shopify://shop_images/Untitled_design_11_7ea455e0-f0b9-4b71-9021-86005b0f2834.png"
+          }
+        },
+        "brand_20": {
+          "type": "collection",
+          "settings": {
+            "collection": "chasebaits",
+            "image": "shopify://shop_images/CHASEBAITS.png"
+          }
+        },
+        "brand_21": {
+          "type": "collection",
+          "settings": {
+            "collection": "crimson",
+            "image": "shopify://shop_images/CRIMSON.png"
+          }
+        },
+        "brand_22": {
+          "type": "collection",
+          "settings": {
+            "collection": "crocodile",
+            "image": "shopify://shop_images/crocodile_600_x_600.png",
+            "title": "Crocodile"
+          }
+        },
+        "brand_23": {
+          "type": "collection",
+          "settings": {
+            "collection": "daiwa",
+            "image": "shopify://shop_images/DAIWA.png"
+          }
+        },
+        "brand_24": {
+          "type": "collection",
+          "settings": {
+            "collection": "deeper",
+            "image": "shopify://shop_images/deeper_1.webp"
+          }
+        },
+        "brand_25": {
+          "type": "collection",
+          "settings": {
+            "collection": "duo-international",
+            "image": "shopify://shop_images/Duo_international.png"
+          }
+        },
+        "brand_26": {
+          "type": "collection",
+          "settings": {
+            "collection": "evoke"
+          }
+        },
+        "brand_27": {
+          "type": "collection",
+          "settings": {
+            "collection": "fenwick",
+            "image": "shopify://shop_images/Fenwick_600_x_600.png",
+            "title": "Fenwick"
+          }
+        },
+        "brand_28": {
+          "type": "collection",
+          "settings": {
+            "collection": "firstdart",
+            "image": "shopify://shop_images/first_dart.png",
+            "title": "FirstDart"
+          }
+        },
+        "brand_29": {
+          "type": "collection",
+          "settings": {
+            "collection": "fishack",
+            "image": "shopify://shop_images/Fishack_600_x_600.png",
+            "title": "Fishack"
+          }
+        },
+        "brand_30": {
+          "type": "collection",
+          "settings": {
+            "collection": "fmh-gear",
+            "image": "shopify://shop_images/Fishermanshub_Zoomed_Out_website_logo-1_1a715c4d-f256-48cd-a806-b4d913d71d01.jpg"
+          }
+        },
+        "brand_31": {
+          "type": "collection",
+          "settings": {
+            "collection": "fuji",
+            "image": "shopify://shop_images/Fuji_600_X_600_5c8058b5-b1c5-4ef6-95d1-dc681fcec151.png",
+            "title": "Fuji"
+          }
+        },
+        "brand_32": {
+          "type": "collection",
+          "settings": {
+            "collection": "gamakatsu",
+            "image": "shopify://shop_images/Gamakatsu_600_X_600.png",
+            "title": "Gamakatsu"
+          }
+        },
+        "brand_33": {
+          "type": "collection",
+          "settings": {
+            "collection": "gfin",
+            "image": "shopify://shop_images/GFIN.png"
+          }
+        },
+        "brand_34": {
+          "type": "collection",
+          "settings": {
+            "collection": "gillies",
+            "image": "shopify://shop_images/Gillies_600_x_600.png",
+            "title": "Gillies"
+          }
+        },
+        "brand_35": {
+          "type": "collection",
+          "settings": {
+            "collection": "gomexus",
+            "image": "shopify://shop_images/Gomexus_600_X_600.png",
+            "title": "Gomexus"
+          }
+        },
+        "brand_36": {
+          "type": "collection",
+          "settings": {
+            "collection": "gt-bio"
+          }
+        },
+        "brand_37": {
+          "type": "collection",
+          "settings": {
+            "collection": "gt-ice-cream",
+            "image": "shopify://shop_images/GT_ice_cream_600_X_600.png",
+            "title": "GT Ice Cream"
+          }
+        },
+        "brand_38": {
+          "type": "collection",
+          "settings": {
+            "collection": "halco",
+            "image": "shopify://shop_images/HALCO.png"
+          }
+        },
+        "brand_39": {
+          "type": "collection",
+          "settings": {
+            "collection": "hayabusa",
+            "image": "shopify://shop_images/HAYABUSA.png"
+          }
+        },
+        "brand_40": {
+          "type": "collection",
+          "settings": {
+            "collection": "hunt-house",
+            "image": "shopify://shop_images/Hunthouse_600_x_600.png",
+            "title": "Hunt House"
+          }
+        },
+        "brand_41": {
+          "type": "collection",
+          "settings": {
+            "collection": "indra",
+            "image": "shopify://shop_images/Indra_logo-798359_300x_b05e0294-ae7c-45a8-933a-085a18c2da46.png"
+          }
+        },
+        "brand_42": {
+          "type": "collection",
+          "settings": {
+            "collection": "jackall",
+            "image": "shopify://shop_images/Jackall.png"
+          }
+        },
+        "brand_43": {
+          "type": "collection",
+          "settings": {
+            "collection": "johnson"
+          }
+        },
+        "brand_44": {
+          "type": "collection",
+          "settings": {
+            "collection": "kaiju",
+            "image": "shopify://shop_images/Kaiju_600_X_600.png",
+            "title": "Kaiju"
+          }
+        },
+        "brand_45": {
+          "type": "collection",
+          "settings": {
+            "collection": "kanama",
+            "image": "shopify://shop_images/Kanama_600_X_600.png",
+            "title": "Kanama"
+          }
+        },
+        "brand_46": {
+          "type": "collection",
+          "settings": {
+            "collection": "kastking",
+            "image": "shopify://shop_images/Kastking_600_X_600.png",
+            "title": "KastKing"
+          }
+        },
+        "brand_47": {
+          "type": "collection",
+          "settings": {
+            "collection": "littma"
+          }
+        },
+        "brand_48": {
+          "type": "collection",
+          "settings": {
+            "collection": "live-target",
+            "image": "shopify://shop_images/Live_Target_600_x_600_ec235be7-928e-4a9e-ba22-3c902e9cbdf9.png",
+            "title": "Live Target"
+          }
+        },
+        "brand_49": {
+          "type": "collection",
+          "settings": {
+            "collection": "lucana",
+            "image": "shopify://shop_images/LUCANA.png"
+          }
+        },
+        "brand_50": {
+          "type": "collection",
+          "settings": {
+            "collection": "lucky-john",
+            "image": "shopify://shop_images/LUCKY_JOHN.png"
+          }
+        },
+        "brand_51": {
+          "type": "collection",
+          "settings": {
+            "collection": "lures-factory",
+            "image": "shopify://shop_images/Lures_Factory_600_X_600.png",
+            "title": "Lures Factory"
+          }
+        },
+        "brand_52": {
+          "type": "collection",
+          "settings": {
+            "collection": "major-craft",
+            "image": "shopify://shop_images/MAJOR_CRAFT.png"
+          }
+        },
+        "brand_53": {
+          "type": "collection",
+          "settings": {
+            "collection": "maria",
+            "image": "shopify://shop_images/maria.png"
+          }
+        },
+        "brand_54": {
+          "type": "collection",
+          "settings": {
+            "collection": "maruto"
+          }
+        },
+        "brand_55": {
+          "type": "collection",
+          "settings": {
+            "collection": "megabarra"
+          }
+        },
+        "brand_56": {
+          "type": "collection",
+          "settings": {
+            "collection": "megabass",
+            "image": "shopify://shop_images/MEGABASS.png"
+          }
+        },
+        "brand_57": {
+          "type": "collection",
+          "settings": {
+            "collection": "meiho",
+            "image": "shopify://shop_images/Untitled_design_13_61a63ed7-0b5a-47ac-86cd-c433ca0b71b7.png"
+          }
+        },
+        "brand_58": {
+          "type": "collection",
+          "settings": {
+            "collection": "mepps",
+            "image": "shopify://shop_images/MEPPS.png"
+          }
+        },
+        "brand_59": {
+          "type": "collection",
+          "settings": {
+            "collection": "mitchelle",
+            "image": "shopify://shop_images/MITCHELL.png"
+          }
+        },
+        "brand_60": {
+          "type": "collection",
+          "settings": {
+            "collection": "murrvy",
+            "image": "shopify://shop_images/Untitled_design_12_2304ce76-0f58-43b8-a619-ae35b43f7e95.png"
+          }
+        },
+        "brand_61": {
+          "type": "collection",
+          "settings": {
+            "collection": "mustad",
+            "image": "shopify://shop_images/MUSTAD.png"
+          }
+        },
+        "brand_62": {
+          "type": "collection",
+          "settings": {
+            "collection": "nomad-design",
+            "image": "shopify://shop_images/NOMAD_DESIGN_LOGO.png",
+            "title": "Nomad Design"
+          }
+        },
+        "brand_63": {
+          "type": "collection",
+          "settings": {
+            "collection": "odz",
+            "image": "shopify://shop_images/ODZ.png"
+          }
+        },
+        "brand_64": {
+          "type": "collection",
+          "settings": {
+            "collection": "okuma",
+            "image": "shopify://shop_images/OKUMA_f7db6118-4136-4115-ae54-b2ba4d1e5d5b.png"
+          }
+        },
+        "brand_65": {
+          "type": "collection",
+          "settings": {
+            "collection": "onlite",
+            "image": "shopify://shop_images/Onlite_600_x_600.png",
+            "title": "Onlite"
+          }
+        },
+        "brand_66": {
+          "type": "collection",
+          "settings": {
+            "collection": "overcast",
+            "image": "shopify://shop_images/overcast.png",
+            "title": "OverCast"
+          }
+        },
+        "brand_67": {
+          "type": "collection",
+          "settings": {
+            "collection": "okuma-1",
+            "image": "shopify://shop_images/OWNER_b802fa4e-9b0b-445d-96d2-90483117cf15.png"
+          }
+        },
+        "brand_68": {
+          "type": "collection",
+          "settings": {
+            "collection": "penn",
+            "image": "shopify://shop_images/PENN_64131b67-d797-4c33-a0e2-8273c60ffc0b.png"
+          }
+        },
+        "brand_69": {
+          "type": "collection",
+          "settings": {
+            "collection": "pexxo",
+            "image": "shopify://shop_images/Pexxo_600_x_600.png"
+          }
+        },
+        "brand_70": {
+          "type": "collection",
+          "settings": {
+            "collection": "pflueger",
+            "image": "shopify://shop_images/Pflueger_600_x_600.png",
+            "title": "Pfluegar"
+          }
+        },
+        "brand_71": {
+          "type": "collection",
+          "settings": {
+            "collection": "pioneer",
+            "image": "shopify://shop_images/PIONEER_8cc6cf45-dab8-4841-af1e-82a482b7c8d8.png"
+          }
+        },
+        "brand_72": {
+          "type": "collection",
+          "settings": {
+            "collection": "plano"
+          }
+        },
+        "brand_73": {
+          "type": "collection",
+          "settings": {
+            "collection": "pro-marine"
+          }
+        },
+        "brand_74": {
+          "type": "collection",
+          "settings": {
+            "collection": "pro-hunter"
+          }
+        },
+        "brand_75": {
+          "type": "collection",
+          "settings": {
+            "collection": "pushpa",
+            "image": "shopify://shop_images/Pushpa_600_x_600.png"
+          }
+        },
+        "brand_76": {
+          "type": "collection",
+          "settings": {
+            "collection": "rapala",
+            "image": "shopify://shop_images/RAPALA.png"
+          }
+        },
+        "brand_77": {
+          "type": "collection",
+          "settings": {
+            "collection": "savage-gear",
+            "image": "shopify://shop_images/SAVAGE_GEAR.png"
+          }
+        },
+        "brand_78": {
+          "type": "collection",
+          "settings": {
+            "collection": "scaless",
+            "title": "Scaless"
+          }
+        },
+        "brand_79": {
+          "type": "collection",
+          "settings": {
+            "collection": "sea-rock-1",
+            "image": "shopify://shop_images/Sea_Rock_600_X_600.png",
+            "title": "Sea Rock"
+          }
+        },
+        "brand_80": {
+          "type": "collection",
+          "settings": {
+            "collection": "sebile",
+            "image": "shopify://shop_images/Sebile_600_X_600.png",
+            "title": "Sebile"
+          }
+        },
+        "brand_81": {
+          "type": "collection",
+          "settings": {
+            "collection": "shakespeare",
+            "image": "shopify://shop_images/SHAKESPEARE.png"
+          }
+        },
+        "brand_82": {
+          "type": "collection",
+          "settings": {
+            "collection": "shakespeare-ugly-stik",
+            "image": "shopify://shop_images/UGLY_STICK.png"
+          }
+        },
+        "brand_83": {
+          "type": "collection",
+          "settings": {
+            "collection": "shimano",
+            "image": "shopify://shop_images/SHIMANO.png"
+          }
+        },
+        "brand_84": {
+          "type": "collection",
+          "settings": {
+            "collection": "sigma-fury",
+            "image": "shopify://shop_images/Sigma_logo.png"
+          }
+        },
+        "brand_85": {
+          "type": "collection",
+          "settings": {
+            "collection": "spiderwire",
+            "image": "shopify://shop_images/spider_wire_600x600_7df911ab-e2dd-4e2d-a0e0-9e3c7928bb8d.png"
+          }
+        },
+        "brand_86": {
+          "type": "collection",
+          "settings": {
+            "collection": "spro"
+          }
+        },
+        "brand_87": {
+          "type": "collection",
+          "settings": {
+            "collection": "storm",
+            "image": "shopify://shop_images/STORM.png"
+          }
+        },
+        "brand_88": {
+          "type": "collection",
+          "settings": {
+            "collection": "strike-pro",
+            "image": "shopify://shop_images/STRIKE_PRO.png"
+          }
+        },
+        "brand_89": {
+          "type": "collection",
+          "settings": {
+            "collection": "sufix",
+            "image": "shopify://shop_images/SUFIX.png"
+          }
+        },
+        "brand_90": {
+          "type": "collection",
+          "settings": {
+            "collection": "sunline",
+            "image": "shopify://shop_images/SUNLINE_eba90549-f8cd-449a-9799-1a1df0f5b1ac.png"
+          }
+        },
+        "brand_91": {
+          "type": "collection",
+          "settings": {
+            "collection": "sure-catch",
+            "image": "shopify://shop_images/Sure_Catch_600_X_600.png",
+            "title": "Sure Catch"
+          }
+        },
+        "brand_92": {
+          "type": "collection",
+          "settings": {
+            "collection": "terry",
+            "image": "shopify://shop_images/Terry.png"
+          }
+        },
+        "brand_93": {
+          "type": "collection",
+          "settings": {
+            "collection": "trigger-x",
+            "image": "shopify://shop_images/Trigger_X_600_x_600.png",
+            "title": "Trigger X"
+          }
+        },
+        "brand_94": {
+          "type": "collection",
+          "settings": {
+            "collection": "uzzo",
+            "image": "shopify://shop_images/UZZO_a9aa4794-1f07-4d81-a3d0-c1cdbcce4baa.png"
+          }
+        },
+        "brand_95": {
+          "type": "collection",
+          "settings": {
+            "collection": "varivas",
+            "image": "shopify://shop_images/Varivas_600_x_600.png",
+            "title": "Varivas"
+          }
+        },
+        "brand_96": {
+          "type": "collection",
+          "settings": {
+            "collection": "vmc",
+            "image": "shopify://shop_images/VMC.png"
+          }
+        },
+        "brand_97": {
+          "type": "collection",
+          "settings": {
+            "collection": "williamson",
+            "image": "shopify://shop_images/Williamson.png"
+          }
+        },
+        "brand_98": {
+          "type": "collection",
+          "settings": {
+            "collection": "w-p-e"
+          }
+        },
+        "brand_99": {
+          "type": "collection",
+          "settings": {
+            "collection": "x-braid"
+          }
+        },
+        "brand_100": {
+          "type": "collection",
+          "settings": {
+            "collection": "yamashita",
+            "image": "shopify://shop_images/Yamashita_600_x_600.png",
+            "title": "Yamashita"
+          }
+        },
+        "brand_101": {
+          "type": "collection",
+          "settings": {
+            "collection": "ygk"
+          }
+        },
+        "brand_102": {
+          "type": "collection",
+          "settings": {
+            "collection": "yo-zuri",
+            "image": "shopify://shop_images/YO_ZURI.png"
+          }
+        },
+        "brand_103": {
+          "type": "collection",
+          "settings": {
+            "collection": "yo-zuri-duel"
+          }
+        },
+        "brand_104": {
+          "type": "collection",
+          "settings": {
+            "collection": "z-man",
+            "image": "shopify://shop_images/Z_MAN.png"
+          }
+        },
+        "brand_105": {
+          "type": "collection",
+          "settings": {
+            "collection": "zerek",
+            "image": "shopify://shop_images/ZEREK.png"
+          }
+        }
+      },
+      "block_order": [
+        "brand_1",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_8",
+        "brand_9",
+        "brand_10",
+        "brand_12",
+        "brand_13",
+        "brand_14",
+        "brand_15",
+        "brand_16",
+        "brand_17",
+        "brand_18",
+        "brand_19",
+        "brand_20",
+        "brand_21",
+        "brand_22",
+        "brand_23",
+        "brand_24",
+        "brand_25",
+        "brand_26",
+        "brand_27",
+        "brand_28",
+        "brand_29",
+        "brand_30",
+        "brand_31",
+        "brand_32",
+        "brand_33",
+        "brand_34",
+        "brand_35",
+        "brand_36",
+        "brand_37",
+        "brand_38",
+        "brand_39",
+        "brand_40",
+        "brand_41",
+        "brand_42",
+        "brand_43",
+        "brand_44",
+        "brand_45",
+        "brand_46",
+        "brand_47",
+        "brand_48",
+        "brand_49",
+        "brand_50",
+        "brand_51",
+        "brand_52",
+        "brand_53",
+        "brand_54",
+        "brand_55",
+        "brand_56",
+        "brand_57",
+        "brand_58",
+        "brand_59",
+        "brand_60",
+        "brand_61",
+        "brand_62",
+        "brand_63",
+        "brand_64",
+        "brand_65",
+        "brand_66",
+        "brand_67",
+        "brand_68",
+        "brand_69",
+        "brand_70",
+        "brand_71",
+        "brand_72",
+        "brand_73",
+        "brand_74",
+        "brand_75",
+        "brand_76",
+        "brand_77",
+        "brand_78",
+        "brand_79",
+        "brand_80",
+        "brand_81",
+        "brand_82",
+        "brand_83",
+        "brand_84",
+        "brand_85",
+        "brand_86",
+        "brand_87",
+        "brand_88",
+        "brand_89",
+        "brand_90",
+        "brand_91",
+        "brand_92",
+        "brand_93",
+        "brand_94",
+        "brand_95",
+        "brand_96",
+        "brand_97",
+        "brand_98",
+        "brand_99",
+        "brand_100",
+        "brand_101",
+        "brand_102",
+        "brand_103",
+        "brand_104",
+        "brand_105"
+      ],
+      "settings": {
+        "title": "Our Premium Brands",
+        "bg_color": "#f8fafc"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

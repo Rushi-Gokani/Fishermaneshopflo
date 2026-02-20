@@ -1,0 +1,1210 @@
+{%- comment -%}
+  Single Featured Product Section
+  A beautiful, aesthetic single product showcase designed for highlighting one special product
+{%- endcomment -%}
+
+{%- liquid
+  assign featured_product = all_products[section.settings.product]
+-%}
+
+{%- if featured_product != blank -%}
+  <div 
+    class="sfp-section color-{{ section.settings.color_scheme }}" 
+    data-section-id="{{ section.id }}"
+    style="
+      --sfp-padding-top: {{ section.settings.padding_top }}px;
+      --sfp-padding-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div class="sfp-container page-width">
+      {%- if section.settings.section_title != blank -%}
+        <div class="sfp-section-header">
+          <h2 class="sfp-section-title">{{ section.settings.section_title }}</h2>
+          {%- if section.settings.section_subtitle != blank -%}
+            <p class="sfp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="sfp-wrapper sfp-layout--{{ section.settings.layout }}">
+        <!-- Product Media -->
+        <div class="sfp-media">
+          <div class="sfp-media-inner">
+            {%- if section.settings.show_badge -%}
+              {%- if featured_product.compare_at_price > featured_product.price -%}
+                <div class="sfp-badge sfp-badge--sale">
+                  {%- if section.settings.badge_text != blank -%}
+                    {{ section.settings.badge_text }}
+                  {%- else -%}
+                    Save {{ featured_product.compare_at_price | minus: featured_product.price | money_without_trailing_zeros }}
+                  {%- endif -%}
+                </div>
+              {%- elsif featured_product.available == false -%}
+                <div class="sfp-badge sfp-badge--sold-out">{{ 'Sold Out' }}</div>
+              {%- elsif section.settings.badge_text != blank -%}
+                <div class="sfp-badge sfp-badge--custom">{{ section.settings.badge_text }}</div>
+              {%- endif -%}
+            {%- endif -%}
+
+            <a href="{{ featured_product.url }}" class="sfp-image-link" aria-label="{{ featured_product.title }}">
+              {%- if featured_product.featured_media -%}
+                <div class="sfp-image-wrapper">
+                  {%- assign image_height = featured_product.featured_media.width | divided_by: featured_product.featured_media.aspect_ratio -%}
+                  {{
+                    featured_product.featured_media
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: 'lazy',
+                      width: featured_product.featured_media.width,
+                      height: image_height,
+                      class: 'sfp-main-image',
+                      alt: featured_product.featured_media.alt
+                    | escape
+                  }}
+                  {%- if section.settings.show_secondary_image and featured_product.media[1] != nil -%}
+                    {%- assign secondary_image = featured_product.media[1] -%}
+                    {%- assign secondary_height = secondary_image.width | divided_by: secondary_image.aspect_ratio -%}
+                    {{
+                      secondary_image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        width: secondary_image.width,
+                        height: secondary_height,
+                        class: 'sfp-secondary-image',
+                        alt: secondary_image.alt
+                      | escape
+                    }}
+                  {%- endif -%}
+                </div>
+              {%- else -%}
+                <div class="sfp-image-placeholder">
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+            </a>
+
+            <!-- Thumbnail Gallery -->
+            {%- if featured_product.media.size > 1 and section.settings.show_thumbnails -%}
+              <div class="sfp-thumbnails">
+                {%- for media in featured_product.media limit: 4 -%}
+                  <button
+                    type="button"
+                    class="sfp-thumbnail {% if forloop.first %}is-active{% endif %}"
+                    data-media-id="{{ media.id }}"
+                    aria-label="View image {{ forloop.index }}"
+                  >
+                    {%- assign thumb_height = media.width | divided_by: media.aspect_ratio -%}
+                    {{
+                      media
+                      | image_url: width: 150
+                      | image_tag:
+                        loading: 'lazy',
+                        width: media.width,
+                        height: thumb_height,
+                        class: 'sfp-thumbnail-img'
+                      | escape
+                    }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- Product Content -->
+        <div class="sfp-content">
+          <div class="sfp-content-inner">
+            <!-- Vendor -->
+            {%- if section.settings.show_vendor and featured_product.vendor != blank -%}
+              <span class="sfp-vendor">{{ featured_product.vendor }}</span>
+            {%- endif -%}
+
+            <!-- Product Title -->
+            <h3 class="sfp-title">
+              <a href="{{ featured_product.url }}">{{ featured_product.title }}</a>
+            </h3>
+
+            <!-- Review Stars -->
+            {%- if section.settings.show_reviews -%}
+              <div class="sfp-reviews">
+                <div class="sfp-stars">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                {%- if featured_product.metafields.reviews.rating_count -%}
+                  <span class="sfp-review-count">({{ featured_product.metafields.reviews.rating_count }} reviews)</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <!-- Price -->
+            <div class="sfp-price-wrapper">
+              {%- if featured_product.compare_at_price > featured_product.price -%}
+                <span class="sfp-price sfp-price--sale">{{ featured_product.price | money }}</span>
+                <span class="sfp-price-compare">{{ featured_product.compare_at_price | money }}</span>
+                <span class="sfp-savings">Save {{ featured_product.compare_at_price | minus: featured_product.price | money_without_trailing_zeros }}</span>
+              {%- else -%}
+                <span class="sfp-price">{{ featured_product.price | money }}</span>
+              {%- endif -%}
+            </div>
+
+            <!-- Short Description -->
+            {%- if section.settings.show_description and featured_product.description != blank -%}
+              <div class="sfp-description">
+                <p>{{ featured_product.description | strip_html | truncatewords: section.settings.description_words }}</p>
+              </div>
+            {%- endif -%}
+
+            <!-- Product Form -->
+            {%- assign product_form_id = 'sfp-product-form-' | append: section.id -%}
+            <product-form class="sfp-product-form">
+              {%- form 'product', featured_product, id: product_form_id, novalidate: 'novalidate' -%}
+                <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}" form="{{ product_form_id }}">
+
+                <!-- Variant Selectors -->
+                {%- if featured_product.variants.size > 1 and section.settings.show_variants -%}
+                  <div class="sfp-variants">
+                    {%- for option in featured_product.options -%}
+                      <div class="sfp-variant-group" data-option-name="{{ option | handle }}">
+                        <label class="sfp-variant-label">
+                          {{ option }}
+                          <span class="sfp-selected-value">{{ featured_product.selected_or_first_available_variant.options[forloop.index0] }}</span>
+                        </label>
+                        <div class="sfp-variant-options">
+                          {%- for value in featured_product.options_by_name[option].values -%}
+                            <button
+                              type="button"
+                              class="sfp-variant-swatch {% if featured_product.selected_or_first_available_variant.options[forloop.parentloop.index0] == value %}is-selected{% endif %}"
+                              data-value="{{ value | escape }}"
+                              data-option-index="{{ forloop.index }}"
+                              form="{{ product_form_id }}"
+                            >
+                              {{ value }}
+                            </button>
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
+                <!-- Quantity Selector -->
+                {%- if section.settings.show_quantity -%}
+                  <div class="sfp-quantity-wrapper">
+                    <label for="Quantity-{{ section.id }}" class="sfp-quantity-label">{{ 'Quantity' }}</label>
+                    <quantity-input class="sfp-quantity">
+                      <button
+                        type="button"
+                        class="sfp-qty-btn sfp-qty-minus"
+                        name="minus"
+                        aria-label="Decrease quantity"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      </button>
+                      <input
+                        type="number"
+                        name="quantity"
+                        id="Quantity-{{ section.id }}"
+                        value="1"
+                        min="1"
+                        form="{{ product_form_id }}"
+                        class="sfp-qty-input"
+                      >
+                      <button
+                        type="button"
+                        class="sfp-qty-btn sfp-qty-plus"
+                        name="plus"
+                        aria-label="Increase quantity"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      </button>
+                    </quantity-input>
+                  </div>
+                {%- endif -%}
+
+                <!-- Action Buttons -->
+                <div class="sfp-actions">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="sfp-btn sfp-btn-primary"
+                    {% if featured_product.available == false %}disabled{% endif %}
+                  >
+                    {%- if featured_product.available -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <path d="M3 6h18"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                      </svg>
+                      <span>{{ section.settings.add_to_cart_text }}</span>
+                    {%- else -%}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                      <span>{{ 'Sold Out' }}</span>
+                    {%- endif -%}
+                  </button>
+
+                  {%- if featured_product.available -%}
+                    <div class="sfp-btn sfp-btn-primary" style="background: transparent; border: none; padding: 0;">
+                      <div class="shopify-payment-button">
+                        <button type="button" id="flo-buy-now-button" onclick="handleFloBuyNowBtn(event)" class="shopify-payment-button__button shopify-payment-button__button--unbranded" name="flo-buy-now-button" style="width: 100%; height: 100%; min-height: 48px;">
+                          {{ 'Buy It Now' }}
+                        </button>
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  {%- if section.settings.show_view_details -%}
+                    <a href="{{ featured_product.url }}" class="sfp-btn sfp-btn-secondary">
+                      <span>{{ section.settings.view_details_text }}</span>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endform -%}
+            </product-form>
+
+            <!-- Trust Badges -->
+            {%- if section.settings.show_trust_badges -%}
+              <div class="sfp-trust-badges">
+                {%- if section.settings.trust_badge_1 -%}
+                  <div class="sfp-trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                      <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                    <span>{{ section.settings.trust_badge_1 }}</span>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.trust_badge_2 -%}
+                  <div class="sfp-trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>{{ section.settings.trust_badge_2 }}</span>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.trust_badge_3 -%}
+                  <div class="sfp-trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>{{ section.settings.trust_badge_3 }}</span>
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const section = document.querySelector('.sfp-section[data-section-id="{{ section.id }}"]');
+      if (!section) return;
+
+      // Variant Selection
+      const variantSwatches = section.querySelectorAll('.sfp-variant-swatch');
+      const selectedValueLabels = section.querySelectorAll('.sfp-selected-value');
+
+      variantSwatches.forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          const optionGroup = this.closest('.sfp-variant-group');
+          
+          // Update visual selection
+          optionGroup.querySelectorAll('.sfp-variant-swatch').forEach(s => s.classList.remove('is-selected'));
+          this.classList.add('is-selected');
+
+          // Update label
+          const selectedValue = optionGroup.querySelector('.sfp-selected-value');
+          if (selectedValue) {
+            selectedValue.textContent = this.dataset.value;
+          }
+        });
+      });
+
+      // Quantity Input
+      const quantityInput = section.querySelector('.sfp-qty-input');
+      const minusBtn = section.querySelector('.sfp-qty-minus');
+      const plusBtn = section.querySelector('.sfp-qty-plus');
+
+      if (quantityInput && minusBtn && plusBtn) {
+        minusBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value) || 1;
+          if (current > 1) {
+            quantityInput.value = current - 1;
+          }
+        });
+
+        plusBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value) || 1;
+          quantityInput.value = current + 1;
+        });
+      }
+
+      // Thumbnail Gallery
+      const thumbnails = section.querySelectorAll('.sfp-thumbnail');
+      const mainImage = section.querySelector('.sfp-main-image');
+
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          thumbnails.forEach(t => t.classList.remove('is-active'));
+          this.classList.add('is-active');
+
+          const newImageSrc = this.querySelector('img').src.replace('width=150', 'width=1200');
+          if (mainImage) {
+            mainImage.src = newImageSrc;
+          }
+        });
+      });
+    })();
+  </script>
+{%- else -%}
+  <div class="sfp-section sfp-empty color-{{ section.settings.color_scheme }}">
+    <div class="sfp-container page-width">
+      <div class="sfp-empty-content">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <p>Select a product to display in the featured product section</p>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+/* Single Featured Product - Aesthetic & Modern */
+
+.sfp-section {
+  position: relative;
+  padding: var(--sfp-padding-top, 80px) 0 var(--sfp-padding-bottom, 80px);
+  background: rgb(var(--color-background));
+  overflow: hidden;
+}
+
+.sfp-container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-inline);
+}
+
+/* Section Header */
+.sfp-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sfp-section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  color: rgb(var(--color-foreground-heading));
+}
+
+.sfp-section-subtitle {
+  font-size: 16px;
+  color: rgb(var(--color-foreground) / 0.7);
+  margin: 0;
+}
+
+/* Layout */
+.sfp-wrapper {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .sfp-layout--image-left {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+  }
+
+  .sfp-layout--image-right {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px;
+  }
+
+  .sfp-layout--image-right .sfp-media {
+    order: 2;
+  }
+
+  .sfp-layout--image-right .sfp-content {
+    order: 1;
+  }
+}
+
+/* Product Media */
+.sfp-media {
+  position: relative;
+}
+
+.sfp-media-inner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgb(var(--color-foreground) / 0.03);
+  box-shadow: 
+    0 4px 6px -1px rgb(var(--color-shadow) / 0.05),
+    0 10px 15px -3px rgb(var(--color-shadow) / 0.08),
+    0 20px 40px -10px rgb(var(--color-shadow) / 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sfp-media-inner:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 10px 15px -3px rgb(var(--color-shadow) / 0.08),
+    0 20px 25px -5px rgb(var(--color-shadow) / 0.1),
+    0 30px 60px -15px rgb(var(--color-shadow) / 0.15);
+}
+
+.sfp-image-link {
+  display: block;
+  position: relative;
+}
+
+.sfp-image-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.sfp-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sfp-main-image {
+  position: relative;
+  z-index: 1;
+}
+
+.sfp-secondary-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+.sfp-media:hover .sfp-secondary-image {
+  opacity: 1;
+}
+
+.sfp-media:hover .sfp-main-image {
+  transform: scale(1.05);
+}
+
+.sfp-image-placeholder {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--color-foreground) / 0.05);
+}
+
+.sfp-image-placeholder svg {
+  width: 120px;
+  height: 120px;
+  opacity: 0.2;
+}
+
+/* Badges */
+.sfp-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgb(var(--color-shadow) / 0.15);
+}
+
+.sfp-badge--sale {
+  background: linear-gradient(135deg, #e63946, #d62839);
+  color: #fff;
+}
+
+.sfp-badge--sold-out {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.sfp-badge--custom {
+  background: rgb(var(--color-primary));
+  color: rgb(var(--color-background));
+}
+
+/* Thumbnails */
+.sfp-thumbnails {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  justify-content: center;
+  background: rgb(var(--color-background));
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+.sfp-thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  background: none;
+}
+
+.sfp-thumbnail:hover {
+  transform: scale(1.05);
+  border-color: rgb(var(--color-border));
+}
+
+.sfp-thumbnail.is-active {
+  border-color: rgb(var(--color-primary));
+  box-shadow: 0 0 0 3px rgb(var(--color-primary) / 0.15);
+}
+
+.sfp-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Product Content */
+.sfp-content {
+  padding: 0;
+}
+
+.sfp-content-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sfp-vendor {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgb(var(--color-foreground) / 0.6);
+  font-weight: 600;
+}
+
+.sfp-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: rgb(var(--color-foreground-heading));
+}
+
+.sfp-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.sfp-title a:hover {
+  opacity: 0.7;
+}
+
+/* Reviews */
+.sfp-reviews {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sfp-stars {
+  display: flex;
+  gap: 2px;
+  color: #FFB400;
+}
+
+.sfp-review-count {
+  font-size: 13px;
+  color: rgb(var(--color-foreground) / 0.6);
+}
+
+/* Price */
+.sfp-price-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.sfp-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: rgb(var(--color-foreground-heading));
+}
+
+.sfp-price--sale {
+  color: #e63946;
+}
+
+.sfp-price-compare {
+  font-size: 18px;
+  color: rgb(var(--color-foreground) / 0.4);
+  text-decoration: line-through;
+}
+
+.sfp-savings {
+  padding: 4px 12px;
+  background: #e63946;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Description */
+.sfp-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgb(var(--color-foreground) / 0.75);
+}
+
+.sfp-description p {
+  margin: 0;
+}
+
+/* Variants */
+.sfp-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.sfp-variant-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sfp-variant-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgb(var(--color-foreground));
+}
+
+.sfp-selected-value {
+  color: rgb(var(--color-foreground) / 0.6);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.sfp-variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sfp-variant-swatch {
+  padding: 10px 18px;
+  min-width: 44px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1.5px solid rgb(var(--color-border));
+  border-radius: 10px;
+  background: transparent;
+  color: rgb(var(--color-foreground));
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sfp-variant-swatch:hover {
+  border-color: rgb(var(--color-foreground) / 0.4);
+  background: rgb(var(--color-foreground) / 0.03);
+}
+
+.sfp-variant-swatch.is-selected {
+  border-color: rgb(var(--color-foreground));
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+}
+
+/* Quantity */
+.sfp-quantity-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.sfp-quantity-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgb(var(--color-foreground));
+}
+
+.sfp-quantity {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid rgb(var(--color-border));
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgb(var(--color-background));
+}
+
+.sfp-qty-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(var(--color-foreground));
+  transition: background 0.2s ease;
+}
+
+.sfp-qty-btn:hover {
+  background: rgb(var(--color-foreground) / 0.05);
+}
+
+.sfp-qty-input {
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid rgb(var(--color-border));
+  border-right: 1px solid rgb(var(--color-border));
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+  background: transparent;
+}
+
+.sfp-qty-input:focus {
+  outline: none;
+}
+
+/* Action Buttons */
+.sfp-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.sfp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.sfp-btn-primary {
+  flex: 1;
+  min-width: 180px;
+  background: rgb(var(--color-primary-button-background));
+  color: rgb(var(--color-primary-button-text));
+  box-shadow: 0 4px 14px rgb(var(--color-shadow) / 0.15);
+}
+
+.sfp-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(var(--color-shadow) / 0.2);
+  background: rgb(var(--color-primary-button-hover-background));
+  color: rgb(var(--color-primary-button-hover-text));
+}
+
+.sfp-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sfp-btn-secondary {
+  background: transparent;
+  border: 1.5px solid rgb(var(--color-secondary-button-border));
+  color: rgb(var(--color-secondary-button-text));
+  min-width: auto;
+}
+
+.sfp-btn-secondary:hover {
+  border-color: rgb(var(--color-secondary-button-hover-border));
+  background: rgb(var(--color-secondary-button-hover-background));
+  color: rgb(var(--color-secondary-button-hover-text));
+  transform: translateY(-2px);
+}
+
+/* Trust Badges */
+.sfp-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(var(--color-border));
+  margin-top: 8px;
+}
+
+.sfp-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgb(var(--color-foreground) / 0.7);
+  font-weight: 500;
+}
+
+.sfp-trust-item svg {
+  flex-shrink: 0;
+  color: rgb(var(--color-primary));
+}
+
+/* Empty State */
+.sfp-empty {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sfp-empty-content {
+  text-align: center;
+  color: rgb(var(--color-foreground) / 0.4);
+}
+
+.sfp-empty-content svg {
+  margin-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 899px) {
+  .sfp-section {
+    padding: 48px 0;
+  }
+
+  .sfp-wrapper {
+    gap: 32px;
+  }
+
+  .sfp-section-header {
+    margin-bottom: 32px;
+  }
+
+  .sfp-badge {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .sfp-thumbnails {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .sfp-thumbnail {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+  }
+
+  .sfp-title {
+    font-size: 24px;
+  }
+
+  .sfp-price {
+    font-size: 24px;
+  }
+
+  .sfp-actions {
+    flex-direction: column;
+  }
+
+  .sfp-btn {
+    width: 100%;
+  }
+
+  .sfp-trust-badges {
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sfp-thumbnails {
+    display: none;
+  }
+}
+
+/* Animations */
+@keyframes sfpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sfp-media {
+  animation: sfpFadeIn 0.6s ease-out;
+}
+
+.sfp-content {
+  animation: sfpFadeIn 0.6s ease-out 0.1s backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sfp-media,
+  .sfp-content {
+    animation: none;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Single Featured Product",
+  "tag": "section",
+  "class": "section-single-featured-product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Featured Product"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section subtitle",
+      "default": "Our best seller this month"
+    },
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "image-left",
+          "label": "Image left"
+        },
+        {
+          "value": "image-right",
+          "label": "Image right"
+        }
+      ],
+      "default": "image-left"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Product Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Custom badge text",
+      "info": "Leave empty to show sale amount or sold out"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show review stars",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbnails",
+      "label": "Show thumbnail gallery",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show short description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_words",
+      "label": "Description word limit",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Product Form"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show variant selectors",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_text",
+      "label": "Add to cart button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_details",
+      "label": "Show view details button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_details_text",
+      "label": "View details button text",
+      "default": "View Details"
+    },
+    {
+      "type": "header",
+      "content": "Trust Badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show trust badges",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_badge_1",
+      "label": "Trust badge 1",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "text",
+      "id": "trust_badge_2",
+      "label": "Trust badge 2",
+      "default": "Secure Checkout"
+    },
+    {
+      "type": "text",
+      "id": "trust_badge_3",
+      "label": "Trust badge 3",
+      "default": "24/7 Support"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single Featured Product",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

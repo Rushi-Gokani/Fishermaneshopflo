@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "custom_footer_waves": {
+      "type": "custom-footer",
+      "name": "Custom Footer with Waves",
+      "settings": {
+        "about_heading": "ABOUT THE SHOP",
+        "about_text": "Shipping all over India. For bulk purchase & business queries, message us on any of our messenger apps.",
+        "quick_links_heading": "QUICK LINKS",
+        "quick_links_menu": "footer",
+        "blogs_heading": "BLOGS",
+        "blogs_menu": "blogs",
+        "newsletter_heading": "NEWSLETTER",
+        "newsletter_text": "Be the first to know about new drops, deals and fishing tips.",
+        "email_placeholder": "Email address",
+        "button_text": "Sign up",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "follow_heading": "FOLLOW US",
+        "facebook_url": "https://www.facebook.com/fishermanshub.shop",
+        "instagram_url": "https://www.instagram.com/fishermanshub1/",
+        "youtube_url": "",
+        "enable_wave_animation": true
+      }
+    }
+  },
+  "order": [
+    "custom_footer_waves"
+  ]
+}

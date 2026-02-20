@@ -1,0 +1,248 @@
+{% schema %}
+{
+  "name": "Top Bar",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#2563eb"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay Speed (seconds)",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Auto Swipe",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Free shipping on orders over €50</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Bar"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="top-bar" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="top-bar__container">
+    <button class="top-bar__arrow top-bar__arrow--prev" aria-label="Previous announcement">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="top-bar__slider">
+      {% for block in section.blocks %}
+        <div class="top-bar__slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+          <div class="top-bar__text">
+            {{ block.settings.text }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="top-bar__arrow top-bar__arrow--next" aria-label="Next announcement">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>
+
+{% style %}
+  .top-bar {
+    padding: 8px 0;
+    font-size: 13px;
+    position: relative;
+  }
+  
+  .top-bar__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 20px; /* Add horizontal padding since page-width is removed */
+    margin: 0; /* Remove auto margins */
+    position: relative;
+  }
+
+  .top-bar__slider {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .top-bar__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .top-bar__slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+
+  .top-bar__text {
+    width: 100%;
+    
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .top-bar__text p {
+    margin: 0;
+    text-align: center;
+    line-height: 0;
+    font-size: 13px;
+  }
+
+  .top-bar__arrow {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    z-index: 2;
+  }
+
+  .top-bar__arrow:hover {
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .top-bar {
+      padding: 12px 0;
+      min-height: 45px;
+    }
+
+    .top-bar__container {
+      padding: 0 10px;
+      gap: 10px;
+    }
+
+    .top-bar__slider {
+      min-height: 50px;
+    }
+
+    .top-bar__arrow {
+      flex-shrink: 0;
+      padding: 5px 8px;
+    }
+
+     .top-bar__text p {
+      line-height: 1.4;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.top-bar__container');
+    if (!container) return;
+
+    const slides = container.querySelectorAll('.top-bar__slide');
+    const prevBtn = container.querySelector('.top-bar__arrow--prev');
+    const nextBtn = container.querySelector('.top-bar__arrow--next');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    const autoplaySpeed = {{ section.settings.autoplay_speed | times: 1000 }};
+    const enableAutoplay = {{ section.settings.enable_autoplay | json }};
+    let autoplayInterval;
+
+    if (totalSlides <= 1) {
+      if(prevBtn) prevBtn.style.display = 'none';
+      if(nextBtn) nextBtn.style.display = 'none';
+      return;
+    }
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    function startAutoplay() {
+      if (!enableAutoplay) return;
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(nextSlide, autoplaySpeed);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      startAutoplay(); // Reset timer
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      startAutoplay(); // Reset timer
+    });
+
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  });
+</script>

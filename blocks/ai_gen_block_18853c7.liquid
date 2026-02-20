@@ -1,0 +1,663 @@
+{% doc %}
+  @prompt
+    You are a senior Shopify OS 2.0 theme developer.
+    Using the attached reference screenshot, create a custom Shopify section that displays a UGC / community photo gallery exactly like the design shown.
+    
+    Section Layout:
+    
+    Centered section heading text at the top:
+    
+    “Tag us in your posts to get featured here!”
+    
+    Below the heading, display a grid of square images
+    
+    Grid layout:
+    
+    3 columns × 2 rows on desktop (total 6 images visible)
+    
+    Equal image sizes and spacing
+    
+    Image Card Design:
+    
+    Each item contains:
+    
+    A single image (user-generated content)
+    
+    Images should:
+    
+    Be square
+    
+    Use object-fit: cover
+    
+    Fill the entire grid cell
+    
+    Subtle border radius
+    
+    Clean, edge-to-edge visual layout
+    
+    Hover & Interaction (Desktop):
+    
+    On hover:
+    
+    Slight zoom-in effect on image
+    
+    Optional dark overlay fade
+    
+    Cursor should indicate click if image has link
+    
+    Responsiveness:
+    
+    Desktop: 3 columns
+    
+    Tablet: 2 columns
+    
+    Mobile: 1 column OR 2-column grid (configurable)
+    
+    Maintain equal aspect ratio across breakpoints
+    
+    Shopify Section Requirements:
+    
+    Use Liquid + JSON schema
+    
+    Use repeatable blocks for images
+    
+    Each block should allow:
+    
+    Image picker
+    
+    Optional link URL (Instagram post or product page)
+    
+    Section settings should include:
+    
+    Heading text
+    
+    Grid gap spacing
+    
+    Border radius control
+    
+    Top and bottom padding
+    
+    Code Output Rules:
+    
+    Provide complete Shopify section code
+    
+    Include:
+    
+    HTML (Liquid)
+    
+    CSS inside {% style %} tags
+    
+    JSON schema
+    
+    Code must be copy-paste ready
+    
+    Use pure CSS (no JS required)
+    
+    Follow Shopify OS 2.0 best practices
+    
+    Match grid spacing, image proportions, and overall layout as closely as possible to the reference screenshot.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-ugc-gallery-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-ugc-gallery__container-{{ ai_gen_id }} {
+  
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-ugc-gallery__heading-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-ugc-gallery__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+  }
+
+  .ai-ugc-gallery__item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: #f4f4f4;
+  }
+
+  .ai-ugc-gallery__link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .ai-ugc-gallery__image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .ai-ugc-gallery__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .ai-ugc-gallery__link-{{ ai_gen_id }}:hover .ai-ugc-gallery__image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-ugc-gallery__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .ai-ugc-gallery__link-{{ ai_gen_id }}:hover .ai-ugc-gallery__overlay-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-ugc-gallery__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+  }
+
+  .ai-ugc-gallery__placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-ugc-gallery__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-ugc-gallery__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-ugc-gallery__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.75);
+    }
+  }
+{% endstyle %}
+
+<ugc-gallery-{{ ai_gen_id }} class="ai-ugc-gallery-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-ugc-gallery__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-ugc-gallery__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-ugc-gallery__grid-{{ ai_gen_id }}">
+      {% if block.settings.image_1 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_1 != blank %}
+            <a href="{{ block.settings.link_1 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_1 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_1.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_1 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.image_2 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_2 != blank %}
+            <a href="{{ block.settings.link_2 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_2 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_2.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_2 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.image_3 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_3 != blank %}
+            <a href="{{ block.settings.link_3 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_3 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_3.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_3 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.image_4 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_4 != blank %}
+            <a href="{{ block.settings.link_4 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_4 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_4.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_4 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.image_5 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_5 != blank %}
+            <a href="{{ block.settings.link_5 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_5 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_5.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_5 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.image_6 != blank %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          {% if block.settings.link_6 != blank %}
+            <a href="{{ block.settings.link_6 }}" class="ai-ugc-gallery__link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="View user generated content">
+          {% else %}
+            <div class="ai-ugc-gallery__link-{{ ai_gen_id }}">
+          {% endif %}
+            
+            <div class="ai-ugc-gallery__image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ block.settings.image_6 | image_url: width: 600 }}"
+                alt="{{ block.settings.image_6.alt | escape }}"
+                class="ai-ugc-gallery__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+              {% if block.settings.show_overlay %}
+                <div class="ai-ugc-gallery__overlay-{{ ai_gen_id }}"></div>
+              {% endif %}
+            </div>
+
+          {% if block.settings.link_6 != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ai-ugc-gallery__item-{{ ai_gen_id }}">
+          <div class="ai-ugc-gallery__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</ugc-gallery-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class UgcGallery{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.setupAccessibility();
+      }
+
+      setupAccessibility() {
+        const links = this.querySelectorAll('.ai-ugc-gallery__link-{{ ai_gen_id }}[href]');
+        links.forEach(link => {
+          if (!link.getAttribute('aria-label')) {
+            link.setAttribute('aria-label', 'View user generated content');
+          }
+        });
+      }
+    }
+
+    customElements.define('ugc-gallery-{{ ai_gen_id }}', UgcGallery{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "UGC photo gallery",
+  "tag": null,
+  "class": "ugc-gallery-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "Tag us in your posts to get featured here!"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Spacing below heading",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Grid layout"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show dark overlay on hover",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC photo gallery"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{
+  "layout": false,
+  "sections": {
+    "product_page_modern_quick_view": {
+      "type": "product-page-modern",
+      "blocks": {
+        "title_quick_view": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_quick_view": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_quick_view": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy_buttons_quick_view": {
+          "type": "buy_buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_quick_view",
+        "price_quick_view",
+        "variant_picker_quick_view",
+        "buy_buttons_quick_view"
+      ],
+      "settings": {
+        "show_breadcrumbs": false,
+        "enable_zoom": false,
+        "show_trust_badges": false,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "product_page_modern_quick_view"
+  ]
+}

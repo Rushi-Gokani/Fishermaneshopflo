@@ -1,0 +1,110 @@
+<div class="header-search-inline">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-inline__form">
+    <input
+      type="text"
+      name="q"
+      placeholder="Search for rods, reels, lures..."
+      class="header-search-inline__input"
+      aria-label="Search"
+    >
+    <div class="header-search-inline__actions">
+      <button type="submit" class="header-search-inline__submit" aria-label="Submit Search">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+      </button>
+      <div class="header-search-inline__divider"></div>
+      <div class="header-search-inline__categories">
+        <select name="category" class="header-search-inline__select">
+          <option value="">All Categories</option>
+          {% for collection in collections %}
+            <option value="{{ collection.handle }}">{{ collection.title }}</option>
+          {% endfor %}
+        </select>
+        <span class="header-search-inline__chevron">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<style>
+.header-search-inline {
+  flex-grow: 1;
+  max-width: 650px;
+  margin: 0 40px;
+}
+.header-search-inline__form {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d1d9e0;
+  border-radius: 50px;
+  padding: 2px 6px 2px 24px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+.header-search-inline__input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 14px;
+  outline: none;
+  color: #333;
+}
+.header-search-inline__input::placeholder {
+  color: #8898aa;
+}
+.header-search-inline__actions {
+  display: flex;
+  align-items: center;
+}
+.header-search-inline__submit {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #8898aa;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+.header-search-inline__divider {
+  width: 1px;
+  height: 20px;
+  background: #e0e6ed;
+  margin: 0 8px;
+}
+.header-search-inline__categories {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+  margin-left: 5px;
+}
+.header-search-inline__select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  padding-right: 20px;
+  outline: none;
+  white-space: nowrap;
+}
+.header-search-inline__chevron {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+</style>

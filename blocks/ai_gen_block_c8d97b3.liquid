@@ -1,0 +1,618 @@
+{% doc %}
+  @prompt
+    You are a senior Shopify OS 2.0 theme developer.
+    Using the attached reference screenshot, create a custom Shopify section called “Blog Posts” that visually and functionally matches the design.
+    
+    Section Header:
+    
+    Section title: “Blog Posts” aligned left
+    
+    A “Read more >” link aligned to the right (links to blog page)
+    
+    Blog Cards Layout:
+    
+    Display 2 blog post cards side by side on desktop
+    
+    Equal card widths
+    
+    Cards should not stack vertically on desktop
+    
+    Blog Card Design:
+    
+    Each card must include:
+    
+    Featured image at the top
+    
+    Image should:
+    
+    Be full-width
+    
+    Use object-fit: cover
+    
+    Maintain a consistent aspect ratio
+    
+    Blog category label above title (e.g., “Gear”, “Destinations”)
+    
+    Blog title (clickable)
+    
+    Author name and publish date below title
+    
+    Typography & Style:
+    
+    Clean, modern ecommerce typography (Dawn-style)
+    
+    Title slightly larger and bold
+    
+    Metadata (author & date) in smaller, muted text
+    
+    Good spacing between elements
+    
+    Shopify Section Requirements:
+    
+    Use Liquid + JSON schema
+    
+    Section settings should include:
+    
+    Section heading text
+    
+    Blog selector
+    
+    Number of posts to show (default 2)
+    
+    “Read more” link toggle
+    
+    Blog posts should be fetched dynamically from selected blog
+    
+    Responsiveness:
+    
+    Desktop: 2 columns
+    
+    Tablet: 2 columns
+    
+    Mobile: 1 column stacked
+    
+    Code Output Rules:
+    
+    Provide complete Shopify section code
+    
+    Include:
+    
+    HTML (Liquid)
+    
+    CSS inside {% style %} tags
+    
+    JSON schema
+    
+    Code must be copy-paste ready
+    
+    Use pure CSS (no JS needed)
+    
+    Follow Shopify OS 2.0 best practices
+    Match spacing, image sizing, alignment, and typography as closely as possible to the reference screenshot.
+{% enddoc %}
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-posts-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 60px 20px;
+  }
+
+  .ai-blog-posts-container-{{ ai_gen_id }} {
+  
+    margin: 0 auto;
+  }
+
+  .ai-blog-posts-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-blog-posts-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 600;
+    margin: 0;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-blog-posts-link-{{ ai_gen_id }} {
+    font-size: 16px;
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .ai-blog-posts-link-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  .ai-blog-posts-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: {{ block.settings.card_spacing }}px;
+  }
+
+  .ai-blog-card-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+
+  .ai-blog-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+  }
+
+  .ai-blog-card-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: {{ block.settings.image_aspect_ratio }}%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-blog-card-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-blog-card-image-wrapper-{{ ai_gen_id }} svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-blog-card-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-blog-card-category-{{ ai_gen_id }} {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: {{ block.settings.category_color }};
+  }
+
+  .ai-blog-card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .ai-blog-card-title-link-{{ ai_gen_id }} {
+    color: {{ block.settings.title_color }};
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ai-blog-card-title-link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_color }};
+  }
+
+  .ai-blog-card-meta-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: {{ block.settings.meta_color }};
+  }
+
+  .ai-blog-card-author-{{ ai_gen_id }},
+  .ai-blog-card-date-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ai-blog-card-separator-{{ ai_gen_id }} {
+    width: 1px;
+    height: 14px;
+    background-color: {{ block.settings.meta_color }};
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-blog-posts-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+
+    .ai-blog-posts-header-{{ ai_gen_id }} {
+      margin-bottom: 30px;
+    }
+
+    .ai-blog-posts-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.85 }}px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-blog-posts-{{ ai_gen_id }} {
+      padding: 30px 16px;
+    }
+
+    .ai-blog-posts-header-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .ai-blog-posts-grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.card_spacing | times: 0.75 }}px;
+    }
+
+    .ai-blog-card-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.75 }}px;
+    }
+
+    .ai-blog-card-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.card_title_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<ai-blog-posts-{{ ai_gen_id }} class="ai-blog-posts-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-blog-posts-container-{{ ai_gen_id }}">
+    <div class="ai-blog-posts-header-{{ ai_gen_id }}">
+      {% if block.settings.section_heading != blank %}
+        <h2 class="ai-blog-posts-title-{{ ai_gen_id }}">{{ block.settings.section_heading }}</h2>
+      {% endif %}
+      
+      {% if block.settings.show_read_more and block.settings.blog != blank %}
+        <a href="{{ block.settings.blog.url }}" class="ai-blog-posts-link-{{ ai_gen_id }}">
+          {{ block.settings.read_more_text }}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-blog-posts-grid-{{ ai_gen_id }}">
+      {% if block.settings.blog != blank %}
+        {% for article in block.settings.blog.articles limit: block.settings.posts_to_show %}
+          <article class="ai-blog-card-{{ ai_gen_id }}">
+            <a href="{{ article.url }}" class="ai-blog-card-image-wrapper-{{ ai_gen_id }}">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 800 }}"
+                  alt="{{ article.image.alt | escape }}"
+                  class="ai-blog-card-image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="800"
+                  height="{{ 800 | divided_by: article.image.aspect_ratio | round }}"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
+            </a>
+
+            <div class="ai-blog-card-content-{{ ai_gen_id }}">
+              {% if block.settings.show_category and article.tags.size > 0 %}
+                <div class="ai-blog-card-category-{{ ai_gen_id }}">
+                  {{ article.tags.first }}
+                </div>
+              {% endif %}
+
+              <h3 class="ai-blog-card-title-{{ ai_gen_id }}">
+                <a href="{{ article.url }}" class="ai-blog-card-title-link-{{ ai_gen_id }}">
+                  {{ article.title }}
+                </a>
+              </h3>
+
+              <div class="ai-blog-card-meta-{{ ai_gen_id }}">
+                {% if block.settings.show_author %}
+                  <div class="ai-blog-card-author-{{ ai_gen_id }}">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M13 13C13 10.7909 10.3137 9 7 9C3.68629 9 1 10.7909 1 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{{ article.author }}</span>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.show_author and block.settings.show_date %}
+                  <div class="ai-blog-card-separator-{{ ai_gen_id }}"></div>
+                {% endif %}
+
+                {% if block.settings.show_date %}
+                  <div class="ai-blog-card-date-{{ ai_gen_id }}">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="1" y="2.5" width="12" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                      <path d="M1 5.5H13" stroke="currentColor" stroke-width="1.2"/>
+                      <path d="M4.5 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                      <path d="M9.5 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                      {{ article.published_at | date: block.settings.date_format }}
+                    </time>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..block.settings.posts_to_show) %}
+          <article class="ai-blog-card-{{ ai_gen_id }}">
+            <div class="ai-blog-card-image-wrapper-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+            <div class="ai-blog-card-content-{{ ai_gen_id }}">
+              <div class="ai-blog-card-category-{{ ai_gen_id }}">Category</div>
+              <h3 class="ai-blog-card-title-{{ ai_gen_id }}">
+                <span class="ai-blog-card-title-link-{{ ai_gen_id }}">Blog Post Title</span>
+              </h3>
+              <div class="ai-blog-card-meta-{{ ai_gen_id }}">
+                <div class="ai-blog-card-author-{{ ai_gen_id }}">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13 13C13 10.7909 10.3137 9 7 9C3.68629 9 1 10.7909 1 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Author Name</span>
+                </div>
+                <div class="ai-blog-card-separator-{{ ai_gen_id }}"></div>
+                <div class="ai-blog-card-date-{{ ai_gen_id }}">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="2.5" width="12" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M1 5.5H13" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M4.5 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M9.5 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                  <time>Jan 23, 2026</time>
+                </div>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</ai-blog-posts-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AiBlogPosts{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.adjustLayout();
+      }
+
+      adjustLayout() {
+        const cards = this.querySelectorAll('.ai-blog-card-{{ ai_gen_id }}');
+        if (cards.length > 0) {
+          cards.forEach(card => {
+            card.style.opacity = '1';
+          });
+        }
+      }
+    }
+
+    customElements.define('ai-blog-posts-{{ ai_gen_id }}', AiBlogPosts{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Blog Posts"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "posts_to_show",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Number of posts",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Read more link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_read_more",
+      "label": "Show read more link",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read more"
+    },
+    {
+      "type": "header",
+      "content": "Card settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show category",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "label": "Date format",
+      "options": [
+        {
+          "value": "%b %d, %Y",
+          "label": "Jan 23, 2026"
+        },
+        {
+          "value": "%d %B %Y",
+          "label": "23 January 2026"
+        },
+        {
+          "value": "%Y-%m-%d",
+          "label": "2026-01-23"
+        },
+        {
+          "value": "%d/%m/%Y",
+          "label": "23/01/2026"
+        }
+      ],
+      "default": "%b %d, %Y"
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image aspect ratio",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between cards",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 16,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Card title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "category_color",
+      "label": "Category",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta text",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Links",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog posts"
+    }
+  ]
+}
+{% endschema %}

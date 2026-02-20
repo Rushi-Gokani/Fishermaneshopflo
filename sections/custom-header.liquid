@@ -1,0 +1,1347 @@
+{% schema %}
+{
+  "name": "Custom Header",
+  "class": "header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show Top Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top_bar_text",
+      "label": "Left Text",
+      "default": "Free shipping on orders over €50"
+    },
+    {
+      "type": "link_list",
+      "id": "top_bar_menu",
+      "label": "Top Bar Right Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Icons",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "top_bar_bg",
+      "label": "Top Bar Background",
+      "default": "#2563eb"
+    },
+    {
+      "type": "color",
+      "id": "top_bar_text_color",
+      "label": "Top Bar Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Main Header Settings"
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Header Background",
+      "default": "#1e293b"
+    },
+    {
+      "type": "color",
+      "id": "header_text",
+      "label": "Header Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "Categories Button"
+    },
+    {
+      "type": "text",
+      "id": "categories_label",
+      "label": "Button Label",
+      "default": "Categories"
+    },
+    {
+      "type": "color",
+      "id": "categories_bg",
+      "label": "Button Background",
+      "default": "#2563eb"
+    },
+    {
+      "type": "color",
+      "id": "categories_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Main Menu"
+    },
+    {
+      "type": "text",
+      "id": "badge_items",
+      "label": "Menu Items with Badge (comma separated)",
+      "default": "Offers, Sale",
+      "info": "Case sensitive. Example: Offers, Sale"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "HOT!"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge Background",
+      "default": "#ff4500"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar Settings"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_bg",
+      "label": "Sidebar Background",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_text",
+      "label": "Sidebar Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_active_bg",
+      "label": "Active Item Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "sidebar_active_text",
+      "label": "Active Item Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Right Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_currency",
+      "label": "Show Currency Selector",
+      "default": true
+    },
+  ],
+  "blocks": [
+    {
+      "type": "category_group",
+      "name": "Category Group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Sidebar Heading",
+          "default": "Accessories"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Sidebar Link"
+        },
+        {
+          "type": "header",
+          "content": "Column 1"
+        },
+        {
+          "type": "text",
+          "id": "menu_1_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_1",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Column 2"
+        },
+        {
+          "type": "text",
+          "id": "menu_2_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_2",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Column 3"
+        },
+        {
+          "type": "text",
+          "id": "menu_3_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_3",
+          "label": "Menu"
+        },
+        {
+          "type": "header",
+          "content": "Promo Card"
+        },
+        {
+          "type": "image_picker",
+          "id": "promo_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "promo_title",
+          "label": "Title",
+          "default": "TVs & Home Theater"
+        },
+        {
+          "type": "text",
+          "id": "promo_subtitle",
+          "label": "Subtitle",
+          "default": "Up to 30% off!"
+        },
+        {
+          "type": "url",
+          "id": "promo_link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}
+
+{% liquid
+  assign mobile_logo_width = section.settings.logo_width | times: 0.65 | round
+  assign enable_cart_drawer = false
+  if settings.cart_type == 'drawer' and template.name != 'cart'
+    assign enable_cart_drawer = true
+  endif
+  assign category_blocks = section.blocks | where: 'type', 'category_group'
+%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  .header-section {
+    z-index: 5001 !important;
+  }
+
+  .custom-top-bar,
+  .custom-header-section,
+  .mobile-drawer {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+
+  /* Top Bar */
+  .custom-top-bar {
+    background: #0f172a;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: none;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .top-bar-left { font-weight: 600; }
+  .top-bar-right, .top-bar-menu, .top-bar-social { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+  }
+  .top-bar-menu { list-style: none; padding: 0; margin: 0; gap: 15px; }
+  .top-bar-menu a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .top-bar-menu a:hover { color: #40c4ff; }
+  .top-bar-social a { color: #94a3b8; transition: color 0.2s; }
+  .top-bar-social a:hover { color: #40c4ff; }
+  .top-bar-social svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* Main Header Section */
+  .custom-header-section {
+    background: #40c4ff;
+    color: #0f172a;
+    position: relative;
+    z-index: 1000;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .custom-header-section::before {
+    content: '';
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    top: -140px;
+    left: -140px;
+    border-radius: 999px;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: 0;
+    background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .custom-header-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 32px;
+  }
+
+  /* Branding */
+  .header-branding {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+  }
+  .header-branding a { display: block; line-height: 0; }
+  .header-branding img {
+    max-width: {{ section.settings.logo_width }}px;
+    height: auto;
+    display: block;
+    width: 100%;
+  }
+  .header-logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  /* Navigation Cluster (Centered) */
+  .nav-cluster {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .categories-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .categories-btn {
+    background: #ffffff;
+    color: #40c4ff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  .categories-btn:hover {
+    background: #f8fafc;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .main-nav .mega-nav__list {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mega-nav__link {
+    color: #0f172a;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+  .mega-nav__link:hover { color: #000000; opacity: 1; }
+
+  /* Right Icons */
+  .header-icons {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: #0f172a;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 0.9;
+  }
+  .icon-btn:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+  }
+  .icon-btn svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
+  .header-actions__cart-icon {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    transform: scale(0.8);
+  }
+  .cart-count-bubble { background-color: #ffffff; color: #40c4ff; }
+
+  /* Megamenu Dropdown */
+  .categories-dropdown {
+    position: absolute;
+    top: 100%; /* Position directly below */
+    left: 0;
+    transform: none;
+    background: transparent; /* Transparent container */
+    padding-top: 20px; /* Physical bridge for the gap */
+    display: none;
+    width: 850px;
+    z-index: 1001;
+  }
+  
+  .categories-dropdown-inner {
+    background: #ffffff;
+    backdrop-filter: blur(20px);
+    color: #0f172a;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+  }
+
+  /* .categories-dropdown::before removed safely */
+  .categories-wrapper:hover .categories-dropdown { display: flex; }
+
+  .dropdown-sidebar {
+    background: #f8fafc;
+    width: 240px;
+    padding: 15px 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .sidebar-item {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sidebar-item.active, .sidebar-item:hover { 
+    background: rgba(64, 196, 255, 0.1); 
+    color: #40c4ff; 
+    border-left: 3px solid #40c4ff; /* Active indicator */
+  }
+
+  .dropdown-content-area { flex: 1; min-height: 400px; background: transparent; }
+  .custom-mega-panel { display: none; padding: 30px; justify-content: space-between; gap: 20px; width: 100%; }
+  .menus-group { display: flex; gap: 30px; }
+  .custom-mega-panel.active { display: flex; }
+  .panel-column { flex: 0 0 auto; min-width: 120px; }
+  .promo-column { width: 280px; flex-shrink: 0; }
+  .panel-column h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #40c4ff; margin-bottom: 15px; }
+  .panel-column ul { list-style: none; padding: 0; margin: 0; }
+  .panel-column li { margin-bottom: 8px; }
+  .panel-column a { text-decoration: none; color: #0f172a; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .panel-column a:hover { color: #40c4ff; }
+
+  .promo-card { position: relative; border-radius: 12px; overflow: hidden; display: block; height: 100%; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
+  .promo-card:hover { transform: translateY(-5px); border-color: #40c4ff; }
+  .promo-card img { width: 100%; height: 100%; object-fit: cover; }
+  .promo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 15px; color: #fff; }
+  .promo-title { font-weight: 700; font-size: 16px; color: #40c4ff; }
+  .promo-subtitle { font-size: 12px; opacity: 0.9; }
+
+  /* Mobile */
+  .header-mobile { display: none; width: 100%; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
+  .header-mobile .header-branding { max-width: 90px; }
+  .header-mobile .header-branding img { max-width: 100%; height: auto; }
+  
+  @media (max-width: 1024px) {
+    .header-layout { display: none; }
+    .header-mobile { display: flex; }
+    .custom-header-container { height: auto; padding: 0; }
+  }
+
+  /* Premium Mobile Drawer */
+  .mobile-drawer {
+    position: fixed; 
+    top: 0; 
+    left: -100%; 
+    width: 85%; 
+    max-width: 400px;
+    height: 100%; 
+    background: #ffffff; 
+    z-index: 2001; 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    padding: 0;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0 20px 20px 0;
+  }
+  .mobile-drawer.active { left: 0; }
+
+  /* Premium Header */
+  .mobile-drawer__header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 24px 30px; 
+    background: linear-gradient(to right, #f8fafc, #ffffff);
+    border-bottom: 1px solid #f1f5f9;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .mobile-drawer__header .header-logo-text { font-size: 22px; font-weight: 800; color: #0f172a; }
+
+  .mobile-drawer__close { 
+    background: #f1f5f9;
+    border: none; 
+    color: #64748b; 
+    cursor: pointer; 
+    width: 36px; 
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .mobile-drawer__close:hover { background: #e2e8f0; color: #0f172a; }
+
+  /* Navigation Area */
+  .mobile-drawer__nav { padding: 10px 0; }
+  .mobile-drawer__list { list-style: none; padding: 0; margin: 0; }
+  
+  .mobile-drawer__item {
+    border-bottom: 1px solid #f8fafc;
+    padding: 0 30px;
+    transition: background 0.2s;
+  }
+  .mobile-drawer__item:last-child { border-bottom: none; }
+
+  .mobile-drawer__link { 
+    color: #334155; 
+    text-decoration: none; 
+    font-size: 16px; 
+    font-weight: 600; 
+    display: block; 
+    padding: 18px 0; 
+    transition: color 0.2s; 
+    flex: 1;
+    letter-spacing: -0.01em;
+  }
+  .mobile-drawer__link:hover { color: #40c4ff; }
+
+  /* Premium Toggle Button */
+  .mobile-drawer__submenu-trigger {
+    width: 32px !important; 
+    height: 32px !important;
+    background: #f8fafc !important; 
+    color: #64748b;
+    border-radius: 50%;
+    margin-left: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .mobile-drawer__submenu-trigger:hover, 
+  .mobile-drawer__submenu.active ~ .mobile-drawer__submenu-trigger { /* Note: This selector won't work with current HTML structure, reliance on JS class toggle is better */ }
+  
+  .mobile-drawer__submenu-trigger svg { width: 14px; height: 14px; stroke-width: 2.5px; }
+
+  /* Submenu Styling */
+  .mobile-drawer__submenu {
+    display: none;
+    background: #f8fafc;
+    margin: 0 -30px 0 -30px;
+    padding: 15px 30px;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+  }
+  .mobile-drawer__submenu.active { display: block; animation: slideDown 0.3s ease-out forwards; }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mobile-drawer__submenu .mobile-drawer__item { padding: 0; border: none; }
+  .mobile-drawer__submenu .mobile-drawer__link {
+    font-size: 14px;
+    padding: 10px 0 10px 15px;
+    font-weight: 500;
+    color: #64748b;
+    border-left: 2px solid transparent;
+  }
+  .mobile-drawer__submenu .mobile-drawer__link:hover {
+    color: #0f172a;
+    border-left-color: #40c4ff;
+    background: linear-gradient(to right, rgba(64,196,255,0.05), transparent);
+  }
+
+  /* Modals */
+  .search-modal {
+    position: fixed; inset: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding-top: 80px; opacity: 0; transition: opacity 0.3s ease;
+  }
+  .search-modal.active { display: flex; opacity: 1; }
+  .search-modal__content { background: #ffffff; padding: 20px 25px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15); }
+  .search-modal__close { display: none; }
+  .search-modal__close:hover { color: #0f172a; background: rgba(0,0,0,0.05); }
+  .search-modal__form { display: flex; gap: 10px; }
+  .search-modal__input { flex: 1; padding: 12px 20px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: #f8fafc; color: #0f172a; }
+  .search-modal__input:focus { border-color: #40c4ff; outline: none; }
+  .search-modal__submit { background: #40c4ff; color: #0f172a; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+  .search-modal__submit:hover { background: #81d4fa; }
+  
+  .predictive-search-results { margin-top: 20px; max-height: 400px; overflow-y: auto; display: none; }
+  .predictive-search-results.has-results { display: block; }
+  .predictive-search-item { display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid #e2e8f0; text-decoration: none; color: #334155; }
+  .predictive-search-item:hover { background-color: rgba(0,0,0,0.03); }
+  .predictive-search-item img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
+  .predictive-search-item__title { font-weight: 600; font-size: 14px; display: block; color: #0f172a; }
+  .predictive-search-item__price { font-size: 13px; color: #64748b; }
+</style>
+
+{% capture header_logo_markup %}
+  <a href="{{ routes.root_url }}">
+    {% if section.settings.logo != blank %}
+      {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag: loading: 'eager' }}
+    {% else %}
+      <span class="header-logo-text">{{ shop.name }}</span>
+    {% endif %}
+  </a>
+{% endcapture %}
+
+{% if enable_cart_drawer %}
+  <script
+    src="{{ 'cart-drawer.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% endif %}
+
+<header-component id="header-component" sticky="always">
+{% if section.settings.show_top_bar %}
+<div class="custom-top-bar">
+  <div class="top-bar-left">
+    {{ section.settings.top_bar_text }}
+  </div>
+  <div class="top-bar-right">
+    {% if section.settings.top_bar_menu != blank %}
+      <ul class="top-bar-menu">
+        {% for link in section.settings.top_bar_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    {% if section.settings.show_social %}
+      <div class="top-bar-social">
+        <!-- Social Icons Placeholders -->
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+<div class="custom-header-section" ref="headerRowTop">
+  <div class="custom-header-container">
+    <!-- Desktop Layout -->
+    <div class="header-layout">
+      <div class="header-branding">
+        <a href="{{ routes.root_url }}">
+          {% if section.settings.logo != blank %}
+            {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag: loading: 'eager' }}
+          {% else %}
+            <span class="header-logo-text">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="nav-cluster" ref="headerMenu">
+        <div class="categories-wrapper">
+          <button class="categories-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            {{ section.settings.categories_label }}
+          </button>
+          
+          <div class="categories-dropdown">
+            <div class="categories-dropdown-inner">
+            {% assign first_category_block = section.blocks | where: 'type', 'category_group' | first %}
+            {% if first_category_block %}
+            <div class="dropdown-sidebar" style="padding: 10px 0;">
+              {% if first_category_block.settings.menu_1_heading != blank %}
+                 <h4 style="padding: 0 24px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #40c4ff; margin-bottom: 10px; margin-top:10px;">{{ first_category_block.settings.menu_1_heading }}</h4>
+              {% endif %}
+              
+              {% for link in first_category_block.settings.menu_1.links %}
+                <div class="sidebar-item {% if forloop.first %}active{% endif %}" data-target="menu-child-{{ forloop.index }}">
+                  <span>{{ link.title }}</span>
+                  {% if link.links.size > 0 %}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            
+            <div class="dropdown-content-area">
+              {% for link in first_category_block.settings.menu_1.links %}
+                <div class="custom-mega-panel {% if forloop.first %}active{% endif %}" id="menu-child-{{ forloop.index }}">
+                  <div class="menus-group">
+                    <div class="panel-column">
+                      <h4><a href="{{ link.url }}" style="color: inherit; text-decoration: none;">{{ link.title }}</a></h4>
+                      {% if link.links.size > 0 %}
+                        <ul>
+                          {% for child_link in link.links %}
+                            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                      {% else %}
+                        <p style="color: #94a3b8; font-size: 13px;">No sub-categories</p>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  {% assign promo_image = first_category_block.settings.promo_image %}
+                  {% assign promo_title = first_category_block.settings.promo_title %}
+                  {% assign promo_subtitle = first_category_block.settings.promo_subtitle %}
+                  {% assign promo_link = first_category_block.settings.promo_link %}
+
+                  {% comment %} Dynamic Content Override {% endcomment %}
+                  {% if link.type == 'collection_link' %}
+                    {% assign associated_collection = link.object %}
+                    {% if associated_collection.products.first != blank %}
+                      {% assign promo_image = associated_collection.products.first.featured_image %}
+                      {% assign promo_title = associated_collection.products.first.title %}
+                      {% assign promo_subtitle = associated_collection.products.first.price | money %}
+                      {% assign promo_link = associated_collection.products.first.url %}
+                    {% elsif associated_collection.image != blank %}
+                       {% assign promo_image = associated_collection.image %}
+                       {% assign promo_title = associated_collection.title %}
+                       {% assign promo_subtitle = 'Explore Collection' %}
+                       {% assign promo_link = associated_collection.url %}
+                    {% endif %}
+                  {% elsif link.type == 'product_link' and link.object.featured_image != blank %}
+                     {% assign promo_image = link.object.featured_image %}
+                     {% assign promo_title = link.object.title %}
+                     {% assign promo_subtitle = link.object.price | money %}
+                     {% assign promo_link = link.url %}
+                  {% endif %}
+
+                  {% if promo_image != blank %}
+                    <div class="panel-column promo-column">
+                      <a href="{{ promo_link | default: '#' }}" class="promo-card">
+                        {{ promo_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                        <div class="promo-overlay">
+                          <span class="promo-title">{{ promo_title }}</span>
+                          <span class="promo-subtitle">{{ promo_subtitle }}</span>
+                        </div>
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <nav class="main-nav">
+          <ul class="mega-nav__list">
+            {% for link in section.settings.main_menu.links %}
+              <li class="mega-nav__item">
+                <a href="{{ link.url }}" class="mega-nav__link">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-icons">
+        <button class="icon-btn search-trigger" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="{{ routes.account_url }}" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        
+        {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
+          <cart-drawer-component class="cart-drawer" {% if settings.auto_open_cart_drawer %}auto-open{% endif %}>
+            {% comment %} <button class="icon-btn" aria-label="Cart" on:click="/open"> {% endcomment %}
+            <button class="icon-btn flo-header-cart-btn" aria-label="Cart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+              <div class="header-actions__cart-icon">
+                  {% render 'cart-bubble', limit: 100, live_region: true %}
+              </div>
+            </button>
+            <dialog ref="dialog" class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}" aria-labelledby="cart-drawer-heading" scroll-lock cart-summary-sticky="true">
+              <div class="cart-drawer__inner">
+                <cart-items-component class="cart-items-component" data-section-id="{{ section.id }}">
+                  {%- if cart.empty? -%}
+                    <div class="cart-drawer__header">
+                      <button ref="closeButton" on:click="cart-drawer-component/close" class="button close-button cart-drawer__close-button button-unstyled" aria-label="{{ 'actions.close_dialog' | t }}">
+                        <span class="svg-wrapper">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+                      </button>
+                    </div>
+                    <div class="cart-drawer__content motion-reduce">
+                      <h2 class="cart-drawer__heading h4 cart-drawer__heading--empty">{{ 'content.your_cart_is_empty' | t }}</h2>
+                      <div class="cart-drawer__items">{% render 'cart-products', drawer_context: 'drawer' %}</div>
+                    </div>
+                  {%- else -%}
+                    <div class="cart-drawer__header">
+                      <h2 class="cart-drawer__heading h4">{{ 'content.cart_title' | t }} {% render 'cart-bubble' %}</h2>
+                      <button ref="closeButton" on:click="cart-drawer-component/close" class="button close-button cart-drawer__close-button button-unstyled" aria-label="{{ 'actions.close_dialog' | t }}">
+                        <span class="svg-wrapper">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+                      </button>
+                    </div>
+                    <scroll-hint class="cart-drawer__content motion-reduce" style="--header-height: 60px;">
+                      <scroll-hint class="cart-drawer__items">{% render 'cart-products', drawer_context: 'drawer' %}</scroll-hint>
+                      <div class="cart-drawer__summary">{% render 'cart-summary' %}</div>
+                    </scroll-hint>
+                  {%- endif -%}
+                </cart-items-component>
+              </div>
+            </dialog>
+          </cart-drawer-component>
+        {% else %}
+          <a href="{{ routes.cart_url }}" class="icon-btn" aria-label="Cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="header-mobile">
+      <button class="icon-btn mobile-menu-trigger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <div class="header-branding">
+        <a href="{{ routes.root_url }}">
+          {% if section.settings.logo != blank %}
+            {{ section.settings.logo | image_url: width: 120 | image_tag: loading: 'eager' }}
+          {% else %}
+            <span class="header-logo-text" style="font-size: 18px;">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="header-icons">
+        <button class="icon-btn search-trigger" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
+          <cart-drawer-component class="cart-drawer" {% if settings.auto_open_cart_drawer %}auto-open{% endif %}>
+            {% comment %} <button class="icon-btn" aria-label="Cart" on:click="/open"> {% endcomment %}
+            <button class="icon-btn flo-header-cart-btn" aria-label="Cart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+              <div class="header-actions__cart-icon">
+                  {% render 'cart-bubble', limit: 100, live_region: true %}
+              </div>
+            </button>
+            <dialog ref="dialog" class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}" aria-labelledby="cart-drawer-heading" scroll-lock cart-summary-sticky="true">
+              <div class="cart-drawer__inner">
+                <cart-items-component class="cart-items-component" data-section-id="{{ section.id }}">
+                  {%- if cart.empty? -%}
+                    <div class="cart-drawer__header">
+                      <button ref="closeButton" on:click="cart-drawer-component/close" class="button close-button cart-drawer__close-button button-unstyled" aria-label="{{ 'actions.close_dialog' | t }}">
+                        <span class="svg-wrapper">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+                      </button>
+                    </div>
+                    <div class="cart-drawer__content motion-reduce">
+                      <h2 class="cart-drawer__heading h4 cart-drawer__heading--empty">{{ 'content.your_cart_is_empty' | t }}</h2>
+                      <div class="cart-drawer__items">{% render 'cart-products', drawer_context: 'drawer' %}</div>
+                    </div>
+                  {%- else -%}
+                    <div class="cart-drawer__header">
+                      <h2 class="cart-drawer__heading h4">{{ 'content.cart_title' | t }} {% render 'cart-bubble' %}</h2>
+                      <button ref="closeButton" on:click="cart-drawer-component/close" class="button close-button cart-drawer__close-button button-unstyled" aria-label="{{ 'actions.close_dialog' | t }}">
+                        <span class="svg-wrapper">{{- 'icon-close.svg' | inline_asset_content -}}</span>
+                      </button>
+                    </div>
+                    <scroll-hint class="cart-drawer__content motion-reduce" style="--header-height: 60px;">
+                      <scroll-hint class="cart-drawer__items">{% render 'cart-products', drawer_context: 'drawer' %}</scroll-hint>
+                      <div class="cart-drawer__summary">{% render 'cart-summary' %}</div>
+                    </scroll-hint>
+                  {%- endif -%}
+                </cart-items-component>
+              </div>
+            </dialog>
+          </cart-drawer-component>
+        {% else %}
+          <a href="{{ routes.cart_url }}" class="icon-btn" aria-label="Cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+</header-component>
+
+<script
+  src="{{ 'header.js' | asset_url }}"
+  type="module"
+></script>
+
+<!-- Mobile Menu Drawer -->
+<div class="mobile-drawer" id="mobileDrawer" ref="headerDrawerContainer">
+  <div class="mobile-drawer__header">
+    <span class="header-logo-text" style="font-size: 20px;">{{ shop.name }}</span>
+    <button class="mobile-drawer__close" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <nav class="mobile-drawer__nav">
+    <ul class="mobile-drawer__list">
+      {% for link in section.settings.main_menu.links %}
+        <li class="mobile-drawer__item">
+          <a href="{{ link.url }}" class="mobile-drawer__link">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+
+      {% if category_blocks.size > 0 %}
+          {% assign first_category_block = category_blocks | first %}
+          {% if first_category_block %}
+                {% if first_category_block.settings.menu_1 != blank %}
+                  {% for link in first_category_block.settings.menu_1.links %}
+                    <li class="mobile-drawer__item {% if link.links.size > 0 %}has-submenu{% endif %}">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <a href="{{ link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0;">{{ link.title }}</a>
+                        {% if link.links.size > 0 %}
+                          <button class="mobile-drawer__submenu-trigger" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                          </button>
+                        {% endif %}
+                      </div>
+                      {% if link.links.size > 0 %}
+                        <div class="mobile-drawer__submenu">
+                          <ul class="mobile-drawer__list">
+                            {% for child_link in link.links %}
+                              <li class="mobile-drawer__item">
+                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                {% endif %}
+
+                {% if first_category_block.settings.menu_2 != blank %}
+                   {% for link in first_category_block.settings.menu_2.links %}
+                    <li class="mobile-drawer__item {% if link.links.size > 0 %}has-submenu{% endif %}">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <a href="{{ link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0;">{{ link.title }}</a>
+                        {% if link.links.size > 0 %}
+                          <button class="mobile-drawer__submenu-trigger" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                          </button>
+                        {% endif %}
+                      </div>
+                      {% if link.links.size > 0 %}
+                        <div class="mobile-drawer__submenu">
+                          <ul class="mobile-drawer__list">
+                            {% for child_link in link.links %}
+                              <li class="mobile-drawer__item">
+                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                {% endif %}
+
+                {% if first_category_block.settings.menu_3 != blank %}
+                   {% for link in first_category_block.settings.menu_3.links %}
+                    <li class="mobile-drawer__item {% if link.links.size > 0 %}has-submenu{% endif %}">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <a href="{{ link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0;">{{ link.title }}</a>
+                        {% if link.links.size > 0 %}
+                          <button class="mobile-drawer__submenu-trigger" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                          </button>
+                        {% endif %}
+                      </div>
+                      {% if link.links.size > 0 %}
+                        <div class="mobile-drawer__submenu">
+                          <ul class="mobile-drawer__list">
+                            {% for child_link in link.links %}
+                              <li class="mobile-drawer__item">
+                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                {% endif %}
+          {% endif %}
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+<div class="mobile-drawer__overlay" id="mobileDrawerOverlay"></div>
+
+  <!-- Search Modal HTML -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal__content">
+      <button class="search-modal__close" aria-label="Close search">&times;</button>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-modal__form">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search our store..."
+          class="search-modal__input"
+          required
+        >
+        <input type="hidden" name="type" value="product">
+        <button type="submit" class="search-modal__submit">Search</button>
+      </form>
+      <div id="predictive-search-results" class="predictive-search-results"></div>
+    </div>
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Search Modal Logic
+    const searchTriggers = document.querySelectorAll('.search-trigger');
+    const searchModal = document.getElementById('searchModal');
+    const searchClose = document.querySelector('.search-modal__close');
+    const searchInput = document.querySelector('.search-modal__input');
+    const predictiveSearchResults = document.getElementById('predictive-search-results');
+
+    if (searchTriggers.length > 0 && searchModal) {
+      searchTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          searchModal.classList.add('active');
+          setTimeout(() => searchInput.focus(), 100);
+        });
+      });
+
+      const closeModal = () => {
+        searchModal.classList.remove('active');
+        predictiveSearchResults.innerHTML = ''; // Clear results on close
+        predictiveSearchResults.classList.remove('has-results');
+        searchInput.value = '';
+      };
+
+      if (searchClose) {
+        searchClose.addEventListener('click', closeModal);
+      }
+
+      // Close on background click
+      searchModal.addEventListener('click', function(e) {
+        if (e.target === searchModal) {
+          closeModal();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+
+      // Predictive Search Logic
+      let debounceTimer;
+      searchInput.addEventListener('input', function(e) {
+        const query = this.value.trim();
+        clearTimeout(debounceTimer);
+
+        if (query.length === 0) {
+          predictiveSearchResults.innerHTML = '';
+          predictiveSearchResults.classList.remove('has-results');
+          return;
+        }
+
+        debounceTimer = setTimeout(() => {
+          fetchSuggestions(query);
+        }, 300);
+      });
+
+      function fetchSuggestions(query) {
+        predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">Loading...</div>';
+        predictiveSearchResults.classList.add('has-results');
+
+        fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=4`)
+          .then(response => response.json())
+          .then(data => {
+            const products = data.resources.results.products;
+            if (products.length > 0) {
+              renderResults(products);
+            } else {
+              predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">No results found.</div>';
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching suggestions:', error);
+            predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">Error loading results.</div>';
+          });
+      }
+
+      function renderResults(products) {
+        let html = '';
+        products.forEach(product => {
+          html += `
+            <a href="${product.url}" class="predictive-search-item">
+              ${product.image ? `<img src="${product.image}" alt="${product.title}">` : ''}
+              <div class="predictive-search-item__info">
+                <span class="predictive-search-item__title">${product.title}</span>
+                <span class="predictive-search-item__price">${product.price}</span>
+              </div>
+            </a>
+          `;
+        });
+        predictiveSearchResults.innerHTML = html;
+      }
+    }
+
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const contentPanels = document.querySelectorAll('.custom-mega-panel');
+    const categoriesWrapper = document.querySelector('.categories-wrapper');
+    const categoriesDropdown = document.querySelector('.categories-dropdown');
+    const categoriesButton = document.querySelector('.categories-btn');
+
+    if (categoriesWrapper && categoriesDropdown) {
+      let dropdownTimer;
+      const openDropdown = () => {
+        clearTimeout(dropdownTimer);
+        categoriesWrapper.classList.add('is-open');
+      };
+
+      const closeDropdown = () => {
+        clearTimeout(dropdownTimer);
+        dropdownTimer = setTimeout(() => {
+          categoriesWrapper.classList.remove('is-open');
+        }, 150);
+      };
+
+      // Only attach listeners to wrapper (padding handles the hit area)
+      categoriesWrapper.addEventListener('mouseenter', openDropdown);
+      categoriesWrapper.addEventListener('mouseleave', closeDropdown);
+
+      // Handle Click to Toggle
+      categoriesButton?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (categoriesWrapper.classList.contains('is-open')) {
+             closeDropdown(); // Use close function
+        } else {
+             openDropdown();
+        }
+      });
+      
+      // Accessibility
+      categoriesButton?.addEventListener('focus', openDropdown);
+      categoriesDropdown.querySelectorAll('a, button').forEach((el) => {
+        el.addEventListener('focus', openDropdown);
+        el.addEventListener('blur', (event) => {
+            if (!categoriesDropdown.contains(event.relatedTarget)) {
+                closeDropdown();
+            }
+        });
+      });
+    }
+
+    // Mega menu hover/focus handling for premium nav
+    const megaItems = document.querySelectorAll('.mega-nav__item--has-children');
+    megaItems.forEach((item) => {
+      const link = item.querySelector('.mega-nav__link');
+
+      const open = () => item.classList.add('open');
+      const close = () => item.classList.remove('open');
+
+      item.addEventListener('pointerenter', open);
+      item.addEventListener('pointerleave', close);
+
+      link?.addEventListener('focus', open);
+      link?.addEventListener('blur', close);
+
+      item.querySelectorAll('a').forEach((anchor) => {
+        anchor.addEventListener('focus', open);
+        anchor.addEventListener('blur', (event) => {
+          if (!item.contains(event.relatedTarget)) {
+            close();
+          }
+        });
+      });
+    });
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        // Remove active class from all
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        contentPanels.forEach(p => p.classList.remove('active'));
+
+        // Add active class to current
+        this.classList.add('active');
+        const targetId = this.getAttribute('data-target');
+        const targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      });
+    });
+
+    // Mobile Drawer Logic
+    const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileDrawerClose = document.querySelector('.mobile-drawer__close');
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+
+    if (mobileMenuTrigger && mobileDrawer && mobileDrawerOverlay) {
+      const openDrawer = () => {
+        mobileDrawer.classList.add('active');
+        mobileDrawerOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeDrawer = () => {
+        mobileDrawer.classList.remove('active');
+        mobileDrawerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      mobileMenuTrigger.addEventListener('click', openDrawer);
+      mobileDrawerClose?.addEventListener('click', closeDrawer);
+      mobileDrawerOverlay.addEventListener('click', closeDrawer);
+      
+      // Mobile Submenu Toggles
+      const submenuTriggers = document.querySelectorAll('.mobile-drawer__submenu-trigger');
+      submenuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          let submenu = this.nextElementSibling;
+          
+          // Fallback to finding it in parent (for new structure where button is sibling to link in a div)
+          if (!submenu || !submenu.classList.contains('mobile-drawer__submenu')) {
+              const parentItem = this.closest('.mobile-drawer__item');
+              if (parentItem) {
+                  submenu = parentItem.querySelector('.mobile-drawer__submenu');
+              }
+          }
+          
+          const icon = this.querySelector('svg');
+          
+          if(submenu) {
+            submenu.classList.toggle('active');
+            // Rotate icon if needed
+            if(submenu.classList.contains('active')) {
+               if(icon) icon.style.transform = 'rotate(180deg)';
+            } else {
+               if(icon) icon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "product_page_modern_contact": {
+      "type": "product-page-modern",
+      "blocks": {
+        "breadcrumbs_contact": {
+          "type": "breadcrumbs",
+          "settings": {}
+        },
+        "title_contact": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_contact": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_contact": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "quantity_selector_contact": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_contact": {
+          "type": "buy_buttons",
+          "settings": {}
+        },
+        "razorpay_trusted_business_rtb_widget_contact": {
+          "type": "shopify://apps/razorpay-trusted-business/blocks/rtb-widget/a54835d4-011c-47fe-94db-3731e39152d6",
+          "settings": {}
+        },
+        "razorpay_affordability_widget_affordability_block_contact": {
+          "type": "shopify://apps/razorpay-affordability-widget/blocks/affordability-block/5bf9b115-5933-4c1b-ade0-ef564b250852",
+          "settings": {}
+        },
+        "description_contact": {
+          "type": "description",
+          "settings": {}
+        },
+        "selleasy_lb_upsell_addon_block_contact": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-addon-block/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "breadcrumbs_contact",
+        "title_contact",
+        "price_contact",
+        "variant_picker_contact",
+        "quantity_selector_contact",
+        "buy_buttons_contact",
+        "razorpay_trusted_business_rtb_widget_contact",
+        "razorpay_affordability_widget_affordability_block_contact",
+        "description_contact",
+        "selleasy_lb_upsell_addon_block_contact"
+      ],
+      "custom_css": [
+        ".modern-product__description h2 {font-size: 20px !important;}",
+        ".modern-product__description h3 {font-size: 20px !important;}",
+        ".modern-gallery__thumbnails {display: none !important;}",
+        ".modern-gallery__count {display: none !important;}",
+        "@media screen and (max-width: 680px) {.product-gallery__thumbnail-list {display: none !important; }}"
+      ],
+      "settings": {
+        "show_breadcrumbs": true,
+        "enable_zoom": true,
+        "show_trust_badges": true,
+        "trust_badge_1_icon": "truck",
+        "trust_badge_1_text": "Free shipping on orders over $50",
+        "trust_badge_2_icon": "shield",
+        "trust_badge_2_text": "Secure checkout guaranteed",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "reviews_widget_contact": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_contact": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_contact"
+      ],
+      "settings": {}
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_contact": {
+          "type": "text",
+          "name": "t:names.header",
+          "settings": {
+            "text": "<h3>You may also like </h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 8,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "card_bg_color": "#ffffff",
+            "card_border_color": "#f0f0f0",
+            "show_badge": true,
+            "badge_text": "Best Seller",
+            "badge_bg_color": "#ffffff",
+            "badge_text_color": "#000000",
+            "btn_bg_color": "#e1edf5",
+            "btn_text_color": "#000000"
+          },
+          "blocks": {
+            "product_card_gallery_contact": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_contact": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_contact_card": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_contact",
+            "product_title_contact",
+            "price_contact_card"
+          ]
+        }
+      },
+      "block_order": [
+        "text_contact"
+      ],
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "additional_apps_contact": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {}
+    },
+    "recently_viewed_products_contact": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "show_quick_buy": false
+      }
+    }
+  },
+  "order": [
+    "product_page_modern_contact",
+    "reviews_widget_contact",
+    "product-recommendations",
+    "additional_apps_contact",
+    "recently_viewed_products_contact"
+  ]
+}

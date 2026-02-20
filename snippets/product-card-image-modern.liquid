@@ -1,0 +1,65 @@
+{%- comment -%}
+  Product Card Image - Modern
+  Displays product image with optional secondary image on hover
+{%- endcomment -%}
+
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign second_image = blank
+
+  if product.media.size > 1
+    for media in product.media offset: 1
+      if media.media_type == 'image'
+        assign second_image = media
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<div class="fph-image-container">
+  {% if first_variant.featured_media %}
+    {{
+      first_variant.featured_media
+      | image_url: width: 600
+      | image_tag:
+        loading: 'lazy',
+        class: 'fph-primary-image',
+        alt: first_variant.featured_media.alt,
+        widths: '300, 400, 600, 800',
+        sizes: '(max-width: 300px) 300px, (max-width: 480px) 400px, (max-width: 600px) 600px'
+    }}
+  {% endif %}
+
+  {% if second_image != blank and show_secondary_image %}
+    {{
+      second_image
+      | image_url: width: 600
+      | image_tag:
+        loading: 'lazy',
+        class: 'fph-secondary-image',
+        alt: second_image.alt,
+        widths: '300, 400, 600, 800',
+        sizes: '(max-width: 300px) 300px, (max-width: 480px) 400px, (max-width: 600px) 600px'
+    }}
+  {% endif %}
+</div>
+{% stylesheet %}
+  .fph-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .fph-primary-image,
+  .fph-secondary-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fph-secondary-image {
+    position: absolute;
+    inset: 0;
+  }
+{% endstylesheet %}

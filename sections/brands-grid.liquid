@@ -1,0 +1,471 @@
+{% schema %}
+{
+  "name": "Premium Brands Directory",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Heading",
+      "default": "Explore Our Brands"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover top-tier fishing gear from the world's best manufacturers."
+    },
+    {
+      "type": "header",
+      "content": "Design Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Page Background",
+      "default": "#f8fafc"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#40C4FF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Brand Entry",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Brand Logo (Override)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand Name (Override)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Brands Directory"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  :root {
+    --brand-accent: {{ section.settings.accent_color }};
+  }
+
+  .brands-directory {
+    background-color: {{ section.settings.bg_color }};
+    min-height: 80vh;
+    padding: 60px 20px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .brands-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* Header Section */
+  .brands-header {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .brands-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .brands-header p {
+    font-size: 1.125rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* Toolbar: Search & Filter */
+  .brands-toolbar {
+    position: sticky;
+    top: 20px;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .brands-toolbar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      border-radius: 999px;
+    }
+  }
+
+  /* Search Input */
+  .brand-search-wrapper {
+    position: relative;
+    flex: 1;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .brand-search-wrapper { max-width: 300px; }
+  }
+
+  .brand-search-input {
+    width: 100%;
+    padding: 12px 16px 12px 48px;
+    border-radius: 99px;
+    border: 1px solid #e2e8f0;
+    background: #f1f5f9;
+    font-size: 15px;
+    color: #334155;
+    transition: all 0.2s;
+    outline: none;
+  }
+
+  .brand-search-input:focus {
+    background: #ffffff;
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 0 3px rgba(64, 196, 255, 0.25);
+  }
+
+  .brand-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+  }
+
+  /* A-Z Filter */
+  .brand-az-filter {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .az-btn {
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .az-btn:hover {
+    color: var(--brand-accent);
+    background: rgba(64, 196, 255, 0.1);
+  }
+
+  .az-btn.active {
+    background: var(--brand-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(64, 196, 255, 0.4);
+  }
+
+  /* Grid Layout */
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .brands-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  }
+  
+  @media (min-width: 1024px) {
+    .brands-grid { grid-template-columns: repeat(5, 1fr); gap: 24px; }
+  }
+
+  /* Brand Card */
+  .brand-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .brand-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+    border-color: var(--brand-accent);
+    z-index: 2;
+  }
+
+  .brand-logo-wrapper {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+  }
+
+  .brand-card:hover .brand-logo-wrapper {
+    transform: scale(1.1);
+  }
+
+  .brand-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s;
+  }
+
+  .brand-card:hover .brand-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  .brand-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    position: absolute;
+    bottom: 20px;
+  }
+  
+  /* Show name on hover or always show if no image */
+  .brand-card:hover .brand-name, 
+  .brand-card.no-image .brand-name {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .brand-card.no-image .brand-name {
+    position: static;
+    font-size: 18px;
+    transform: none;
+  }
+  
+  /* Loading/Hidden States */
+  .brand-card.hidden { display: none; }
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    color: #64748b;
+    font-size: 18px;
+    display: none;
+  }
+
+{% endstyle %}
+
+<div class="brands-directory" id="brandsDirectory">
+  <div class="brands-container">
+    
+    <!-- Hero Header -->
+    <div class="brands-header">
+      <h1>{{ section.settings.title }}</h1>
+      {% if section.settings.description != blank %}
+        <p>{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Interactive Toolbar -->
+    <div class="brands-toolbar">
+      <!-- Search -->
+      <div class="brand-search-wrapper">
+        <svg class="brand-search-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" id="brandSearch" class="brand-search-input" placeholder="Find a brand...">
+      </div>
+
+      <!-- A-Z Filter -->
+      <div class="brand-az-filter" id="azFilter">
+        <button class="az-btn active" data-filter="all">All</button>
+        {% assign alphabet = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" | split: "," %}
+        {% for letter in alphabet %}
+          <button class="az-btn" data-filter="{{ letter }}">{{ letter }}</button>
+        {% endfor %}
+        <button class="az-btn" data-filter="#">#</button>
+      </div>
+    </div>
+
+    <!-- Brands Grid -->
+    <div class="brands-grid" id="brandsGrid">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        
+        {%- capture image_url -%}
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 300 }}
+          {%- elsif collection.image != blank -%}
+             {{ collection.image | image_url: width: 300 }}
+          {%- elsif collection.products.first.featured_image != blank -%}
+             {{ collection.products.first.featured_image | image_url: width: 300 }}
+          {%- endif -%}
+        {%- endcapture -%}
+        
+        {% assign title = block.settings.title | default: collection.title | default: "Brand" %}
+        {% assign title_down = title | downcase %}
+        {% assign first_letter = title | slice: 0, 1 | upcase %}
+        
+        {% comment %} Determine if it's a number/symbol {% endcomment %}
+        {% if "0123456789" contains first_letter %}
+           {% assign numeric = "true" %}
+        {% else %}
+           {% assign numeric = "false" %}
+        {% endif %}
+
+        {% assign link = block.settings.link | default: collection.url %}
+
+        {% if link != blank %}
+          <a href="{{ link }}" class="brand-card {% if image_url == blank %}no-image{% endif %}" 
+             data-title="{{ title_down }}" 
+             data-letter="{{ first_letter }}"
+             {{ block.shopify_attributes }}>
+            
+            {% if image_url != blank %}
+              <div class="brand-logo-wrapper">
+                <img src="{{ image_url }}" alt="{{ title }}" class="brand-logo" loading="lazy" width="150" height="150">
+              </div>
+            {% endif %}
+            
+            <h3 class="brand-name">{{ title }}</h3>
+          </a>
+        {% endif %}
+      {% endfor %}
+      
+      <div class="no-results" id="noResults">
+        <p>No brands found matching your search.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('brandSearch');
+    const azButtons = document.querySelectorAll('.az-btn');
+    const cards = document.querySelectorAll('.brand-card');
+    const noResults = document.getElementById('noResults');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterBrands() {
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        const letter = card.getAttribute('data-letter');
+        const isNumeric = !isNaN(letter);
+
+        // Search Match
+        const matchesSearch = title.includes(currentSearch);
+
+        // Letter Match
+        let matchesFilter = true;
+        if (currentFilter !== 'all') {
+          if (currentFilter === '#') {
+             matchesFilter = isNumeric;
+          } else {
+             matchesFilter = (letter === currentFilter);
+          }
+        }
+
+        if (matchesSearch && matchesFilter) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Show/Hide Empty State
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    // Event: Search
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      filterBrands();
+    });
+
+    // Event: A-Z Filter
+    azButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Active state
+        azButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentFilter = btn.getAttribute('data-filter');
+        filterBrands();
+      });
+    });
+  });
+</script>

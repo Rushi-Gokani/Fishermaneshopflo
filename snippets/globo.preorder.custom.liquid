@@ -1,0 +1,457 @@
+<script>
+    window.GloboPreorderParams = window.GloboPreorderParams || {};
+    window.GloboPreorderParams.selectors = window.GloboPreorderParams.selectors || {};
+    window.GloboPreorderParams.selectors.productPositionBis = '.gPositionBis';
+    window.GloboPreorderParams.selectors.productPositionBis = '.gPositionBis';
+    window.GloboPreorderParams.selectors.productVariantActivator += ", .swatch-anchor, .globo-swatch-list label, .globo-swatch-list select";
+    window.GloboPreorderParams.selectors.collectionProductForms = ".product-item form.product-item__action-list";
+    window.GloboPreorderParams.selectors.quickViewActivator = ".product-item__action-button";
+    window.GloboPreorderParams.selectors.quickViewProductForm = ".modal[aria-hidden=false] form.product-form";
+    window.GloboPreorderParams.selectors.collectionFilterSelector += ", .collection__filter-checkbox label, .pagination__nav-item";
+    window.GloboPreorderParams.selectors.collectionAddToCartBtn = ".product-item__action-button";
+    const preorderCustom = {
+        render: function(){
+            this.handleEvents()
+        },
+        handleEvents: function(){
+            const app = this;
+            document.addEventListener('globo.preorder.variant.changed', () => {
+                    app.appSetInterval(() => {
+                        let gSingleProductForm = $('form.singleProductPreOrderForm')
+                        if(gSingleProductForm.length && window?.GloboPreorderParams?.page == 'product'){
+                            app.renderProductForm(gSingleProductForm, window.GloboPreorderParams.product)
+                        }
+                    }, 600, 2)
+            })
+            
+            document.addEventListener('globo.preorder.show.bis', function (e) {
+                const {form, type} = e.detail;
+                if(type === '#Globo-Back-In-Stock'){
+                    form.querySelector('.magic-buy-btn__parent')?.classList.add('gPreorderHidden');
+                }
+                form.classList.add('gBisShowing')
+                if(form.classList.contains('gridProductPreOrderForm')){
+                    if(form.querySelectorAll('.product-item__action-button[disabled]').length == 0){
+                        form.querySelector('#Globo-Back-In-Stock').add('gPreorderHidden')
+                    }
+                }
+            });
+
+            document.addEventListener('globo.preorder.show.addtocart', function (e) {
+                const {form, type} = e.detail;
+                form.classList.remove('gBisShowing')
+            });
+
+            window.addEventListener('load', () => {
+                app.handleVariantChange()
+                // app.handleFilterChange()
+                window?.Globo?.Preorder && window.Globo.Preorder.initPreorder()
+            })
+
+            app.showPreorderButton()
+            app.showAddToCartButton()
+            app.handleUpdateCart()
+
+            document.addEventListener('globo.preorder.show.naMessage', e => {
+                const { form, profile } = e.detail;
+
+                window.Globo.Preorder.appSetInterval(() => {
+                    if(form.classList.contains('singleProductPreOrderForm')){
+                        let stickyBtn = document.querySelector('.zrx-sticky-atc-main-button');
+        
+                        if(stickyBtn){
+                            stickyBtn.classList.add('gSoldout')
+                            stickyBtn.innerHTML(profile.message.soldoutText);
+                        }
+                    }
+                }, 600, 2)
+            })
+
+            window.onscroll = app.debounce(() => {
+                if(window?.GloboPreorderParams?.page == 'index'){
+                    window?.Globo?.Preorder && window.Globo.Preorder.initPreorder()
+                }
+            }, 1500)
+        },
+        handleFilterChange: function(){
+            const app = this;
+
+            let productNotLoadeds = document.querySelectorAll('.product-item:not([preorder-product-element])')
+
+            if(productNotLoadeds.length && window?.Globo?.Preorder){
+                window.Globo.Preorder.initPreorder()
+            }
+
+            let collectionFilterSelectors = document.querySelectorAll(window.GloboPreorderParams.selectors.collectionFilterSelector)
+
+            if(collectionFilterSelectors.length){
+                collectionFilterSelectors.forEach(collectionFilterSelector => {
+                    ['click', 'change'].forEach(action => {
+                        collectionFilterSelector.addEventListener(action, () => {
+                            app.appSetInterval(() => {
+                                app.handleFilterChange()
+                            }, 2500, 2)
+                        })
+                    })
+                })
+            }
+        },
+        handleUpdateCart: function(){
+            document.addEventListener('globo.preorder.update.cart', async () => {
+                const response = await fetch("".concat(window.location.origin, "/cart.js"));
+                    const jsonData = await response.json();
+                    if(window?.GloboPreorderParams?.cart && window?.Globo?.Preorder){
+                        window.GloboPreorderParams.cart = jsonData;
+                        window.Globo.Preorder.initPreorder()
+                    }
+
+            })
+        },
+        handleVariantChange: function(){
+            const app = this;
+            let productVariantActivators = document.querySelectorAll(window.GloboPreorderParams.selectors.productVariantActivator)
+            if(productVariantActivators.length){
+                productVariantActivators.forEach(productVariantActivator => {
+                    ['click', 'change'].forEach(action => {
+                        productVariantActivator.addEventListener(action, () => {
+                            app.appSetInterval(() => {
+                                let gSingleProductForm = document.querySelector('form.singleProductPreOrderForm')
+                                if(gSingleProductForm && window?.GloboPreorderParams?.page == 'product'){
+                                    app.renderProductForm(gSingleProductForm, window.GloboPreorderParams.product)
+                                }
+                            }, 600, 2)
+                        })
+                    })
+                })
+            }
+        },
+        renderProductForm: function(form, product) {
+            const app = window.Globo.Preorder;
+            const productVariantActivator = app.settings.selectors.productVariantActivator;
+            const productVariantSelector = app.settings.selectors.productVariantSelector;
+            const productQuantitySelector = app.settings.selectors.productQuantitySelector;
+            const productAddToCartTextElement = app.settings.selectors.productAddToCartTextElement;
+            const paymentButton = app.settings.selectors.paymentButton;     
+            
+            var n = app.settings.selectors.productAddToCartBtn.find((function(t) { return form.querySelectorAll(t).length }));
+            app.renderProductForm(product, form, productVariantActivator, productVariantSelector, productQuantitySelector, n, productAddToCartTextElement, paymentButton)
+            app.renderBisForm(product, form, productVariantActivator, productVariantSelector)
+        },
+        appSetInterval: function(t, e, r) {
+            t();
+            var n = 0
+                , o = window.setInterval((function() {
+                t(),
+                ++n === r && window.clearInterval(o)
+            }), e)
+        },
+        showPreorderButton: function(){
+            const app = this;
+            document.addEventListener('globo.preorder.show.preorder', e => {
+                const { form, profile } = e.detail;
+
+                window.Globo.Preorder.appSetInterval(() => {
+                    if(form.classList.contains('singleProductPreOrderForm')){
+                        let stickyBtn = document.querySelector('.zrx-sticky-atc-main-button')
+        
+                        if(stickyBtn.length){
+                            stickyBtn.classList.add('gPreorderBtn')
+                            stickyBtn.innerHTML(profile.message.preorderText);
+                            stickyBtn.classList.remove('gSoldout')
+
+                            if(profile.discountPayment.partialPayment.enable && !profile.discountPayment.fullPayment.enable){
+                                app.handleAddPreorder(form, profile, stickyBtn)
+                            }
+                        }
+                        // app.showDiscountPercentage(form, profile)
+                    }
+                    // app.handleValidateLimitStock(form, profile)
+                    
+                    document.querySelectorAll('[name="_preorder_partial_payment"]').length &&
+                        document.querySelectorAll('[name="_preorder_partial_payment"]').forEach(el => {
+                        el.addEventListener('change', function(){
+                            if(el.value == 'full'){
+                            form.classList.add("gPreorderPartialPaymentForm")
+                            if(profile.discountPayment.enable && parseFloat(profile.discountPayment.discountValue) > 0){
+                                form.classList.add("gPreorderDiscountForm")
+                            }
+                            } else if(el.value == 'part'){
+                            form.classList.add("gPreorderPartialPaymentForm")
+                            form.classList.remove("gPreorderDiscountForm")
+                            }
+                        })
+                        })
+                }, 800, 3)
+            })
+        },
+        showDiscountPercentage: function(form, profile){
+            const app = this;
+            const { fullPayment, partialPayment } = profile.discountPayment;
+            const fullPaymentDicount = parseInt(fullPayment.discountValue) >= 10 ? fullPayment.discountValue : fullPayment.discountValue.toString().replace('0', '');
+            const partialPaymentDicount = parseInt(partialPayment.discountValue) >= 10 ? partialPayment.discountValue : partialPayment.discountValue.toString().replace('0', '');
+            const partialPaymentValue = parseInt(partialPayment.value) >= 10 ? partialPayment.value : partialPayment.value.toString().replace('0', '');
+            if (fullPayment.enable && partialPayment.enable) {
+                form.querySelector('.gPreorderPrice')?.classList.add('gPreorderHidden');
+                // ===== FULL PAYMENT DISCOUNT =====
+                if (
+                    fullPayment.discountType === 'percentage' &&
+                    parseInt(fullPayment.discountValue, 10) > 0
+                ) {
+                    const firstLi = form.querySelector('.gPreorderPartialPaymentChoices li:first-child');
+                    const label = firstLi?.querySelector('.gPreorderPartialPaymentLabel');
+                    const priceHtml = form.querySelector('.gPreorderPriceHtml')?.textContent || '';
+                    // Thêm giá discount nếu chưa tồn tại
+                    if (!form.querySelector('.gFullPaymentDiscountPrice') && label) {
+                        const span = document.createElement('span');
+                        span.className = 'gFullPaymentDiscountPrice';
+                        span.textContent = priceHtml;
+                        label.appendChild(span);
+                    }
+                    // Thêm % discount nếu chưa tồn tại
+                    if (!form.querySelector('.gFullPaymentDiscount') && label) {
+                        const span = document.createElement('span');
+                        span.className = 'gFullPaymentDiscount';
+                        span.textContent = `${fullPaymentDicount}% Discount`;
+                        label.appendChild(span);
+                    }
+                }
+                // ===== PARTIAL PAYMENT VALUE =====
+                if (!form.querySelector('.gPartialPaymentValue')) {
+                    const lastLi = form.querySelector('.gPreorderPartialPaymentChoices li:last-child');
+                    const label = lastLi?.querySelector('.gPreorderPartialPaymentLabel');
+                    if (label) {
+                        const span = document.createElement('span');
+                        span.className = 'gPartialPaymentValue';
+                        span.textContent = `${partialPaymentValue}% of Full Price`;
+                        label.appendChild(span);
+                    }
+                }
+            } else if (!fullPayment.enable && partialPayment.enable) {
+                if (!form.querySelector('.gPartialPaymentValue')) {
+                    const lastLi = form.querySelector('.gPreorderPartialPaymentChoices li:last-child');
+                    const label = lastLi?.querySelector('.gPreorderPartialPaymentLabel');
+                    if (label) {
+                        const span = document.createElement('span');
+                        span.className = 'gPartialPaymentValue';
+                        span.textContent = `${partialPaymentValue}% of Full Price`;
+                        label.appendChild(span);
+                    }
+                }
+            } else if (fullPayment.enable && !partialPayment.enable) {
+                if (
+                    fullPayment.discountType === 'percentage' &&
+                    parseInt(fullPayment.discountValue, 10) > 0 &&
+                    !form.querySelector('.gPreorderPriceDiscount')
+                ) {
+                    const firstLi = form.querySelector('.gPreorderPartialPaymentChoices li:first-child');
+                    const label = firstLi?.querySelector('.gPreorderPartialPaymentLabel');
+                    const priceHtml = form.querySelector('.gPreorderPriceHtml')?.textContent || '';
+                    if (!label) return;
+                    let discountPriceEl = form.querySelector('.gFullPaymentDiscountPrice');
+                    let discountEl = form.querySelector('.gFullPaymentDiscount');
+                    // PRICE
+                    if (!discountPriceEl) {
+                        const span = document.createElement('span');
+                        span.className = 'gFullPaymentDiscountPrice';
+                        span.textContent = priceHtml;
+                        label.appendChild(span);
+                    } else {
+                        discountPriceEl.textContent = priceHtml;
+                    }
+                    // % DISCOUNT
+                    if (!discountEl) {
+                        const span = document.createElement('span');
+                        span.className = 'gFullPaymentDiscount';
+                        span.textContent = `${fullPaymentDicount}% Discount`;
+                        label.appendChild(span);
+                    } else {
+                        discountEl.textContent = `(${fullPaymentDicount}% Discount)`;
+                    }
+                }
+            }
+        },
+       
+        handlePaymentOptionChange: function(form, paymentElement){
+            const app = this;
+
+            const paymentElements = form.querySelectorAll('.gPreorderPartialPaymentChoices li');
+            const preorderPrice = form.querySelector('.gPreorderPrice');
+            const fullPaymentLabel = preorderPrice?.querySelector('.gFullPaymentLabel');
+            const hasCheckedInput = form.querySelector(
+                '.gPreorderPartialPaymentChoices li input:checked'
+            );
+
+            if (!fullPaymentLabel && hasCheckedInput) {
+                const span = document.createElement('span');
+                span.className = 'gFullPaymentLabel';
+                span.textContent = 'against full advance payment';
+                preorderPrice?.appendChild(span);
+            } else if (fullPaymentLabel) {
+                fullPaymentLabel.remove();
+            }
+
+        },
+        handleAddPreorder: function(form, profile, stickyBtn){
+            stickyBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const data = {
+                    properties: {
+                        _is_preorder: form.querySelector(".gPreorderProperty")?.value,
+                        _preorder_locale: form.querySelector(".gPreorderLocale")?.value
+                    },
+                    preorder_id: form.querySelector(".gPreorderId")?.value,
+                    product_id: form.querySelector(".gPreorderProductId")?.value,
+                    id: profile.variant.id.toString(),
+                    quantity: form.querySelector('.quantity-selector__value')?.value,
+                    _preorder_partial_payment: form.querySelector(
+                        "." + window.Globo.Preorder.settings.classes.partialPayment + "Input:checked"
+                    )?.value,
+                    shop: window.Globo.Preorder.settings.shop,
+                    customer: window.Globo.Preorder.settings.customer 
+                        ? window.Globo.Preorder.settings.customer 
+                        : null,
+                    locale: window.Globo.Preorder.settings.shop
+                };
+
+                try {
+                    const invoice = await window.Globo.Preorder.createDraftOrder(data);
+                    window.Globo.Preorder.createDraftOrderCallBack(invoice);
+                } catch (error) {
+                    console.error("Error creating draft order:", error);
+                }
+            });
+        },
+        handleValidateLimitStock: function(form, profile){
+            if (form.classList.contains('singleProductPreOrderForm')) {
+                const preorderLimit = form.querySelector('[preorder-limit]');
+                if (preorderLimit) {
+                    const quantityActions = form.querySelectorAll(
+                        '.quantity-selector__value, .quantity-selector__button'
+                    );
+                    if (quantityActions.length) {
+                        const maxLimit = parseInt(preorderLimit.getAttribute('preorder-limit'), 10);
+                        const handleChange = () => {
+                            const currentValue = parseInt(preorderLimit.value, 10);
+                            if (currentValue > maxLimit) {
+                                alert(`There are still ${maxLimit} pre-order items that can be added to the cart.`);
+                                preorderLimit.value = maxLimit;
+                            }
+                        };
+                        quantityActions.forEach(el => {
+                            el.addEventListener('change', handleChange);
+                            el.addEventListener('blur', handleChange);
+                        });
+                    }
+                }
+            }
+
+        },
+        showAddToCartButton: function(){
+            document.addEventListener('globo.preorder.show.addtocart', (e) => {
+                const { form, profile } = e.detail;
+                window.Globo.Preorder.appSetInterval(() => {
+                    if (form.classList.contains('singleProductPreOrderForm')) {
+                        const stickyBtn = document.querySelector('.zrx-sticky-atc-main-button.gPreorderBtn');
+                        if (stickyBtn) {
+                            stickyBtn.classList.remove('gPreorderBtn');
+                            stickyBtn.textContent = "Add To Cart";
+                            stickyBtn.classList.remove('gSoldout');
+                        }
+                    }
+                }, 600, 2);
+            });
+
+        },
+        debounce: function(func, timeout = 300){
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            };
+        }
+    }
+    preorderCustom.render()
+</script>
+<style>
+  .gBackInStockBtn {
+      animation: gpo-glowing 1000ms infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+  }
+   .gBackInStockBtn svg {
+    animation: gpo-shaking 0.5s infinite;
+  }
+  #Globo-Back-In-Stock{
+      margin: 0px !important;
+      padding: 5px;
+  }
+
+  @keyframes gpo-glowing {   
+    0% {     background-color: #000000;     box-shadow: 0 0 5px #000000;   }   
+    50% {     background-color: #1f2427;     box-shadow: 0 0 20px #1f2427;   }   
+    100% {     background-color: #4cb5f1;     box-shadow: 0 0 5px #4cb5f1;   } 
+  }
+
+  @keyframes gpo-shaking {   
+    0% { transform: rotate(0deg); }   
+    25% { transform: rotate(5deg); }   
+    50% { transform: rotate(0eg); }   
+    75% { transform: rotate(-5deg); }   
+    100% { transform: rotate(0deg); } 
+  }
+  .gBisShowing .magic-buy-btn,
+  .gBisShowing .magic-buy-btn__parent,
+  .gPositionBis:empty{
+      display: none !important;
+  }
+  .gSoldout{
+    background: #FFFFFF !important;
+    color: #606060 !important;
+    border: 1px solid #3A3A3A !important;
+    opacity: .7 !important;
+    pointer-events: none !important;
+  }
+  .gridProductPreOrderForm .gBackInStockBtn{
+    font-size: 14px !important; 
+  }
+  
+  .gridProductPreOrderForm .gPreorderPartialPaymentWrapper .gPreorderPartialPaymentChoices{
+    padding: 0px !important;
+  }
+  .gridProductPreOrderForm .gPreorderPartialPaymentWrapper{
+      padding: 0px 0 10px !important;
+  }
+  
+  @media(max-width: 640px){
+      #Globo-Back-In-Stock{
+          margin: 0px !important;
+          padding: 0px !important;
+      }
+      .gridProductPreOrderForm .gPreorderPartialPaymentWrapper .gPreorderPartialPaymentChoices .gPreorderPartialPaymentControl{
+          margin-right: .4rem !important;
+          width: 10px !important;
+          height: 10px !important;
+      }
+      .gridProductPreOrderForm .gPreorderPartialPaymentWrapper .gPreorderPartialPaymentChoices li label,
+      .gridProductPreOrderForm .gPreorderPartialPaymentLabel>span{
+          font-size: 12px !important;
+      }
+      .gridProductPreOrderForm .gBackInStockBtn {
+          font-size: 11px !important;
+      }
+  }
+  .gPreorderPartialPaymentLabel>span {
+    margin-left: 5px;
+  }
+  .gFullPaymentDiscountPrice span.price {
+    font-size: 14px !important;
+    color: #555555 !important;
+}
+  #Globo-Back-In-Stock {
+    padding: 5px 0 !important;
+  }
+</style>

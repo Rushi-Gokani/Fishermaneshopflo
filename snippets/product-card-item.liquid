@@ -1,0 +1,436 @@
+{% comment %}
+  Product Card Item Snippet
+  Renders a single product card matching the reference design
+{% endcomment %}
+
+{% style %}
+  .product-card-brand-{{ section_id }} {
+    font-size: 12px;
+    font-weight: 400;
+    color: #40c4ff;
+    margin: 0;
+  }
+
+  .product-card-brand-link-{{ section_id }} {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .product-card-brand-link-{{ section_id }}:hover {
+    opacity: 0.85;
+  }
+
+  .product-card-buy-btn-{{ section_id }} {
+    width: 100%;
+    background-color: #40c4ff;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+
+  .product-card-buy-btn-{{ section_id }}:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .product-card-buy-btn-{{ section_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+{% endstyle %}
+
+{%- liquid
+  assign incoming_show_badge = show_badge | default: false
+  assign badge_text = badge_text | default: 'Best Seller'
+
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+
+  assign sold_out = false
+  unless product.available
+    assign sold_out = true
+  endunless
+
+  assign has_best_seller_tag = false
+  if product.tags contains 'best-seller' or product.tags contains 'Best Seller'
+    assign has_best_seller_tag = true
+  endif
+
+  assign is_best_seller_collection = false
+  for collection in product.collections
+    if collection.title == 'Best Sellers'
+      assign is_best_seller_collection = true
+      break
+    endif
+  endfor
+
+  assign show_badge = incoming_show_badge
+  if show_badge == false
+    if has_best_seller_tag or is_best_seller_collection
+      assign show_badge = true
+    endif
+  endif
+
+  assign show_best_seller_overlay = false
+  if has_best_seller_tag or is_best_seller_collection
+    assign show_best_seller_overlay = true
+  endif
+-%}
+
+<div class="product-card-{{ section_id }}" style="padding-top: 16px;">
+  {% if show_badge %}
+    <div class="product-card-top-{{ section_id }}">
+      <span class="product-card-badge-{{ section_id }}">{{ badge_text }}</span>
+    </div>
+  {% endif %}
+
+  <!-- Image Section -->
+  <div class="product-card-image-wrapper-{{ section_id }}">
+    <div class="product-card-slider-wrapper-{{ section_id }}">
+      {%- if show_best_seller_overlay -%}
+        <img src="https://cdn.shopify.com/s/files/1/0665/2887/0715/files/1722944964203-352234792-BADGES1.png?v=1722945193"
+             alt="Best Seller"
+             class="best-seller-badge-image"
+             style="position: absolute; top: 10px; left: 10px; z-index: 5; width: 70px; height: auto;">
+      {%- endif -%}
+      <div class="product-card-slider-container-{{ section_id }}" id="slider-{{ section_id }}-{{ product.id }}">
+        {% if product.images.size > 0 %}
+          {% for image in product.images limit: 3 %}
+            <img
+              src="{{ image | image_url: width: 400 }}"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="400"
+              height="400"
+              class="product-card-image-{{ section_id }}"
+              draggable="false"
+            >
+          {% endfor %}
+        {% else %}
+          {{ 'product-' | append: product.id | placeholder_svg_tag: 'product-card-image-' | append: section_id }}
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Arrows -->
+    {% if product.images.size > 1 %}
+      <button class="product-card-arrow-{{ section_id }} product-card-arrow-prev-{{ section_id }}" aria-label="Previous image">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      <button class="product-card-arrow-{{ section_id }} product-card-arrow-next-{{ section_id }}" aria-label="Next image">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    {% endif %}
+
+    <!-- Pagination Dots -->
+    {% if product.images.size > 1 %}
+      <div class="product-card-dots-{{ section_id }}" id="dots-{{ section_id }}-{{ product.id }}">
+        {% for image in product.images limit: 3 %}
+          <span class="product-card-dot-{{ section_id }}{% if forloop.first %} active{% endif %}" data-image-index="{{ forloop.index | minus: 1 }}"></span>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="product-card-dots-{{ section_id }}">
+        <span class="product-card-dot-{{ section_id }} active"></span>
+        <span class="product-card-dot-{{ section_id }}"></span>
+        <span class="product-card-dot-{{ section_id }}"></span>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Bottom Section: Brand, Title, Price, Button -->
+  <div class="product-card-content-{{ section_id }}">
+    {% if product.vendor %}
+      {%- assign vendor_handle = product.vendor | handleize -%}
+      <p class="product-card-brand-{{ section_id }}">
+        <a href="{{ routes.collections_url }}/{{ vendor_handle }}" class="product-card-brand-link-{{ section_id }}">
+          {{ product.vendor }}
+        </a>
+      </p>
+    {% endif %}
+
+    <h3 class="product-card-title-{{ section_id }}">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    <p class="product-card-price-{{ section_id }}">
+      {% if on_sale %}
+        <span class="sale-price">{{ product.price | money }}</span>
+        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    </p>
+
+    {% comment %} {% if sold_out %}
+      <button class="product-card-buy-btn-{{ section_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+    {% else %}
+      <form method="post" action="/cart/add" onsubmit="event.stopPropagation();" class="product-card-buy-form-{{ section_id }}" style="margin: 0;">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" class="product-card-buy-btn-{{ section_id }} button button--primary" onclick="event.stopPropagation();">
+          {{ 'Buy It Now' }}
+        </button>
+      </form>
+    {% endif %} {% endcomment %}
+
+      <div class="product-card-buy-form-{{ section_id }}">
+        {% if sold_out %}
+          <button class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ section_id }}" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+        {% else %}
+            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ section_id }}" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
+              {{ 'Add to Cart' }}
+            </button>
+        {% endif %}
+      </div>
+  </div>
+</div>
+
+{% comment %}
+  Image gallery JavaScript with touch slider support
+{% endcomment %}
+<script>
+  (function() {
+    const cardId = '{{ section_id }}-{{ product.id }}';
+    const slider = document.getElementById('slider-' + cardId);
+    const dotsContainer = document.getElementById('dots-' + cardId);
+    const dots = dotsContainer?.querySelectorAll('.product-card-dot-{{ section_id }}');
+    const imageWrapper = dotsContainer?.closest('.product-card-image-wrapper-{{ section_id }}');
+    const prevArrow = imageWrapper?.querySelector('.product-card-arrow-prev-{{ section_id }}');
+    const nextArrow = imageWrapper?.querySelector('.product-card-arrow-next-{{ section_id }}');
+    const productUrl = '{{ product.url }}';
+
+    if (!slider || !dots || dots.length <= 1) return;
+
+    let currentIndex = 0;
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+    let startTime = 0;
+    const totalSlides = dots.length;
+
+    function updateDots(index) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    function updateArrows(index) {
+      if (prevArrow) prevArrow.disabled = index === 0;
+      if (nextArrow) nextArrow.disabled = index === totalSlides - 1;
+    }
+
+    function setSliderPosition() {
+      slider.style.transform = `translateX(${currentTranslate}%)`;
+    }
+
+    function slideTo(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      currentIndex = index;
+      currentTranslate = index * -100;
+      prevTranslate = currentTranslate;
+      slider.style.transition = 'transform 0.3s ease-out';
+      setSliderPosition();
+      updateDots(index);
+      updateArrows(index);
+    }
+
+    // Touch events
+    slider.addEventListener('touchstart', touchStart);
+    slider.addEventListener('touchmove', touchMove);
+    slider.addEventListener('touchend', touchEnd);
+
+    // Mouse events
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', () => {
+      if (isDragging) {
+        isDragging = false;
+        slider.style.transition = 'transform 0.3s ease-out';
+        slideTo(currentIndex);
+      }
+    });
+    slider.addEventListener('mousemove', touchMove);
+
+    function touchStart(event) {
+      isDragging = true;
+      startTime = Date.now();
+      startPos = getPositionX(event);
+      slider.style.transition = 'none'; // distinct transition for drag
+      animationID = requestAnimationFrame(animation);
+    }
+
+    function touchMove(event) {
+      if (isDragging) {
+        const currentPosition = getPositionX(event);
+        const diff = currentPosition - startPos;
+        // Calculate percentage movement based on slider width
+        const movePercent = (diff / slider.offsetWidth) * 100;
+        currentTranslate = prevTranslate + movePercent;
+      }
+    }
+
+    function touchEnd() {
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+
+      const movedBy = currentTranslate - prevTranslate;
+      const timeDiff = Date.now() - startTime;
+      
+      // If moved significantly or quick swipe
+      if (movedBy < -20 || (movedBy < -5 && timeDiff < 300)) {
+        if (currentIndex < totalSlides - 1) currentIndex += 1;
+      } else if (movedBy > 20 || (movedBy > 5 && timeDiff < 300)) {
+        if (currentIndex > 0) currentIndex -= 1;
+      } else if (Math.abs(movedBy) < 1) {
+         // Clicked/Tapped without much movement - navigate to product
+         window.location.href = productUrl;
+         return;
+      }
+
+      slideTo(currentIndex);
+    }
+
+    function getPositionX(event) {
+      return event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+    }
+
+    function animation() {
+      setSliderPosition();
+      if (isDragging) requestAnimationFrame(animation);
+    }
+
+    // Initialize events for touch and mouse
+    // handled by addEventListener above
+
+    // Dot clicks
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // prevent card click
+        slideTo(index);
+      });
+    });
+
+    // Arrow clicks
+    if (prevArrow) {
+      prevArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        slideTo(currentIndex - 1);
+      });
+    }
+
+    if (nextArrow) {
+      nextArrow.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        slideTo(currentIndex + 1);
+      });
+    }
+
+    // Initial arrow state
+    updateArrows(0);
+
+    // Auto-advance
+    // let autoSlideInterval =  setInterval(() => {
+    //   if (!isDragging) {
+    //      let nextIndex = (currentIndex + 1) % totalSlides;
+    //      slideTo(nextIndex);
+    //   }
+    // }, 4000); 
+    // Commented out auto-slide to prevent interference with user interaction on mobile, 
+    // or we can keep it but clear on interaction.
+  })();
+
+  function handleAddToCart(event, variantId) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const button = event.currentTarget;
+    const originalText = button.textContent;
+    button.textContent = 'Adding...';
+    button.disabled = true;
+
+    // Dynamically find section IDs to update (Cart Drawer, Cart Bubble)
+    const sections = [];
+    document.querySelectorAll('cart-items-component').forEach(el => {
+        if (el.dataset.sectionId) sections.push(el.dataset.sectionId);
+    });
+
+    const formData = {
+     'items': [{
+      'id': variantId,
+      'quantity': 1
+      }],
+      'sections': sections,
+      'sections_url': window.location.pathname
+    };
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      const eventDetail = {
+          resource: data, 
+          sourceId: 'product-card', 
+          data: {
+              source: 'product-card',
+              itemCount: 1, 
+              sections: data.sections
+          }
+      };
+
+      document.dispatchEvent(new CustomEvent('cart:update', { 
+          bubbles: true, 
+          detail: eventDetail 
+      }));
+
+      // Dispatch additional event for drawer auto-open
+      document.dispatchEvent(new CustomEvent('ajaxProduct:added', {
+          bubbles: true,
+          detail: eventDetail
+      }));
+
+      // Directly open the cart drawer for better UX
+      const cartDrawer = document.querySelector('cart-drawer-component');
+      if (cartDrawer && typeof cartDrawer.open === 'function') {
+          cartDrawer.open();
+      }
+      
+      button.textContent = 'Added';
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.disabled = false;
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      button.textContent = originalText;
+      button.disabled = false;
+    });
+  }
+</script>

@@ -1,0 +1,190 @@
+{% liquid
+  if blog == blank
+    assign blog = blogs[section.settings.blog]
+  endif
+%}
+
+<div id="blog-posts-{{ section.id }}">
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+  <div
+    class="
+      section
+      color-{{ section.settings.color_scheme }}
+      all-blog-main-container
+      spacing-style
+      size-style
+    "
+    style="{% render 'spacing-style', settings: section.settings %}"
+  >
+    {% if section.settings.show_title %}
+       <div class="page-width" style="margin-bottom: 3rem;">
+         <h1 class="h2">{{ blog.title | default: section.settings.custom_title }}</h1>
+       </div>
+    {% endif %}
+
+    {% if blog != blank %}
+      {%- paginate blog.articles by 12 -%}
+        <div class="all-blog-posts-grid">
+          {% for article in blog.articles %}
+            <div class="all-blog-post-item">
+              {% content_for 'block', id: 'static-blog-post-card', type: '_blog-post-card', article: article %}
+            </div>
+          {% endfor %}
+        </div>
+        
+        {% if paginate.pages > 1 %}
+          <div class="pagination-wrapper">
+             {% render 'pagination-controls', paginate: paginate %}
+          </div>
+        {% endif %}
+      {%- endpaginate -%}
+    {% else %}
+      <div class="page-width">
+        <p>Please select a blog in the section settings.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  /**
+   * Blog posts page layout
+   */
+  .all-blog-main-container {
+    --page-content-width: var(--narrow-page-width);
+    --page-width: calc(var(--page-content-width) + (var(--page-margin) * 2));
+    --columns-gap: 36px;
+    --rows-gap: 36px;
+  }
+
+  .all-blog-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    column-gap: var(--columns-gap);
+    row-gap: var(--rows-gap);
+  }
+
+  @media screen and (max-width: 990px) {
+    .all-blog-posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .all-blog-posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .all-blog-post-item {
+    width: 100%;
+    display: flex;
+    border: none;
+    padding: 0;
+  }
+  
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "All Blog Posts Page",
+  "settings": [
+    {
+       "type": "blog",
+       "id": "blog",
+       "label": "Select Blog"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom Title",
+      "default": "Blog"
+    },
+    {
+       "type": "checkbox",
+       "id": "show_title",
+       "label": "Show Title",
+       "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    { "type": "_blog-post-card" },
+    { "type": "_heading" },
+    { "type": "_blog-post-info-text" },
+    { "type": "_blog-post-image" },
+    { "type": "_blog-post-description" }
+  ],
+  "presets": [
+    {
+      "name": "All Blog Posts Page",
+      "blocks": {
+        "static-blog-post-card": {
+          "type": "_blog-post-card",
+          "static": true,
+          "settings": {
+            "alignment": "left"
+          },
+          "blocks": {
+            "heading": {
+              "type": "_heading",
+              "static": true,
+              "settings": {
+                "text": "<h4>{{ closest.article.title }}</h4>"
+              }
+            },
+            "blog-post-details": {
+              "type": "_blog-post-info-text",
+              "static": true
+            },
+            "image": {
+              "type": "_blog-post-image",
+              "static": true
+            },
+            "content": {
+              "type": "_blog-post-description",
+              "static": true
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+{% endschema %}

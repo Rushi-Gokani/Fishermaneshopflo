@@ -1,0 +1,922 @@
+{% comment %}
+  Shop by Categories Section
+  - Displays 5 fixed category cards
+  - Cards expand to fill section width on desktop
+  - Mobile swipe with navigation arrows
+{% endcomment %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shop-categories-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+  }
+
+  .ai-shop-categories-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: {{ block.settings.header_spacing }}px;
+    padding: 0 {{ block.settings.container_padding }}px;
+  }
+
+  .ai-shop-categories-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    margin: 0;
+    color: {{ block.settings.title_color }};
+  }
+
+  .ai-shop-categories-see-all-{{ ai_gen_id }} {
+    font-size: {{ block.settings.see_all_size }}px;
+    color: {{ block.settings.see_all_color }};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-shop-categories-see-all-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  .ai-shop-categories-wrapper-{{ ai_gen_id }} {
+    position: relative;
+  }
+
+  .ai-shop-categories-container-{{ ai_gen_id }} {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
+
+  .ai-shop-categories-container-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-shop-categories-grid-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.card_spacing }}px;
+    padding: 0 {{ block.settings.container_padding }}px;
+    width: 100%;
+  }
+
+  .ai-shop-category-card-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .ai-shop-category-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: {{ block.settings.image_text_spacing }}px;
+    overflow: hidden;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .ai-shop-category-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ai-shop-category-image-wrapper-{{ ai_gen_id }}:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .ai-shop-category-image-wrapper-{{ ai_gen_id }}:hover img {
+    transform: scale(1.1);
+  }
+
+  .ai-shop-category-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+  }
+
+  .ai-shop-category-image-placeholder-{{ ai_gen_id }} svg {
+    width: 40%;
+    height: 40%;
+    opacity: 0.2;
+  }
+
+  .ai-shop-category-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.category_title_size }}px;
+    color: {{ block.settings.category_title_color }};
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .ai-shop-category-title-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.sale_text_color | default: '#666' }};
+  }
+
+  .ai-shop-category-title-sale-{{ ai_gen_id }} {
+    color: {{ block.settings.sale_text_color }};
+  }
+
+  /* Navigation arrows */
+  .ai-shop-categories-nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: {{ block.settings.arrow_button_size }}px;
+    height: {{ block.settings.arrow_button_size }}px;
+    border-radius: 50%;
+    background-color: {{ block.settings.arrow_bg_color }};
+    border: 1px solid rgba(0,0,0,0.08);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .ai-shop-categories-nav-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_bg_hover }};
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .ai-shop-categories-nav-prev-{{ ai_gen_id }} {
+    left: {{ block.settings.arrow_offset }}px;
+  }
+
+  .ai-shop-categories-nav-next-{{ ai_gen_id }} {
+    right: {{ block.settings.arrow_offset }}px;
+  }
+
+  .ai-shop-categories-nav-{{ ai_gen_id }} svg {
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    color: {{ block.settings.arrow_color }};
+  }
+
+  .ai-shop-categories-nav-disabled-{{ ai_gen_id }} {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-shop-categories-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.75 }}px;
+    }
+
+    .ai-shop-categories-grid-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.arrow_button_size | plus: block.settings.arrow_offset | plus: 10 }}px;
+    }
+
+    .ai-shop-categories-nav-{{ ai_gen_id }} {
+      display: flex;
+    }
+
+    .ai-shop-category-card-{{ ai_gen_id }} {
+      flex: 0 0 auto;
+      width: {{ block.settings.card_width_mobile }}px;
+    }
+
+    .ai-shop-category-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.category_title_size | times: 0.9 }}px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-shop-categories-container-{{ ai_gen_id }} {
+      overflow: visible;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-shop-categories-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-shop-categories-header-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank %}
+      <h2 class="ai-shop-categories-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+    {% endif %}
+    {% if block.settings.see_all_link != blank %}
+      <a href="{{ block.settings.see_all_link }}" class="ai-shop-categories-see-all-{{ ai_gen_id }}">
+        {{ block.settings.see_all_text }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="ai-shop-categories-wrapper-{{ ai_gen_id }}">
+    <button
+      type="button"
+      class="ai-shop-categories-nav-{{ ai_gen_id }} ai-shop-categories-nav-prev-{{ ai_gen_id }} ai-shop-categories-nav-disabled-{{ ai_gen_id }}"
+      aria-label="{{ 'accessibility.previous' | t }}"
+      id="prev-btn-{{ ai_gen_id }}"
+    >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="ai-shop-categories-container-{{ ai_gen_id }}" id="scroll-container-{{ ai_gen_id }}">
+      <div class="ai-shop-categories-grid-{{ ai_gen_id }}">
+        {% assign category_1_collection = collections[block.settings.category_1_collection] %}
+        {% assign category_1_title = block.settings.category_1_title %}
+        {% if category_1_title == blank and category_1_collection != blank %}
+          {% assign category_1_title = category_1_collection.title %}
+        {% endif %}
+        
+        {% assign category_1_image = block.settings.category_1_image %}
+        {% if category_1_image == blank and category_1_collection != blank %}
+          {% assign category_1_image = category_1_collection.image | default: category_1_collection.products.first.featured_image %}
+        {% endif %}
+
+        {% assign category_1_link = block.settings.category_1_link %}
+        {% if category_1_link == blank and category_1_collection != blank %}
+          {% assign category_1_link = category_1_collection.url %}
+        {% endif %}
+        
+        {% assign category_1_is_sale = block.settings.category_1_is_sale %}
+
+        {% if category_1_title != blank %}
+          <div class="ai-shop-category-card-{{ ai_gen_id }}">
+            <a href="{{ category_1_link }}" style="display: block">
+              <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                {% if category_1_image != blank %}
+                  <img
+                    src="{{ category_1_image | image_url: width: 400 }}"
+                    alt="{{ category_1_title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="ai-shop-category-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+            <a
+              href="{{ category_1_link }}"
+              class="ai-shop-category-title-{{ ai_gen_id }} {% if category_1_is_sale %}ai-shop-category-title-sale-{{ ai_gen_id }}{% endif %}"
+            >
+              {{ category_1_title }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% assign category_2_collection = collections[block.settings.category_2_collection] %}
+        {% assign category_2_title = block.settings.category_2_title %}
+        {% if category_2_title == blank and category_2_collection != blank %}
+          {% assign category_2_title = category_2_collection.title %}
+        {% endif %}
+
+        {% assign category_2_image = block.settings.category_2_image %}
+        {% if category_2_image == blank and category_2_collection != blank %}
+          {% assign category_2_image = category_2_collection.image | default: category_2_collection.products.first.featured_image %}
+        {% endif %}
+
+        {% assign category_2_link = block.settings.category_2_link %}
+        {% if category_2_link == blank and category_2_collection != blank %}
+          {% assign category_2_link = category_2_collection.url %}
+        {% endif %}
+
+        {% assign category_2_is_sale = block.settings.category_2_is_sale %}
+
+        {% if category_2_title != blank %}
+          <div class="ai-shop-category-card-{{ ai_gen_id }}">
+            <a href="{{ category_2_link }}" style="display: block">
+              <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                {% if category_2_image != blank %}
+                  <img
+                    src="{{ category_2_image | image_url: width: 400 }}"
+                    alt="{{ category_2_title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="ai-shop-category-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+            <a
+              href="{{ category_2_link }}"
+              class="ai-shop-category-title-{{ ai_gen_id }} {% if category_2_is_sale %}ai-shop-category-title-sale-{{ ai_gen_id }}{% endif %}"
+            >
+              {{ category_2_title }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% assign category_3_collection = collections[block.settings.category_3_collection] %}
+        {% assign category_3_title = block.settings.category_3_title %}
+        {% if category_3_title == blank and category_3_collection != blank %}
+          {% assign category_3_title = category_3_collection.title %}
+        {% endif %}
+
+        {% assign category_3_image = block.settings.category_3_image %}
+        {% if category_3_image == blank and category_3_collection != blank %}
+          {% assign category_3_image = category_3_collection.image | default: category_3_collection.products.first.featured_image %}
+        {% endif %}
+
+        {% assign category_3_link = block.settings.category_3_link %}
+        {% if category_3_link == blank and category_3_collection != blank %}
+          {% assign category_3_link = category_3_collection.url %}
+        {% endif %}
+
+        {% assign category_3_is_sale = block.settings.category_3_is_sale %}
+
+        {% if category_3_title != blank %}
+          <div class="ai-shop-category-card-{{ ai_gen_id }}">
+            <a href="{{ category_3_link }}" style="display: block">
+              <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                {% if category_3_image != blank %}
+                  <img
+                    src="{{ category_3_image | image_url: width: 400 }}"
+                    alt="{{ category_3_title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="ai-shop-category-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+            <a
+              href="{{ category_3_link }}"
+              class="ai-shop-category-title-{{ ai_gen_id }} {% if category_3_is_sale %}ai-shop-category-title-sale-{{ ai_gen_id }}{% endif %}"
+            >
+              {{ category_3_title }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% assign category_4_collection = collections[block.settings.category_4_collection] %}
+        {% assign category_4_title = block.settings.category_4_title %}
+        {% if category_4_title == blank and category_4_collection != blank %}
+          {% assign category_4_title = category_4_collection.title %}
+        {% endif %}
+
+        {% assign category_4_image = block.settings.category_4_image %}
+        {% if category_4_image == blank and category_4_collection != blank %}
+          {% assign category_4_image = category_4_collection.image | default: category_4_collection.products.first.featured_image %}
+        {% endif %}
+
+        {% assign category_4_link = block.settings.category_4_link %}
+        {% if category_4_link == blank and category_4_collection != blank %}
+          {% assign category_4_link = category_4_collection.url %}
+        {% endif %}
+
+        {% assign category_4_is_sale = block.settings.category_4_is_sale %}
+
+        {% if category_4_title != blank %}
+          <div class="ai-shop-category-card-{{ ai_gen_id }}">
+            <a href="{{ category_4_link }}" style="display: block">
+              <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                {% if category_4_image != blank %}
+                  <img
+                    src="{{ category_4_image | image_url: width: 400 }}"
+                    alt="{{ category_4_title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="ai-shop-category-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+            <a
+              href="{{ category_4_link }}"
+              class="ai-shop-category-title-{{ ai_gen_id }} {% if category_4_is_sale %}ai-shop-category-title-sale-{{ ai_gen_id }}{% endif %}"
+            >
+              {{ category_4_title }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% assign category_5_collection = collections[block.settings.category_5_collection] %}
+        {% assign category_5_title = block.settings.category_5_title %}
+        {% if category_5_title == blank and category_5_collection != blank %}
+          {% assign category_5_title = category_5_collection.title %}
+        {% endif %}
+
+        {% assign category_5_image = block.settings.category_5_image %}
+        {% if category_5_image == blank and category_5_collection != blank %}
+          {% assign category_5_image = category_5_collection.image | default: category_5_collection.products.first.featured_image %}
+        {% endif %}
+
+        {% assign category_5_link = block.settings.category_5_link %}
+        {% if category_5_link == blank and category_5_collection != blank %}
+          {% assign category_5_link = category_5_collection.url %}
+        {% endif %}
+
+        {% assign category_5_is_sale = block.settings.category_5_is_sale %}
+
+        {% if category_5_title != blank %}
+          <div class="ai-shop-category-card-{{ ai_gen_id }}">
+            <a href="{{ category_5_link }}" style="display: block">
+              <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                {% if category_5_image != blank %}
+                  <img
+                    src="{{ category_5_image | image_url: width: 400 }}"
+                    alt="{{ category_5_title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="ai-shop-category-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+            <a
+              href="{{ category_5_link }}"
+              class="ai-shop-category-title-{{ ai_gen_id }} {% if category_5_is_sale %}ai-shop-category-title-sale-{{ ai_gen_id }}{% endif %}"
+            >
+              {{ category_5_title }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="ai-shop-categories-nav-{{ ai_gen_id }} ai-shop-categories-nav-next-{{ ai_gen_id }}"
+      aria-label="{{ 'accessibility.next' | t }}"
+      id="next-btn-{{ ai_gen_id }}"
+    >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const container = document.getElementById('scroll-container-{{ ai_gen_id }}');
+    const prevBtn = document.getElementById('prev-btn-{{ ai_gen_id }}');
+    const nextBtn = document.getElementById('next-btn-{{ ai_gen_id }}');
+
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = {{ block.settings.card_width_mobile | plus: block.settings.card_spacing }};
+
+    function updateButtons() {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+      if (container.scrollLeft <= 0) {
+        prevBtn.classList.add('ai-shop-categories-nav-disabled-{{ ai_gen_id }}');
+      } else {
+        prevBtn.classList.remove('ai-shop-categories-nav-disabled-{{ ai_gen_id }}');
+      }
+
+      if (container.scrollLeft >= maxScrollLeft - 1) {
+        nextBtn.classList.add('ai-shop-categories-nav-disabled-{{ ai_gen_id }}');
+      } else {
+        nextBtn.classList.remove('ai-shop-categories-nav-disabled-{{ ai_gen_id }}');
+      }
+    }
+
+    prevBtn.addEventListener('click', function() {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function() {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    container.addEventListener('scroll', updateButtons);
+
+    // Initial check
+    if (container.scrollWidth <= container.clientWidth) {
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
+
+    updateButtons();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shop by categories",
+  "tag": null,
+  "class": "shop-categories-block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Shop by Categories"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "see_all_text",
+      "label": "See all text",
+      "default": "See All"
+    },
+    {
+      "type": "url",
+      "id": "see_all_link",
+      "label": "See all link"
+    },
+    {
+      "type": "range",
+      "id": "see_all_size",
+      "label": "See all text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "see_all_color",
+      "label": "See all color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Header spacing",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Category cards"
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Card width (mobile)",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "label": "Space between cards",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_text_spacing",
+      "label": "Image to text spacing",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "category_title_size",
+      "label": "Category title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "category_title_color",
+      "label": "Category title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "sale_text_color",
+      "label": "Sale text color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "arrow_button_size",
+      "label": "Arrow button size",
+      "min": 30,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow icon size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "arrow_offset",
+      "label": "Arrow offset from edge",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_hover",
+      "label": "Arrow background hover",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border_color",
+      "label": "Arrow border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Category 1"
+    },
+    {
+      "type": "collection",
+      "id": "category_1_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "category_1_title",
+      "label": "Title",
+      "default": "Fishing Rods"
+    },
+    {
+      "type": "url",
+      "id": "category_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_1_is_sale",
+      "label": "Mark as Sale",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Category 2"
+    },
+    {
+      "type": "collection",
+      "id": "category_2_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "category_2_title",
+      "label": "Title",
+      "default": "Reels"
+    },
+    {
+      "type": "url",
+      "id": "category_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_2_is_sale",
+      "label": "Mark as Sale",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Category 3"
+    },
+    {
+      "type": "collection",
+      "id": "category_3_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "category_3_title",
+      "label": "Title",
+      "default": "Lures"
+    },
+    {
+      "type": "url",
+      "id": "category_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_3_is_sale",
+      "label": "Mark as Sale",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Category 4"
+    },
+    {
+      "type": "collection",
+      "id": "category_4_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "category_4_title",
+      "label": "Title",
+      "default": "Tackle Boxes"
+    },
+    {
+      "type": "url",
+      "id": "category_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_4_is_sale",
+      "label": "Mark as Sale",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Category 5"
+    },
+    {
+      "type": "collection",
+      "id": "category_5_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "category_5_title",
+      "label": "Title",
+      "default": "Sale"
+    },
+    {
+      "type": "url",
+      "id": "category_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "category_5_is_sale",
+      "label": "Mark as Sale",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by categories"
+    }
+  ]
+}
+{% endschema %}

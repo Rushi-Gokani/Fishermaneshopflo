@@ -1,0 +1,894 @@
+{% comment %}
+  Custom Footer Section with Wave Video Animation
+  Features: 4-column layout (About, Quick Links, Blogs, Newsletter) + Bottom Bar
+{% endcomment %}
+
+{% assign section_settings = section.settings %}
+
+<footer class="custom-footer" data-section-id="{{ section.id }}">
+  <div class="custom-footer__container">
+    <div class="custom-footer__inner">
+      <!-- Column 1: About the Shop -->
+      <div class="custom-footer__column custom-footer__column--about">
+        <h3 class="custom-footer__heading">{{ section_settings.about_heading }}</h3>
+        <div class="custom-footer__text">
+          {{ section_settings.about_text }}
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="custom-footer__column custom-footer__column--links">
+        <h3 class="custom-footer__heading">{{ section_settings.quick_links_heading }}</h3>
+        <ul class="custom-footer__menu">
+          {% for link in linklists[section_settings.quick_links_menu].links %}
+            <li class="custom-footer__menu-item">
+              <a href="{{ link.url }}" class="custom-footer__menu-link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Column 3: Blogs -->
+      <div class="custom-footer__column custom-footer__column--blogs">
+        <h3 class="custom-footer__heading">{{ section_settings.blogs_heading }}</h3>
+        <ul class="custom-footer__menu">
+          {% for link in linklists[section_settings.blogs_menu].links %}
+            <li class="custom-footer__menu-item">
+              <a href="{{ link.url }}" class="custom-footer__menu-link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div class="custom-footer__column custom-footer__column--newsletter">
+        <h3 class="custom-footer__heading">{{ section_settings.newsletter_heading }}</h3>
+        <p class="custom-footer__newsletter-text">{{ section_settings.newsletter_text }}</p>
+        
+        {% form 'customer', class: 'custom-footer__newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="custom-footer__input-group">
+            <input
+              type="email"
+              name="contact[email]"
+              class="custom-footer__newsletter-input"
+              value="{{ form.email }}"
+              placeholder="{{ section_settings.email_placeholder }}"
+              required
+            >
+          </div>
+          <button type="submit" class="custom-footer__newsletter-button">
+            {{ section_settings.button_text }}
+          </button>
+          {% if form.posted_successfully? %}
+            <p class="custom-footer__message custom-footer__message--success">Thanks for subscribing!</p>
+          {% endif %}
+          {% if form.errors %}
+            <p class="custom-footer__message custom-footer__message--error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="custom-footer__bottom">
+      <div class="custom-footer__bottom-left">
+        <!-- Localization Selectors -->
+        <div class="custom-footer__selectors">
+          {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+            <div class="footer-localization footer-localization--country">
+              {% form 'localization', id: 'FooterCountryForm', class: 'footer-localization__form' %}
+                <div class="footer-localization__disclosure">
+                  <button type="button" class="footer-localization__button" aria-expanded="false" aria-controls="FooterCountryList">
+                    {{ localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})
+                    <svg aria-hidden="true" focusable="false" class="footer-localization__caret" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <ul id="FooterCountryList" class="footer-localization__list" role="listbox" hidden>
+                    {%- for country in localization.available_countries -%}
+                      <li class="footer-localization__item" role="option" {% if country.iso_code == localization.country.iso_code %}aria-selected="true"{% endif %}>
+                        <button type="button" class="footer-localization__option{% if country.iso_code == localization.country.iso_code %} footer-localization__option--active{% endif %}" data-value="{{ country.iso_code }}">
+                          {{ country.name }} <span class="footer-localization__currency">({{ country.currency.iso_code }} {{ country.currency.symbol }})</span>
+                        </button>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+                <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+              {% endform %}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+            <div class="footer-localization footer-localization--language">
+              {% form 'localization', id: 'FooterLanguageForm', class: 'footer-localization__form' %}
+                <div class="footer-localization__disclosure">
+                  <button type="button" class="footer-localization__button" aria-expanded="false" aria-controls="FooterLanguageList">
+                    {{ localization.language.endonym_name | capitalize }}
+                    <svg aria-hidden="true" focusable="false" class="footer-localization__caret" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <ul id="FooterLanguageList" class="footer-localization__list" role="listbox" hidden>
+                    {%- for language in localization.available_languages -%}
+                      <li class="footer-localization__item" role="option" {% if language.iso_code == localization.language.iso_code %}aria-selected="true"{% endif %}>
+                        <button type="button" class="footer-localization__option{% if language.iso_code == localization.language.iso_code %} footer-localization__option--active{% endif %}" data-value="{{ language.iso_code }}" hreflang="{{ language.iso_code }}" lang="{{ language.iso_code }}">
+                          {{ language.endonym_name | capitalize }}
+                        </button>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+              {% endform %}
+            </div>
+          {%- endif -%}
+        </div>
+        
+        <div class="custom-footer__copyright">
+          &copy; {{ 'now' | date: "%Y" }} {{ shop.name }} · Powered by Shopify
+        </div>
+      </div>
+
+      <div class="custom-footer__bottom-right">
+        <span class="custom-footer__follow-text">{{ section_settings.follow_heading }}</span>
+        <div class="custom-footer__social-icons">
+          {%- if section.settings.facebook_url != blank -%}
+            <a href="{{ section.settings.facebook_url }}" class="custom-footer__social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" class="custom-footer__social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.youtube_url != blank -%}
+            <a href="{{ section.settings.youtube_url }}" class="custom-footer__social-icon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12s0-3.5-.46-5a2.5 2.5 0 00-1.76-1.76C18.3 5 12 5 12 5s-6.3 0-7.78.24A2.5 2.5 0 002.46 7C2 8.5 2 12 2 12s0 3.5.46 5a2.5 2.5 0 001.76 1.76C5.7 19 12 19 12 19s6.3 0 7.78-.24A2.5 2.5 0 0021.54 17C22 15.5 22 12 22 12z"></path>
+                <polygon points="10 15.5 15 12 10 8.5" fill="currentColor" stroke="none"></polygon>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if section_settings.enable_wave_animation -%}
+    <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+        <div class="wave waveTop"></div>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+        <div class="wave waveMiddle"></div>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+        <div class="wave waveBottom"></div>
+      </div>
+    </div>
+  {%- endif -%}
+</footer>
+
+{% stylesheet %}
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+
+  .custom-footer {
+    background: linear-gradient(180deg, #f9fbff 0%, #f0f6ff 60%, #f6f8fb 100%);
+    color: #4f5b6c;
+    font-family: 'Manrope', 'Segoe UI', sans-serif;
+    padding: 60px 0 0;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow: visible;
+    z-index: 5;
+  }
+
+  .custom-footer::before {
+    display: none;
+  }
+
+  .custom-footer__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .custom-footer__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr 1.2fr;
+    gap: 28px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .custom-footer__column {
+    background: transparent;
+    border-radius: 0;
+    padding: 0 0 24px;
+    border-bottom: 1px solid rgba(102, 139, 178, 0.2);
+    box-shadow: none;
+  }
+
+  .custom-footer__column:last-child {
+    border-bottom: none;
+  }
+
+  /* Headings */
+  .custom-footer__heading {
+    color: #0d3a62;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    letter-spacing: 0.15em;
+  }
+
+  /* Text & Links */
+  .custom-footer__text {
+    color: #516275;
+    max-width: 300px;
+  }
+
+  .custom-footer__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .custom-footer__menu-item {
+    margin-bottom: 12px;
+  }
+
+  .custom-footer__menu-link {
+    color: #4f5b6c;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .custom-footer__menu-link:hover {
+    color: #40C4FF;
+  }
+
+  /* Newsletter */
+  .custom-footer__newsletter-text {
+    margin-bottom: 18px;
+    color: inherit;
+  }
+
+  .custom-footer__newsletter-form {
+    display: flex;
+    gap: 8px;
+    max-width: 360px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 2px 2px 2px 14px;
+    border: 1px solid rgba(120, 160, 210, 0.25);
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .custom-footer__newsletter-input {
+    width: 100%;
+    padding: 6px 0;
+    border: none;
+    background-color: transparent;
+    color: #2b3a4d;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .custom-footer__newsletter-input:focus {
+    outline: none;
+  }
+
+  .custom-footer__newsletter-input::placeholder {
+    color: rgba(55, 73, 102, 0.45);
+  }
+
+  .custom-footer__newsletter-button {
+    background: #40C4FF;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+
+  .custom-footer__newsletter-button:hover {
+    background: #29B6F6;
+  }
+
+  .custom-footer__column--newsletter {
+    background: transparent;
+    border-bottom: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  /* Bottom Bar */
+  .custom-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0 59px;
+    margin-top: 0;
+    position: relative;
+    z-index: 20;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .custom-footer__bottom-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .custom-footer__selectors {
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .localization-form__select {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(108, 178, 235, 0.35);
+    padding: 8px 16px;
+    color: #3e5676;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    transition: border-color 0.2s;
+    font-weight: 600;
+  }
+
+  .localization-form__select:hover {
+    border-color: #40C4FF;
+  }
+
+  .localization-form__select .icon-caret {
+    width: 10px;
+    height: 6px;
+    margin-left: auto;
+  }
+
+  .custom-footer__copyright {
+    font-size: 13px;
+    color: #70839b;
+  }
+
+  .custom-footer__bottom-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .custom-footer__follow-text {
+    color: #4c678a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+  }
+
+  .custom-footer__social-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .custom-footer__social-icon {
+    color: #40C4FF;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+  }
+
+  .custom-footer__social-icon:hover {
+    color: #29B6F6;
+  }
+
+  /* Footer Localization Dropup Styles */
+  .footer-localization {
+    position: relative;
+  }
+
+  .footer-localization__form {
+    margin: 0;
+  }
+
+  .footer-localization__disclosure {
+    position: relative;
+  }
+
+  .footer-localization__button {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(108, 178, 235, 0.35);
+    padding: 8px 16px;
+    color: #3e5676;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    transition: border-color 0.2s, background-color 0.2s;
+    font-weight: 600;
+    font-family: inherit;
+  }
+
+  .footer-localization__button:hover {
+    border-color: #40C4FF;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .footer-localization__button[aria-expanded="true"] {
+    border-color: #40C4FF;
+    background: #fff;
+  }
+
+
+
+  .footer-localization__caret {
+    width: 10px;
+    height: 6px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .footer-localization__button[aria-expanded="true"] .footer-localization__caret {
+    transform: rotate(180deg);
+  }
+
+  /* Dropup list - opens upward */
+  .footer-localization__list {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    min-width: 200px;
+    max-width: 280px;
+    max-height: 250px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid rgba(108, 178, 235, 0.35);
+    border-radius: 12px;
+    box-shadow: 0 -4px 20px rgba(0, 40, 80, 0.12), 0 -2px 8px rgba(0, 40, 80, 0.08);
+    padding: 8px 0;
+    margin: 0;
+    list-style: none;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  .footer-localization__list:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .footer-localization__list[hidden] {
+    display: none;
+  }
+
+  .footer-localization__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-localization__option {
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #3e5676;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    display: block;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    font-family: inherit;
+  }
+
+  .footer-localization__option:hover {
+    background: rgba(64, 196, 255, 0.08);
+    color: #40C4FF;
+  }
+
+  .footer-localization__option--active {
+    color: #40C4FF;
+    font-weight: 600;
+    background: rgba(64, 196, 255, 0.06);
+  }
+
+  .footer-localization__option--active::before {
+    content: '✓';
+    margin-right: 8px;
+    font-weight: 700;
+  }
+
+  .footer-localization__currency {
+    color: #70839b;
+    font-size: 12px;
+  }
+
+  /* Custom scrollbar for dropup list */
+  .footer-localization__list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .footer-localization__list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  .footer-localization__list::-webkit-scrollbar-thumb {
+    background: rgba(64, 196, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .footer-localization__list::-webkit-scrollbar-thumb:hover {
+    background: rgba(64, 196, 255, 0.5);
+  }
+
+  /* Wave Animation */
+  .waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    margin: auto;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    /* Removed purple gradient background */
+  }
+  .bgTop {
+    z-index: 15;
+    opacity: 0.5;
+  }
+  .bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+  }
+  .bgBottom {
+    z-index: 5;
+  }
+  .wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+  }
+  .waveTop {
+    background-size: 50% 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C150,10 350,70 500,40 C650,10 850,70 1000,40 C1100,20 1150,40 1200,40 L1200,80 L0,80 Z' fill='%236cb2eb'/%3E%3C/svg%3E");
+  }
+  .waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+  .waveMiddle {
+    background-size: 50% 120px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C200,20 400,70 600,50 C800,30 1000,70 1200,50 L1200,80 L0,80 Z' fill='%236cb2eb'/%3E%3C/svg%3E");
+  }
+  .waveAnimation .waveMiddle {
+    animation: move-wave 10s linear infinite;
+  }
+  .waveBottom {
+    background-size: 50% 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0,45 C100,15 300,75 500,45 C700,15 900,75 1100,45 L1200,80 L0,80 Z' fill='%236cb2eb'/%3E%3C/svg%3E");
+  }
+  .waveAnimation .waveBottom {
+    animation: move-wave 15s linear infinite;
+  }
+  @keyframes move-wave {
+    0% {
+      transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+      transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+      transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 990px) {
+    .custom-footer__inner {
+      grid-template-columns: 1fr;
+    }
+    
+    .custom-footer__bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+      padding-bottom: 70px;
+    }
+
+    .custom-footer__bottom-right {
+      align-items: center;
+    }
+
+    .custom-footer__newsletter-form {
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 20px;
+      padding: 14px;
+    }
+
+    .custom-footer__newsletter-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .custom-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .custom-footer__container {
+      padding: 0 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  // Footer Localization Dropup Functionality
+  (function() {
+    const footerLocalizations = document.querySelectorAll('.footer-localization');
+
+    footerLocalizations.forEach(localization => {
+      const button = localization.querySelector('.footer-localization__button');
+      const list = localization.querySelector('.footer-localization__list');
+      const form = localization.querySelector('.footer-localization__form');
+      const hiddenInput = form?.querySelector('input[name="locale_code"], input[name="country_code"]');
+      const options = localization.querySelectorAll('.footer-localization__option');
+
+      if (!button || !list) return;
+
+      // Toggle dropup on button click
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other dropups first
+        document.querySelectorAll('.footer-localization__button[aria-expanded="true"]').forEach(btn => {
+          if (btn !== button) {
+            btn.setAttribute('aria-expanded', 'false');
+            const btnList = btn.closest('.footer-localization__disclosure')?.querySelector('.footer-localization__list');
+            if (btnList) btnList.setAttribute('hidden', '');
+          }
+        });
+        
+        // Toggle current dropup
+        button.setAttribute('aria-expanded', !isExpanded);
+        if (isExpanded) {
+          list.setAttribute('hidden', '');
+        } else {
+          list.removeAttribute('hidden');
+        }
+      });
+
+      // Handle option selection
+      options.forEach(option => {
+        option.addEventListener('click', (e) => {
+          e.preventDefault();
+          const value = option.getAttribute('data-value');
+          
+          if (value && hiddenInput && form) {
+            hiddenInput.value = value;
+            form.submit();
+          }
+        });
+      });
+    });
+
+    // Close dropups when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.footer-localization')) {
+        document.querySelectorAll('.footer-localization__button[aria-expanded="true"]').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+          const list = btn.closest('.footer-localization__disclosure')?.querySelector('.footer-localization__list');
+          if (list) list.setAttribute('hidden', '');
+        });
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.footer-localization__button[aria-expanded="true"]').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+          const list = btn.closest('.footer-localization__disclosure')?.querySelector('.footer-localization__list');
+          if (list) list.setAttribute('hidden', '');
+          btn.focus();
+        });
+      }
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Custom Footer Redesign",
+  "settings": [
+    {
+      "type": "header",
+      "content": "About the Shop"
+    },
+    {
+      "type": "text",
+      "id": "about_heading",
+      "label": "Heading",
+      "default": "ABOUT THE SHOP"
+    },
+    {
+      "type": "textarea",
+      "id": "about_text",
+      "label": "Text",
+      "default": "Shipping all over India. For bulk purchase & business queries, message us on any of our messenger apps."
+    },
+    {
+      "type": "header",
+      "content": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "quick_links_heading",
+      "label": "Heading",
+      "default": "QUICK LINKS"
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Blogs"
+    },
+    {
+      "type": "text",
+      "id": "blogs_heading",
+      "label": "Heading",
+      "default": "BLOGS"
+    },
+    {
+      "type": "link_list",
+      "id": "blogs_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Heading",
+      "default": "NEWSLETTER"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Text",
+      "default": "Stay updated on discounts and offers"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder",
+      "default": "Your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "label": "Enable Country Selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "label": "Enable Language Selector",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "follow_heading",
+      "label": "Follow Us Text",
+      "default": "Follow Us"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "header",
+      "content": "Wave Animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wave_animation",
+      "label": "Enable Wave Animation",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer Redesign"
+    }
+  ]
+}
+{% endschema %}

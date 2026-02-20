@@ -1,0 +1,1156 @@
+{%- comment -%}
+  Featured Product Spotlight Section
+  A beautiful, aesthetic single product showcase with read more, quantity, and buy options
+{%- endcomment -%}
+
+{%- liquid
+  assign featured_product = all_products[section.settings.product]
+  assign show_description = section.settings.show_description
+  assign description_limit = section.settings.description_limit | default: 150
+-%}
+
+{%- if featured_product != blank -%}
+  <div class="fps-section color-{{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+    <!-- Background Pattern/Decoration -->
+    {% if section.settings.show_background_pattern %}
+      <div class="fps-bg-pattern"></div>
+    {% endif %}
+
+    <div class="fps-container">
+      <div class="fps-wrapper fps-layout--{{ section.settings.layout }}">
+        <!-- Product Media -->
+        <div class="fps-media">
+          <div class="fps-media-inner">
+            {% if section.settings.show_badge and featured_product.compare_at_price > featured_product.price %}
+              <div class="fps-badge fps-badge--sale">
+                {% if section.settings.badge_text != blank %}
+                  {{ section.settings.badge_text }}
+                {% else %}
+                  Save {{ featured_product.compare_at_price | minus: featured_product.price | money }}
+                {% endif %}
+              </div>
+            {% elsif section.settings.show_badge and featured_product.available == false %}
+              <div class="fps-badge fps-badge--sold-out">Sold Out</div>
+            {% endif %}
+
+            <a href="{{ featured_product.url }}" class="fps-image-link" aria-label="{{ featured_product.title }}">
+              {% if featured_product.featured_media %}
+                <div class="fps-image-wrapper">
+                  {{
+                    featured_product.featured_media
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', class: 'fps-main-image'
+                  }}
+                  {% if section.settings.show_secondary_image and featured_product.media[1] != nil %}
+                    {{
+                      featured_product.media[1]
+                      | image_url: width: 800
+                      | image_tag: loading: 'lazy', class: 'fps-secondary-image'
+                    }}
+                  {% endif %}
+                </div>
+              {% else %}
+                <div class="fps-image-placeholder">
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            </a>
+
+            <!-- Thumbnail Gallery -->
+            {% if featured_product.media.size > 1 and section.settings.show_thumbnails %}
+              <div class="fps-thumbnails">
+                {% for media in featured_product.media limit: 4 %}
+                  <button
+                    type="button"
+                    class="fps-thumbnail {% if forloop.first %}is-active{% endif %}"
+                    data-media-id="{{ media.id }}"
+                    aria-label="View image {{ forloop.index }}"
+                  >
+                    {{
+                      media
+                      | image_url: width: 100
+                      | image_tag: loading: 'lazy', class: 'fps-thumbnail-img'
+                    }}
+                  </button>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Product Content -->
+        <div class="fps-content">
+          <div class="fps-content-inner">
+            <!-- Vendor -->
+            {% if section.settings.show_vendor and featured_product.vendor != blank %}
+              <span class="fps-vendor">{{ featured_product.vendor }}</span>
+            {% endif %}
+
+            <!-- Product Title -->
+            <h1 class="fps-title">
+              <a href="{{ featured_product.url }}">{{ featured_product.title }}</a>
+            </h1>
+
+            <!-- Review Stars -->
+            {% if section.settings.show_reviews %}
+              <div class="fps-reviews">
+                <div class="fps-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                {% if featured_product.reviews_count > 0 %}
+                  <span class="fps-review-count">({{ featured_product.reviews_count }} reviews)</span>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <!-- Price -->
+            <div class="fps-price-wrapper">
+              {% if featured_product.compare_at_price > featured_product.price %}
+                <span class="fps-price fps-price--sale">{{ featured_product.price | money }}</span>
+                <span class="fps-price-compare">{{ featured_product.compare_at_price | money }}</span>
+                <span class="fps-savings">Save {{ featured_product.compare_at_price | minus: featured_product.price | money }}</span>
+              {% else %}
+                <span class="fps-price">{{ featured_product.price | money }}</span>
+              {% endif %}
+            </div>
+
+            <!-- Description with Read More -->
+            {% if show_description and featured_product.description != blank %}
+              <div class="fps-description" data-description-limit="{{ description_limit }}">
+                <div class="fps-description-text">
+                  {{ featured_product.description }}
+                </div>
+                {% if featured_product.description.size > description_limit %}
+                  <a href="{{ featured_product.url }}" class="fps-read-more">
+                    {{ section.settings.read_more_text }}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <!-- Product Form -->
+            {%- assign product_form_id = 'fps-product-form-' | append: section.id -%}
+            <product-form class="fps-product-form">
+              {% form 'product', featured_product, id: product_form_id, novalidate: 'novalidate' %}
+                <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}" form="{{ product_form_id }}">
+
+                <!-- Variant Selectors -->
+                {% if featured_product.variants.size > 1 and section.settings.show_variants %}
+                  <div class="fps-variants">
+                    {% for option in featured_product.options %}
+                      <div class="fps-variant-group" data-option-name="{{ option | handle }}">
+                        <label class="fps-variant-label" for="Option-{{ section.id }}-{{ forloop.index }}">
+                          {{ option }}
+                          <span class="fps-selected-value">{{ featured_product.selected_or_first_available_variant.options[forloop.index0] }}</span>
+                        </label>
+                        <div class="fps-variant-options">
+                          {% for value in featured_product.options_by_name[option].values %}
+                            <button
+                              type="button"
+                              class="fps-variant-swatch {% if featured_product.selected_or_first_available_variant.options[forloop.index0] == value %}is-selected{% endif %}"
+                              data-value="{{ value | escape }}"
+                              data-option-index="{{ forloop.index }}"
+                              form="{{ product_form_id }}"
+                            >
+                              {{ value }}
+                            </button>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                <!-- Quantity Selector -->
+                {% if section.settings.show_quantity %}
+                  <div class="fps-quantity-wrapper">
+                    <label for="Quantity-{{ section.id }}" class="fps-quantity-label">Quantity</label>
+                    <quantity-input class="fps-quantity">
+                      <button
+                        type="button"
+                        class="fps-qty-btn fps-qty-minus"
+                        name="minus"
+                        aria-label="Decrease quantity"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                      </button>
+                      <input
+                        type="number"
+                        name="quantity"
+                        id="Quantity-{{ section.id }}"
+                        value="1"
+                        min="1"
+                        form="{{ product_form_id }}"
+                        class="fps-qty-input"
+                      >
+                      <button
+                        type="button"
+                        class="fps-qty-btn fps-qty-plus"
+                        name="plus"
+                        aria-label="Increase quantity"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <line x1="12" y1="5" x2="12" y2="19"/>
+                          <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                      </button>
+                    </quantity-input>
+                  </div>
+                {% endif %}
+
+                <!-- Action Buttons -->
+                <div class="fps-actions">
+                  <!-- Add to Cart Button -->
+                  <button
+                    type="submit"
+                    name="add"
+                    class="fps-btn fps-btn-primary"
+                    {% if featured_product.available == false %}disabled{% endif %}
+                    style="background: {{ section.settings.button_color }}; color: {{ section.settings.button_text_color }};"
+                  >
+                    {% if featured_product.available %}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <path d="M3 6h18"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                      </svg>
+                      <span>{{ section.settings.add_to_cart_text }}</span>
+                    {% else %}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                      <span>Sold Out</span>
+                    {% endif %}
+                  </button>
+
+                  <!-- Buy Now Button -->
+                  {% if section.settings.show_buy_now and featured_product.available %}
+                    <div class="shopify-payment-button">
+                      <button type="button" id="flo-buy-now-button" onclick="handleFloBuyNowBtn(event)" class="shopify-payment-button__button shopify-payment-button__button--unbranded fps-btn fps-btn-secondary" name="flo-buy-now-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="9" cy="21" r="1"/>
+                          <circle cx="20" cy="21" r="1"/>
+                          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                        <span>{{ 'Buy It Now' }}</span>
+                      </button>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <!-- Trust Badges -->
+                {% if section.settings.show_trust_badges %}
+                  <div class="fps-trust-badges">
+                    <div class="fps-trust-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                      </svg>
+                      <span>Free Shipping</span>
+                    </div>
+                    <div class="fps-trust-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                      <span>Secure Checkout</span>
+                    </div>
+                    <div class="fps-trust-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      </svg>
+                      <span>24/7 Support</span>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endform %}
+            </product-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for interactivity -->
+  <script>
+    (function() {
+      const section = document.querySelector('.fps-section[data-section-id="{{ section.id }}"]');
+      if (!section) return;
+
+      // Variant Selection
+      const variantSwatches = section.querySelectorAll('.fps-variant-swatch');
+      const variantInputs = section.querySelectorAll('input[name="id"]');
+      const selectedValueLabels = section.querySelectorAll('.fps-selected-value');
+
+      variantSwatches.forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          const optionGroup = this.closest('.fps-variant-group');
+          const optionIndex = this.dataset.optionIndex;
+
+          // Update visual selection
+          optionGroup.querySelectorAll('.fps-variant-swatch').forEach(s => s.classList.remove('is-selected'));
+          this.classList.add('is-selected');
+
+          // Update label
+          const selectedValue = optionGroup.querySelector('.fps-selected-value');
+          if (selectedValue) {
+            selectedValue.textContent = this.dataset.value;
+          }
+
+          // Find and select the correct variant
+          // This is a simplified version - you may want to use Shopify's OptionSelectionCallback for full functionality
+        });
+      });
+
+      // Quantity Input
+      const quantityInput = section.querySelector('.fps-qty-input');
+      const minusBtn = section.querySelector('.fps-qty-minus');
+      const plusBtn = section.querySelector('.fps-qty-plus');
+
+      if (quantityInput && minusBtn && plusBtn) {
+        minusBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value) || 1;
+          if (current > 1) {
+            quantityInput.value = current - 1;
+          }
+        });
+
+        plusBtn.addEventListener('click', () => {
+          const current = parseInt(quantityInput.value) || 1;
+          quantityInput.value = current + 1;
+        });
+      }
+
+      // Thumbnail Gallery
+      const thumbnails = section.querySelectorAll('.fps-thumbnail');
+      const mainImage = section.querySelector('.fps-main-image');
+      const secondaryImage = section.querySelector('.fps-secondary-image');
+
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          thumbnails.forEach(t => t.classList.remove('is-active'));
+          this.classList.add('is-active');
+
+          const newImageSrc = this.querySelector('img').src.replace('width=100', 'width=800');
+          if (mainImage) {
+            mainImage.src = newImageSrc;
+          }
+        });
+      });
+    })();
+  </script>
+{% else %}
+  <div class="fps-section fps-empty">
+    <div class="fps-empty-content">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <p>Select a product to display</p>
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  /* Featured Product Spotlight - Aesthetic & Modern */
+
+  .fps-section {
+    position: relative;
+    padding: var(--fps-padding, 80px) 20px;
+    background: var(--fps-bg, #fff);
+    overflow: hidden;
+  }
+
+  /* Background Pattern */
+  .fps-bg-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 25px 25px, currentColor 2%, transparent 0%);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .fps-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .fps-wrapper {
+    display: grid;
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* Layout Variants */
+  @media (min-width: 900px) {
+    .fps-layout--image-left {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fps-layout--image-right {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fps-layout--image-right .fps-media {
+      order: 2;
+    }
+
+    .fps-layout--image-right .fps-content {
+      order: 1;
+    }
+
+    .fps-layout--stacked {
+      grid-template-columns: 1fr;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Product Media */
+  .fps-media {
+    position: relative;
+  }
+
+  .fps-media-inner {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    box-shadow: 0 20px 60px rgb(0 0 0 / 0.08);
+  }
+
+  .fps-image-link {
+    display: block;
+    position: relative;
+  }
+
+  .fps-image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+  }
+
+  .fps-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fps-main-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .fps-secondary-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  .fps-media:hover .fps-secondary-image {
+    opacity: 1;
+  }
+
+  .fps-image-placeholder {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fps-image-placeholder svg {
+    width: 120px;
+    height: 120px;
+    opacity: 0.2;
+  }
+
+  /* Sale Badge */
+  .fps-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .fps-badge--sale {
+    background: linear-gradient(135deg, #e63946, #d62839);
+    color: #fff;
+  }
+
+  .fps-badge--sold-out {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  /* Thumbnails */
+  .fps-thumbnails {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    justify-content: center;
+  }
+
+  .fps-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    background: none;
+  }
+
+  .fps-thumbnail:hover {
+    transform: scale(1.05);
+  }
+
+  .fps-thumbnail.is-active {
+    border-color: var(--color-foreground, #000);
+    box-shadow: 0 0 0 3px rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .fps-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Product Content */
+  .fps-content {
+    padding: 20px 0;
+  }
+
+  .fps-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .fps-vendor {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+    font-weight: 600;
+  }
+
+  .fps-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .fps-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .fps-title a:hover {
+    opacity: 0.7;
+  }
+
+  /* Reviews */
+  .fps-reviews {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fps-stars {
+    display: flex;
+    gap: 2px;
+    color: #FFB400;
+  }
+
+  .fps-review-count {
+    font-size: 13px;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  /* Price */
+  .fps-price-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .fps-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-foreground, #000);
+  }
+
+  .fps-price--sale {
+    color: #e63946;
+  }
+
+  .fps-price-compare {
+    font-size: 18px;
+    color: rgb(var(--color-foreground-rgb) / 0.4);
+    text-decoration: line-through;
+  }
+
+  .fps-savings {
+    padding: 4px 12px;
+    background: #e63946;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+  }
+
+  /* Description */
+  .fps-description {
+    position: relative;
+  }
+
+  .fps-description-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .fps-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-foreground, #000);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .fps-read-more:hover {
+    gap: 10px;
+    color: #40C4FF;
+  }
+
+  .fps-read-more svg {
+    transition: transform 0.2s ease;
+  }
+
+  .fps-read-more:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* Variant Selectors */
+  .fps-variants {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .fps-variant-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fps-variant-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .fps-selected-value {
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .fps-variant-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .fps-variant-swatch {
+    padding: 10px 20px;
+    min-width: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid rgb(var(--color-foreground-rgb) / 0.15);
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .fps-variant-swatch:hover {
+    border-color: rgb(var(--color-foreground-rgb) / 0.3);
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+  }
+
+  .fps-variant-swatch.is-selected {
+    border-color: var(--color-foreground, #000);
+    background: var(--color-foreground, #000);
+    color: var(--color-background, #fff);
+  }
+
+  /* Quantity Selector */
+  .fps-quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .fps-quantity-label {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .fps-quantity {
+    display: flex;
+    align-items: center;
+    border: 2px solid rgb(var(--color-foreground-rgb) / 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .fps-qty-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .fps-qty-btn:hover {
+    background: rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .fps-qty-input {
+    width: 60px;
+    height: 44px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+    border-right: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+    font-size: 16px;
+    font-weight: 600;
+    background: transparent;
+  }
+
+  .fps-qty-input:focus {
+    outline: none;
+  }
+
+  /* Action Buttons */
+  .fps-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .fps-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 54px;
+    padding: 0 32px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+  }
+
+  .fps-btn-primary {
+    flex: 1;
+    min-width: 200px;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  .fps-btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .fps-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .fps-btn-secondary {
+    background: transparent;
+    border: 2px solid rgb(var(--color-foreground-rgb) / 0.15);
+    color: var(--color-foreground, #000);
+    min-width: auto;
+  }
+
+  .fps-btn-secondary:hover {
+    border-color: var(--color-foreground, #000);
+    background: rgb(var(--color-foreground-rgb) / 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* Trust Badges */
+  .fps-trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.1);
+  }
+
+  .fps-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+  }
+
+  .fps-trust-item svg {
+    flex-shrink: 0;
+    color: #40C4FF;
+  }
+
+  /* Empty State */
+  .fps-empty {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fps-empty-content {
+    text-align: center;
+    color: rgb(var(--color-foreground-rgb) / 0.4);
+  }
+
+  .fps-empty-content svg {
+    margin-bottom: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 749px) {
+    .fps-section {
+      padding: 40px 16px;
+    }
+
+    .fps-wrapper {
+      gap: 40px;
+    }
+
+    .fps-badge {
+      top: 12px;
+      left: 12px;
+      padding: 6px 12px;
+      font-size: 11px;
+    }
+
+    .fps-title {
+      font-size: 24px;
+    }
+
+    .fps-price {
+      font-size: 22px;
+    }
+
+    .fps-actions {
+      flex-direction: column;
+    }
+
+    .fps-btn {
+      width: 100%;
+    }
+
+    .fps-thumbnails {
+      padding: 12px;
+    }
+
+    .fps-thumbnail {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  /* Animations */
+  @keyframes fpsFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fps-media {
+    animation: fpsFadeIn 0.6s ease-out;
+  }
+
+  .fps-content {
+    animation: fpsFadeIn 0.6s ease-out 0.1s backwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fps-media,
+    .fps-content {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "tag": "section",
+  "class": "section-featured-product-spotlight",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "image-left",
+          "label": "Image left"
+        },
+        {
+          "value": "image-right",
+          "label": "Image right"
+        },
+        {
+          "value": "stacked",
+          "label": "Stacked"
+        }
+      ],
+      "default": "image-left"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Product Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show review stars",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_limit",
+      "label": "Description length (characters)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 150
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read More"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show variant selectors",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Show quantity selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbnails",
+      "label": "Show thumbnail gallery",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show sale/sold out badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "info": "Leave empty to show savings amount"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_text",
+      "label": "Add to cart text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_buy_now",
+      "label": "Show Buy Now button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "buy_now_text",
+      "label": "Buy Now text",
+      "default": "Buy Now"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Trust Badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show trust badges",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background_pattern",
+      "label": "Show background pattern",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product S",
+      "settings": {
+        "layout": "image-left",
+        "show_description": true,
+        "description_limit": 150,
+        "read_more_text": "Read More"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1003 @@
+{%- comment -%}
+  Featured Products Home Section
+  A beautiful, modern product grid for showcasing products on the homepage
+{%- endcomment -%}
+
+{%- liquid
+  assign products_count = section.settings.products_count
+  assign products_to_show = blank
+
+  if section.settings.collection != blank
+    assign collection_ref = section.settings.collection
+    assign products_to_show = collection_ref.products
+  else
+    assign products_to_show = section.settings.selected_products
+  endif
+
+  if section.settings.products_count != blank
+    assign products_to_show = products_to_show | slice: 0, products_count
+  endif
+-%}
+
+<div class="featured-products-home" data-section-id="{{ section.id }}">
+  <!-- Section Header -->
+  <div class="fph-header">
+    <div class="fph-header-content">
+      {% if section.settings.section_title != blank %}
+        <h2 class="fph-title">{{ section.settings.section_title }}</h2>
+      {% endif %}
+      {% if section.settings.section_subtitle != blank %}
+        <p class="fph-subtitle">{{ section.settings.section_subtitle }}</p>
+      {% endif %}
+    </div>
+    {% if section.settings.show_view_all and section.settings.collection != blank %}
+      <a href="{{ collections[section.settings.collection].url }}" class="fph-view-all">
+        View All
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Products Grid -->
+  <div class="fph-grid fph-grid--{{ section.settings.columns }} fph-grid--{{ section.settings.layout_style }}">
+    {% for product in products_to_show %}
+      <div class="fph-product-card" data-product-id="{{ product.id }}">
+        <!-- Product Image -->
+        <div class="fph-image-wrapper">
+          <a href="{{ product.url }}" class="fph-image-link" aria-label="{{ product.title }}">
+            {% if product.featured_media %}
+              {% render 'product-card-image-modern',
+                product: product,
+                section_id: section.id,
+                show_secondary_image: section.settings.show_secondary_image
+              %}
+            {% else %}
+              <div class="fph-image-placeholder">
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {% endif %}
+
+            <!-- Quick View Button -->
+            {% if section.settings.enable_quick_view %}
+              <button
+                type="button"
+                class="fph-quick-view-btn"
+                data-product-handle="{{ product.handle }}"
+                aria-label="Quick view"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path d="M2.5 12a3.5 3.5 0 1 0 7 0 3.5 3.5 0 0 0-7 0z"/>
+                </svg>
+              </button>
+            {% endif %}
+
+          </a>
+
+          <!-- Sale Badge -->
+          {% if product.available == false %}
+            <div class="fph-badge fph-badge--sold-out">Sold Out</div>
+          {% elsif product.compare_at_price > product.price %}
+            {%- assign savings = product.compare_at_price_minus_price -%}
+            <div class="fph-badge fph-badge--sale">
+              Save {{ savings | money }}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Product Info -->
+        <div class="fph-product-info">
+          <!-- Vendor -->
+          {% if section.settings.show_vendor and product.vendor %}
+            <span class="fph-vendor">{{ product.vendor }}</span>
+          {% endif %}
+
+          <!-- Product Title -->
+          <h3 class="fph-product-title">
+            <a href="{{ product.url }}">{{ product.title }}</a>
+          </h3>
+
+          <!-- Price -->
+          <div class="fph-price-wrapper">
+            {% if product.compare_at_price > product.price %}
+              <span class="fph-price fph-price--sale">{{ product.price | money }}</span>
+              <span class="fph-price-compare">{{ product.compare_at_price | money }}</span>
+            {% else %}
+              <span class="fph-price">{{ product.price | money }}</span>
+            {% endif %}
+
+            <!-- Review Stars -->
+            {% if section.settings.show_reviews %}
+              <div class="fph-review-stars">
+                <span class="fph-stars">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M12 2l3.09 6.26L22 9.27l-1.06 1.06-3.78-3.77L12 2z"/>
+                  </svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M12 2l3.09 6.26L22 9.27l-1.06 1.06-3.78-3.77L12 2z"/>
+                  </svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M12 2l3.09 6.26L22 9.27l-1.06 1.06-3.78-3.77L12 2z"/>
+                  </svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M12 2l3.09 6.26L22 9.27l-1.06 1.06-3.78-3.77L12 2z"/>
+                  </svg>
+                </span>
+                {% if product.reviews_count > 0 %}
+                  <span class="fph-review-count">({{ product.reviews_count }})</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Add to Cart Button (if enabled) -->
+          {% if section.settings.show_add_to_cart %}
+            {%- assign product_form_id = 'product-form-' | append: product.id -%}
+            <product-form class="fph-product-form">
+              {% form 'product', product %}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  form="{{ product_form_id }}"
+                >
+                <input type="hidden" name="quantity" value="1" form="{{ product_form_id }}">
+
+                <button
+                  type="submit"
+                  class="fph-add-to-cart"
+                  style="background: {{ section.settings.button_color }}; color: {{ section.settings.button_text_color }};"
+                  {% if product.available == false %}disabled{% endif %}
+                >
+                  {% if product.available %}
+                    {% if section.settings.button_icon == 'cart' %}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fph-btn-icon">
+                        <circle cx="9" cy="21" r="1"/>
+                        <path d="M19 8h-4"/>
+                        <path d="M1 1h4l2 2 4-4 18 6-6 2h2"/>
+                      </svg>
+                    {% elsif section.settings.button_icon == 'bag' %}
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fph-btn-icon">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                        <path d="M6 2v12"/>
+                      </svg>
+                    {% endif %}
+                    <span>{{ section.settings.button_text }}</span>
+                  {% else %}
+                    {{ 'Sold Out' }}
+                  {% endif %}
+                </button>
+              {% endform %}
+            </product-form>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Empty State -->
+  {% if products_to_show == blank %}
+    <div class="fph-empty">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6m3 3h6"/>
+      </svg>
+      <p>No products found.</p>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Quick View Modal -->
+<div class="fph-quick-view-modal" data-quick-view-modal aria-hidden="true">
+  <div class="fph-modal-backdrop" data-close-quick-view></div>
+  <div class="fph-modal-content">
+    <button type="button" class="fph-modal-close" data-close-quick-view aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="fph-modal-body" data-quick-view-content>
+      <!-- Quick view content loads here -->
+      <div class="fph-loading">
+        <div class="fph-spinner"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  /* Featured Products Home - Modern & Aesthetic */
+
+  .featured-products-home {
+    padding: var(--padding-section, 60px) 0;
+    position: relative;
+  }
+
+  /* Section Header */
+  .fph-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: clamp(24px, 4vw, 40px);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .fph-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fph-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+    color: currentColor;
+  }
+
+  .fph-subtitle {
+    font-size: clamp(14px, 2vw, 16px);
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+    margin: 0;
+  }
+
+  .fph-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: currentColor;
+    padding: 10px 20px;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .fph-view-all:hover {
+    border-color: currentColor;
+    background: rgb(var(--color-foreground-rgb) / 0.05);
+    transform: translateY(-1px);
+  }
+
+  /* Products Grid */
+  .fph-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  /* Grid Column Variants */
+  .fph-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fph-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .fph-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .fph-grid--5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Layout Style Variants */
+  .fph-grid--standard {
+    /* Standard grid - equal height cards */
+  }
+
+  .fph-grid--masonry {
+    /* Masonry layout - can be added with JS */
+  }
+
+  .fph-grid--carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+
+  .fph-grid--carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fph-grid--carousel .fph-product-card {
+    min-width: 280px;
+    scroll-snap-align: start;
+  }
+
+  /* Product Card */
+  .fph-product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+  }
+
+  .fph-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.12);
+  }
+
+  /* Image Wrapper */
+  .fph-image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+  }
+
+  .fph-image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .fph-image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .fph-product-card:hover .fph-image-link img {
+    transform: scale(1.05);
+  }
+
+  /* Secondary Image on Hover */
+  .fph-image-link .fph-secondary-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .fph-product-card:hover .fph-secondary-image {
+    opacity: 1;
+  }
+
+  /* Badges */
+  .fph-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .fph-badge--sale {
+    background: #e63946;
+    color: #fff;
+  }
+
+  .fph-badge--sold-out {
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  /* Quick View Button */
+  .fph-quick-view-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  .fph-product-card:hover .fph-quick-view-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fph-quick-view-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Wishlist Button */
+  .fph-wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  .fph-wishlist-btn:hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fph-wishlist-btn.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    background: #e63946;
+    border-color: #e63946;
+  }
+
+  .fph-wishlist-btn.is-active svg {
+    fill: #fff;
+  }
+
+  /* Product Info */
+  .fph-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    flex: 1;
+  }
+
+  .fph-vendor {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  .fph-product-title {
+    margin: 0;
+  }
+
+  .fph-product-title a {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: currentColor;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s ease;
+  }
+
+  .fph-product-title a:hover {
+    color: #40C4FF;
+  }
+
+  /* Price */
+  .fph-price-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .fph-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: currentColor;
+  }
+
+  .fph-price--sale {
+    color: #e63946;
+  }
+
+  .fph-price-compare {
+    font-size: 13px;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+    text-decoration: line-through;
+  }
+
+  /* Review Stars */
+  .fph-review-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .fph-stars {
+    display: flex;
+    align-items: center;
+    color: #FFB400;
+  }
+
+  .fph-review-count {
+    font-size: 12px;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  /* Add to Cart Button */
+  .fph-add-to-cart {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .fph-add-to-cart:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(64, 196, 255, 0.3);
+  }
+
+  .fph-add-to-cart:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Empty State */
+  .fph-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgb(var(--color-foreground-rgb) / 0.5);
+  }
+
+  .fph-empty svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+
+  /* Quick View Modal */
+  .fph-quick-view-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .fph-quick-view-modal[aria-hidden="false"] {
+    pointer-events: auto;
+  }
+
+  .fph-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .fph-quick-view-modal[aria-hidden="false"] .fph-modal-backdrop {
+    opacity: 1;
+  }
+
+  .fph-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+  }
+
+  .fph-quick-view-modal[aria-hidden="false"] .fph-modal-content {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fph-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+  }
+
+  .fph-modal-close:hover {
+    background: #f5f5f5;
+  }
+
+  .fph-modal-body {
+    padding: 24px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* Loading Spinner */
+  .fph-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+
+  .fph-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgb(var(--color-foreground-rgb) / 0.1);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: fph-spin 0.8s linear infinite;
+  }
+
+  @keyframes fph-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Responsive Breakpoints */
+  @media screen and (max-width: 1200px) {
+    .fph-grid--5 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .fph-grid--4,
+    .fph-grid--5 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .featured-products-home {
+      padding: var(--padding-section, 40px) 0;
+    }
+
+    .fph-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .fph-view-all {
+      width: 100%;
+    }
+
+    .fph-grid--2,
+    .fph-grid--3,
+    .fph-grid--4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fph-grid--5 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fph-grid--carousel {
+      padding-bottom: 12px;
+      gap: 12px;
+    }
+
+    .fph-grid--carousel .fph-product-card {
+      min-width: 160px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .fph-grid--2,
+    .fph-grid--3,
+    .fph-grid--4,
+    .fph-grid--5 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Animation Delay for Cards */
+  .fph-product-card {
+    animation: fphFadeIn 0.5s ease backwards;
+  }
+
+  .fph-grid--2 .fph-product-card:nth-child(1) { animation-delay: 0.05s; }
+  .fph-grid--2 .fph-product-card:nth-child(2) { animation-delay: 0.1s; }
+
+  .fph-grid--3 .fph-product-card:nth-child(1) { animation-delay: 0.05s; }
+  .fph-grid--3 .fph-product-card:nth-child(2) { animation-delay: 0.1s; }
+  .fph-grid--3 .fph-product-card:nth-child(3) { animation-delay: 0.15s; }
+
+  .fph-grid--4 .fph-product-card:nth-child(1) { animation-delay: 0.05s; }
+  .fph-grid--4 .fph-product-card:nth-child(2) { animation-delay: 0.1s; }
+  .fph-grid--4 .fph-product-card:nth-child(3) { animation-delay: 0.15s; }
+  .fph-grid--4 .fph-product-card:nth-child(4) { animation-delay: 0.2s; }
+
+  .fph-grid--5 .fph-product-card:nth-child(1) { animation-delay: 0.05s; }
+  .fph-grid--5 .fph-product-card:nth-child(2) { animation-delay: 0.1s; }
+  .fph-grid--5 .fph-product-card:nth-child(3) { animation-delay: 0.15s; }
+  .fph-grid--5 .fph-product-card:nth-child(4) { animation-delay: 0.2s; }
+  .fph-grid--5 .fph-product-card:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes fphFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered animation on section load */
+  @keyframes fphSectionLoad {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .featured-products-home {
+    animation: fphSectionLoad 0.6s ease-out;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured Products Home",
+  "tag": "section",
+  "class": "section-featured-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section subtitle",
+      "default": "Shop our latest collection"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Products per row",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        },
+        {
+          "value": "5",
+          "label": "5 columns"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard grid"
+        },
+        {
+          "value": "masonry",
+          "label": "Masonry (coming soon)"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "select",
+      "id": "products_source",
+      "label": "Products",
+      "options": [
+        {
+          "label": "Select collection",
+          "value": "collection"
+        },
+        {
+          "label": "Select products",
+          "value": "manual"
+        }
+      ],
+      "default": "collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Products",
+      "info": "Select products manually"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Maximum products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show review stars",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_view",
+      "label": "Enable quick view",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wishlist",
+      "label": "Enable wishlist",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart",
+      "label": "Show add to cart button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show view all link",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_icon",
+      "label": "Button icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "No icon"
+        },
+        {
+          "value": "cart",
+          "label": "Cart"
+        },
+        {
+          "value": "bag",
+          "label": "Bag"
+        }
+      ],
+      "default": "cart"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Add"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#40C4FF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products",
+      "settings": {
+        "section_title": "Featured Products",
+        "section_subtitle": "Shop our latest collection",
+        "columns": "4",
+        "products_source": "collection",
+        "collection": "frontpage"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,203 @@
+{%- capture section_settings -%}
+{
+  "currentProductId": {{ product.id | json }}
+}
+{%- endcapture -%}
+
+<section
+  class="section recently-viewed-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="recently-viewed-products"
+  data-section-settings="{{ section_settings | escape_once }}"
+  data-current-product-id="{{ product.id }}"
+  style="display: none;"
+>
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <header class="section__header">
+        <h2 class="section__title heading h3">{{ section.settings.title | escape }}</h2>
+      </header>
+    {%- endif -%}
+
+    {%- if request.page_type == 'search' and search.results_count > 0 -%}
+      <div class="recently-viewed-products-wrapper">
+        <!-- Mobile slider container -->
+        <div class="recently-viewed-slider">
+          <div class="recently-viewed-slider-track">
+            {%- assign parsed_terms = search.terms | split: ' OR ' -%}
+            {%- for parsed_term in parsed_terms -%}
+              {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
+              {%- for product in search.results -%}
+                {%- if product.id == id -%}
+                  <div class="recently-viewed-grid__item">
+                    {%- render 'product-card',
+                      product: product,
+                      block: block
+                    -%}
+                  </div>
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Desktop grid container -->
+        <div class="recently-viewed-grid">
+          {%- assign parsed_terms = search.terms | split: ' OR ' -%}
+          {%- for parsed_term in parsed_terms -%}
+            {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
+            {%- for product in search.results -%}
+              {%- if product.id == id -%}
+                <div class="recently-viewed-grid__item">
+                  {%- render 'product-card',
+                    product: product,
+                    block: block
+                  -%}
+                </div>
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="recently-viewed-products-placeholder" aria-hidden="true">
+        <div class="recently-viewed-products-placeholder__media"></div>
+        <div class="recently-viewed-products-placeholder__media"></div>
+        <div class="recently-viewed-products-placeholder__media"></div>
+        <div class="recently-viewed-products-placeholder__media"></div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}
+  --------------------------------------------------------------------------------------
+  QUICK VIEW CONTAINER
+  --------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
+    <div class="modal__dialog modal__dialog--stretch" role="dialog">
+      <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+        {%- render 'icon', icon: 'close' -%}
+      </button>
+
+      <div class="modal__loader">
+        {%- render 'icon', icon: 'search-loader' -%}
+      </div>
+
+      <div class="modal__inner"></div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  /* Container max-width */
+  #shopify-section-{{ section.id }} .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Grid layout */
+  #shopify-section-{{ section.id }} .recently-viewed-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .recently-viewed-grid__item {
+    height: 100%;
+  }
+
+  /* Mobile slider styles */
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} .container {
+      padding: 0 16px;
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-grid {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-slider {
+      display: block;
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-slider-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 4px;
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-slider-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-grid__item {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+      max-width: 85%;
+    }
+  }
+
+  /* Hide slider on desktop */
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .recently-viewed-slider {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .recently-viewed-grid {
+      display: grid !important;
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .recently-viewed-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Recently viewed products",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Only be visible if at least one product has been viewed."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Recently viewed"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "label": "Show quick buy",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Recently viewed products"
+    }
+  ]
+}
+{% endschema %}

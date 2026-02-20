@@ -1,0 +1,1544 @@
+{% doc %}
+  @prompt
+    You are a senior Shopify OS 2.0 theme developer.
+    Using the attached reference screenshots (desktop header, desktop mega menu, and mobile menu), create a fully custom Shopify header section that matches the design and behavior exactly.
+    
+    🌐 TOP ANNOUNCEMENT BAR
+    
+    Full-width bar at the very top
+    
+    Background color: light blue
+    
+    Text color: white
+    
+    Left side text:
+    
+    “Free shipping on orders over €50”
+    
+    Right side links:
+    
+    Support
+    
+    Track order
+    
+    Find a store
+    
+    Contact us
+    
+    Social icons (Facebook, Instagram, X, YouTube)
+    
+    🧭 MAIN HEADER (DESKTOP)
+    
+    Background color: light blue
+    
+    Text color: white
+    
+    Left:
+    
+    Logo text: CHROMA
+    
+    Next to logo:
+    
+    Rounded “Categories” button
+    
+    Button style:
+    
+    Light blue background
+    
+    White text
+    
+    Border radius (pill shape)
+    
+    Down arrow icon
+    
+    Center navigation:
+    
+    Shop
+    
+    Collections
+    
+    Brands
+    
+    Offers (with HOT badge)
+    
+    Guides
+    
+    FAQs
+    
+    Right side:
+    
+    Country & currency selector (e.g. GR (EUR €))
+    
+    Search icon
+    
+    Account icon
+    
+    Cart icon
+    
+    🧩 MEGA MENU (DESKTOP – Categories Button)
+    
+    Opens on click or hover of Categories
+    
+    Full-width dropdown
+    
+    White background
+    
+    Left Column (Category List):
+    
+    Vertical list with active highlight:
+    
+    Accessories (active)
+    
+    Computers & Office
+    
+    Gaming
+    
+    Phones & Wearables
+    
+    Smart Home
+    
+    TVs & Home Theater
+    
+    Active category:
+    
+    Light blue background
+    
+    White text
+    
+    Middle Columns:
+    
+    Types
+    
+    Chargers
+    
+    Cables & Adapters
+    
+    Storage & Memory
+    
+    Popular Brands
+    
+    Marsen
+    
+    Apelix
+    
+    Loginec
+    
+    Sovi
+    
+    Arsus
+    
+    Popular Products
+    
+    Product title list (text links)
+    
+    Guides
+    
+    Article links
+    
+    Right Promo Card:
+    
+    Image card
+    
+    Title:
+    
+    “TVs & Home Theater”
+    
+    Subtitle:
+    
+    “Up to 30% off!”
+    
+    📱 MOBILE HEADER & MENU (LAST IMAGE REFERENCE)
+    
+    Hamburger menu icon
+    
+    Clicking opens full-height slide-in menu
+    
+    White background
+    
+    Mobile Menu Structure:
+    
+    Vertical navigation:
+    
+    Shop
+    
+    Collections
+    
+    Brands
+    
+    Offers (HOT badge)
+    
+    Guides
+    
+    FAQs
+    
+    Categories as accordion dropdowns:
+    
+    Accessories
+    
+    Computers & Office
+    
+    Gaming
+    
+    Phones & Wearables
+    
+    Accordion expand/collapse icons
+    
+    🎨 COLOR & STYLE CONSTRAINTS (IMPORTANT)
+    
+    Use ONLY:
+    
+    Light blue
+    
+    White
+    
+    No black, dark blue, gray, or other colors
+    
+    Clean, modern ecommerce UI
+    
+    Rounded corners where shown
+    
+    ⚙️ SHOPIFY TECHNICAL REQUIREMENTS
+    
+    Shopify OS 2.0 compatible
+    
+    Use:
+    
+    Liquid
+    
+    JSON schema
+    
+    Header must support:
+    
+    Shopify navigation menus
+    
+    Dynamic links
+    
+    Mega menu content should be manageable via:
+    
+    Menu settings
+    
+    Blocks where applicable
+    
+    📦 CODE OUTPUT RULES
+    
+    Provide complete header section code
+    
+    Include:
+    
+    HTML (Liquid)
+    
+    CSS inside {% style %}
+    
+    JavaScript inside {% javascript %} (for mega menu & mobile menu)
+    
+    JSON schema
+    
+    Code must be copy-paste ready
+    
+    No external libraries
+    
+    Performance-optimized
+    
+    Recreate spacing, alignment, hover states, dropdown behavior, and mobile UX as closely as possible to the reference screenshots.
+    Mega Menu Interaction (IMPORTANT):
+    
+    The mega menu must close automatically when the user clicks anywhere outside the mega menu or the “Categories” button
+    
+    Clicking the “Categories” button again should toggle the menu (open/close)
+    
+    The mega menu should also close when:
+    
+    A menu link is clicked
+    
+    The ESC key is pressed
+    
+    Ensure proper event handling to avoid accidental re-opening
+    
+    Use clean, minimal JavaScript (no external libraries)
+    
+    
+{% enddoc %}
+{% liquid
+  assign announcement_bg = section.settings.announcement_bg_color
+  assign announcement_text = section.settings.announcement_text_color
+  assign header_bg = section.settings.header_bg_color
+  assign header_text = section.settings.header_text_color
+  assign mega_menu_bg = section.settings.mega_menu_bg_color
+  assign mega_menu_text = section.settings.mega_menu_text_color
+  assign active_category_bg = section.settings.active_category_bg_color
+  assign active_category_text = section.settings.active_category_text_color
+%}
+
+{% style %}
+  .shopify-section > .chroma-header {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .chroma-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chroma-header-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .chroma-announcement-bar {
+    background-color: {{ announcement_bg }};
+    color: {{ announcement_text }};
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .chroma-announcement-left {
+    flex: 1;
+  }
+
+  .chroma-announcement-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chroma-announcement-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .chroma-announcement-links a {
+    color: {{ announcement_text }};
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .chroma-announcement-links a:hover {
+    opacity: 0.8;
+  }
+
+  .chroma-social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .chroma-social-icons a {
+    color: {{ announcement_text }};
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+
+  .chroma-social-icons a:hover {
+    opacity: 0.8;
+  }
+
+  .chroma-social-icons svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .chroma-main-header {
+    background-color: {{ header_bg }};
+    color: {{ header_text }};
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .chroma-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chroma-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: {{ header_text }};
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .chroma-categories-btn {
+    background-color: {{ header_bg }};
+    color: {{ header_text }};
+    border: 1px solid {{ header_text }};
+    border-radius: 25px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+
+  .chroma-categories-btn:hover {
+    opacity: 0.8;
+  }
+
+  .chroma-categories-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .chroma-header-center {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .chroma-nav-link {
+    color: {{ header_text }};
+    text-decoration: none;
+    font-size: 15px;
+    transition: opacity 0.3s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .chroma-nav-link:hover {
+    opacity: 0.8;
+  }
+
+  .chroma-hot-badge {
+    background-color: #ff4444;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .chroma-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .chroma-country-selector {
+    color: {{ header_text }};
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .chroma-icon-btn {
+    background: none;
+    border: none;
+    color: {{ header_text }};
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s;
+  }
+
+  .chroma-icon-btn:hover {
+    opacity: 0.8;
+  }
+
+  .chroma-icon-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .chroma-mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background-color: {{ mega_menu_bg }};
+    color: {{ mega_menu_text }};
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .chroma-mega-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .chroma-mega-menu-content {
+    display: grid;
+    grid-template-columns: 250px 1fr 1fr 1fr 300px;
+    gap: 30px;
+    padding: 30px;
+  }
+
+  .chroma-category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .chroma-category-item {
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: {{ mega_menu_text }};
+    text-decoration: none;
+    display: block;
+  }
+
+  .chroma-category-item:hover {
+    background-color: {{ active_category_bg }};
+    color: {{ active_category_text }};
+  }
+
+  .chroma-category-item.active {
+    background-color: {{ active_category_bg }};
+    color: {{ active_category_text }};
+  }
+
+  .chroma-mega-column h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: {{ mega_menu_text }};
+  }
+
+  .chroma-mega-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chroma-mega-column a {
+    color: {{ mega_menu_text }};
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.3s;
+  }
+
+  .chroma-mega-column a:hover {
+    opacity: 0.7;
+  }
+
+  .chroma-promo-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chroma-promo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+  }
+
+  .chroma-promo-card-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+
+  .chroma-promo-card h3 {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+  }
+
+  .chroma-promo-card p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .chroma-mobile-header {
+    display: none;
+  }
+
+  .chroma-mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .chroma-mobile-menu.active {
+    left: 0;
+  }
+
+  .chroma-mobile-menu-header {
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chroma-mobile-menu-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chroma-mobile-menu-nav {
+    padding: 20px;
+  }
+
+  .chroma-mobile-nav-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .chroma-mobile-nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chroma-mobile-accordion-btn {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .chroma-mobile-accordion-icon {
+    transition: transform 0.3s;
+  }
+
+  .chroma-mobile-accordion-icon.open {
+    transform: rotate(180deg);
+  }
+
+  .chroma-mobile-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .chroma-mobile-accordion-content.open {
+    max-height: 500px;
+  }
+
+  .chroma-mobile-accordion-content ul {
+    list-style: none;
+    padding: 10px 0 0 15px;
+    margin: 0;
+  }
+
+  .chroma-mobile-accordion-content li {
+    padding: 10px 0;
+  }
+
+  .chroma-mobile-accordion-content a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .chroma-mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .chroma-mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .chroma-announcement-bar {
+      display: none;
+    }
+
+    .chroma-main-header {
+      display: none;
+    }
+
+    .chroma-mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: {{ header_bg }};
+      color: {{ header_text }};
+    }
+
+    .chroma-mobile-header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .chroma-hamburger-btn {
+      background: none;
+      border: none;
+      color: {{ header_text }};
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chroma-hamburger-btn span {
+      width: 24px;
+      height: 2px;
+      background-color: {{ header_text }};
+      display: block;
+      transition: all 0.3s;
+    }
+
+    .chroma-mobile-header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+{% endstyle %}
+
+<chroma-header class="chroma-header" {{ block.shopify_attributes }}>
+  <div class="chroma-announcement-bar">
+    <div class="chroma-announcement-left">
+      {{ block.settings.announcement_text }}
+    </div>
+    <div class="chroma-announcement-right">
+      <div class="chroma-announcement-links">
+        <a href="{{ block.settings.link_1_url }}">{{ block.settings.link_1_text }}</a>
+        <a href="{{ block.settings.link_2_url }}">{{ block.settings.link_2_text }}</a>
+        <a href="{{ block.settings.link_3_url }}">{{ block.settings.link_3_text }}</a>
+        <a href="{{ block.settings.link_4_url }}">{{ block.settings.link_4_text }}</a>
+      </div>
+      <div class="chroma-social-icons">
+        {% if block.settings.facebook_url != blank %}
+          <a href="{{ block.settings.facebook_url }}" target="_blank" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        {% endif %}
+        {% if block.settings.instagram_url != blank %}
+          <a href="{{ block.settings.instagram_url }}" target="_blank" aria-label="Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        {% endif %}
+        {% if block.settings.twitter_url != blank %}
+          <a href="{{ block.settings.twitter_url }}" target="_blank" aria-label="X (Twitter)">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        {% endif %}
+        {% if block.settings.youtube_url != blank %}
+          <a href="{{ block.settings.youtube_url }}" target="_blank" aria-label="YouTube">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="chroma-header-wrapper">
+    <div class="chroma-main-header">
+      <div class="chroma-header-left">
+        <a href="/" class="chroma-logo">{{ block.settings.logo_text }}</a>
+        <button class="chroma-categories-btn" id="categories-btn">
+          {{ block.settings.categories_button_text }}
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="chroma-header-center">
+        <a href="{{ block.settings.nav_link_1_url }}" class="chroma-nav-link">{{ block.settings.nav_link_1_text }}</a>
+        <a href="{{ block.settings.nav_link_2_url }}" class="chroma-nav-link">{{ block.settings.nav_link_2_text }}</a>
+        <a href="{{ block.settings.nav_link_3_url }}" class="chroma-nav-link">{{ block.settings.nav_link_3_text }}</a>
+        <a href="{{ block.settings.nav_link_4_url }}" class="chroma-nav-link">
+          {{ block.settings.nav_link_4_text }}
+          {% if block.settings.show_hot_badge %}
+            <span class="chroma-hot-badge">HOT</span>
+          {% endif %}
+        </a>
+        <a href="{{ block.settings.nav_link_5_url }}" class="chroma-nav-link">{{ block.settings.nav_link_5_text }}</a>
+        <a href="{{ block.settings.nav_link_6_url }}" class="chroma-nav-link">{{ block.settings.nav_link_6_text }}</a>
+      </nav>
+
+      <div class="chroma-header-right">
+        <div class="chroma-country-selector">
+          {{ block.settings.country_currency }}
+        </div>
+        <button class="chroma-icon-btn" aria-label="Search">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+        <a href="/account" class="chroma-icon-btn" aria-label="Account">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+        </a>
+        <a href="/cart" class="chroma-icon-btn" aria-label="Cart">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="chroma-mega-menu" id="mega-menu">
+      <div class="chroma-mega-menu-content">
+        <div class="chroma-category-list">
+          <a href="{{ block.settings.cat_1_url }}" class="chroma-category-item active">{{ block.settings.cat_1_name }}</a>
+          <a href="{{ block.settings.cat_2_url }}" class="chroma-category-item">{{ block.settings.cat_2_name }}</a>
+          <a href="{{ block.settings.cat_3_url }}" class="chroma-category-item">{{ block.settings.cat_3_name }}</a>
+          <a href="{{ block.settings.cat_4_url }}" class="chroma-category-item">{{ block.settings.cat_4_name }}</a>
+          <a href="{{ block.settings.cat_5_url }}" class="chroma-category-item">{{ block.settings.cat_5_name }}</a>
+          <a href="{{ block.settings.cat_6_url }}" class="chroma-category-item">{{ block.settings.cat_6_name }}</a>
+        </div>
+
+        <div class="chroma-mega-column">
+          <h4>{{ block.settings.mega_column_1_title }}</h4>
+          <ul>
+            <li><a href="#">{{ block.settings.col1_link_1 }}</a></li>
+            <li><a href="#">{{ block.settings.col1_link_2 }}</a></li>
+            <li><a href="#">{{ block.settings.col1_link_3 }}</a></li>
+            <li><a href="#">{{ block.settings.col1_link_4 }}</a></li>
+          </ul>
+        </div>
+
+        <div class="chroma-mega-column">
+          <h4>{{ block.settings.mega_column_2_title }}</h4>
+          <ul>
+            <li><a href="#">{{ block.settings.col2_link_1 }}</a></li>
+            <li><a href="#">{{ block.settings.col2_link_2 }}</a></li>
+            <li><a href="#">{{ block.settings.col2_link_3 }}</a></li>
+            <li><a href="#">{{ block.settings.col2_link_4 }}</a></li>
+            <li><a href="#">{{ block.settings.col2_link_5 }}</a></li>
+          </ul>
+        </div>
+
+        <div class="chroma-mega-column">
+          <h4>{{ block.settings.mega_column_3_title }}</h4>
+          <ul>
+            <li><a href="#">{{ block.settings.col3_link_1 }}</a></li>
+            <li><a href="#">{{ block.settings.col3_link_2 }}</a></li>
+            <li><a href="#">{{ block.settings.col3_link_3 }}</a></li>
+          </ul>
+        </div>
+
+        <div class="chroma-promo-card" style="background-image: url('{{ block.settings.promo_image | image_url: width: 600 }}');">
+          <div class="chroma-promo-card-content">
+            <h3>{{ block.settings.promo_title }}</h3>
+            <p>{{ block.settings.promo_subtitle }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chroma-mobile-header">
+    <div class="chroma-mobile-header-left">
+      <button class="chroma-hamburger-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="/" class="chroma-logo">{{ block.settings.logo_text }}</a>
+    </div>
+    <div class="chroma-mobile-header-right">
+      <button class="chroma-icon-btn" aria-label="Search">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </button>
+      <a href="/cart" class="chroma-icon-btn" aria-label="Cart">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="chroma-mobile-overlay" id="mobile-overlay"></div>
+  <div class="chroma-mobile-menu" id="mobile-menu">
+    <div class="chroma-mobile-menu-header">
+      <a href="/" class="chroma-logo" style="color: #333;">{{ block.settings.logo_text }}</a>
+      <button class="chroma-mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="chroma-mobile-menu-nav">
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_1_url }}" class="chroma-mobile-nav-link">{{ block.settings.nav_link_1_text }}</a>
+      </div>
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_2_url }}" class="chroma-mobile-nav-link">{{ block.settings.nav_link_2_text }}</a>
+      </div>
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_3_url }}" class="chroma-mobile-nav-link">{{ block.settings.nav_link_3_text }}</a>
+      </div>
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_4_url }}" class="chroma-mobile-nav-link">
+          {{ block.settings.nav_link_4_text }}
+          {% if block.settings.show_hot_badge %}
+            <span class="chroma-hot-badge">HOT</span>
+          {% endif %}
+        </a>
+      </div>
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_5_url }}" class="chroma-mobile-nav-link">{{ block.settings.nav_link_5_text }}</a>
+      </div>
+      <div class="chroma-mobile-nav-item">
+        <a href="{{ block.settings.nav_link_6_url }}" class="chroma-mobile-nav-link">{{ block.settings.nav_link_6_text }}</a>
+      </div>
+
+      <div class="chroma-mobile-nav-item">
+        <button class="chroma-mobile-accordion-btn" data-accordion="1">
+          Categories
+          <span class="chroma-mobile-accordion-icon">▼</span>
+        </button>
+        <div class="chroma-mobile-accordion-content" data-accordion-content="1">
+          <ul>
+            <li><a href="{{ block.settings.cat_1_url }}">{{ block.settings.cat_1_name }}</a></li>
+            <li><a href="{{ block.settings.cat_2_url }}">{{ block.settings.cat_2_name }}</a></li>
+            <li><a href="{{ block.settings.cat_3_url }}">{{ block.settings.cat_3_name }}</a></li>
+            <li><a href="{{ block.settings.cat_4_url }}">{{ block.settings.cat_4_name }}</a></li>
+            <li><a href="{{ block.settings.cat_5_url }}">{{ block.settings.cat_5_name }}</a></li>
+            <li><a href="{{ block.settings.cat_6_url }}">{{ block.settings.cat_6_name }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</chroma-header>
+
+<script>
+  (function() {
+    // Unique ID for this instance
+    const instanceId = 'chroma-header-' + Math.random().toString(36).substr(2, 9);
+
+    // Initialize when DOM is ready
+    function initChromaHeader() {
+      const categoriesBtn = document.querySelector('#categories-btn');
+      const megaMenu = document.querySelector('#mega-menu');
+      const mobileMenuBtn = document.querySelector('#mobile-menu-btn');
+      const mobileMenu = document.querySelector('#mobile-menu');
+      const mobileOverlay = document.querySelector('#mobile-overlay');
+      const mobileMenuClose = document.querySelector('#mobile-menu-close');
+      const accordionBtns = document.querySelectorAll('.chroma-mobile-accordion-btn');
+      const header = document.querySelector('.chroma-header');
+
+      if (!header) return;
+
+      let isMegaMenuOpen = false;
+
+      // Mega Menu Functions
+      function toggleMegaMenu() {
+        if (isMegaMenuOpen) {
+          closeMegaMenu();
+        } else {
+          openMegaMenu();
+        }
+      }
+
+      function openMegaMenu() {
+        if (megaMenu) {
+          megaMenu.classList.add('active');
+          isMegaMenuOpen = true;
+        }
+      }
+
+      function closeMegaMenu() {
+        if (megaMenu) {
+          megaMenu.classList.remove('active');
+          isMegaMenuOpen = false;
+        }
+      }
+
+      // Setup Mega Menu
+      if (categoriesBtn && megaMenu) {
+        categoriesBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleMegaMenu();
+        });
+
+        // Close on click outside
+        document.addEventListener('click', function(e) {
+          if (isMegaMenuOpen &&
+              !megaMenu.contains(e.target) &&
+              !categoriesBtn.contains(e.target)) {
+            closeMegaMenu();
+          }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && isMegaMenuOpen) {
+            closeMegaMenu();
+          }
+        });
+
+        // Close on link click
+        megaMenu.addEventListener('click', function(e) {
+          if (e.target.tagName === 'A') {
+            closeMegaMenu();
+          }
+        });
+      }
+
+      // Mobile Menu Functions
+      function openMobileMenu() {
+        if (mobileMenu) mobileMenu.classList.add('active');
+        if (mobileOverlay) mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        if (mobileMenu) mobileMenu.classList.remove('active');
+        if (mobileOverlay) mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Setup Mobile Menu
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openMobileMenu();
+        });
+      }
+
+      if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeMobileMenu();
+        });
+      }
+
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeMobileMenu();
+        });
+      }
+
+      // Setup Accordions
+      accordionBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const index = btn.getAttribute('data-accordion');
+          const content = document.querySelector('[data-accordion-content="' + index + '"]');
+          const icon = btn.querySelector('.chroma-mobile-accordion-icon');
+
+          const isOpen = content && content.classList.contains('open');
+
+          // Close all accordions
+          document.querySelectorAll('.chroma-mobile-accordion-content').forEach(function(c) {
+            c.classList.remove('open');
+          });
+          document.querySelectorAll('.chroma-mobile-accordion-icon').forEach(function(i) {
+            i.classList.remove('open');
+          });
+
+          // Open clicked accordion if it was closed
+          if (!isOpen && content) {
+            content.classList.add('open');
+            if (icon) icon.classList.add('open');
+          }
+        });
+      });
+    }
+
+    // Run on DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initChromaHeader);
+    } else {
+      initChromaHeader();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Chroma header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over €50"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bg_color",
+      "label": "Background",
+      "default": "#5eb3e4"
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 text",
+      "default": "Support"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 text",
+      "default": "Track order"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 text",
+      "default": "Find a store"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 text",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "X (Twitter)"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube"
+    },
+    {
+      "type": "header",
+      "content": "Main header"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "CHROMA"
+    },
+    {
+      "type": "text",
+      "id": "categories_button_text",
+      "label": "Categories button",
+      "default": "Categories"
+    },
+    {
+      "type": "text",
+      "id": "country_currency",
+      "label": "Country & currency",
+      "default": "GR (EUR €)"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Background",
+      "default": "#5eb3e4"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation links"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_1_text",
+      "label": "Link 1 text",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_2_text",
+      "label": "Link 2 text",
+      "default": "Collections"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_3_text",
+      "label": "Link 3 text",
+      "default": "Brands"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_4_text",
+      "label": "Link 4 text",
+      "default": "Offers"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hot_badge",
+      "label": "Show HOT badge on link 4",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nav_link_5_text",
+      "label": "Link 5 text",
+      "default": "Guides"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_6_text",
+      "label": "Link 6 text",
+      "default": "FAQs"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "header",
+      "content": "Mega menu"
+    },
+    {
+      "type": "color",
+      "id": "mega_menu_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mega_menu_text_color",
+      "label": "Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "active_category_bg_color",
+      "label": "Active category background",
+      "default": "#5eb3e4"
+    },
+    {
+      "type": "color",
+      "id": "active_category_text_color",
+      "label": "Active category text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Categories"
+    },
+    {
+      "type": "text",
+      "id": "cat_1_name",
+      "label": "Category 1",
+      "default": "Accessories"
+    },
+    {
+      "type": "url",
+      "id": "cat_1_url",
+      "label": "Category 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "cat_2_name",
+      "label": "Category 2",
+      "default": "Computers & Office"
+    },
+    {
+      "type": "url",
+      "id": "cat_2_url",
+      "label": "Category 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "cat_3_name",
+      "label": "Category 3",
+      "default": "Gaming"
+    },
+    {
+      "type": "url",
+      "id": "cat_3_url",
+      "label": "Category 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "cat_4_name",
+      "label": "Category 4",
+      "default": "Phones & Wearables"
+    },
+    {
+      "type": "url",
+      "id": "cat_4_url",
+      "label": "Category 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "cat_5_name",
+      "label": "Category 5",
+      "default": "Smart Home"
+    },
+    {
+      "type": "url",
+      "id": "cat_5_url",
+      "label": "Category 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "cat_6_name",
+      "label": "Category 6",
+      "default": "TVs & Home Theater"
+    },
+    {
+      "type": "url",
+      "id": "cat_6_url",
+      "label": "Category 6 URL"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "text",
+      "id": "mega_column_1_title",
+      "label": "Title",
+      "default": "Types"
+    },
+    {
+      "type": "text",
+      "id": "col1_link_1",
+      "label": "Link 1",
+      "default": "Chargers"
+    },
+    {
+      "type": "text",
+      "id": "col1_link_2",
+      "label": "Link 2",
+      "default": "Cables & Adapters"
+    },
+    {
+      "type": "text",
+      "id": "col1_link_3",
+      "label": "Link 3",
+      "default": "Storage & Memory"
+    },
+    {
+      "type": "text",
+      "id": "col1_link_4",
+      "label": "Link 4",
+      "default": "Cases & Covers"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "mega_column_2_title",
+      "label": "Title",
+      "default": "Popular Brands"
+    },
+    {
+      "type": "text",
+      "id": "col2_link_1",
+      "label": "Link 1",
+      "default": "Marsen"
+    },
+    {
+      "type": "text",
+      "id": "col2_link_2",
+      "label": "Link 2",
+      "default": "Apelix"
+    },
+    {
+      "type": "text",
+      "id": "col2_link_3",
+      "label": "Link 3",
+      "default": "Loginec"
+    },
+    {
+      "type": "text",
+      "id": "col2_link_4",
+      "label": "Link 4",
+      "default": "Sovi"
+    },
+    {
+      "type": "text",
+      "id": "col2_link_5",
+      "label": "Link 5",
+      "default": "Arsus"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "text",
+      "id": "mega_column_3_title",
+      "label": "Title",
+      "default": "Guides"
+    },
+    {
+      "type": "text",
+      "id": "col3_link_1",
+      "label": "Link 1",
+      "default": "Buying Guide"
+    },
+    {
+      "type": "text",
+      "id": "col3_link_2",
+      "label": "Link 2",
+      "default": "Setup Tips"
+    },
+    {
+      "type": "text",
+      "id": "col3_link_3",
+      "label": "Link 3",
+      "default": "Troubleshooting"
+    },
+    {
+      "type": "header",
+      "content": "Promo card"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "promo_title",
+      "label": "Title",
+      "default": "TVs & Home Theater"
+    },
+    {
+      "type": "text",
+      "id": "promo_subtitle",
+      "label": "Subtitle",
+      "default": "Up to 30% off!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Chroma header"
+    }
+  ]
+}
+{% endschema %}
