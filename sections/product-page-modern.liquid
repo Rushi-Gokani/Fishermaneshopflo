@@ -1896,6 +1896,8 @@
     align-items: center;
     justify-content: center;
     background: rgb(var(--color-foreground-rgb) / 0.02);
+    padding: 8px;
+    box-sizing: border-box;
   }
 
   .modern-variant-swatch--image:hover {
@@ -1912,13 +1914,14 @@
   }
 
   .modern-variant-swatch--image.modern-variant-swatch--sold-out {
-    background: #fff;
+    background: #fff !important;
+    background-image: none !important;
   }
 
   .modern-variant-swatch-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     border-radius: 10px;
   }
@@ -1965,8 +1968,7 @@
   .modern-variant-swatch--sold-out .modern-variant-swatch-label,
   .modern-variant-swatch.is-disabled .modern-variant-swatch-img,
   .modern-variant-swatch.is-disabled .modern-variant-swatch-label {
-    opacity: 0.45;
-    filter: grayscale(1);
+    opacity: 0.8;
   }
 
   /* Ensure disabled swatches are still clickable */
@@ -1988,8 +1990,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 65%;
-    height: 2px;
+    width: 30%;
+    height: 1.2px;
     background: rgb(0 0 0 / 0.65);
     transform-origin: center;
   }
