@@ -209,6 +209,15 @@
     container-name: card-gallery-container; /* Optional: name the container */
   }
 
+  .card-gallery .product-media__image {
+    transition: transform 0.4s ease;
+    transform-origin: center center;
+  }
+
+  .card-gallery:hover .product-media__image {
+    transform: scale(1.08);
+  }
+
   .card-gallery__placeholder svg {
     height: 100%;
     width: 100%;

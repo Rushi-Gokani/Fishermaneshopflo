@@ -807,11 +807,11 @@
     box-sizing: border-box;
   }
 
-  /* Desktop Layout - True 50-50 */
+/* Desktop Layout - True 50-50 */
   @media screen and (min-width: 990px) {
     .modern-product-section__container {
       display: grid !important;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; /* Critical: Prevent content from pushing width */
+      grid-template-columns: 1.2fr 1fr !important;
       gap: clamp(48px, 8vw, 80px) !important;
       align-items: start;
     }
@@ -820,6 +820,8 @@
     .modern-product-section__gallery {
       order: 1;
       flex: 0 0 auto !important;
+      width: 100%;
+      max-width: 700px;
     }
 
     .modern-product-section__info {
@@ -840,7 +842,7 @@
     }
 
 
-  /* Gallery Styles - Soft Rounded edges */
+/* Gallery Styles - Soft Rounded edges */
   .modern-product-section__gallery {
     position: sticky;
     position: -webkit-sticky;
@@ -859,6 +861,9 @@
     box-shadow: 0 4px 24px rgb(0 0 0 / 0.06);
     cursor: grab;
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
   }
   
   /* Mobile - Remove sticky on mobile to prevent stuck issue */
@@ -872,7 +877,7 @@
     cursor: grabbing;
   }
 
-  .modern-gallery__viewport {
+.modern-gallery__viewport {
     position: relative;
     aspect-ratio: 1 / 1;
     touch-action: pan-y;
@@ -881,6 +886,22 @@
     max-width: 100%;
     overflow: hidden;
     border-radius: 10px;
+    display: block;
+  }
+
+  .modern-gallery__viewport .modern-gallery__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modern-gallery__viewport .modern-gallery__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .modern-gallery__slide {
@@ -905,12 +926,15 @@
     justify-content: center;
     background: rgb(255 255 255 / 0.5);
     border-radius: 10px;
+    overflow: hidden;
   }
 
   .modern-gallery__image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
     border-radius: 10px;
   }
@@ -1068,8 +1092,8 @@
   }
 
   .modern-gallery__thumbnail {
-    flex: 0 0 80px;
-    width: 80px;
+    flex: 0 0 60px;
+    width: 60px;
     position: relative;
     aspect-ratio: 1;
     border-radius: 10px;

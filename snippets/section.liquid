@@ -54,9 +54,11 @@
         section-content-wrapper
         {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
       "
-      style="
+style="
         {% render 'layout-panel-style', settings: section.settings %}
         {% render 'spacing-style', settings: section.settings %}
+padding-right: 200px;
+        padding-left: 190px;
       "
       data-testid="section-content"
     >
@@ -93,5 +95,62 @@
 
   .custom-section-content {
     z-index: var(--layer-flat);
+  }
+
+  /* Mobile responsive fixes (max-width: 768px) */
+  @media screen and (max-width: 768px) {
+    .section-content-wrapper {
+      padding-right: 1rem !important;
+      padding-left: 1rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    
+    .layout-panel-flex {
+      flex-direction: column !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    .spacing-style {
+      gap: 0.5rem !important;
+    }
+    
+    .section-content-wrapper > * {
+      text-align: center !important;
+      width: 100% !important;
+    }
+    
+    .section-content-wrapper h1,
+    .section-content-wrapper h2,
+    .section-content-wrapper h3,
+    .section-content-wrapper h4,
+    .section-content-wrapper p {
+      text-align: center !important;
+      width: 100% !important;
+      margin: 0 0 0.5rem 0 !important;
+      line-height: 1.3 !important;
+    }
+  }
+
+  /* Small mobile fixes (max-width: 480px) */
+  @media screen and (max-width: 480px) {
+    .section-content-wrapper {
+      padding-right: 0.75rem !important;
+      padding-left: 0.75rem !important;
+    }
+  }
+
+  /* Small mobile fixes (max-width: 480px) */
+  @media screen and (max-width: 480px) {
+    .section-content-wrapper {
+      padding-right: 0.75rem !important;
+      padding-left: 0.75rem !important;
+    }
   }
 {% endstylesheet %}

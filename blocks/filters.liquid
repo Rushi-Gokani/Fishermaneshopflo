@@ -207,23 +207,7 @@
               {% endcapture %}
 
               <div class="facets__filters-wrapper">
-                {% if block_settings.filter_style == 'horizontal' %}
-                  {% liquid
-                    assign more_attributes = 'on:click="#filters-drawer/showDialog"'
-                    if block_settings.text_label_case == 'uppercase'
-                      assign more_attributes = more_attributes | append: ' style="--text-transform: uppercase;"'
-                    endif
-                  %}
-                  {% render 'overflow-list',
-                    class: 'facets__overflow-list',
-                    children: rendered_filters,
-                    more-attributes: more_attributes,
-                    minimum-items: 2,
-                    data-testid: 'horizontal-filters-overflow-list'
-                  %}
-                {% else %}
-                  {{ rendered_filters }}
-                {% endif %}
+{{ rendered_filters }}
               </div>
 
               {% render 'facets-actions',
@@ -969,12 +953,12 @@
       width: var(--facets-grid-panel-width);
     }
   }
-
+/* 
   .facets__inputs-wrapper--row:not(:has(.facets__inputs-list)),
   .facets__inputs-wrapper--row .facets__inputs-list {
     flex-wrap: wrap;
     flex-direction: row;
-  }
+  } */
 
   .facets__inputs .show-more__button {
     --show-more-icon-size: 22px;
@@ -1338,8 +1322,8 @@
       "id": "padding-inline-start",
       "label": "t:settings.left",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     },
@@ -1348,8 +1332,8 @@
       "id": "padding-inline-end",
       "label": "t:settings.right",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     },

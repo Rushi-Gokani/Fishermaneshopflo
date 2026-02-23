@@ -464,7 +464,7 @@
     background: rgba(255, 255, 255, 0.2);
     opacity: 1;
   }
-  .icon-btn svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
+   .icon-btn svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
   .header-actions__cart-icon {
     position: absolute;
     top: -2px;
@@ -472,6 +472,28 @@
     transform: scale(0.8);
   }
   .cart-count-bubble { background-color: #ffffff; color: #40c4ff; }
+
+  /* Account button responsive */
+  .header-icons .icon-btn[href*="/account"] {
+    display: flex;
+  }
+  
+  @media (max-width: 1024px) {
+    .header-icons .icon-btn[href*="/account"] {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    
+    /* Mobile specific styling for all header icons */
+    .header-mobile .icon-btn {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px;
+    }
+  }
 
   /* Megamenu Dropdown */
   .categories-dropdown {
@@ -544,14 +566,26 @@
   .promo-subtitle { font-size: 12px; opacity: 0.9; }
 
   /* Mobile */
-  .header-mobile { display: none; width: 100%; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
+  .header-mobile { display: none; width:100%; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
   .header-mobile .header-branding { max-width: 90px; }
   .header-mobile .header-branding img { max-width: 100%; height: auto; }
+  
+  .header-mobile .header-icons {
+    display: flex;
+    gap: 8px;
+  }
   
   @media (max-width: 1024px) {
     .header-layout { display: none; }
     .header-mobile { display: flex; }
     .custom-header-container { height: auto; padding: 0; }
+    
+    /* Ensure account icon is visible in mobile view */
+    .header-icons .icon-btn {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
   }
 
   /* Premium Mobile Drawer */
@@ -928,6 +962,9 @@
         <button class="icon-btn search-trigger" aria-label="Search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
         </button>
+        <a href="{{ routes.account_url }}" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
         {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
           <cart-drawer-component class="cart-drawer" {% if settings.auto_open_cart_drawer %}auto-open{% endif %}>
             {% comment %} <button class="icon-btn" aria-label="Cart" on:click="/open"> {% endcomment %}

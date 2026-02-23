@@ -6,7 +6,7 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */ {
   "sections": {
     "section": {
       "type": "main-blog-post",
@@ -33,7 +33,7 @@
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
+            "padding-inline-start": 100,
             "padding-inline-end": 0
           },
           "blocks": {}
@@ -91,7 +91,5 @@
       }
     }
   },
-  "order": [
-    "section"
-  ]
+  "order": ["section"]
 }
