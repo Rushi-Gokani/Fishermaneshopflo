@@ -618,7 +618,7 @@ class ModernProductPage {
 
         // Publish event
         this.publishCartEvent();
-        handleFloCartBtn();
+        if (typeof handleFloCartBtn === 'function') handleFloCartBtn();
 
         setTimeout(() => {
           if (defaultText) defaultText.style.display = '';
