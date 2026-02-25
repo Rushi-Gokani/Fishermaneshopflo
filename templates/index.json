@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "17706277831c7b735f": {
@@ -22,20 +31,20 @@
             "heading_size": 56,
             "subheading_size": 18,
             "button_border_radius": 14,
-            "image_1": "shopify:\/\/shop_images\/Fishermanshub_Banner_Desktop.webp",
-            "mobile_image_1": "shopify:\/\/shop_images\/Fishermanshub_Banner_Mobile_1.webp",
+            "image_1": "shopify://shop_images/Fishermanshub_Banner_Desktop.webp",
+            "mobile_image_1": "shopify://shop_images/Fishermanshub_Banner_Mobile_1.webp",
             "show_content_1": true,
             "heading_1": "",
             "subheading_1": "",
             "button_text_1": "",
             "button_link_1": "",
-            "image_2": "shopify:\/\/shop_images\/4_a5e97c27-87e6-430d-822d-6497a8f26272.png",
-            "mobile_image_2": "shopify:\/\/shop_images\/3_cb71c800-b316-4e49-a90d-dd43286c0f62.webp",
+            "image_2": "shopify://shop_images/4_a5e97c27-87e6-430d-822d-6497a8f26272.png",
+            "mobile_image_2": "shopify://shop_images/3_cb71c800-b316-4e49-a90d-dd43286c0f62.webp",
             "show_content_2": true,
             "heading_2": "",
             "subheading_2": "",
             "button_text_2": "",
-            "button_link_2": "shopify:\/\/collections\/winter-collection-sale",
+            "button_link_2": "shopify://collections/winter-collection-sale",
             "show_content_3": true,
             "heading_3": "",
             "subheading_3": "",
@@ -55,7 +64,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_1081cc9_bqwjgD"],
+      "block_order": [
+        "ai_gen_block_1081cc9_bqwjgD"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -110,20 +121,20 @@
             "autoplay": true,
             "autoplay_speed": 5,
             "pause_on_hover": true,
-            "slide_1_image": "shopify:\/\/shop_images\/Screenshot_2026-01-24_161458.png",
-            "slide_1_mobile_image": "shopify:\/\/shop_images\/3_cb71c800-b316-4e49-a90d-dd43286c0f62.png",
+            "slide_1_image": "shopify://shop_images/Screenshot_2026-01-24_161458.png",
+            "slide_1_mobile_image": "shopify://shop_images/3_cb71c800-b316-4e49-a90d-dd43286c0f62.png",
             "slide_1_heading": "",
             "slide_1_subheading": "",
             "slide_1_button_label": "",
             "slide_1_button_link": "",
-            "slide_2_image": "shopify:\/\/shop_images\/Generated_Image_January_24_2026_-_4_06PM.png",
-            "slide_2_mobile_image": "shopify:\/\/shop_images\/mobile-welcome-banner-horizontal-fish.png",
+            "slide_2_image": "shopify://shop_images/Generated_Image_January_24_2026_-_4_06PM.png",
+            "slide_2_mobile_image": "shopify://shop_images/mobile-welcome-banner-horizontal-fish.png",
             "slide_2_heading": "",
             "slide_2_subheading": "",
             "slide_2_button_label": "",
             "slide_2_button_link": "",
-            "slide_3_image": "shopify:\/\/shop_images\/Penn_Heavy_Trolling_Reels_Desktop_Banner_a47b6285-a5c1-4a84-bb84-023ea6c38a52.jpg",
-            "slide_3_mobile_image": "shopify:\/\/shop_images\/Penn_Heavy_Trolling_Reels_Mobile_Banner_570f23ef-8435-4d56-b832-bcbe1e9fa7b3.jpg",
+            "slide_3_image": "shopify://shop_images/Penn_Heavy_Trolling_Reels_Desktop_Banner_a47b6285-a5c1-4a84-bb84-023ea6c38a52.jpg",
+            "slide_3_mobile_image": "shopify://shop_images/Penn_Heavy_Trolling_Reels_Mobile_Banner_570f23ef-8435-4d56-b832-bcbe1e9fa7b3.jpg",
             "slide_3_heading": "",
             "slide_3_subheading": "",
             "slide_3_button_label": "",
@@ -132,7 +143,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_c621ee1_y78WHi"],
+      "block_order": [
+        "ai_gen_block_c621ee1_y78WHi"
+      ],
       "disabled": true,
       "settings": {
         "content_direction": "column",
@@ -203,7 +216,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -343,6 +356,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.products_grid",
       "settings": {
         "collection": "winter-collection-sale",
@@ -393,27 +407,27 @@
             "arrow_border_color": "#e0e0e0",
             "arrow_color": "#000000",
             "category_1_collection": "fishing-rods",
-            "category_1_image": "shopify:\/\/shop_images\/Penn_Mariner_II_Boat_Spinning_Rod_logo.png",
+            "category_1_image": "shopify://shop_images/Penn_Mariner_II_Boat_Spinning_Rod_logo.png",
             "category_1_title": "Fishing Rods",
             "category_1_link": "",
             "category_1_is_sale": false,
             "category_2_collection": "fishing-reels",
-            "category_2_image": "shopify:\/\/shop_images\/OKUMASCORPIOBAITCASTINGREEL-891367.webp",
+            "category_2_image": "shopify://shop_images/OKUMASCORPIOBAITCASTINGREEL-891367.webp",
             "category_2_title": "Reels",
             "category_2_link": "",
             "category_2_is_sale": false,
             "category_3_collection": "lures-baits",
-            "category_3_image": "shopify:\/\/shop_images\/RAPALA-RAP-V-RATTLING-BLADE-SINKING-CHROME-TIGER-HEROIMG-corrected-1-238624.jpg",
+            "category_3_image": "shopify://shop_images/RAPALA-RAP-V-RATTLING-BLADE-SINKING-CHROME-TIGER-HEROIMG-corrected-1-238624.jpg",
             "category_3_title": "Lures",
             "category_3_link": "",
             "category_3_is_sale": false,
             "category_4_collection": "accessories-tools",
-            "category_4_image": "shopify:\/\/shop_images\/RapalaTackleTraydeepopen2-610951.png",
+            "category_4_image": "shopify://shop_images/RapalaTackleTraydeepopen2-610951.png",
             "category_4_title": "Accessories & Tools",
             "category_4_link": "",
             "category_4_is_sale": false,
             "category_5_collection": "sale-of-the-month",
-            "category_5_image": "shopify:\/\/shop_images\/DAIWA_SALTIGA_10000_H_2.webp",
+            "category_5_image": "shopify://shop_images/DAIWA_SALTIGA_10000_H_2.webp",
             "category_5_title": "Sale",
             "category_5_link": "",
             "category_5_is_sale": true,
@@ -424,7 +438,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_7290003_H7pTMQ"],
+      "block_order": [
+        "ai_gen_block_7290003_H7pTMQ"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -459,7 +475,7 @@
         "text_VF8aVM": {
           "type": "text",
           "settings": {
-            "text": "<p>We make things that work better and last longer.<\/p>",
+            "text": "<p>We make things that work better and last longer.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -482,7 +498,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_VF8aVM"],
+      "block_order": [
+        "text_VF8aVM"
+      ],
       "disabled": true,
       "name": "t:names.marquee_section",
       "settings": {
@@ -545,7 +563,9 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_list_button_MAdHTQ"]
+          "block_order": [
+            "product_list_button_MAdHTQ"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -673,7 +693,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/berkley treline mono line.mp4",
+            "video": "shopify://files/videos/berkley treline mono line.mp4",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -687,7 +707,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-421.mp4",
+            "video": "shopify://files/videos/Video-421.mp4",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -701,7 +721,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-533.mp4",
+            "video": "shopify://files/videos/Video-533.mp4",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -715,7 +735,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-576.mp4",
+            "video": "shopify://files/videos/Video-576.mp4",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -739,7 +759,7 @@
         "title_color": "#2b2b2b",
         "description": "",
         "color_scheme": "",
-        "video_aspect_ratio": "9\/16",
+        "video_aspect_ratio": "9/16",
         "video_max_width": 600,
         "padding-block-start": 64,
         "padding-block-end": 64,
@@ -805,7 +825,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_86d2006_wCKTyA"],
+      "block_order": [
+        "ai_gen_block_86d2006_wCKTyA"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -875,7 +897,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1046,7 +1068,7 @@
             "heading_size": 32,
             "heading_color": "#000000",
             "view_all_text": "View all",
-            "view_all_link": "shopify:\/\/collections",
+            "view_all_link": "shopify://collections",
             "link_size": 14,
             "link_color": "#000000",
             "link_hover_color": "#666666",
@@ -1094,7 +1116,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_86d2006_9J8ifW"],
+      "block_order": [
+        "ai_gen_block_86d2006_9J8ifW"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1164,7 +1188,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1362,19 +1386,19 @@
             "section_padding_top": 50,
             "section_padding_bottom": 50,
             "collection_1": "rods-under-2500",
-            "custom_image_1": "shopify:\/\/shop_images\/rods_rs_2000_bddca822-51b6-4eab-87c3-a55ceb1e9f86.webp",
+            "custom_image_1": "shopify://shop_images/rods_rs_2000_bddca822-51b6-4eab-87c3-a55ceb1e9f86.webp",
             "custom_label_1": "",
             "custom_link_1": "",
             "collection_2": "reels-under-2500",
-            "custom_image_2": "shopify:\/\/shop_images\/reels_rs_2500_fc9cf18f-3db4-4cf6-b797-5e238312da09.webp",
+            "custom_image_2": "shopify://shop_images/reels_rs_2500_fc9cf18f-3db4-4cf6-b797-5e238312da09.webp",
             "custom_label_2": "",
             "custom_link_2": "",
             "collection_3": "lures-under-500",
-            "custom_image_3": "shopify:\/\/shop_images\/lures_600_89a195e1-107e-48ca-a035-4c86ff041b97.webp",
+            "custom_image_3": "shopify://shop_images/lures_600_89a195e1-107e-48ca-a035-4c86ff041b97.webp",
             "custom_label_3": "",
             "custom_link_3": "",
             "collection_4": "fishing-lines-under-500",
-            "custom_image_4": "shopify:\/\/shop_images\/lines_rs_800_2a7df48c-05b0-4e5e-87aa-474acf1bc39d.webp",
+            "custom_image_4": "shopify://shop_images/lines_rs_800_2a7df48c-05b0-4e5e-87aa-474acf1bc39d.webp",
             "custom_label_4": "",
             "custom_link_4": "",
             "collection_5": "",
@@ -1387,7 +1411,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_86d2006_xgeKHL"],
+      "block_order": [
+        "ai_gen_block_86d2006_xgeKHL"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1457,7 +1483,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1659,7 +1685,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1831,7 +1857,7 @@
             "heading_color": "#000000",
             "heading_spacing": 40,
             "view_all_text": "View all",
-            "view_all_link": "shopify:\/\/pages\/new-brands",
+            "view_all_link": "shopify://pages/new-brands",
             "view_all_color": "#000000",
             "logo_height": 90,
             "logo_max_width": 180,
@@ -1856,7 +1882,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_9e1de29_CQwaYU"],
+      "block_order": [
+        "ai_gen_block_9e1de29_CQwaYU"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1889,19 +1917,23 @@
       "type": "apps",
       "blocks": {
         "judge_me_reviews_featured_carousel_y4gBze": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": { "maxwidth": 1080 }
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
         },
         "judge_me_reviews_all_reviews_text_qXA4UM": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/all_reviews_text\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "judge_me_reviews_preview_badge_homepage_LiLcbM": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge_homepage\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": { "product": "" }
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": ""
+          }
         },
         "judge_me_reviews_ugc_media_grid_GLBFyf": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/ugc_media_grid\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/ugc_media_grid/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         }
       },
@@ -1916,7 +1948,9 @@
     "featured_product_spotlight_fnfYLD": {
       "type": "featured-product-spotlight",
       "disabled": true,
-      "custom_css": [".fps-description-text h2 {font-size: 16px !important;}"],
+      "custom_css": [
+        ".fps-description-text h2 {font-size: 16px !important;}"
+      ],
       "name": "Featured Product S",
       "settings": {
         "product": "abu-garcia-salty-fighter-2-jigging-spinning-rod-jigging-rod-6-ft-mh",
@@ -2169,7 +2203,9 @@
                 "add-to-cart": {
                   "type": "add-to-cart",
                   "static": true,
-                  "settings": { "style_class": "button-secondary" },
+                  "settings": {
+                    "style_class": "button-secondary"
+                  },
                   "blocks": {}
                 }
               },
@@ -2237,19 +2273,19 @@
             "answer_size": 15,
             "answer_color": "#666666",
             "question_1": "How long will it take to get my order?",
-            "answer_1": "<p>It usually takes 4 to 8 days for an order to be delivered once order is dispatched. Orders are dispatched on all weekdays Monday to Friday noon. Orders are usually not dispatched on Saturdays and Sundays and on Holidays. India Post usually takes 2 working days to update tracking status so in case your order is sent thru India Post and you do not see your tracking live please try a few hours later or the next day. Overseas deliveries can take anywhere from 7-20 days. Delivery details will be provided in your confirmation email. <br\/>In case you are not able to track your order by visiting the order tracking page, please do drop us a message and we will provide you the latest status.<\/p><p><\/p>",
+            "answer_1": "<p>It usually takes 4 to 8 days for an order to be delivered once order is dispatched. Orders are dispatched on all weekdays Monday to Friday noon. Orders are usually not dispatched on Saturdays and Sundays and on Holidays. India Post usually takes 2 working days to update tracking status so in case your order is sent thru India Post and you do not see your tracking live please try a few hours later or the next day. Overseas deliveries can take anywhere from 7-20 days. Delivery details will be provided in your confirmation email. <br/>In case you are not able to track your order by visiting the order tracking page, please do drop us a message and we will provide you the latest status.</p><p></p>",
             "question_2": "How do I track my order?",
-            "answer_2": "<p>You can track your orders visiting the \"<a href=\"https:\/\/fishermanshub.com\/pages\/order-tracking-page\" target=\"_blank\" title=\"https:\/\/fishermanshub.com\/pages\/order-tracking-page\">Track My Order<\/a>\" page. Here you will need to provide your Order Number or tracking ID.<\/p>",
+            "answer_2": "<p>You can track your orders visiting the \"<a href=\"https://fishermanshub.com/pages/order-tracking-page\" target=\"_blank\" title=\"https://fishermanshub.com/pages/order-tracking-page\">Track My Order</a>\" page. Here you will need to provide your Order Number or tracking ID.</p>",
             "question_3": "Do you ship overseas?",
-            "answer_3": "<p>Yes, we ship all over the world. Shipping costs will apply depending on your Country and Zip Code. In case you need products shipped to any overseas address please drop us a message and we will convey the Product and shipping cost to you.<\/p>",
+            "answer_3": "<p>Yes, we ship all over the world. Shipping costs will apply depending on your Country and Zip Code. In case you need products shipped to any overseas address please drop us a message and we will convey the Product and shipping cost to you.</p>",
             "question_4": "Do you offer  Cash On Delivery?",
-            "answer_4": "<p>We also offer Cash on Delivery option to select Pin Codes in India for orders totaling between Rs. 800 and Rs.3900. In case of free shipping, we do not take responsibility of the couriers in case of loss or misplacement. We would recommend that you get in touch with us to purchase shipping insurance for all orders and this is highly recommended for orders containing <a href=\"https:\/\/fishermanshub.com\/collections\/fishing-reels\" title=\"https:\/\/fishermanshub.com\/collections\/fishing-reels\">Reels <\/a>and <a href=\"https:\/\/fishermanshub.com\/collections\/fishing-rods\" title=\"https:\/\/fishermanshub.com\/collections\/fishing-rods\">Rods<\/a>.<\/p>",
+            "answer_4": "<p>We also offer Cash on Delivery option to select Pin Codes in India for orders totaling between Rs. 800 and Rs.3900. In case of free shipping, we do not take responsibility of the couriers in case of loss or misplacement. We would recommend that you get in touch with us to purchase shipping insurance for all orders and this is highly recommended for orders containing <a href=\"https://fishermanshub.com/collections/fishing-reels\" title=\"https://fishermanshub.com/collections/fishing-reels\">Reels </a>and <a href=\"https://fishermanshub.com/collections/fishing-rods\" title=\"https://fishermanshub.com/collections/fishing-rods\">Rods</a>.</p>",
             "question_5": "Which are our dispatch days and times?",
-            "answer_5": "<p>If we receive an order on any working weekday before 1.00 P.M, we dispatch the order the same day. We usually dispatch all small to medium sized orders on all working weekdays i.e Monday to Friday. Dispatches mostly do not happen on Saturday, Sunday and on Public Holidays. <\/p>",
+            "answer_5": "<p>If we receive an order on any working weekday before 1.00 P.M, we dispatch the order the same day. We usually dispatch all small to medium sized orders on all working weekdays i.e Monday to Friday. Dispatches mostly do not happen on Saturday, Sunday and on Public Holidays. </p>",
             "question_6": "Can I return my product?",
-            "answer_6": "<p>We always aim for make sure our customers love our products, but if you do need to return an order if you found a product damaged in the package or if your received a wrong product you can follow the instructions given in our <a href=\"https:\/\/fishermanshub.com\/policies\/shipping-policy\" title=\"https:\/\/fishermanshub.com\/policies\/shipping-policy\">Shipping policy<\/a> and in our <a href=\"https:\/\/fishermanshub.com\/policies\/refund-policy\" title=\"https:\/\/fishermanshub.com\/policies\/refund-policy\">Refund Policy<\/a>.<\/p>",
+            "answer_6": "<p>We always aim for make sure our customers love our products, but if you do need to return an order if you found a product damaged in the package or if your received a wrong product you can follow the instructions given in our <a href=\"https://fishermanshub.com/policies/shipping-policy\" title=\"https://fishermanshub.com/policies/shipping-policy\">Shipping policy</a> and in our <a href=\"https://fishermanshub.com/policies/refund-policy\" title=\"https://fishermanshub.com/policies/refund-policy\">Refund Policy</a>.</p>",
             "question_7": "Have any more questions?",
-            "answer_7": "<p>We can be reached via email at mail@fishermanshub.com, on Whatsapp at <a href=\"https:\/\/wa.me\/c\/917058247482\" title=\"https:\/\/wa.me\/c\/917058247482\">+91 <\/a>9209176799 .  However we may not always be able to respond immediately as we may be busy packing orders :-). Do hang on and we will respond to you at the earliest we can!<\/p>",
+            "answer_7": "<p>We can be reached via email at mail@fishermanshub.com, on Whatsapp at <a href=\"https://wa.me/c/917058247482\" title=\"https://wa.me/c/917058247482\">+91 </a>9209176799 .  However we may not always be able to respond immediately as we may be busy packing orders :-). Do hang on and we will respond to you at the earliest we can!</p>",
             "question_8": "",
             "answer_8": "",
             "question_9": "",
@@ -2260,7 +2296,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_87d85b9_qVJDjn"],
+      "block_order": [
+        "ai_gen_block_87d85b9_qVJDjn"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2320,7 +2358,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_c8d97b3_gcapmt"],
+      "block_order": [
+        "ai_gen_block_c8d97b3_gcapmt"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2375,7 +2415,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_18853c7_GAgULc"],
+      "block_order": [
+        "ai_gen_block_18853c7_GAgULc"
+      ],
       "disabled": true,
       "settings": {
         "content_direction": "column",
@@ -2441,7 +2483,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_7180a73_JLtFNh"],
+      "block_order": [
+        "ai_gen_block_7180a73_JLtFNh"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -2477,7 +2521,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products<\/p>",
+            "text": "<p>Browse our latest products</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -2504,7 +2548,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Shop all",
-            "link": "shopify:\/\/collections\/all",
+            "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "width": "fit-content",
@@ -2515,7 +2559,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_YLPk4p", "button_H9gpTf"],
+      "block_order": [
+        "text_YLPk4p",
+        "button_H9gpTf"
+      ],
       "disabled": true,
       "name": "t:names.hero",
       "settings": {
@@ -2590,7 +2637,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}<\/h3>",
+                "text": "<h3>{{ closest.collection.title }}</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
