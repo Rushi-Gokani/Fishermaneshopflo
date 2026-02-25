@@ -546,6 +546,32 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "text_8C8Hxf": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>{{ closest.collection.title }}</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "product_list_button_MAdHTQ": {
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
@@ -562,6 +588,7 @@
             }
           },
           "block_order": [
+            "text_8C8Hxf",
             "product_list_button_MAdHTQ"
           ]
         },
