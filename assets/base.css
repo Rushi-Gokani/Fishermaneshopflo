@@ -3349,6 +3349,7 @@ slideshow-slides {
   gap: var(--slideshow-gap, 0);
   cursor: var(--cursor);
   min-height: var(--slide-min-height);
+  touch-action: pan-x pinch-zoom;
 
   @media (prefers-reduced-motion) {
     scroll-behavior: auto;
@@ -3379,6 +3380,18 @@ slideshow-component[disabled='true'] slideshow-slides {
 slideshow-component[mobile-disabled] slideshow-slides {
   @media screen and (max-width: 749px) {
     overflow: hidden;
+  }
+}
+
+/* On mobile, enable touch-based drag navigation for card gallery slideshows */
+@media screen and (max-width: 749px) {
+  .card-gallery slideshow-component:not([disabled]):not([mobile-disabled]) slideshow-slides {
+    touch-action: none;
+  }
+
+  .card-gallery a.slideshow-link {
+    display: block;
+    width: 100%;
   }
 }
 

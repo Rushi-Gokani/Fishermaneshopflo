@@ -143,10 +143,17 @@
     transition: transform 0.3s ease;
     cursor: grab;
     width: 100%;
-    touch-action: pan-y;
+    touch-action: none;
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
+  }
+
+  /* Prevent images from being dragged natively */
+  .product-card-slider-container-{{ card_id }} img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
   }
 
   .product-card-slider-container-{{ card_id }}.dragging {
@@ -164,7 +171,7 @@
     object-fit: contain;
     flex-shrink: 0;
     user-select: none;
-    pointer-events: none;
+    -webkit-user-select: none;
     border-radius: 10px;
   }
 
@@ -331,6 +338,16 @@
     .product-card-buy-btn-{{ card_id }} {
       font-size: 14px;
       padding: 12px;
+    }
+
+    /* Hide arrow buttons on mobile - use swipe instead */
+    .product-card-arrow-{{ card_id }} {
+      display: none !important;
+    }
+
+    /* On mobile, remove touch-action constraints for better swipe experience */
+    .product-card-slider-container-{{ card_id }} {
+      touch-action: none;
     }
   }
 {% endstyle %}
@@ -564,7 +581,7 @@
         handleFloCartBtn();
           {% comment %} cartDrawer.open(); {% endcomment %}
       }
-      
+
       button.textContent = 'Added';
       setTimeout(() => {
         button.textContent = originalText;

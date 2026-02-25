@@ -154,14 +154,15 @@
 
       assign slideshow_attributes = 'data-generic-media-size="[generic_media_size]"' | replace: '[generic_media_size]', generic_media_size
       if settings.product_card_carousel == false
-        assign slideshow_attributes = slideshow_attributes | append: ' disabled="true"'
+        assign slideshow_attributes = slideshow_attributes | append: ' data-disable-autoplay="true"'
       endif
     %}
     <a
-      class="contents"
+      class="card-gallery__link"
       ref="cardGalleryLink"
       href="{{ product.selected_or_first_available_variant.url }}"
       aria-label="{{- product.title -}}"
+      data-product-url="{{ product.selected_or_first_available_variant.url }}"
     >
       {% render 'slideshow',
         ref: 'slideshow',
@@ -207,6 +208,50 @@
     overflow: hidden;
     container-type: inline-size; /* Make card-gallery a container */
     container-name: card-gallery-container; /* Optional: name the container */
+  }
+
+  /* Card gallery link wrapper - allow touch dragging on mobile while maintaining click functionality */
+  .card-gallery__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  /* Allow pointer events to pass through to slideshow for drag functionality */
+  .card-gallery__link slideshow-component {
+    cursor: grab;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-gallery__link slideshow-component:not([disabled]) {
+    touch-action: pan-x pinch-zoom;
+  }
+
+  /* On mobile, ensure dragging works by removing touch-action constraints */
+  @media screen and (max-width: 749px) {
+    .card-gallery__link slideshow-component:not([disabled]) {
+      touch-action: none;
+    }
+
+    /* Ensure the slideshow captures all pointer events */
+    .card-gallery__link slideshow-component:not([disabled]) slideshow-slides {
+      touch-action: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent link navigation when dragging */
+    .card-gallery__link slideshow-component[dragging],
+    .card-gallery__link slideshow-component[data-was-dragging] {
+      cursor: grabbing;
+      pointer-events: auto;
+    }
   }
 
   .card-gallery .product-media__image {

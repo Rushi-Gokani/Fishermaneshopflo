@@ -401,6 +401,29 @@ export class ProductCard extends Component {
       return;
     }
 
+    // Don't navigate if the user was dragging the slideshow
+    const slideshow = this.querySelector('slideshow-component[dragging]');
+    if (slideshow) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    // Also prevent navigation if we're inside a slideshow that isn't disabled
+    const closestSlideshow = event.target.closest('slideshow-component:not([disabled="true"]):not([mobile-disabled])');
+    if (closestSlideshow && !mediaQueryLarge.matches) {
+      // On mobile, check if this was a drag interaction vs a tap
+      const hasDraggingAttr = closestSlideshow.hasAttribute('dragging');
+      const wasDragging = closestSlideshow.hasAttribute('data-was-dragging');
+
+      if (hasDraggingAttr || wasDragging) {
+        event.preventDefault();
+        event.stopPropagation();
+        closestSlideshow.removeAttribute('data-was-dragging');
+        return;
+      }
+    }
+
     const link = this.refs.productCardLink;
     if (!link.href) return;
     const linkURL = new URL(link.href);
