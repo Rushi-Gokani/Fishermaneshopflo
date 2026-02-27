@@ -1174,7 +1174,7 @@
             type="search"
             name="q"
             id="HeaderSearchInput"
-            placeholder="Search for products..."
+            placeholder="Search Anything..."
             class="header-search-input"
             autocomplete="off"
             required
@@ -1381,6 +1381,12 @@
           </a>
         `;
       });
+      // Add 'View All' link if there might be more results
+      html += `
+        <div style="padding: 12px 20px; text-align: center; border-top: 1px solid #f1f5f9; background: #f8fafc;">
+          <a href="/search?q=${encodeURIComponent(document.getElementById('HeaderSearchInput').value)}&type=product" style="display: inline-block; padding: 8px 24px; background: #40c4ff; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 8px; transition: background 0.2s;">View All Results</a>
+        </div>
+      `;
       container.innerHTML = html;
     }
 
