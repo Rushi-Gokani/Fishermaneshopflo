@@ -100,8 +100,8 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,12 +110,12 @@
     visibility: visible;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
   }
 
   .product-card-arrow-{{ card_id }}:hover {
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: none;
     transform: translateY(-50%) scale(1.1);
   }
 
@@ -504,8 +504,8 @@
         {% if sold_out %}
           <button class="product-card-buy-btn-{{ card_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
         {% else %}
-            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ card_id }}" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
-              {{ 'Add to Cart' }}
+            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ card_id }}" onclick="window.location.href='{{ product.url }}'">
+              {{ 'View product' }}
             </button>
         {% endif %}
       </div>

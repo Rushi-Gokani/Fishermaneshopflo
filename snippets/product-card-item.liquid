@@ -190,8 +190,8 @@
         {% if sold_out %}
           <button class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ section_id }}" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
         {% else %}
-            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ section_id }}" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
-              {{ 'Add to Cart' }}
+            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ section_id }}" onclick="window.location.href='{{ product.url }}'">
+              {{ 'View product' }}
             </button>
         {% endif %}
       </div>
