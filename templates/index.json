@@ -673,7 +673,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/berkley treline mono line.mp4",
+            "video": "",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -687,7 +687,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-421.mp4",
+            "video": "",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -701,7 +701,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-533.mp4",
+            "video": "",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,
@@ -715,7 +715,7 @@
           "type": "video_reel",
           "settings": {
             "video_source": "uploaded",
-            "video": "shopify:\/\/files\/videos\/Video-576.mp4",
+            "video": "",
             "video_url": "",
             "video_alt": "",
             "video_autoplay": false,

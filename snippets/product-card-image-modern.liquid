@@ -18,14 +18,15 @@
 -%}
 
 <div class="fph-image-container">
-  {% if first_variant.featured_media %}
+  {% assign primary_media = first_variant.featured_media | default: product.featured_media %}
+  {% if primary_media %}
     {{
-      first_variant.featured_media
+      primary_media
       | image_url: width: 600
       | image_tag:
         loading: 'lazy',
         class: 'fph-primary-image',
-        alt: first_variant.featured_media.alt,
+        alt: primary_media.alt,
         widths: '300, 400, 600, 800',
         sizes: '(max-width: 300px) 300px, (max-width: 480px) 400px, (max-width: 600px) 600px'
     }}
