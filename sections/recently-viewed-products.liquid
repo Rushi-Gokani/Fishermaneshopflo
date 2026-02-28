@@ -22,24 +22,38 @@
     {%- if request.page_type == 'search' and search.results_count > 0 -%}
       <div class="recently-viewed-products-wrapper">
         <!-- Mobile slider container -->
-        <div class="recently-viewed-slider">
-          <div class="recently-viewed-slider-track">
-            {%- assign parsed_terms = search.terms | split: ' OR ' -%}
-            {%- for parsed_term in parsed_terms -%}
-              {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
-              {%- for product in search.results -%}
-                {%- if product.id == id -%}
-                  <div class="recently-viewed-grid__item">
-                    {%- render 'product-card',
-                      product: product,
-                      block: block
-                    -%}
-                  </div>
-                  {%- break -%}
-                {%- endif -%}
+        <div class="recently-viewed-slider-wrapper" style="position: relative;">
+          <button type="button" class="recently-viewed-slider-control recently-viewed-slider-control--prev" aria-label="Previous">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(90 5 3)"></path>
+            </svg>
+          </button>
+          
+          <div class="recently-viewed-slider">
+            <div class="recently-viewed-slider-track" id="RecentlyViewedSliderTrack-{{ section.id }}">
+              {%- assign parsed_terms = search.terms | split: ' OR ' -%}
+              {%- for parsed_term in parsed_terms -%}
+                {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
+                {%- for product in search.results -%}
+                  {%- if product.id == id -%}
+                    <div class="recently-viewed-grid__item recently-viewed-slider__item">
+                      {%- render 'product-card',
+                        product: product,
+                        block: block
+                      -%}
+                    </div>
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
               {%- endfor -%}
-            {%- endfor -%}
+            </div>
           </div>
+
+          <button type="button" class="recently-viewed-slider-control recently-viewed-slider-control--next" aria-label="Next">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(-90 5 3)"></path>
+            </svg>
+          </button>
         </div>
 
         <!-- Desktop grid container -->
@@ -141,68 +155,160 @@
       overflow-y: hidden;
       touch-action: pan-x pan-y;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 4px 4px 20px 4px;
-      width: 100%;
-      max-width: 100%;
-    }
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding: 4px 4px 20px 4px;
+          width: 100%;
+          max-width: 100%;
+          scroll-behavior: smooth;
+        }
 
-    #shopify-section-{{ section.id }} .recently-viewed-slider-track::-webkit-scrollbar {
-      display: none;
-    }
+        #shopify-section-{{ section.id }} .recently-viewed-slider-track::-webkit-scrollbar {
+          display: none;
+        }
 
-    #shopify-section-{{ section.id }} .recently-viewed-grid__item {
-      flex: 0 0 85%;
-      scroll-snap-align: start;
-      max-width: 85%;
-    }
-  }
+        #shopify-section-{{ section.id }} .recently-viewed-slider__item {
+          flex: 0 0 calc(85% - 12px);
+          scroll-snap-align: start;
+          max-width: calc(85% - 12px);
+        }
 
-  /* Hide slider on desktop */
-  @media (min-width: 768px) {
-    #shopify-section-{{ section.id }} .recently-viewed-slider {
-      display: none !important;
-    }
+        /* Slider Controls Styling */
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 2;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 1px solid #e5e5e5;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #000;
+          transition: all 0.3s ease;
+        }
 
-    #shopify-section-{{ section.id }} .recently-viewed-grid {
-      display: grid !important;
-    }
-  }
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control svg {
+          width: 14px;
+          height: 14px;
+        }
 
-  @media (max-width: 1024px) and (min-width: 768px) {
-    #shopify-section-{{ section.id }} .recently-viewed-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    }
-  }
-{% endstyle %}
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control:hover {
+          background: #f5f5f5;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
 
-{% schema %}
-{
-  "name": "Recently viewed products",
-  "settings": [
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control[disabled] {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control--prev {
+          left: -10px;
+        }
+
+        #shopify-section-{{ section.id }} .recently-viewed-slider-control--next {
+          right: -10px;
+        }
+      }
+
+      /* Hide slider on desktop */
+      @media (min-width: 768px) {
+        #shopify-section-{{ section.id }} .recently-viewed-slider-wrapper {
+          display: none !important;
+        }
+
+        #shopify-section-{{ section.id }} .recently-viewed-grid {
+          display: grid !important;
+        }
+      }
+
+      @media (max-width: 1024px) and (min-width: 768px) {
+        #shopify-section-{{ section.id }} .recently-viewed-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        }
+      }
+    {% endstyle %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const sliderTrack = document.getElementById('RecentlyViewedSliderTrack-{{ section.id }}');
+        
+        if (sliderTrack) {
+          const prevBtn = sliderTrack.parentElement.parentElement.querySelector('.recently-viewed-slider-control--prev');
+          const nextBtn = sliderTrack.parentElement.parentElement.querySelector('.recently-viewed-slider-control--next');
+          
+          if (prevBtn && nextBtn) {
+            // Function to update button states based on scroll position
+            const updateButtons = () => {
+              const maxScrollLeft = sliderTrack.scrollWidth - sliderTrack.clientWidth;
+              
+              if (sliderTrack.scrollLeft <= 0) {
+                prevBtn.setAttribute('disabled', 'disabled');
+              } else {
+                prevBtn.removeAttribute('disabled');
+              }
+              
+              if (Math.ceil(sliderTrack.scrollLeft) >= maxScrollLeft) {
+                nextBtn.setAttribute('disabled', 'disabled');
+              } else {
+                nextBtn.removeAttribute('disabled');
+              }
+            };
+            
+            // Initial state
+            updateButtons();
+            
+            // Update on scroll
+            sliderTrack.addEventListener('scroll', updateButtons);
+            
+            // Handle clicks
+            prevBtn.addEventListener('click', () => {
+              const itemWidth = sliderTrack.querySelector('.recently-viewed-slider__item').offsetWidth + 12; // width + gap
+              sliderTrack.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+            });
+            
+            nextBtn.addEventListener('click', () => {
+              const itemWidth = sliderTrack.querySelector('.recently-viewed-slider__item').offsetWidth + 12; // width + gap
+              sliderTrack.scrollBy({ left: itemWidth, behavior: 'smooth' });
+            });
+          }
+        }
+      });
+    </script>
+
+    {% schema %}
     {
-      "type": "paragraph",
-      "content": "Only be visible if at least one product has been viewed."
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Recently viewed"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_quick_buy",
-      "label": "Show quick buy",
-      "default": false
+      "name": "Recently viewed products",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Only be visible if at least one product has been viewed."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Recently viewed"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_quick_buy",
+          "label": "Show quick buy",
+          "default": false
+        }
+      ],
+      "presets": [
+        {
+          "category": "Product",
+          "name": "Recently viewed products"
+        }
+      ]
     }
-  ],
-  "presets": [
-    {
-      "category": "Product",
-      "name": "Recently viewed products"
-    }
-  ]
-}
-{% endschema %}
+    {% endschema %}
