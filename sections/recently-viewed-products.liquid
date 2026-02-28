@@ -22,7 +22,7 @@
     {%- if request.page_type == 'search' and search.results_count > 0 -%}
       <div class="recently-viewed-products-wrapper">
         <!-- Mobile slider container -->
-        <div class="recently-viewed-slider-wrapper" style="position: relative;">
+        <recently-viewed-slider class="recently-viewed-slider-wrapper" style="position: relative; display: block;">
           <button type="button" class="recently-viewed-slider-control recently-viewed-slider-control--prev" aria-label="Previous">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(90 5 3)"></path>
@@ -54,7 +54,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" transform="rotate(-90 5 3)"></path>
             </svg>
           </button>
-        </div>
+        </recently-viewed-slider>
 
         <!-- Desktop grid container -->
         <div class="recently-viewed-grid">
@@ -237,78 +237,79 @@
     {% endstyle %}
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Since recently viewed products might be loaded dynamically, 
-        // we need to initialize the slider when the section becomes visible
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.attributeName === 'style') {
-              const section = mutation.target;
-              if (section.style.display !== 'none') {
-                initSlider();
-                observer.disconnect(); // Stop observing once initialized
-              }
-            }
-          });
-        });
-
-        const recentlyViewedSection = document.querySelector('.recently-viewed-section');
-        if (recentlyViewedSection) {
-          observer.observe(recentlyViewedSection, { attributes: true });
-          // Also try immediately in case it's already visible
-          if (recentlyViewedSection.style.display !== 'none') {
-            initSlider();
-            observer.disconnect();
+      if (!customElements.get('recently-viewed-slider')) {
+        customElements.define('recently-viewed-slider', class extends HTMLElement {
+          constructor() {
+            super();
+            this.updateButtons = this.updateButtons.bind(this);
+            this.scrollPrev = this.scrollPrev.bind(this);
+            this.scrollNext = this.scrollNext.bind(this);
           }
-        }
-
-        function initSlider() {
-          const sliderTrack = document.getElementById('RecentlyViewedSliderTrack-{{ section.id }}');
           
-          if (sliderTrack) {
-            const prevBtn = sliderTrack.parentElement.parentElement.querySelector('.recently-viewed-slider-control--prev');
-            const nextBtn = sliderTrack.parentElement.parentElement.querySelector('.recently-viewed-slider-control--next');
-            
-            if (prevBtn && nextBtn) {
-              // Function to update button states based on scroll position
-              const updateButtons = () => {
-                const maxScrollLeft = sliderTrack.scrollWidth - sliderTrack.clientWidth;
-                
-                if (sliderTrack.scrollLeft <= 5) { // Small buffer for rendering
-                  prevBtn.setAttribute('disabled', 'disabled');
-                } else {
-                  prevBtn.removeAttribute('disabled');
-                }
-                
-                if (Math.ceil(sliderTrack.scrollLeft) >= maxScrollLeft - 5) {
-                  nextBtn.setAttribute('disabled', 'disabled');
-                } else {
-                  nextBtn.removeAttribute('disabled');
-                }
-              };
+          connectedCallback() {
+            // Wait for children to be parsed if injected via AJAX innerHTML
+            setTimeout(() => {
+              this.sliderTrack = this.querySelector('.recently-viewed-slider-track');
+              this.prevBtn = this.querySelector('.recently-viewed-slider-control--prev');
+              this.nextBtn = this.querySelector('.recently-viewed-slider-control--next');
+              
+              if (!this.sliderTrack || !this.prevBtn || !this.nextBtn) return;
               
               // Initial state
-              updateButtons();
+              requestAnimationFrame(() => this.updateButtons());
               
-              // Update on scroll
-              sliderTrack.addEventListener('scroll', updateButtons, { passive: true });
+              // Events
+              this.sliderTrack.addEventListener('scroll', this.updateButtons, { passive: true });
+              this.prevBtn.addEventListener('click', this.scrollPrev);
+              this.nextBtn.addEventListener('click', this.scrollNext);
               
-              // Handle clicks
-              prevBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const itemWidth = sliderTrack.querySelector('.recently-viewed-slider__item')?.offsetWidth || sliderTrack.clientWidth * 0.85; 
-                sliderTrack.scrollBy({ left: -(itemWidth + 12), behavior: 'smooth' }); // width + gap
-              });
-              
-              nextBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const itemWidth = sliderTrack.querySelector('.recently-viewed-slider__item')?.offsetWidth || sliderTrack.clientWidth * 0.85;
-                sliderTrack.scrollBy({ left: (itemWidth + 12), behavior: 'smooth' }); // width + gap
-              });
+              // Also update on resize
+              window.addEventListener('resize', this.updateButtons);
+            }, 0);
+          }
+          
+          disconnectedCallback() {
+            if (this.sliderTrack) this.sliderTrack.removeEventListener('scroll', this.updateButtons);
+            if (this.prevBtn) this.prevBtn.removeEventListener('click', this.scrollPrev);
+            if (this.nextBtn) this.nextBtn.removeEventListener('click', this.scrollNext);
+            window.removeEventListener('resize', this.updateButtons);
+          }
+          
+          updateButtons() {
+            if (!this.sliderTrack || !this.prevBtn || !this.nextBtn) return;
+            
+            const maxScrollLeft = this.sliderTrack.scrollWidth - this.sliderTrack.clientWidth;
+            
+            if (this.sliderTrack.scrollLeft <= 5) {
+              this.prevBtn.setAttribute('disabled', 'disabled');
+            } else {
+              this.prevBtn.removeAttribute('disabled');
+            }
+            
+            if (Math.ceil(this.sliderTrack.scrollLeft) >= maxScrollLeft - 5) {
+              this.nextBtn.setAttribute('disabled', 'disabled');
+            } else {
+              this.nextBtn.removeAttribute('disabled');
             }
           }
-        }
-      });
+          
+          getItemWidth() {
+            const item = this.querySelector('.recently-viewed-slider__item');
+            // item width + 12px gap
+            return item ? item.offsetWidth + 12 : this.clientWidth * 0.85;
+          }
+          
+          scrollPrev(e) {
+            e.preventDefault();
+            this.sliderTrack.scrollBy({ left: -this.getItemWidth(), behavior: 'smooth' });
+          }
+          
+          scrollNext(e) {
+            e.preventDefault();
+            this.sliderTrack.scrollBy({ left: this.getItemWidth(), behavior: 'smooth' });
+          }
+        });
+      }
     </script>
 
     {% schema %}
