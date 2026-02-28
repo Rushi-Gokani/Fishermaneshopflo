@@ -348,14 +348,18 @@
     align-items: center;
     position: relative;
     z-index: 1;
+    overflow: visible !important; /* Allow absolute children like search results to overflow height */
   }
 
   .header-layout {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    gap: 32px;
+    flex: 1;
+    gap: 16px; 
+  }
+  @media screen and (max-width: 1280px) {
+    .header-layout { gap: 8px; }
   }
 
   /* Branding */
@@ -387,7 +391,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 32px;
+    gap: 16px; /* Reduced from 32px */
   }
 
   .categories-wrapper {
@@ -435,6 +439,11 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     opacity: 0.8;
+    white-space: nowrap; 
+  }
+  @media screen and (max-width: 1280px) {
+    .mega-nav__link { font-size: 11px; }
+    .main-nav .mega-nav__list { gap: 16px; }
   }
   .mega-nav__link:hover { color: #000000; opacity: 1; }
 
@@ -444,6 +453,10 @@
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  @media screen and (max-width: 1200px) {
+    .header-icons { gap: 6px; }
+    .icon-btn { padding: 4px; }
   }
   .icon-btn {
     background: transparent;
@@ -707,27 +720,175 @@
     background: linear-gradient(to right, rgba(64,196,255,0.05), transparent);
   }
 
-  /* Modals */
-  .search-modal {
-    position: fixed; inset: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(6px); z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding-top: 80px; opacity: 0; transition: opacity 0.3s ease;
+  /* Header Search Inline */
+  .header-search-container {
+    flex: 0 1 240px; 
+    min-width: 150px;
+    margin: 0 10px; 
+    position: relative;
+    z-index: 1002;
+    overflow: visible !important; /* Ensure dropdown is not clipped */
   }
-  .search-modal.active { display: flex; opacity: 1; }
-  .search-modal__content { background: #ffffff; padding: 20px 25px; border-radius: 15px; width: 90%; max-width: 600px; position: relative; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15); }
-  .search-modal__close { display: none; }
-  .search-modal__close:hover { color: #0f172a; background: rgba(0,0,0,0.05); }
-  .search-modal__form { display: flex; gap: 10px; }
-  .search-modal__input { flex: 1; padding: 12px 20px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 16px; background: #f8fafc; color: #0f172a; }
-  .search-modal__input:focus { border-color: #40c4ff; outline: none; }
-  .search-modal__submit { background: #40c4ff; color: #0f172a; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
-  .search-modal__submit:hover { background: #81d4fa; }
-  
-  .predictive-search-results { margin-top: 20px; max-height: 400px; overflow-y: auto; display: none; }
-  .predictive-search-results.has-results { display: block; }
-  .predictive-search-item { display: flex; align-items: center; gap: 15px; padding: 12px 0; border-bottom: 1px solid #e2e8f0; text-decoration: none; color: #334155; }
-  .predictive-search-item:hover { background-color: rgba(0,0,0,0.03); }
-  .predictive-search-item img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
-  .predictive-search-item__title { font-weight: 600; font-size: 14px; display: block; color: #0f172a; }
-  .predictive-search-item__price { font-size: 13px; color: #64748b; }
+  @media screen and (max-width: 1400px) {
+    .header-search-container { flex: 0 1 200px; }
+  }
+  @media screen and (max-width: 1200px) {
+    .header-search-container { flex: 0 1 140px; }
+    .header-search-input::placeholder { opacity: 0; visibility: hidden; }
+  }
+
+  @media screen and (max-width: 1023px) {
+    .header-search-container {
+      flex: 1 1 100%;
+      margin: 10px 0 0 0;
+    }
+  }
+  .header-search-form {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 2px 6px 2px 12px; /* Adjusted padding-left for balance after category removal */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    /* overflow: hidden removed to ensure no clipping of children if they move slightly */
+  }
+  .header-search-form:focus-within {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    border-color: #40c4ff;
+  }
+
+  .header-search-input {
+    flex: 1;
+    min-width: 0; /* Important: allow shrinking below default browser width */
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    outline: none;
+  }
+  .header-search-input::placeholder {
+    color: #94a3b8;
+  }
+  .header-search-submit {
+    background: #40c4ff;
+    color: #ffffff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 8px;
+  }
+  .header-search-submit:hover {
+    background: #00b0ff;
+  }
+  .header-search-submit svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Predictive Search Results Inline */
+  .predictive-search-results-inline {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 450px; /* Increased fixed width */
+    max-width: 90vw; /* Responsive constraint */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: none;
+    max-height: 450px;
+    overflow-y: auto;
+    animation: fadeInScale 0.2s ease-out;
+    z-index: 10000; /* Very high z-index to appear above everything else */
+    left: auto; /* Reset left if it was inheriting */
+  }
+  @media screen and (max-width: 1023px) {
+    .predictive-search-results-inline {
+      width: 100%;
+    }
+  }
+  .predictive-search-results-inline.has-results {
+    display: block;
+  }
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .predictive-search-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #0f172a;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .predictive-search-item:last-child {
+    border-bottom: none;
+  }
+  .predictive-search-item:hover {
+    background: #f8fafc;
+  }
+  .predictive-search-item img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f1f5f9;
+  }
+  .predictive-search-item__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .predictive-search-item__title {
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+  .predictive-search-item__price {
+    font-size: 12px;
+    color: #40c4ff;
+    font-weight: 700;
+  }
+  .predictive-search-loading, .predictive-search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .header-search-container {
+      max-width: none;
+      margin: 10px 20px;
+      order: 3;
+      width: calc(100% - 40px);
+    }
+    .custom-header-container {
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 15px;
+    }
+    .header-mobile {
+      height: 60px;
+    }
+  }
 </style>
 
 {% capture header_logo_markup %}
@@ -888,10 +1049,8 @@
         </nav>
       </div>
 
+
       <div class="header-icons">
-        <button class="icon-btn search-trigger" aria-label="Search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
-        </button>
         <a href="{{ routes.account_url }}" class="icon-btn" aria-label="Account">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </a>
@@ -959,9 +1118,6 @@
       </div>
 
       <div class="header-icons">
-        <button class="icon-btn search-trigger" aria-label="Search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
-        </button>
         <a href="{{ routes.account_url }}" class="icon-btn" aria-label="Account">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </a>
@@ -1010,6 +1166,26 @@
         {% endif %}
       </div>
     </div>
+
+      <div class="header-search-container">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-form">
+
+          <input
+            type="search"
+            name="q"
+            id="HeaderSearchInput"
+            placeholder="Search Anything..."
+            class="header-search-input"
+            autocomplete="off"
+            required
+          >
+          <input type="hidden" name="type" value="product">
+          <button type="submit" class="header-search-submit" aria-label="Submit Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </form>
+        <div id="HeaderPredictiveResults" class="predictive-search-results-inline"></div>
+      </div>
   </div>
 </div>
 </header-component>
@@ -1123,121 +1299,95 @@
 </div>
 <div class="mobile-drawer__overlay" id="mobileDrawerOverlay"></div>
 
-  <!-- Search Modal HTML -->
-  <div class="search-modal" id="searchModal">
-    <div class="search-modal__content">
-      <button class="search-modal__close" aria-label="Close search">&times;</button>
-      <form action="{{ routes.search_url }}" method="get" role="search" class="search-modal__form">
-        <input
-          type="search"
-          name="q"
-          value="{{ search.terms | escape }}"
-          placeholder="Search our store..."
-          class="search-modal__input"
-          required
-        >
-        <input type="hidden" name="type" value="product">
-        <button type="submit" class="search-modal__submit">Search</button>
-      </form>
-      <div id="predictive-search-results" class="predictive-search-results"></div>
-    </div>
-  </div>
+  {% comment %} Search Modal Removed {% endcomment %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Search Modal Logic
-    const searchTriggers = document.querySelectorAll('.search-trigger');
-    const searchModal = document.getElementById('searchModal');
-    const searchClose = document.querySelector('.search-modal__close');
-    const searchInput = document.querySelector('.search-modal__input');
-    const predictiveSearchResults = document.getElementById('predictive-search-results');
+    // Inline Search Logic
+    const searchInputs = document.querySelectorAll('.header-search-input');
+    const predictiveResultsContainers = document.querySelectorAll('.predictive-search-results-inline');
 
-    if (searchTriggers.length > 0 && searchModal) {
-      searchTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-          e.preventDefault();
-          searchModal.classList.add('active');
-          setTimeout(() => searchInput.focus(), 100);
-        });
-      });
-
-      const closeModal = () => {
-        searchModal.classList.remove('active');
-        predictiveSearchResults.innerHTML = ''; // Clear results on close
-        predictiveSearchResults.classList.remove('has-results');
-        searchInput.value = '';
-      };
-
-      if (searchClose) {
-        searchClose.addEventListener('click', closeModal);
-      }
-
-      // Close on background click
-      searchModal.addEventListener('click', function(e) {
-        if (e.target === searchModal) {
-          closeModal();
-        }
-      });
-
-      // Close on Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-          closeModal();
-        }
-      });
-
-      // Predictive Search Logic
+    searchInputs.forEach((searchInput, index) => {
+      const predictiveResults = predictiveResultsContainers[index];
       let debounceTimer;
-      searchInput.addEventListener('input', function(e) {
+
+      searchInput.addEventListener('input', function() {
         const query = this.value.trim();
         clearTimeout(debounceTimer);
 
         if (query.length === 0) {
-          predictiveSearchResults.innerHTML = '';
-          predictiveSearchResults.classList.remove('has-results');
+          predictiveResults.innerHTML = '';
+          predictiveResults.classList.remove('has-results');
           return;
         }
 
         debounceTimer = setTimeout(() => {
-          fetchSuggestions(query);
+          fetchSuggestions(query, predictiveResults);
         }, 300);
       });
 
-      function fetchSuggestions(query) {
-        predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">Loading...</div>';
-        predictiveSearchResults.classList.add('has-results');
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !predictiveResults.contains(e.target)) {
+          predictiveResults.classList.remove('has-results');
+        }
+      });
 
-        fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=4`)
-          .then(response => response.json())
-          .then(data => {
-            const products = data.resources.results.products;
-            if (products.length > 0) {
-              renderResults(products);
-            } else {
-              predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">No results found.</div>';
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching suggestions:', error);
-            predictiveSearchResults.innerHTML = '<div class="predictive-search-loading">Error loading results.</div>';
-          });
-      }
+      searchInput.addEventListener('focus', () => {
+        if (predictiveResults.children.length > 0) {
+          predictiveResults.classList.add('has-results');
+        }
+      });
+    });
 
-      function renderResults(products) {
-        let html = '';
-        products.forEach(product => {
-          html += `
-            <a href="${product.url}" class="predictive-search-item">
-              ${product.image ? `<img src="${product.image}" alt="${product.title}">` : ''}
-              <div class="predictive-search-item__info">
-                <span class="predictive-search-item__title">${product.title}</span>
-                <span class="predictive-search-item__price">${product.price}</span>
-              </div>
-            </a>
-          `;
+    function fetchSuggestions(query, container) {
+      console.log('Fetching suggestions for:', query);
+      container.innerHTML = '<div class="predictive-search-loading">Searching...</div>';
+      container.classList.add('has-results');
+
+      const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=10`;
+      console.log('Fetch URL:', url);
+
+      fetch(url)
+        .then(response => {
+          console.log('Fetch response status:', response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('Fetch results:', data);
+          const products = data.resources && data.resources.results ? data.resources.results.products : [];
+          if (products && products.length > 0) {
+            renderResults(products, container);
+          } else {
+            container.innerHTML = '<div class="predictive-search-no-results">No products found for "' + query + '"</div>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching suggestions:', error);
+          container.innerHTML = '<div class="predictive-search-no-results">Error loading results.</div>';
         });
-        predictiveSearchResults.innerHTML = html;
-      }
+    }
+
+    function renderResults(products, container) {
+      let html = '';
+      products.forEach(product => {
+        html += `
+          <a href="${product.url}" class="predictive-search-item">
+            ${product.image ? `<img src="${product.image}" alt="${product.title}">` : '<div class="predictive-search-item__placeholder"></div>'}
+            <div class="predictive-search-item__info">
+              <span class="predictive-search-item__title">${product.title}</span>
+              <span class="predictive-search-item__price">${product.price}</span>
+            </div>
+          </a>
+        `;
+      });
+      // Add 'View All' link if there might be more results
+      html += `
+        <div style="padding: 12px 20px; text-align: center; border-top: 1px solid #f1f5f9; background: #f8fafc;">
+          <a href="/search?q=${encodeURIComponent(document.getElementById('HeaderSearchInput').value)}&type=product" style="display: inline-block; padding: 8px 24px; background: #40c4ff; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 8px; transition: background 0.2s;">View All Results</a>
+        </div>
+      `;
+      container.innerHTML = html;
     }
 
     const sidebarItems = document.querySelectorAll('.sidebar-item');

@@ -136,17 +136,22 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
     transition: all 0.2s ease;
     opacity: 1; /* Visible by default */
     visibility: visible;
+  }
+
+  .product-card-arrow-{{ section_id }}:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-50%) scale(1.1);
   }
 
   .product-card-arrow-prev-{{ section_id }} {
@@ -346,7 +351,7 @@
                 <a href="#">{{ section.settings.product_title_example }}</a>
               </h3>
               <p class="product-card-price-{{ section_id }}">{{ section.settings.price_example }}</p>
-              <button class="product-card-buy-btn-{{ section_id }}">Buy Now</button>
+              <button class="product-card-buy-btn-{{ section_id }}">View product</button>
             </div>
           </div>
         {% endfor %}

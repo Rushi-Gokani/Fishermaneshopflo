@@ -80,6 +80,7 @@ export class Slideshow extends Component {
     if (this.#scroll) {
       const { scroller } = this.refs;
       scroller.removeEventListener('mousedown', this.#handleMouseDown);
+      scroller.removeEventListener('pointerdown', this.#handlePointerDownStart, { capture: true });
       this.#scroll.destroy();
     }
 
@@ -474,7 +475,19 @@ export class Slideshow extends Component {
       onScrollEnd: this.#onTransitionEnd,
     });
 
+    console.log('[Slideshow] Setting up slideshow', {
+      scroller: scroller?.tagName,
+      slidesCount: this.refs.slides?.length,
+      disabled: this.disabled,
+      mobileDisabled: this.hasAttribute('mobile-disabled')
+    });
+
     scroller.addEventListener('mousedown', this.#handleMouseDown);
+    // Also listen for pointerdown to support touch devices
+    // Use capture phase to ensure we get the event before any child elements
+    scroller.addEventListener('pointerdown', this.#handlePointerDownStart, { capture: true, passive: false });
+
+    console.log('[Slideshow] Event listeners attached to scroller');
 
     this.addEventListener('mouseenter', this.suspend);
     this.addEventListener('mouseleave', this.resume);
@@ -484,6 +497,8 @@ export class Slideshow extends Component {
     this.#updateControlsVisibility();
 
     this.disabled = this.isNested || this.disabled;
+
+    console.log('[Slideshow] After setup, disabled:', this.disabled, 'isNested:', this.isNested);
 
     this.resume();
 
@@ -674,8 +689,11 @@ export class Slideshow extends Component {
      */
     const onPointerUp = async (event) => {
       controller.abort();
+
+      // Store values before resetting dragging state
       const { current, slides } = this;
       const { scroller } = this.refs;
+      const wasDragging = moved && distanceTravelled > 5;
 
       this.#dragging = false;
 
@@ -692,10 +710,24 @@ export class Slideshow extends Component {
 
       if (!newSlide) throw new Error(`Slide not found at index ${newIndex}`);
 
+      // Mark that we were dragging to prevent link navigation on mobile
+      if (wasDragging) {
+        this.setAttribute('data-was-dragging', '');
+        // Remove the attribute after a short delay to prevent future clicks
+        setTimeout(() => {
+          this.removeAttribute('data-was-dragging');
+        }, 100);
+      }
+
       this.#scroll.to(newSlide);
 
       this.removeAttribute('dragging');
-      this.releasePointerCapture(event.pointerId);
+
+      try {
+        this.releasePointerCapture(event.pointerId);
+      } catch (e) {
+        // Ignore if pointer capture was not active
+      }
 
       this.#centerSelectedThumbnail(newIndex);
 
@@ -733,6 +765,191 @@ export class Slideshow extends Component {
     document.addEventListener('pointerdown', onPointerUp, { signal });
     document.addEventListener('pointercancel', onPointerUp, { signal });
     document.addEventListener('pointercapturelost', onPointerUp, { signal });
+  };
+
+  /**
+   * Handles the 'pointerdown' event to start dragging slides on touch devices.
+   * This is needed in addition to mousedown for proper touch support.
+   * @param {PointerEvent} event - The pointerdown event.
+   */
+  #handlePointerDownStart = (event) => {
+    // Only handle touch events here (mouse events are handled by mousedown)
+    if (event.pointerType === 'mouse') return;
+
+    console.log('[Slideshow] pointerdown START', {
+      disabled: this.disabled,
+      dragging: this.#dragging,
+      slides: this.slides?.length,
+      current: this.current,
+      target: event.target.tagName
+    });
+
+    const { slides } = this;
+
+    if (!slides || slides.length <= 1) {
+      console.log('[Slideshow] No slides or only 1 slide');
+      return;
+    }
+    if (!(event.target instanceof Element)) return;
+    if (this.disabled || this.#dragging) {
+      console.log('[Slideshow] Disabled or already dragging');
+      return;
+    }
+
+    // Check if the event target is within a 3D model interactive element
+    if (event.target.closest('model-viewer')) {
+      console.log('[Slideshow] Inside model-viewer');
+      return;
+    }
+
+    // Check if the target is a button or other interactive element
+    if (event.target.closest('button, a, input, [role="button"]')) {
+      console.log('[Slideshow] Inside interactive element');
+      return;
+    }
+
+    // Don't prevent default immediately - let the drag handler decide
+    // This allows links to work if the user taps without dragging
+
+    const { axis } = this.#scroll;
+    const startPosition = event[axis];
+
+    console.log('[Slideshow] Starting drag', { axis, startPosition });
+
+    const controller = new AbortController();
+    const { signal } = controller;
+    const startTime = performance.now();
+    let previous = startPosition;
+    let velocity = 0;
+    let moved = false;
+    let distanceTravelled = 0;
+
+    /**
+     * Handles the 'pointermove' event to update the scroll position.
+     * @param {PointerEvent} event - The pointermove event.
+     */
+    const onPointerMove = (event) => {
+      const current = event[axis];
+      const initialDelta = startPosition - current;
+
+      // Check if user has moved enough to consider this a drag
+      if (!moved && Math.abs(initialDelta) > 10) {
+        moved = true;
+
+        console.log('[Slideshow] Drag started after threshold', { initialDelta });
+
+        // Now we can prevent default and stop propagation
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Prevent clicks once the user starts dragging
+        document.addEventListener('click', preventDefault, { once: true, signal });
+
+        this.pause();
+        this.setAttribute('dragging', '');
+      }
+
+      if (!moved) return;
+
+      // Stop the event from bubbling up to parent slideshow components
+      event.stopImmediatePropagation();
+
+      const delta = previous - current;
+      const timeDelta = performance.now() - startTime;
+      velocity = Math.round((delta / timeDelta) * 1000);
+      previous = current;
+      distanceTravelled += Math.abs(delta);
+
+      this.#scroll.by(delta, { instant: true });
+    };
+
+    /**
+     * Handles the 'pointerup' event to stop dragging slides.
+     * @param {PointerEvent} event - The pointerup event.
+     */
+    const onPointerUp = async (event) => {
+      console.log('[Slideshow] pointerup', { moved, distanceTravelled, velocity, current: this.current });
+
+      controller.abort();
+
+      // Store values before resetting dragging state
+      const { current, slides } = this;
+      const { scroller } = this.refs;
+      const wasDragging = moved && distanceTravelled > 5;
+
+      this.#dragging = false;
+
+      if (!slides?.length || !scroller) {
+        console.log('[Slideshow] No slides or scroller');
+        return;
+      }
+
+      if (wasDragging) {
+        const direction = Math.sign(velocity);
+        const next = this.#sync();
+
+        console.log('[Slideshow] Was dragging, calculating new index', { current, next, direction, velocity, distanceTravelled });
+
+        const modifier = current !== next || Math.abs(velocity) < 10 || distanceTravelled < 10 ? 0 : direction;
+        const newIndex = clamp(next + modifier, 0, slides.length - 1);
+
+        console.log('[Slideshow] New index', { newIndex, slidesLength: slides.length });
+
+        const newSlide = slides[newIndex];
+        const currentIndex = this.current;
+
+        if (!newSlide) throw new Error(`Slide not found at index ${newIndex}`);
+
+        // Mark that we were dragging to prevent link navigation on mobile
+        this.setAttribute('data-was-dragging', '');
+        // Remove the attribute after a short delay to prevent future clicks
+        setTimeout(() => {
+          this.removeAttribute('data-was-dragging');
+        }, 100);
+
+        this.#scroll.to(newSlide);
+
+        this.#centerSelectedThumbnail(newIndex);
+
+        this.dispatchEvent(
+          new SlideshowSelectEvent({
+            index: newIndex,
+            previousIndex: currentIndex,
+            userInitiated: true,
+            trigger: 'drag',
+            slide: newSlide,
+            id: newSlide.getAttribute('slide-id'),
+          })
+        );
+
+        this.current = newIndex;
+
+        await this.#scroll.finished;
+
+        console.log('[Slideshow] Scroll finished, current:', this.current);
+
+        // It's possible that the user started dragging again before the scroll finished
+        if (this.#dragging) return;
+
+        this.#scroll.snap = true;
+      }
+
+      this.removeAttribute('dragging');
+      this.resume();
+
+      console.log('[Slideshow] Drag complete, state:', {
+        current: this.current,
+        dragging: this.#dragging,
+        hasAttribute: this.hasAttribute('dragging')
+      });
+    };
+
+    this.#scroll.snap = false;
+
+    // Listen on document to catch events even if pointer leaves the element
+    document.addEventListener('pointermove', onPointerMove, { signal, capture: true });
+    document.addEventListener('pointerup', onPointerUp, { signal, capture: true });
+    document.addEventListener('pointercancel', onPointerUp, { signal, capture: true });
   };
 
   #handlePointerEnter = () => {

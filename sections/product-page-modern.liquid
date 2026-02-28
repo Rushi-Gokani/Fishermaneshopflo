@@ -2028,8 +2028,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30%;
-    height: 1.2px;
+    width: 24px !important; /* Increased to 24px for better visibility */
+    height: 1.2px !important; /* Slightly thicker for visibility */
     background: rgb(0 0 0 / 0.65);
     transform-origin: center;
   }
@@ -2319,13 +2319,18 @@
       gap: 10px;
     }
 
-    .modern-add-to-cart {
-      min-height: 52px;
-      font-size: 15px;
+    .modern-buttons-row > * {
+      width: 100% !important; /* Force full width on mobile */
+      flex: 1 1 100% !important;
     }
 
     .modern-quantity-selector {
-      max-width: 100%;
+      max-width: none !important; /* Remove any width restrictions on mobile */
+      width: 100% !important;
+    }
+    
+    .modern-add-to-cart {
+      width: 100% !important;
     }
 
     .modern-quantity-btn {
