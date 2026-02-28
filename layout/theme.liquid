@@ -168,6 +168,31 @@
         }
     </script>
 
+    <style>
+      /* Mobile fix for Judge.me Reviews overflow */
+      @media screen and (max-width: 768px) {
+        .jdgm-widget,
+        #judgeme_product_reviews,
+        .jdgm-rev-widg,
+        .jdgm-rev-widg__body {
+          max-width: 100vw !important;
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+          box-sizing: border-box !important;
+        }
+        
+        .jdgm-histogram {
+          width: 100% !important;
+          max-width: 100% !important;
+          overflow-x: hidden !important;
+        }
+
+        .jdgm-rev-widg__summary {
+          max-width: 100% !important;
+        }
+      }
+    </style>
+
     {{ content_for_header }}
   </head>
 
