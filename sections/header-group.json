@@ -14,6 +14,12 @@
     "top_bar_section": {
       "type": "top-bar",
       "blocks": {
+        "announcement_pfNgqT": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p><strong>Shoppers Kindly Note: There will be no Dispatches between 11th  to 16th March due to yearly Stock Audits. Dispatches will resume from Tuesday 17th March.</strong></p>"
+          }
+        },
         "announcement_YjapkF": {
           "type": "announcement",
           "settings": {
@@ -32,19 +38,13 @@
           "settings": {
             "text": "<p><br/>FREE Gift on Orders Above ₹7500</p>"
           }
-        },
-        "announcement_pfNgqT": {
-          "type": "announcement",
-          "settings": {
-            "text": "<p><strong>Shoppers Kindly Note: There will be no Dispatches between 11th March to 16th March due to yearly Stock Audits. Dispatches will resume from Tuesday 17th March.</strong></p>"
-          }
         }
       },
       "block_order": [
+        "announcement_pfNgqT",
         "announcement_YjapkF",
         "announcement_PrkxPm",
-        "announcement_PRpUyJ",
-        "announcement_pfNgqT"
+        "announcement_PRpUyJ"
       ],
       "settings": {
         "background_color": "#ffffff",
