@@ -54,9 +54,76 @@
         "autoplay_speed": 5,
         "enable_autoplay": true
       }
+    },
+    "custom_header_H9QfkH": {
+      "type": "custom-header",
+      "blocks": {
+        "category_group_axdb3q": {
+          "type": "category_group",
+          "settings": {
+            "heading": "Accessories",
+            "link": "",
+            "menu_1_heading": "",
+            "menu_1": "",
+            "menu_2_heading": "",
+            "menu_2": "",
+            "menu_3_heading": "",
+            "menu_3": "",
+            "promo_title": "TVs & Home Theater",
+            "promo_subtitle": "Up to 30% off!",
+            "promo_link": ""
+          }
+        },
+        "category_group_x7xPNj": {
+          "type": "category_group",
+          "settings": {
+            "heading": "Accessories",
+            "link": "",
+            "menu_1_heading": "",
+            "menu_1": "",
+            "menu_2_heading": "",
+            "menu_2": "",
+            "menu_3_heading": "",
+            "menu_3": "",
+            "promo_title": "TVs & Home Theater",
+            "promo_subtitle": "Up to 30% off!",
+            "promo_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_group_axdb3q",
+        "category_group_x7xPNj"
+      ],
+      "name": "Custom Header",
+      "settings": {
+        "show_top_bar": false,
+        "top_bar_text": "Free shipping on orders over €50",
+        "top_bar_menu": "",
+        "show_social": true,
+        "top_bar_bg": "#ffffff",
+        "top_bar_text_color": "#000000",
+        "header_bg": "#40c4ff",
+        "header_text": "#000000",
+        "logo": "shopify://shop_images/fisher3_1.png",
+        "logo_width": 150,
+        "categories_label": "Categories",
+        "categories_bg": "#2563eb",
+        "categories_text": "#ffffff",
+        "main_menu": "menu1",
+        "badge_items": "Offers, Sale",
+        "badge_text": "HOT!",
+        "badge_bg": "#ff4500",
+        "sidebar_bg": "#f8f9fa",
+        "sidebar_text": "#333333",
+        "sidebar_active_bg": "#ffffff",
+        "sidebar_active_text": "#2563eb",
+        "show_currency": true
+      }
     }
   },
   "order": [
-    "top_bar_section"
+    "top_bar_section",
+    "custom_header_H9QfkH"
   ]
 }
