@@ -6,12 +6,13 @@
   @param {string} [background_video_position] - The background video position
   @param {object} [background_image] - The background image
   @param {string} [background_image_position] - The background image position
+  @param {object} [background_image_mobile] - The background image for mobile
   @param {string} [placeholder] - The placeholder
   @param {object} [block] - The block object
   @param {object} [section] - The section object
 
   @example
-  {% render 'background-media', background_media: background_media, background_video: background_video, background_video_position: background_video_position, background_image: background_image, background_image_position: background_image_position, placeholder: placeholder %}
+  {% render 'background-media', background_media: background_media, background_video: background_video, background_video_position: background_video_position, background_image: background_image, background_image_position: background_image_position, background_image_mobile: background_image_mobile, placeholder: placeholder %}
 {%- enddoc -%}
 
 {% if background_media == 'video' %}
@@ -59,8 +60,14 @@
     </div>
   {%- endif -%}
 {% elsif background_media == 'image' %}
+  {%- assign has_mobile_image = false -%}
+  {%- if background_image_mobile != blank -%}
+    {%- assign has_mobile_image = true -%}
+  {%- endif -%}
+
+  {%- comment -%} Desktop image {%- endcomment -%}
   <div
-    class="background-image-container{% if background_image_position == 'fit' %} background-image-fit{% endif %}"
+    class="background-image-container{% if background_image_position == 'fit' %} background-image-fit{% endif %}{% if has_mobile_image %} background-image-desktop-only{% endif %}"
   >
     {% liquid
       # Define sizes based on page width setting whether this is called from a section or block
@@ -116,12 +123,57 @@
       {{ placeholder_name | placeholder_svg_tag }}
     {%- endif -%}
   </div>
+
+  {%- comment -%} Mobile image {%- endcomment -%}
+  {%- if has_mobile_image -%}
+    <div
+      class="background-image-container background-image-mobile-only{% if background_image_position == 'fit' %} background-image-fit{% endif %}"
+    >
+      {% liquid
+        assign mobile_sizes = '100vw'
+        assign mobile_widths = '375, 480, 640, 750, 828'
+      %}
+      {% liquid
+        assign fetch_priority = 'auto'
+        assign loading = 'lazy'
+        if section and section.index == 1
+          assign fetch_priority = 'high'
+        endif
+
+        if section and section.index <= 3
+          assign loading = 'eager'
+        endif
+      %}
+      {{
+        background_image_mobile
+        | image_url: width: 828
+        | image_tag: sizes: mobile_sizes, widths: mobile_widths, loading: loading, fetchpriority: fetch_priority
+      }}
+    </div>
+  {%- endif -%}
 {% endif %}
 
 {% stylesheet %}
   @media (prefers-reduced-motion: reduce) {
     video-background-component video {
       display: none;
+    }
+  }
+
+  /* Desktop-only background image: hide on mobile */
+  .background-image-desktop-only {
+    display: block;
+  }
+  .background-image-mobile-only {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .background-image-desktop-only {
+      display: none;
+    }
+    .background-image-mobile-only {
+      display: block;
     }
   }
 {% endstylesheet %}
