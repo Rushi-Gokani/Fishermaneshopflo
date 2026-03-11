@@ -8,21 +8,6 @@
   assign image_count = product.media.size | at_most: 5
 -%}
 
-<<<<<<< HEAD
-<div class="fph-image-container">
-  {% assign primary_media = first_variant.featured_media | default: product.featured_media %}
-  {% if primary_media %}
-    {{
-      primary_media
-      | image_url: width: 600
-      | image_tag:
-        loading: 'lazy',
-        class: 'fph-primary-image',
-        alt: primary_media.alt,
-        widths: '300, 400, 600, 800',
-        sizes: '(max-width: 300px) 300px, (max-width: 480px) 400px, (max-width: 600px) 600px'
-    }}
-=======
 <card-slider-image class="fph-image-container" data-total-images="{{ image_count }}" data-product-url="{{ product.url }}">
   {% if product.media.size > 0 %}
     {% for media in product.media limit: 5 %}
@@ -43,7 +28,6 @@
     <div class="fph-image-placeholder">
       {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
->>>>>>> 955fbc0543280b89c15fb92d825c2aaa8482de2d
   {% endif %}
 
   {% if product.media.size > 1 %}
@@ -57,7 +41,7 @@
   {% endif %}
 </card-slider-image>
 
-{% stylesheet %}
+<style>
   .fph-image-container {
     width: 100%;
     height: 100%;
@@ -120,7 +104,7 @@
       touch-action: none;
     }
   }
-{% endstylesheet %}
+</style>
 
 <script>
 (function() {
