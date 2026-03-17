@@ -232,6 +232,9 @@
       "block_order": [
         "ai_gen_block_c621ee1_y78WHi"
       ],
+      "custom_css": [
+        ".layout-panel-flex{padding-right:0px !important; padding-left:0px !important; }"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
