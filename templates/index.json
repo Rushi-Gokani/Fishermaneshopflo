@@ -207,20 +207,16 @@
             "autoplay": true,
             "autoplay_speed": 5,
             "pause_on_hover": true,
-            "slide_1_image": "shopify://shop_images/Screenshot_2026-01-24_161458.png",
-            "slide_1_mobile_image": "shopify://shop_images/3_cb71c800-b316-4e49-a90d-dd43286c0f62.png",
+            "slide_1_image": "shopify://shop_images/Generated_Image_January_24_2026_-_4_06PM.png",
+            "slide_1_mobile_image": "shopify://shop_images/mobile-welcome-banner-horizontal-fish.png",
             "slide_1_heading": "",
             "slide_1_subheading": "",
             "slide_1_button_label": "",
             "slide_1_button_link": "",
-            "slide_2_image": "shopify://shop_images/Generated_Image_January_24_2026_-_4_06PM.png",
-            "slide_2_mobile_image": "shopify://shop_images/mobile-welcome-banner-horizontal-fish.png",
             "slide_2_heading": "",
             "slide_2_subheading": "",
             "slide_2_button_label": "",
             "slide_2_button_link": "",
-            "slide_3_image": "shopify://shop_images/Penn_Heavy_Trolling_Reels_Desktop_Banner_a47b6285-a5c1-4a84-bb84-023ea6c38a52.jpg",
-            "slide_3_mobile_image": "shopify://shop_images/Penn_Heavy_Trolling_Reels_Mobile_Banner_570f23ef-8435-4d56-b832-bcbe1e9fa7b3.jpg",
             "slide_3_heading": "",
             "slide_3_subheading": "",
             "slide_3_button_label": "",
@@ -233,7 +229,7 @@
         "ai_gen_block_c621ee1_y78WHi"
       ],
       "custom_css": [
-        ".layout-panel-flex{padding-right:0px !important; padding-left:0px !important; }"
+        ".layout-panel-flex {padding-right: 0px !important; padding-left: 0px !important;}"
       ],
       "settings": {
         "content_direction": "column",
