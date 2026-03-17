@@ -16,27 +16,25 @@
       "blocks": {
         "announcement_pfNgqT": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<h6>Shoppers Kindly Note: There will be no Dispatches between 11th  to 16th March due to yearly stock Audits. Dispatches will resume Tuesday 17th March</h6>"
           }
         },
         "announcement_YjapkF": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "text": "<p><br/>FREE FMH Gear Merch On Orders Above ₹10,000<br/><br/></p>"
           }
         },
         "announcement_PrkxPm": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "text": "<p><br/>Do not make payments to unknown callers or QR codes claiming your payment was canceled or not received. Always confirm with us via our official WhatsApp about such calls</p>"
           }
         },
         "announcement_PRpUyJ": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
             "text": "<p><br/>FREE Gift on Orders Above ₹7500</p>"
           }
