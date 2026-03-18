@@ -16,9 +16,8 @@
       "blocks": {
         "announcement_pfNgqT": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "<h6>Shoppers Kindly Note: There will be no Dispatches between 11th  to 16th March due to yearly stock Audits. Dispatches will resume Tuesday 17th March</h6>"
+            "text": "<h6>Shoppers Kindly Note: There will be no Dispatches on 19th March due to Gudi Padwa</h6>"
           }
         },
         "announcement_YjapkF": {
