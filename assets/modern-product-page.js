@@ -227,6 +227,14 @@ class ModernProductPage {
     this.driftInstances = Array.from(images).map(
       (image) =>
         new Drift(image, {
+          onShow: () => {
+            image.classList.add('is-zoomed');
+            image.closest('.modern-gallery__image-wrapper')?.classList.add('is-zoomed');
+          },
+          onHide: () => {
+            image.classList.remove('is-zoomed');
+            image.closest('.modern-gallery__image-wrapper')?.classList.remove('is-zoomed');
+          },
           containInline: true,
           inlinePane: useInlinePane,
           hoverBoundingBox: !useInlinePane,
