@@ -14,12 +14,6 @@
     "top_bar_section": {
       "type": "top-bar",
       "blocks": {
-        "announcement_pfNgqT": {
-          "type": "announcement",
-          "settings": {
-            "text": "<h6>Shoppers Kindly Note: There will be no Dispatches on 19th March due to Gudi Padwa</h6>"
-          }
-        },
         "announcement_YjapkF": {
           "type": "announcement",
           "settings": {
@@ -40,7 +34,6 @@
         }
       },
       "block_order": [
-        "announcement_pfNgqT",
         "announcement_YjapkF",
         "announcement_PrkxPm",
         "announcement_PRpUyJ"
