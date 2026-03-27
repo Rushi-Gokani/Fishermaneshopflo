@@ -14,12 +14,6 @@
     "top_bar_section": {
       "type": "top-bar",
       "blocks": {
-        "announcement_HFKc8j": {
-          "type": "announcement",
-          "settings": {
-            "text": "<p>Note: Customer Service will not be available on 26/03/2026. Service will resume from 27/03/2026. Thank you for your understanding. </p>"
-          }
-        },
         "announcement_WXPneR": {
           "type": "announcement",
           "settings": {
@@ -30,6 +24,12 @@
           "type": "announcement",
           "settings": {
             "text": "<p><br/>FREE FMH Gear Merch On Orders Above ₹10,000<br/><br/></p>"
+          }
+        },
+        "announcement_azKm8M": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Free shipping on orders over €50</p>"
           }
         },
         "announcement_PrkxPm": {
@@ -46,9 +46,9 @@
         }
       },
       "block_order": [
-        "announcement_HFKc8j",
         "announcement_WXPneR",
         "announcement_YjapkF",
+        "announcement_azKm8M",
         "announcement_PrkxPm",
         "announcement_PRpUyJ"
       ],
