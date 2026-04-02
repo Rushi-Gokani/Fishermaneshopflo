@@ -14,7 +14,13 @@
     "top_bar_section": {
       "type": "top-bar",
       "blocks": {
-        "announcement_WXPneR": {
+        "announcement_m6fqhC": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Notice – There will be No Dispatches on 03/04/2026 on the occasion of Good Friday. All orders received between Thursday afternoon to Monday morning will be Dispatched from 06/04/2026.</p>"
+          }
+        },
+        "announcement_EJAUAQ": {
           "type": "announcement",
           "settings": {
             "text": "<p>Free shipping on orders over €50</p>"
@@ -46,7 +52,8 @@
         }
       },
       "block_order": [
-        "announcement_WXPneR",
+        "announcement_m6fqhC",
+        "announcement_EJAUAQ",
         "announcement_YjapkF",
         "announcement_azKm8M",
         "announcement_PrkxPm",
