@@ -571,6 +571,39 @@
   .panel-column a { text-decoration: none; color: #0f172a; font-size: 14px; font-weight: 500; transition: color 0.2s; }
   .panel-column a:hover { color: #40c4ff; }
 
+  /* Custom Hover Dropdown for Sub-menus */
+  .custom-mega-sub-item {
+    position: relative;
+  }
+  .custom-mega-sub-item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .custom-mega-sub-item a svg {
+    transition: transform 0.2s ease;
+  }
+  .custom-mega-sub-item:hover > a svg {
+    transform: rotate(180deg);
+  }
+  .custom-mega-submenu {
+    display: none;
+    list-style: none;
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-left: 1px solid #e2e8f0;
+  }
+  .custom-mega-sub-item:hover > .custom-mega-submenu {
+    display: block;
+    animation: slideDownCustom 0.2s ease-out forwards;
+  }
+  @keyframes slideDownCustom {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .promo-card { position: relative; border-radius: 12px; overflow: hidden; display: block; height: 100%; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
   .promo-card:hover { transform: translateY(-5px); border-color: #40c4ff; }
   .promo-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -984,7 +1017,21 @@
                       {% if link.links.size > 0 %}
                         <ul>
                           {% for child_link in link.links %}
-                            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                            <li class="custom-mega-sub-item {% if child_link.links.size > 0 %}has-submenu{% endif %}">
+                              <a href="{{ child_link.url }}">
+                                {{ child_link.title }}
+                                {% if child_link.links.size > 0 %}
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                {% endif %}
+                              </a>
+                              {% if child_link.links.size > 0 %}
+                                <ul class="custom-mega-submenu">
+                                  {% for grandchild_link in child_link.links %}
+                                    <li><a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </li>
                           {% endfor %}
                         </ul>
                       {% else %}

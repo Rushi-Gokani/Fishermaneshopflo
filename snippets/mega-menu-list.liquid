@@ -107,7 +107,7 @@
         echo '<li class="mega-menu__column ' | append: span_class | append: '">'
       endif
     %}
-    <div>
+    <div class="mega-menu__column-item {% if link.links != blank %}mega-menu__column-item--has-submenu{% endif %}">
       <a
         href="{{ link.url }}"
         class="mega-menu__link {% if link.links != blank %}mega-menu__link--parent{% endif %}"
@@ -137,10 +137,15 @@
         >
           {{- link.title -}}
         </span>
+        {% if link.links != blank %}
+          <span class="svg-wrapper icon-caret">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        {% endif %}
       </a>
       {% if link.links != blank %}
         <ul
-          class="list-unstyled"
+          class="mega-menu__sub-dropdown list-unstyled"
           {% if should_break_columns %}
             style="column-count: {{ column_span }};"
           {% endif %}
@@ -152,12 +157,33 @@
                 style="break-after: column;"
               {% endif %}
             >
-              <a
-                href="{{ childLink.url }}"
-                class="mega-menu__link"
-              >
-                <span class="mega-menu__link-title wrap-text">{{- childLink.title -}}</span>
-              </a>
+              <div class="mega-menu__column-item {% if childLink.links != blank %}mega-menu__column-item--has-submenu{% endif %}">
+                <a
+                  href="{{ childLink.url }}"
+                  class="mega-menu__link {% if childLink.links != blank %}mega-menu__link--parent{% endif %}"
+                >
+                  <span class="mega-menu__link-title wrap-text">{{- childLink.title -}}</span>
+                  {% if childLink.links != blank %}
+                    <span class="svg-wrapper icon-caret">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  {% endif %}
+                </a>
+                {% if childLink.links != blank %}
+                  <ul class="mega-menu__sub-dropdown list-unstyled">
+                    {% for grandchildLink in childLink.links %}
+                      <li>
+                        <a
+                          href="{{ grandchildLink.url }}"
+                          class="mega-menu__link"
+                        >
+                          <span class="mega-menu__link-title wrap-text">{{- grandchildLink.title -}}</span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
             </li>
           {% endfor %}
         </ul>

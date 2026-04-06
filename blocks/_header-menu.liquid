@@ -696,6 +696,50 @@
     /* preserves the inherited grid layout when this submenu wrapper is used */
     display: contents;
   }
+
+  /* Sub-menu hover dropdown styles */
+  .mega-menu__column-item {
+    margin-bottom: var(--padding-xs);
+  }
+
+  .mega-menu__column-item .icon-caret {
+    width: 0.8em;
+    height: 0.8em;
+    margin-inline-start: 0.5em;
+    transition: transform var(--animation-speed) var(--animation-easing);
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .mega-menu__column-item--has-submenu:hover > .mega-menu__link .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  .mega-menu__sub-dropdown {
+    height: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--animation-speed) var(--animation-easing);
+    margin-block-start: 0;
+    padding-inline-start: 1rem; /* Indent sub-links */
+  }
+
+  .mega-menu__column-item--has-submenu:hover > .mega-menu__sub-dropdown {
+    height: auto;
+    max-height: 1000px;
+    opacity: 1;
+    visibility: visible;
+    margin-block-start: var(--padding-3xs);
+    margin-block-end: var(--padding-xs);
+  }
+
+  .mega-menu__sub-dropdown .mega-menu__link {
+    padding: var(--padding-3xs) 0;
+    font-size: 0.9em; /* Slightly smaller for sub-links */
+  }
 {% endstylesheet %}
 
 <script>
