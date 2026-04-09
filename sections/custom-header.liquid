@@ -578,32 +578,71 @@
   .panel-column a:hover { color: #40c4ff; }
 
   /* Custom Hover Dropdown for Sub-menus */
-  .custom-mega-sub-item a {
+  .custom-mega-sub-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 220px;
+    position: relative;
+  }
+  .custom-mega-sub-item a {
+    flex: 1;
     padding: 6px 0;
+    text-decoration: none;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .submenu-toggle-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    transition: all 0.2s;
+    border-radius: 4px;
+  }
+  .submenu-toggle-btn:hover {
+    background: rgba(64, 196, 255, 0.1);
+    color: #40c4ff;
+  }
+  .custom-mega-sub-item.is-active .submenu-toggle-btn {
+    color: #40c4ff;
   }
   .custom-mega-sub-item a svg {
     transition: transform 0.2s ease;
   }
-  .custom-mega-sub-item:hover > a {
+  .custom-mega-sub-item.is-active > a {
     color: #40c4ff;
   }
-  .custom-mega-sub-item:hover > a svg {
+  .custom-mega-sub-item.is-active .submenu-toggle-btn svg {
     transform: rotate(90deg);
   }
   .custom-mega-submenu {
     display: none;
     position: absolute;
-    left: 280px; /* Offset to sit nicely in 3rd column */
-    top: 30px;
-    bottom: 30px;
+    left: 240px;
+    top: -10px;
+    bottom: auto;
     width: 330px;
     list-style: none;
-    padding: 0;
+    padding: 15px 0;
     margin: 0;
+    z-index: 10;
+    background: #ffffff;
+  }
+  .custom-mega-submenu::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: transparent;
   }
   .custom-mega-submenu li {
     margin-bottom: 12px;
@@ -625,7 +664,8 @@
   .custom-mega-submenu a:hover {
     color: #40c4ff;
   }
-  .custom-mega-sub-item:hover > .custom-mega-submenu {
+  .custom-mega-sub-item:hover > .custom-mega-submenu,
+  .custom-mega-sub-item.is-active > .custom-mega-submenu {
     display: block;
     animation: fadeInCustom 0.2s ease-out forwards;
   }
@@ -748,7 +788,7 @@
   /* Submenu Styling */
   .mobile-drawer__submenu {
     display: none;
-    background: #f8fafc;
+    background: #ffffff;
     margin: 0 -30px 0 -30px;
     padding: 15px 30px;
     border-top: 1px solid #f1f5f9;
@@ -1043,10 +1083,12 @@
                             <li class="custom-mega-sub-item {% if child_link.links.size > 0 %}has-submenu{% endif %}">
                               <a href="{{ child_link.url }}">
                                 {{ child_link.title }}
-                                {% if child_link.links.size > 0 %}
-                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                                {% endif %}
                               </a>
+                              {% if child_link.links.size > 0 %}
+                                <button type="button" class="submenu-toggle-btn" aria-label="Toggle Submenu">
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                                </button>
+                              {% endif %}
                               {% if child_link.links.size > 0 %}
                                 <ul class="custom-mega-submenu">
                                   <li class="submenu-heading">{{ child_link.title }}</li>
@@ -1442,7 +1484,9 @@
         clearTimeout(dropdownTimer);
         dropdownTimer = setTimeout(() => {
           categoriesWrapper.classList.remove('is-open');
-        }, 150);
+          // Reset all sub-menus when the whole dropdown closes
+          document.querySelectorAll('.custom-mega-sub-item.is-active').forEach(i => i.classList.remove('is-active'));
+        }, 1000); // Massive 1s hold for menu stability
       };
 
       // Only attach listeners to wrapper (padding handles the hit area)
@@ -1495,19 +1539,48 @@
       });
     });
 
+    let sidebarTimer;
     sidebarItems.forEach(item => {
       item.addEventListener('mouseenter', function() {
-        // Remove active class from all
-        sidebarItems.forEach(i => i.classList.remove('active'));
-        contentPanels.forEach(p => p.classList.remove('active'));
+        clearTimeout(sidebarTimer);
+        sidebarTimer = setTimeout(() => {
+          // Remove active class from all
+          sidebarItems.forEach(i => i.classList.remove('active'));
+          contentPanels.forEach(p => p.classList.remove('active'));
+          
+          // Reset sub-item active states when switching sidebar
+          document.querySelectorAll('.custom-mega-sub-item.is-active').forEach(sub => {
+            sub.classList.remove('is-active');
+          });
 
-        // Add active class to current
-        this.classList.add('active');
-        const targetId = this.getAttribute('data-target');
-        const targetPanel = document.getElementById(targetId);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-        }
+          // Add active class to current
+          this.classList.add('active');
+          const targetId = this.getAttribute('data-target');
+          const targetPanel = document.getElementById(targetId);
+          if (targetPanel) {
+            targetPanel.classList.add('active');
+          }
+        }, 100); // 100ms intent delay for sidebar switching
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        clearTimeout(sidebarTimer);
+      });
+    });
+
+    // Sub-item hover: keep 3rd column submenu visible
+    const subItems = document.querySelectorAll('.custom-mega-sub-item.has-submenu');
+    subItems.forEach(subItem => {
+      let subTimer;
+      subItem.addEventListener('mouseenter', function() {
+        clearTimeout(subTimer);
+        subItems.forEach(s => s.classList.remove('is-active'));
+        this.classList.add('is-active');
+      });
+      subItem.addEventListener('mouseleave', function() {
+        subTimer = setTimeout(() => {
+          this.classList.remove('is-active');
+        }, 150);
       });
     });
 
@@ -1536,6 +1609,64 @@
       
       // Mobile Submenu Toggles
       const submenuTriggers = document.querySelectorAll('.mobile-drawer__submenu-trigger');
+      
+    // Desktop Megamenu Sub-item Interactions (Hover Intent + Click)
+    const subItems = document.querySelectorAll('.custom-mega-sub-item');
+    const subMenuTimers = {};
+
+    subItems.forEach((item, index) => {
+      const toggle = item.querySelector('.submenu-toggle-btn');
+      const submenu = item.querySelector('.custom-mega-submenu');
+      const itemId = 'sub-item-' + index;
+
+      const openSubMenu = () => {
+        clearTimeout(subMenuTimers[itemId]);
+        // Close other sub-items in the same panel
+        const siblings = item.parentElement.querySelectorAll('.custom-mega-sub-item');
+        siblings.forEach(s => { if(s !== item) s.classList.remove('is-active'); });
+        item.classList.add('is-active');
+      };
+
+      const closeSubMenu = () => {
+        clearTimeout(subMenuTimers[itemId]);
+        subMenuTimers[itemId] = setTimeout(() => {
+          item.classList.remove('is-active');
+        }, 1000); // Massive 1s hold for sub-item persistence
+      };
+
+      // Hover interactions
+      item.addEventListener('mouseenter', () => {
+        clearTimeout(subMenuTimers[itemId]);
+        // If another one is already open, open this one slightly faster
+        const hasOpen = document.querySelector('.custom-mega-sub-item.is-active');
+        const delay = hasOpen ? 100 : 200; 
+        subMenuTimers[itemId] = setTimeout(openSubMenu, delay);
+      });
+
+      item.addEventListener('mouseleave', closeSubMenu);
+
+      // Keep open if mouse is in the 3rd column submenu
+      if (submenu) {
+        submenu.addEventListener('mouseenter', () => {
+          clearTimeout(subMenuTimers[itemId]);
+        });
+        submenu.addEventListener('mouseleave', closeSubMenu);
+      }
+
+      // Click behavior for the arrow/button icon
+      toggle?.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        clearTimeout(subMenuTimers[itemId]);
+        
+        if (item.classList.contains('is-active')) {
+          item.classList.remove('is-active');
+        } else {
+          openSubMenu();
+        }
+      });
+    });
+
       submenuTriggers.forEach(trigger => {
         trigger.addEventListener('click', function(e) {
           e.preventDefault();
