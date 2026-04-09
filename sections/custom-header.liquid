@@ -772,28 +772,33 @@
 
   /* Premium Toggle Button */
   .mobile-drawer__submenu-trigger {
-    width: 32px !important; 
-    height: 32px !important;
-    background: #f8fafc !important; 
+    width: 36px !important; 
+    height: 36px !important;
+    background: #f1f5f9 !important; 
     color: #64748b;
-    border-radius: 50%;
-    margin-left: 10px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none !important;
+    border-radius: 10px !important;
+    margin-left: 8px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
   }
-  .mobile-drawer__submenu-trigger:hover, 
-  .mobile-drawer__submenu.active ~ .mobile-drawer__submenu-trigger { /* Note: This selector won't work with current HTML structure, reliance on JS class toggle is better */ }
-  
-  .mobile-drawer__submenu-trigger svg { width: 14px; height: 14px; stroke-width: 2.5px; }
+  .mobile-drawer__submenu-trigger:hover {
+    background: #e2e8f0 !important;
+  }
+  .mobile-drawer__submenu-trigger svg { width: 14px; height: 14px; stroke-width: 2.5px; transition: transform 0.3s ease; }
 
   /* Submenu Styling */
   .mobile-drawer__submenu {
     display: none;
     background: #ffffff;
-    margin: 0 -30px 0 -30px;
-    padding: 15px 30px;
+    margin: 0 -20px;
+    padding: 8px 20px 12px;
     border-top: 1px solid #f1f5f9;
     border-bottom: 1px solid #f1f5f9;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
   }
   .mobile-drawer__submenu.active { display: block; animation: slideDown 0.3s ease-out forwards; }
   
@@ -805,15 +810,34 @@
   .mobile-drawer__submenu .mobile-drawer__item { padding: 0; border: none; }
   .mobile-drawer__submenu .mobile-drawer__link {
     font-size: 14px;
-    padding: 10px 0 10px 15px;
+    padding: 10px 0 10px 16px;
     font-weight: 500;
     color: #64748b;
     border-left: 2px solid transparent;
+    transition: all 0.2s;
   }
   .mobile-drawer__submenu .mobile-drawer__link:hover {
     color: #0f172a;
     border-left-color: #40c4ff;
     background: linear-gradient(to right, rgba(64,196,255,0.05), transparent);
+  }
+
+  .mobile-drawer__submenu--nested {
+    margin: 0 -20px;
+    padding: 6px 20px 8px;
+    background: #f8fafc;
+  }
+
+  .mobile-drawer__submenu-trigger--child {
+    width: 32px !important;
+    height: 32px !important;
+    background: #f1f5f9 !important;
+    border-radius: 8px !important;
+  }
+
+  .mobile-drawer__submenu-trigger--child svg {
+    width: 12px !important;
+    height: 12px !important;
   }
 
   /* Header Search Inline */
@@ -1307,8 +1331,26 @@
                         <div class="mobile-drawer__submenu">
                           <ul class="mobile-drawer__list">
                             {% for child_link in link.links %}
-                              <li class="mobile-drawer__item">
-                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              <li class="mobile-drawer__item {% if child_link.links.size > 0 %}has-submenu{% endif %}">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                  <a href="{{ child_link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0; font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                                  {% if child_link.links.size > 0 %}
+                                    <button class="mobile-drawer__submenu-trigger mobile-drawer__submenu-trigger--child" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                  {% endif %}
+                                </div>
+                                {% if child_link.links.size > 0 %}
+                                  <div class="mobile-drawer__submenu mobile-drawer__submenu--nested">
+                                    <ul class="mobile-drawer__list">
+                                      {% for grandchild_link in child_link.links %}
+                                        <li class="mobile-drawer__item">
+                                          <a href="{{ grandchild_link.url }}" class="mobile-drawer__link" style="font-size: 13px; font-weight: 400; color: #94a3b8; padding-left: 36px;">{{ grandchild_link.title }}</a>
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                  </div>
+                                {% endif %}
                               </li>
                             {% endfor %}
                           </ul>
@@ -1333,8 +1375,26 @@
                         <div class="mobile-drawer__submenu">
                           <ul class="mobile-drawer__list">
                             {% for child_link in link.links %}
-                              <li class="mobile-drawer__item">
-                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              <li class="mobile-drawer__item {% if child_link.links.size > 0 %}has-submenu{% endif %}">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                  <a href="{{ child_link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0; font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                                  {% if child_link.links.size > 0 %}
+                                    <button class="mobile-drawer__submenu-trigger mobile-drawer__submenu-trigger--child" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                  {% endif %}
+                                </div>
+                                {% if child_link.links.size > 0 %}
+                                  <div class="mobile-drawer__submenu mobile-drawer__submenu--nested">
+                                    <ul class="mobile-drawer__list">
+                                      {% for grandchild_link in child_link.links %}
+                                        <li class="mobile-drawer__item">
+                                          <a href="{{ grandchild_link.url }}" class="mobile-drawer__link" style="font-size: 13px; font-weight: 400; color: #94a3b8; padding-left: 36px;">{{ grandchild_link.title }}</a>
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                  </div>
+                                {% endif %}
                               </li>
                             {% endfor %}
                           </ul>
@@ -1359,8 +1419,26 @@
                         <div class="mobile-drawer__submenu">
                           <ul class="mobile-drawer__list">
                             {% for child_link in link.links %}
-                              <li class="mobile-drawer__item">
-                                <a href="{{ child_link.url }}" class="mobile-drawer__link" style="font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                              <li class="mobile-drawer__item {% if child_link.links.size > 0 %}has-submenu{% endif %}">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                  <a href="{{ child_link.url }}" class="mobile-drawer__link" style="flex: 1; margin-bottom: 0; font-size: 15px; font-weight: 500; color: #64748b; padding-left: 20px;">{{ child_link.title }}</a>
+                                  {% if child_link.links.size > 0 %}
+                                    <button class="mobile-drawer__submenu-trigger mobile-drawer__submenu-trigger--child" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                    </button>
+                                  {% endif %}
+                                </div>
+                                {% if child_link.links.size > 0 %}
+                                  <div class="mobile-drawer__submenu mobile-drawer__submenu--nested">
+                                    <ul class="mobile-drawer__list">
+                                      {% for grandchild_link in child_link.links %}
+                                        <li class="mobile-drawer__item">
+                                          <a href="{{ grandchild_link.url }}" class="mobile-drawer__link" style="font-size: 13px; font-weight: 400; color: #94a3b8; padding-left: 36px;">{{ grandchild_link.title }}</a>
+                                        </li>
+                                      {% endfor %}
+                                    </ul>
+                                  </div>
+                                {% endif %}
                               </li>
                             {% endfor %}
                           </ul>
@@ -1672,21 +1750,29 @@
           e.preventDefault();
           e.stopPropagation();
           
-          let submenu = this.nextElementSibling;
+          const parentItem = this.closest('.mobile-drawer__item');
+          const wrapper = this.parentElement;
           
-          // Fallback to finding it in parent (for new structure where button is sibling to link in a div)
-          if (!submenu || !submenu.classList.contains('mobile-drawer__submenu')) {
-              const parentItem = this.closest('.mobile-drawer__item');
-              if (parentItem) {
-                  submenu = parentItem.querySelector('.mobile-drawer__submenu');
+          let submenu = null;
+          if (wrapper) {
+            let next = wrapper.nextElementSibling;
+            while (next) {
+              if (next.classList && next.classList.contains('mobile-drawer__submenu')) {
+                submenu = next;
+                break;
               }
+              next = next.nextElementSibling;
+            }
+          }
+          
+          if (!submenu && parentItem) {
+            submenu = parentItem.querySelector(':scope > .mobile-drawer__submenu');
           }
           
           const icon = this.querySelector('svg');
           
           if(submenu) {
             submenu.classList.toggle('active');
-            // Rotate icon if needed
             if(submenu.classList.contains('active')) {
                if(icon) icon.style.transform = 'rotate(180deg)';
             } else {
