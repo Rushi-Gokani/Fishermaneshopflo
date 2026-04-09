@@ -560,11 +560,17 @@
   }
 
   .dropdown-content-area { flex: 1; min-height: 400px; background: transparent; }
-  .custom-mega-panel { display: none; padding: 30px; justify-content: space-between; gap: 20px; width: 100%; }
-  .menus-group { display: flex; gap: 30px; }
+  .custom-mega-panel { display: none; padding: 30px; justify-content: flex-start; gap: 30px; width: 100%; position: relative; min-height: 400px; }
+  .menus-group { display: flex; gap: 30px; flex: 1; }
   .custom-mega-panel.active { display: flex; }
-  .panel-column { flex: 0 0 auto; min-width: 120px; }
-  .promo-column { width: 280px; flex-shrink: 0; }
+  
+  .panel-column { 
+    flex: 0 0 auto; 
+    width: 220px; 
+    border-right: 1px solid #e2e8f0; 
+    padding-right: 30px;
+  }
+
   .panel-column h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #40c4ff; margin-bottom: 15px; }
   .panel-column ul { list-style: none; padding: 0; margin: 0; }
   .panel-column li { margin-bottom: 8px; }
@@ -572,44 +578,61 @@
   .panel-column a:hover { color: #40c4ff; }
 
   /* Custom Hover Dropdown for Sub-menus */
-  .custom-mega-sub-item {
-    position: relative;
-  }
   .custom-mega-sub-item a {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 6px 0;
   }
   .custom-mega-sub-item a svg {
     transition: transform 0.2s ease;
   }
+  .custom-mega-sub-item:hover > a {
+    color: #40c4ff;
+  }
   .custom-mega-sub-item:hover > a svg {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
   }
   .custom-mega-submenu {
     display: none;
+    position: absolute;
+    left: 280px; /* Offset to sit nicely in 3rd column */
+    top: 30px;
+    bottom: 30px;
+    width: 330px;
     list-style: none;
-    padding-left: 15px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border-left: 1px solid #e2e8f0;
+    padding: 0;
+    margin: 0;
+  }
+  .custom-mega-submenu li {
+    margin-bottom: 12px;
+  }
+  .submenu-heading {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #40c4ff;
+    margin-bottom: 20px !important;
+    font-weight: 700;
+  }
+  .custom-mega-submenu a {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    transition: color 0.2s;
+  }
+  .custom-mega-submenu a:hover {
+    color: #40c4ff;
   }
   .custom-mega-sub-item:hover > .custom-mega-submenu {
     display: block;
-    animation: slideDownCustom 0.2s ease-out forwards;
+    animation: fadeInCustom 0.2s ease-out forwards;
   }
-  @keyframes slideDownCustom {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes fadeInCustom {
+    from { opacity: 0; transform: translateX(-5px); }
+    to { opacity: 1; transform: translateX(0); }
   }
-
-  .promo-card { position: relative; border-radius: 12px; overflow: hidden; display: block; height: 100%; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
-  .promo-card:hover { transform: translateY(-5px); border-color: #40c4ff; }
-  .promo-card img { width: 100%; height: 100%; object-fit: cover; }
-  .promo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 15px; color: #fff; }
-  .promo-title { font-weight: 700; font-size: 16px; color: #40c4ff; }
-  .promo-subtitle { font-size: 12px; opacity: 0.9; }
 
   /* Mobile */
   .header-mobile { display: none; width:100%; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
@@ -1021,11 +1044,12 @@
                               <a href="{{ child_link.url }}">
                                 {{ child_link.title }}
                                 {% if child_link.links.size > 0 %}
-                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
                                 {% endif %}
                               </a>
                               {% if child_link.links.size > 0 %}
                                 <ul class="custom-mega-submenu">
+                                  <li class="submenu-heading">{{ child_link.title }}</li>
                                   {% for grandchild_link in child_link.links %}
                                     <li><a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
                                   {% endfor %}
@@ -1040,43 +1064,7 @@
                     </div>
                   </div>
 
-                  {% assign promo_image = first_category_block.settings.promo_image %}
-                  {% assign promo_title = first_category_block.settings.promo_title %}
-                  {% assign promo_subtitle = first_category_block.settings.promo_subtitle %}
-                  {% assign promo_link = first_category_block.settings.promo_link %}
 
-                  {% comment %} Dynamic Content Override {% endcomment %}
-                  {% if link.type == 'collection_link' %}
-                    {% assign associated_collection = link.object %}
-                    {% if associated_collection.products.first != blank %}
-                      {% assign promo_image = associated_collection.products.first.featured_image %}
-                      {% assign promo_title = associated_collection.products.first.title %}
-                      {% assign promo_subtitle = associated_collection.products.first.price | money %}
-                      {% assign promo_link = associated_collection.products.first.url %}
-                    {% elsif associated_collection.image != blank %}
-                       {% assign promo_image = associated_collection.image %}
-                       {% assign promo_title = associated_collection.title %}
-                       {% assign promo_subtitle = 'Explore Collection' %}
-                       {% assign promo_link = associated_collection.url %}
-                    {% endif %}
-                  {% elsif link.type == 'product_link' and link.object.featured_image != blank %}
-                     {% assign promo_image = link.object.featured_image %}
-                     {% assign promo_title = link.object.title %}
-                     {% assign promo_subtitle = link.object.price | money %}
-                     {% assign promo_link = link.url %}
-                  {% endif %}
-
-                  {% if promo_image != blank %}
-                    <div class="panel-column promo-column">
-                      <a href="{{ promo_link | default: '#' }}" class="promo-card">
-                        {{ promo_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-                        <div class="promo-overlay">
-                          <span class="promo-title">{{ promo_title }}</span>
-                          <span class="promo-subtitle">{{ promo_subtitle }}</span>
-                        </div>
-                      </a>
-                    </div>
-                  {% endif %}
                 </div>
               {% endfor %}
             </div>
