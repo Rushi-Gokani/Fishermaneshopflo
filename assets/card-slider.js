@@ -68,16 +68,11 @@ class CardSlider extends HTMLElement {
       });
     });
 
-    // Touch events - use capture to ensure we get them
+    // Touch events on slider element only
     this.slider.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
     this.slider.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
     this.slider.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: true });
     this.slider.addEventListener('touchcancel', this.handleTouchCancel.bind(this));
-
-    // Also attach to parent element for better touch capture
-    this.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true, capture: true });
-    this.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false, capture: true });
-    this.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: true, capture: true });
 
     // Mouse events
     this.slider.addEventListener('mousedown', this.handleMouseDown.bind(this));
@@ -144,15 +139,23 @@ class CardSlider extends HTMLElement {
 
     const currentX = this.getClientX(e);
     const diff = currentX - this.startX;
+
+    if (Math.abs(diff) < 10) return;
+
+    const atStart = this.currentIndex === 0 && diff > 0;
+    const atEnd = this.currentIndex === this.totalSlides - 1 && diff < 0;
+
+    if (atStart || atEnd) return;
+
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+
     const movePercent = (diff / this.slider.offsetWidth) * 100;
     this.currentTranslate = this.prevTranslate + movePercent;
 
     if (this.slider) {
       this.slider.style.transform = `translateX(${this.currentTranslate}%)`;
-    }
-
-    if (e.cancelable) {
-      e.preventDefault();
     }
   }
 

@@ -51,6 +51,7 @@
     flex-direction: column;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     height: 100%;
+    position: relative;
   }
 
   .product-card-{{ card_id }}:hover {
@@ -84,6 +85,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     overflow: hidden;
+    z-index: 2;
   }
 
   .product-card-slider-{{ card_id }} {
@@ -163,6 +165,7 @@
 
   .product-card-slider-container-{{ card_id }} > * {
     flex: 0 0 100%;
+    display: block;
   }
 
   .product-card-image-{{ card_id }} {
@@ -182,6 +185,8 @@
     align-items: center;
     gap: 4px;
     margin-top: 8px;
+    position: relative;
+    z-index: 2;
   }
 
   .product-card-dot-{{ card_id }} {
@@ -217,6 +222,8 @@
   .product-card-brand-link-{{ card_id }} {
     color: inherit;
     text-decoration: none;
+    position: relative;
+    z-index: 2;
   }
 
   .product-card-brand-link-{{ card_id }}:hover {
@@ -249,6 +256,13 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: left;
+  }
+
+  .product-card-title-{{ card_id }} a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .product-card-title-{{ card_id }} a:hover {
@@ -315,6 +329,8 @@
     transition: all 0.3s ease;
     margin-top: 8px;
     flex-shrink: 0;
+    position: relative;
+    z-index: 2;
   }
 
   .product-card-buy-btn-{{ card_id }}:hover:not(:disabled) {
@@ -340,14 +356,12 @@
       padding: 12px;
     }
 
-    /* Hide arrow buttons on mobile - use swipe instead */
     .product-card-arrow-{{ card_id }} {
       display: none !important;
     }
 
-    /* On mobile, remove touch-action constraints for better swipe experience */
     .product-card-slider-container-{{ card_id }} {
-      touch-action: none;
+      touch-action: pan-y pan-x;
     }
   }
 {% endstyle %}
@@ -410,14 +424,16 @@
           {% if media_count > 0 %}
             {% for media in product.media limit: 3 %}
               {% if media.media_type == 'image' %}
-                <img
-                  src="{{ media | image_url: width: 400 }}"
-                  alt="{{ media.alt | escape }}"
-                  loading="lazy"
-                  width="400"
-                  height="400"
-                  class="product-card-image-{{ card_id }}"
-                >
+                <a href="{{ product.url }}" tabindex="-1" draggable="false" class="product-card-image-link-{{ card_id }}">
+                  <img
+                    src="{{ media | image_url: width: 400 }}"
+                    alt="{{ media.alt | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                    class="product-card-image-{{ card_id }}"
+                  >
+                </a>
               {% elsif media.media_type == 'video' %}
                 <video
                   class="product-card-image-{{ card_id }}"

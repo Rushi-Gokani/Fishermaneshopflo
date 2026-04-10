@@ -32,9 +32,6 @@
   {% endif %}
 
   {% if filter_style == 'vertical' %}
-    open
-    open-by-default-on-mobile
-    open-by-default-on-desktop
   {% endif %}
   data-filter-param-name="{{ filter.param_name | escape | replace: '.', '-' }}"
 >
@@ -45,13 +42,13 @@
       data-auto-close-details="desktop"
     {% endif %}
     {% if filter_style == 'vertical' %}
-      open
     {% endif %}
   >
     <summary class="facets__summary">
       <span class="facets__label">{{ filter.label }}</span>
-
-      
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
     </summary>
     <floating-panel-component
       {% unless filter_style == 'vertical' %}

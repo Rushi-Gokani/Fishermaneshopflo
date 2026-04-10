@@ -67,7 +67,7 @@
   endif
 
   assign should_use_select_on_mobile = true
-  if block_settings.enable_filtering == false and block_settings.enable_sorting
+  if block_settings.enable_sorting
     assign should_use_select_on_mobile = false
   endif
 
@@ -159,12 +159,24 @@
           ref="facetsForm"
         >
           {% if should_show_pane %}
-            {% render 'filter-remove-buttons',
-              filters: filters,
-              results_url: results_url,
-              show_filter_label: block_settings.show_filter_label,
-              should_show_clear_all: true
-            %}
+              {% render 'filter-remove-buttons',
+                filters: filters,
+                results_url: results_url,
+                show_filter_label: block_settings.show_filter_label,
+                should_show_clear_all: true
+              %}
+
+              {% if block_settings.filter_style == 'horizontal' and block_settings.enable_sorting %}
+                {% render 'sorting',
+                  results: results,
+                  sort_by: sort_by,
+                  filter_style: block_settings.filter_style,
+                  suffix: 'desktop',
+                  sort_position: 'desktop',
+                  should_use_select_on_mobile: false,
+                  section_id: section.id
+                %}
+              {% endif %}
 
             {% if block_settings.enable_filtering %}
               {% assign total_active_values = 0 %}
@@ -218,35 +230,8 @@
                 clear_all_button_style: 'button-unstyled'
               %}
             {% endif %}
-            {% if block_settings.filter_style == 'horizontal' %}
-              <div
-                class="products-count-wrapper"
-                data-testid="products-count"
-              >
-                <span title="{{ 'content.product_count' | t }}">
-                  {% if products_count > 25000 %}
-                    {{- 'content.item_count_cutoff' | t: count: 25000 -}}
-                  {% else %}
-                    {{- 'content.item_count' | t: count: products_count -}}
-                  {% endif %}
-                </span>
-              </div>
-
-              {% if block_settings.enable_sorting %}
-                {% render 'sorting',
-                  results: results,
-                  sort_by: sort_by,
-                  filter_style: block_settings.filter_style,
-                  suffix: 'desktop',
-                  sort_position: 'desktop',
-                  should_use_select_on_mobile: false,
-                  section_id: section.id
-                %}
-              {% endif %}
-
-              {% if block_settings.enable_grid_density %}
+              {% if block_settings.enable_grid_density and block_settings.filter_style == 'horizontal' %}
                 {% render 'grid-density-controls', viewport: 'desktop' %}
-              {% endif %}
             {% endif %}
           {% endif %}
         </form>
@@ -297,7 +282,7 @@
 
     {% liquid
       assign child_count = 0
-      if block_settings.enable_filtering == false and block_settings.enable_sorting
+      if block_settings.enable_sorting
         assign child_count = child_count | plus: 1
       endif
       if block_settings.enable_grid_density
@@ -306,26 +291,38 @@
     %}
 
     <div class="facets-mobile-wrapper facets-controls-wrapper{% if child_count > 1 %} facets-mobile-wrapper--multiple-controls{% endif %}">
-      {% if block_settings.enable_filtering == false and block_settings.enable_sorting %}
-        <facets-form-component
-          section-id="{{ section.id }}"
-          id="FacetFiltersForm--{{ section.id }}-mobile-sorting-only"
-        >
-          <form
-            action="{{ results_url }}"
+      {% if block_settings.enable_sorting %}
+        {% if block_settings.enable_filtering %}
+          {% render 'sorting',
+            results: results,
+            sort_by: sort_by,
+            filter_style: block_settings.filter_style,
+            sort_position: 'mobile',
+            suffix: 'overflow',
+            should_use_select_on_mobile: should_use_select_on_mobile,
+            section_id: section.id
+          %}
+        {% else %}
+          <facets-form-component
+            section-id="{{ section.id }}"
             id="FacetFiltersForm--{{ section.id }}-mobile-sorting-only"
-            ref="facetsForm"
           >
-            {% render 'sorting',
-              results: results,
-              sort_by: sort_by,
-              filter_style: block_settings.filter_style,
-              sort_position: 'mobile',
-              should_use_select_on_mobile: should_use_select_on_mobile,
-              section_id: section.id
-            %}
-          </form>
-        </facets-form-component>
+            <form
+              action="{{ results_url }}"
+              id="FacetFiltersForm--{{ section.id }}-mobile-sorting-only"
+              ref="facetsForm"
+            >
+              {% render 'sorting',
+                results: results,
+                sort_by: sort_by,
+                filter_style: block_settings.filter_style,
+                sort_position: 'mobile',
+                should_use_select_on_mobile: should_use_select_on_mobile,
+                section_id: section.id
+              %}
+            </form>
+          </facets-form-component>
+        {% endif %}
       {% endif %}
       {% if block_settings.enable_grid_density %}
         {% render 'grid-density-controls', viewport: 'mobile' %}
@@ -399,6 +396,17 @@
           <scroll-hint
             class="facets-drawer__filters"
           >
+            {% if block_settings.enable_sorting %}
+              {% render 'sorting',
+                results: results,
+                sort_by: sort_by,
+                filter_style: block_settings.filter_style,
+                suffix: 'overflow',
+                should_use_select_on_mobile: should_use_select_on_mobile,
+                section_id: section.id
+              %}
+            {% endif %}
+
             {% if block_settings.enable_filtering %}
               {% render 'filter-remove-buttons',
                 filters: filters,
@@ -437,16 +445,6 @@
               </div>
             {% endif %}
 
-            {% if block_settings.enable_sorting %}
-              {% render 'sorting',
-                results: results,
-                sort_by: sort_by,
-                filter_style: block_settings.filter_style,
-                suffix: 'overflow',
-                should_use_select_on_mobile: should_use_select_on_mobile,
-                section_id: section.id
-              %}
-            {% endif %}
           </scroll-hint>
         </form>
       </facets-form-component>

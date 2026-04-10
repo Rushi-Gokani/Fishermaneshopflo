@@ -596,8 +596,18 @@ class SortingFilterComponent extends Component {
    * @param {Event} event - The change event
    */
   updateFilterAndSorting(event) {
-    const facetsForm =
-      this.closest('facets-form-component') || this.closest('.shopify-section')?.querySelector('facets-form-component');
+    const target = event.target;
+    let facetsForm = null;
+
+    if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement) {
+      if (target.form) {
+        facetsForm = target.form.closest('facets-form-component');
+      }
+    }
+
+    if (!facetsForm) {
+      facetsForm = this.closest('facets-form-component') || this.closest('.shopify-section')?.querySelector('facets-form-component');
+    }
 
     if (!(facetsForm instanceof FacetsFormComponent)) return;
     const isMobile = window.innerWidth < 750;
