@@ -56,7 +56,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_tqQTNE", "text_twGGkJ"],
+      "block_order": [
+        "text_tqQTNE",
+        "text_twGGkJ"
+      ],
       "name": "Collection heading",
       "settings": {
         "content_direction": "column",
@@ -217,5 +220,8 @@
       }
     }
   },
-  "order": ["section", "main"]
+  "order": [
+    "section",
+    "main"
+  ]
 }

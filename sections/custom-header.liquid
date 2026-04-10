@@ -655,6 +655,14 @@
     margin-bottom: 20px !important;
     font-weight: 700;
   }
+  .submenu-heading a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .submenu-heading a:hover {
+    opacity: 0.8;
+  }
   .custom-mega-submenu a {
     font-size: 14px;
     font-weight: 500;
@@ -1115,7 +1123,7 @@
                               {% endif %}
                               {% if child_link.links.size > 0 %}
                                 <ul class="custom-mega-submenu">
-                                  <li class="submenu-heading">{{ child_link.title }}</li>
+                                  <li class="submenu-heading"><a href="{{ child_link.url }}" style="color: inherit; text-decoration: none;">{{ child_link.title }}</a></li>
                                   {% for grandchild_link in child_link.links %}
                                     <li><a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
                                   {% endfor %}

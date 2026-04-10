@@ -57,7 +57,7 @@
 style="
         {% render 'layout-panel-style', settings: section.settings %}
         {% render 'spacing-style', settings: section.settings %}
-
+"
       data-testid="section-content"
     >
       {{ children }}
@@ -133,14 +133,6 @@ style="
       width: 100% !important;
       margin: 0 0 0.5rem 0 !important;
       line-height: 1.3 !important;
-    }
-  }
-
-  /* Small mobile fixes (max-width: 480px) */
-  @media screen and (max-width: 480px) {
-    .section-content-wrapper {
-      padding-right: 0.75rem !important;
-      padding-left: 0.75rem !important;
     }
   }
 
