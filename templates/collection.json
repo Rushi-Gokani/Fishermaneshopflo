@@ -17,9 +17,9 @@
           "name": "Title",
           "settings": {
             "text": "<h1>{{ closest.collection.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
             "type_preset": "h2",
             "font": "var(--font-primary--family)",
             "font_size": "",
@@ -33,7 +33,7 @@
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 100,
+            "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {}
@@ -43,7 +43,7 @@
           "name": "Description",
           "settings": {
             "text": "{{ closest.collection.description }}",
-            "width": "100%",
+            "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
             "type_preset": "custom",
@@ -59,7 +59,7 @@
             "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 200,
+            "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {}
