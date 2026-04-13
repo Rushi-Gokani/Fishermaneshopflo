@@ -8,14 +8,14 @@
 <script>
   (function() {
     var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
-    window.__collScrollPaused = false;
+    var basePath = 'collScroll_' + window.location.pathname;
+    var isPaginating = false;
 
     var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
     if (!isNaN(savedY) && savedY > 0) {
       sessionStorage.removeItem(STORAGE_KEY);
       var attempts = 0;
       function tryScroll() {
-        if (window.__collScrollPaused) return;
         window.scrollTo(0, savedY);
         if (window.scrollY < savedY - 50 && attempts < 40) {
           attempts++;
@@ -31,15 +31,31 @@
 
     var saveTimer = null;
     window.addEventListener('scroll', function() {
-      if (window.__collScrollPaused) return;
       clearTimeout(saveTimer);
       saveTimer = setTimeout(function() {
         sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
       }, 100);
     }, { passive: true });
 
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('.pagination__link');
+      if (link) {
+        isPaginating = true;
+        var keysToRemove = [];
+        for (var i = 0; i < sessionStorage.length; i++) {
+          var key = sessionStorage.key(i);
+          if (key && key.indexOf(basePath) === 0) {
+            keysToRemove.push(key);
+          }
+        }
+        for (var j = 0; j < keysToRemove.length; j++) {
+          sessionStorage.removeItem(keysToRemove[j]);
+        }
+      }
+    });
+
     window.addEventListener('beforeunload', function() {
-      if (window.__collScrollPaused) return;
+      if (isPaginating) return;
       sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
     });
   })();
