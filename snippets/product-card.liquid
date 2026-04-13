@@ -9,6 +9,7 @@
 {%- endcomment -%}
 
 {% assign block_settings = block.settings %}
+{% assign card_id = block.id | append: '-' | append: product.id %}
 {% assign accent_color = '#40C4FF' %}
 {% assign media_count = product.media | size %}
 
@@ -41,7 +42,7 @@
 %}
 
 {% style %}
-  .pc-card {
+  .product-card-{{ card_id }} {
     background-color: #FFFFFF;
     border: 1px solid #F0F0F0;
     border-radius: 10px;
@@ -51,23 +52,22 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     height: 100%;
     position: relative;
-    content-visibility: auto;
-    contain-intrinsic-size: 0 520px;
   }
 
-  .pc-card:hover {
+  .product-card-{{ card_id }}:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     transform: translateY(-4px);
   }
 
-  .pc-top {
+  /* Top section - Badge and Heart */
+  .product-card-top-{{ card_id }} {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-shrink: 0;
   }
 
-  .pc-badge {
+  .product-card-badge-{{ card_id }} {
     background-color: #FFFFFF;
     color: #000000;
     font-size: 14px;
@@ -76,7 +76,10 @@
     border-radius: 10px;
   }
 
-  .pc-img-wrap {
+
+
+  /* Image section with swipeable slider */
+  .product-card-image-wrapper-{{ card_id }} {
     position: relative;
     margin-bottom: 8px;
     flex-shrink: 0;
@@ -85,13 +88,14 @@
     z-index: 2;
   }
 
-  .pc-slider {
+  .product-card-slider-{{ card_id }} {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
   }
 
-  .pc-arrow {
+  /* Navigation arrows - visible by default for smooth swiping */
+  .product-card-arrow-{{ card_id }} {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -106,37 +110,37 @@
     cursor: pointer;
     opacity: 1;
     visibility: visible;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     z-index: 10;
     box-shadow: none;
   }
 
-  .pc-arrow:hover {
+  .product-card-arrow-{{ card_id }}:hover {
     background-color: rgba(0, 0, 0, 0.05);
     box-shadow: none;
     transform: translateY(-50%) scale(1.1);
   }
 
-  .pc-arrow-prev {
+  .product-card-arrow-prev-{{ card_id }} {
     left: 8px;
   }
 
-  .pc-arrow-next {
+  .product-card-arrow-next-{{ card_id }} {
     right: 8px;
   }
 
-  .pc-arrow:disabled {
+  .product-card-arrow-{{ card_id }}:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
 
-  .pc-arrow svg {
+  .product-card-arrow-{{ card_id }} svg {
     width: 16px;
     height: 16px;
     color: #000000;
   }
 
-  .pc-slider-ct {
+  .product-card-slider-container-{{ card_id }} {
     display: flex;
     transition: transform 0.3s ease;
     cursor: grab;
@@ -147,23 +151,24 @@
     -webkit-touch-callout: none;
   }
 
-  .pc-slider-ct img {
+  /* Prevent images from being dragged natively */
+  .product-card-slider-container-{{ card_id }} img {
     -webkit-user-drag: none;
     user-drag: none;
     pointer-events: none;
   }
 
-  .pc-slider-ct.dragging {
+  .product-card-slider-container-{{ card_id }}.dragging {
     cursor: grabbing;
     transition: none;
   }
 
-  .pc-slider-ct > * {
+  .product-card-slider-container-{{ card_id }} > * {
     flex: 0 0 100%;
     display: block;
   }
 
-  .pc-img {
+  .product-card-image-{{ card_id }} {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -173,7 +178,8 @@
     border-radius: 10px;
   }
 
-  .pc-dots {
+  /* Pagination dots */
+  .product-card-dots-{{ card_id }} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,7 +189,7 @@
     z-index: 2;
   }
 
-  .pc-dot {
+  .product-card-dot-{{ card_id }} {
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -192,11 +198,12 @@
     cursor: pointer;
   }
 
-  .pc-dot.active {
+  .product-card-dot-{{ card_id }}.active {
     background-color: {{ accent_color }};
   }
 
-  .pc-content {
+  /* Bottom section */
+  .product-card-content-{{ card_id }} {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -204,7 +211,7 @@
     min-height: 0;
   }
 
-  .pc-brand {
+  .product-card-brand-{{ card_id }} {
     font-size: 12px;
     font-weight: 400;
     color: {{ accent_color }};
@@ -212,18 +219,18 @@
     flex-shrink: 0;
   }
 
-  .pc-brand-link {
+  .product-card-brand-link-{{ card_id }} {
     color: inherit;
     text-decoration: none;
     position: relative;
     z-index: 2;
   }
 
-  .pc-brand-link:hover {
+  .product-card-brand-link-{{ card_id }}:hover {
     opacity: 0.85;
   }
 
-  .pc-title {
+  .product-card-title-{{ card_id }} {
     font-size: 14px;
     font-weight: 700;
     font-family: var(--font-heading--family);
@@ -240,7 +247,7 @@
     text-overflow: ellipsis;
   }
 
-  .pc-title a {
+  .product-card-title-{{ card_id }} a {
     color: inherit;
     text-decoration: none;
     transition: opacity 0.3s ease;
@@ -251,18 +258,18 @@
     text-align: left;
   }
 
-  .pc-title a::after {
+  .product-card-title-{{ card_id }} a::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
   }
 
-  .pc-title a:hover {
+  .product-card-title-{{ card_id }} a:hover {
     opacity: 0.7;
   }
 
-  .pc-price {
+  .product-card-price-{{ card_id }} {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
@@ -270,19 +277,19 @@
     flex-shrink: 0;
   }
 
-  .pc-price .compare-price {
+  .product-card-price-{{ card_id }} .compare-price {
     text-decoration: line-through;
     opacity: 0.6;
     margin-left: 8px;
   }
 
-  .pc-single-link {
+  .product-card-single-image-link-{{ card_id }} {
     display: block;
     border-radius: 10px;
     overflow: hidden;
   }
 
-  .pc-discount {
+  .product-card-discount-badge-{{ card_id }} {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -299,7 +306,7 @@
   }
 
   @media screen and (max-width: 749px) {
-    .pc-discount {
+    .product-card-discount-badge-{{ card_id }} {
       top: 6px;
       right: 6px;
       font-size: 10px;
@@ -308,7 +315,8 @@
     }
   }
 
-  .pc-buy-btn {
+  /* Buy Now button */
+  .product-card-buy-btn-{{ card_id }} {
     width: 100%;
     background-color: {{ accent_color }};
     color: #000000;
@@ -318,55 +326,58 @@
     border-radius: 10px;
     padding: 16px;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     margin-top: 8px;
     flex-shrink: 0;
     position: relative;
     z-index: 2;
   }
 
-  .pc-buy-btn:hover:not(:disabled) {
+  .product-card-buy-btn-{{ card_id }}:hover:not(:disabled) {
     opacity: 0.9;
     transform: scale(1.02);
   }
 
-  .pc-buy-btn:disabled {
+  .product-card-buy-btn-{{ card_id }}:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
   @media screen and (max-width: 749px) {
-    .pc-title {
+    .product-card-{{ card_id }} {
+    }
+
+    .product-card-title-{{ card_id }} {
       font-size: 14px;
     }
 
-    .pc-buy-btn {
+    .product-card-buy-btn-{{ card_id }} {
       font-size: 14px;
       padding: 12px;
     }
 
-    .pc-arrow {
+    .product-card-arrow-{{ card_id }} {
       display: none !important;
     }
 
-    .pc-slider-ct {
+    .product-card-slider-container-{{ card_id }} {
       touch-action: pan-y pan-x;
     }
   }
 {% endstyle %}
 
-<card-slider class="pc-card" data-total-slides="{{ product.media.size | default: 1 | at_most: 3 }}">
+<card-slider class="product-card-{{ card_id }}" data-total-slides="{{ product.media.size | default: 1 | at_most: 3 }}">
   <!-- Top Section: Badge -->
   {% if show_badge %}
-    <div class="pc-top" style="margin-bottom: 4px;">
-      <span class="pc-badge">Best Seller</span>
+    <div class="product-card-top-{{ card_id }}" style="margin-bottom: 4px;">
+      <span class="product-card-badge-{{ card_id }}">Best Seller</span>
     </div>
   {% endif %}
 
   <!-- Image Section with Swipeable Slider -->
-  <div class="pc-img-wrap">
+  <div class="product-card-image-wrapper-{{ card_id }}">
     {%- assign is_best_seller = false -%}
-    {%- for collection in product.collections limit: 5 -%}
+    {%- for collection in product.collections -%}
       {%- if collection.title == 'Best Sellers' -%}
         {%- assign is_best_seller = true -%}
         {%- break -%}
@@ -377,20 +388,19 @@
       <img src="https://cdn.shopify.com/s/files/1/0665/2887/0715/files/1722944964203-352234792-BADGES1.png?v=1722945193" 
            alt="Best Seller"
            class="best-seller-badge-image"
-           style="position: absolute; top: 10px; left: 10px; z-index: 5; width: 70px; height: auto;"
-           loading="lazy" decoding="async" width="70" height="70">
+           style="position: absolute; top: 10px; left: 10px; z-index: 5; width: 70px; height: auto;">
     {%- endif -%}
     {% if on_sale and discount_percent > 0 %}
-      <div class="pc-discount">
+      <div class="product-card-discount-badge-{{ card_id }}">
         Save {{ discount_percent | round }}%
       </div>
     {% endif %}
 
     {% if has_multiple_media %}
-      <div class="pc-slider">
+      <div class="product-card-slider-{{ card_id }}">
         <!-- Previous Arrow -->
         <button
-          class="pc-arrow pc-arrow-prev"
+          class="product-card-arrow-{{ card_id }} product-card-arrow-prev-{{ card_id }}"
           aria-label="Previous image"
           data-arrow-prev
         >
@@ -401,7 +411,7 @@
 
         <!-- Next Arrow -->
         <button
-          class="pc-arrow pc-arrow-next"
+          class="product-card-arrow-{{ card_id }} product-card-arrow-next-{{ card_id }}"
           aria-label="Next image"
           data-arrow-next
         >
@@ -410,28 +420,26 @@
           </svg>
         </button>
 
-        <div class="pc-slider-ct" data-slider data-product-url="{{ product.url }}">
+        <div class="product-card-slider-container-{{ card_id }}" data-slider data-product-url="{{ product.url }}">
           {% if media_count > 0 %}
             {% for media in product.media limit: 3 %}
               {% if media.media_type == 'image' %}
-                <a href="{{ product.url }}" tabindex="-1" draggable="false" class="pc-img-link">
+                <a href="{{ product.url }}" tabindex="-1" draggable="false" class="product-card-image-link-{{ card_id }}">
                   <img
                     src="{{ media | image_url: width: 400 }}"
                     alt="{{ media.alt | escape }}"
                     loading="lazy"
-                    decoding="async"
                     width="400"
                     height="400"
-                    class="pc-img"
+                    class="product-card-image-{{ card_id }}"
                   >
                 </a>
               {% elsif media.media_type == 'video' %}
                 <video
-                  class="pc-img"
+                  class="product-card-image-{{ card_id }}"
                   muted
                   loop
                   playsinline
-                  preload="none"
                   onclick="this.paused ? this.play() : this.pause()"
                 >
                   <source src="{{ media.sources[1].url }}" type="video/mp4">
@@ -439,16 +447,16 @@
               {% endif %}
             {% endfor %}
           {% else %}
-            {{ 'product-' | append: product.id | placeholder_svg_tag: 'pc-img' }}
+            {{ 'product-' | append: product.id | placeholder_svg_tag: 'product-card-image-' | append: card_id }}
           {% endif %}
         </div>
       </div>
 
       <!-- Pagination Dots -->
-      <div class="pc-dots">
+      <div class="product-card-dots-{{ card_id }}">
         {% for media in product.media limit: 3 %}
           <span
-            class="pc-dot{% if forloop.first %} active{% endif %}"
+            class="product-card-dot-{{ card_id }}{% if forloop.first %} active{% endif %}"
             data-dot
             data-index="{{ forloop.index | minus: 1 }}"
           ></span>
@@ -457,7 +465,7 @@
     {% else %}
       <a
         href="{{ product.url }}"
-        class="pc-single-link"
+        class="product-card-single-image-link-{{ card_id }}"
         aria-label="{{ product.title | escape }}"
       >
         {% if product.featured_image %}
@@ -465,34 +473,33 @@
             src="{{ product.featured_image | image_url: width: 400 }}"
             alt="{{ product.featured_image.alt | escape }}"
             loading="lazy"
-            decoding="async"
             width="400"
             height="400"
-            class="pc-img"
+            class="product-card-image-{{ card_id }}"
           >
         {% else %}
-          {{ 'product-' | append: product.id | placeholder_svg_tag: 'pc-img' }}
+          {{ 'product-' | append: product.id | placeholder_svg_tag: 'product-card-image-' | append: card_id }}
         {% endif %}
       </a>
     {% endif %}
   </div>
 
   <!-- Bottom Section: Brand, Title, Price, Button -->
-  <div class="pc-content">
+  <div class="product-card-content-{{ card_id }}">
     {% if product.vendor %}
       {%- assign vendor_handle = product.vendor | handleize -%}
-      <p class="pc-brand">
-        <a href="{{ routes.collections_url }}/{{ vendor_handle }}" class="pc-brand-link">
+      <p class="product-card-brand-{{ card_id }}">
+        <a href="{{ routes.collections_url }}/{{ vendor_handle }}" class="product-card-brand-link-{{ card_id }}">
           {{ product.vendor }}
         </a>
       </p>
     {% endif %}
 
-    <h3 class="pc-title">
+    <h3 class="product-card-title-{{ card_id }}">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
 
-    <p class="pc-price">
+    <p class="product-card-price-{{ card_id }}">
       {% if on_sale %}
         <span class="sale-price">{{ product.price | money }}</span>
         <span class="compare-price">{{ product.compare_at_price | money }}</span>
@@ -502,18 +509,18 @@
     </p>
 
     {% comment %} {% if sold_out %}
-      <button class="pc-buy-btn disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+      <button class="product-card-buy-btn-{{ card_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
     {% else %}
-      <button type="button" class="pc-buy-btn" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
+      <button type="button" class="product-card-buy-btn-{{ card_id }}" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
         {{ 'Add to Cart' }}
       </button>
 
     {% endif %} {% endcomment %}
-     <div class="pc-buy-form">
+     <div class="product-card-buy-form-{{ card_id }}">
         {% if sold_out %}
-          <button class="pc-buy-btn disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+          <button class="product-card-buy-btn-{{ card_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
         {% else %}
-            <button type="button" class="collectionPreorderAddToCartBtn pc-buy-btn" onclick="window.location.href='{{ product.url }}'">
+            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ card_id }}" onclick="window.location.href='{{ product.url }}'">
               {{ 'View product' }}
             </button>
         {% endif %}
@@ -532,6 +539,7 @@
       button.textContent = 'Adding...';
       button.disabled = true;
 
+      // Dynamically find section IDs to update (Cart Drawer, Cart Bubble)
       const sections = [];
       document.querySelectorAll('cart-items-component').forEach(el => {
           if (el.dataset.sectionId) sections.push(el.dataset.sectionId);
@@ -557,6 +565,8 @@
         return response.json();
       })
       .then(data => {
+        // Dispatch event to open drawer and update content
+        // Structure matches CartAddEvent/CartUpdateEvent expectations in component-cart-items.js
         const eventDetail = {
             resource: data, 
             sourceId: 'product-card', 
@@ -572,14 +582,17 @@
             detail: eventDetail 
         }));
 
+        // Dispatch additional event for drawer auto-open
         document.dispatchEvent(new CustomEvent('ajaxProduct:added', {
             bubbles: true,
             detail: eventDetail
         }));
 
+        // Directly open the cart drawer for better UX
         const cartDrawer = document.querySelector('cart-drawer-component');
         if (cartDrawer && typeof cartDrawer.open === 'function') {
           handleFloCartBtn();
+          {% comment %} cartDrawer.open(); {% endcomment %}
         }
 
         button.textContent = 'Added';

@@ -1,34 +1,58 @@
 
-
 <script
   src="{{ 'results-list.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
 
-{% javascript %}
-  const url = new URL(window.location.href);
-  if (url.hash) {
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => {
-        const card = document.getElementById(url.hash.slice(1));
-        if (card) {
-          card.scrollIntoView({ behavior: 'instant' });
+<script>
+  (function() {
+    var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
+    window.__collScrollPaused = false;
+
+    var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+    if (!isNaN(savedY) && savedY > 0) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      var attempts = 0;
+      function tryScroll() {
+        if (window.__collScrollPaused) return;
+        window.scrollTo(0, savedY);
+        if (window.scrollY < savedY - 50 && attempts < 40) {
+          attempts++;
+          requestAnimationFrame(tryScroll);
         }
-      },
-      { once: true }
-    );
-  }
-{% endjavascript %}
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { setTimeout(tryScroll, 50); });
+      } else {
+        setTimeout(tryScroll, 50);
+      }
+    }
+
+    var saveTimer = null;
+    window.addEventListener('scroll', function() {
+      if (window.__collScrollPaused) return;
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function() {
+        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+      }, 100);
+    }, { passive: true });
+
+    window.addEventListener('beforeunload', function() {
+      if (window.__collScrollPaused) return;
+      sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+    });
+  })();
+</script>
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% assign enable_infinite_scroll = false %}
 <results-list
   class="section product-grid-container color-{{ section.settings.color_scheme }}"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
   section-id="{{ section.id }}"
-  infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
+  infinite-scroll="{{ enable_infinite_scroll }}"
 >
   {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
 
@@ -42,11 +66,7 @@
   results_size: collection.products_count
 %}
 
-    {% assign products_per_page = 24 %}
-
-    {% if section.settings.enable_infinite_scroll == false %}
-      {% assign products_per_page = section.settings.products_per_page %}
-    {% endif %}
+    {% assign products_per_page = 25 %}
 
     {% paginate collection.products by products_per_page %}
       {% capture children %}
@@ -70,7 +90,8 @@
         children: children,
         products: collection.products,
         paginate: paginate,
-        enable_infinite_scroll: section.settings.enable_infinite_scroll
+        enable_infinite_scroll: enable_infinite_scroll,
+        on_click_handler: 'results-list/replacePage'
       %}
     {% endpaginate %}
   </div>
@@ -236,11 +257,6 @@
       padding: 0 0.75rem !important;
     }
   }
-
-  .product-grid__item {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 520px;
-  }
 {% endstylesheet %}
 
 {% schema %}
@@ -311,17 +327,16 @@
       "type": "checkbox",
       "id": "enable_infinite_scroll",
       "label": "t:settings.auto_load_products",
-      "default": true
+      "default": false
     },
     {
       "type": "range",
       "id": "products_per_page",
       "label": "t:settings.products_per_page",
       "min": 8,
-      "max": 36,
-      "step": 4,
-      "default": 24,
-      "visible_if": "{{ section.settings.enable_infinite_scroll == false }}"
+      "max": 48,
+      "step": 1,
+      "default": 25
     },
     {
       "type": "header",

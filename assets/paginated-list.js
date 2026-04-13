@@ -289,6 +289,27 @@ export default class PaginatedList extends Component {
     return gridElement.querySelectorAll(':scope > [ref="cards[]"]');
   }
 
+  /**
+   * Replaces the current page with a new one using AJAX.
+   * This is used for standard pagination to replace the grid content instead of appending.
+   *
+   * @param {Event} event - The click event
+   * @param {Record<string, string>} params - The URL search parameters (e.g., {page: "2"})
+   */
+   async replacePage(event, params) {
+    if (event) event.preventDefault();
+
+    const url = new URL(window.location.href);
+    for (const [key, value] of Object.entries(params)) {
+      url.searchParams.set(key, value);
+    }
+    url.hash = '';
+
+    await sectionRenderer.renderSection(this.sectionId, { url });
+
+    history.pushState({ urlParameters: url.searchParams.toString() }, '', url.toString());
+  }
+
   get sectionId() {
     const id = this.getAttribute('section-id');
 

@@ -36,11 +36,19 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
-    {% if request.design_mode %}
-      {%- render 'theme-editor' -%}
+    {% if localization.available_languages.size == 1 %}
+      <script>
+        // Defensive redirect for unwanted localized subfolders
+        (function() {
+          const path = window.location.pathname;
+          if (path.startsWith('/hi/') || path.startsWith('/hi') || path.startsWith('/ml/') || path.startsWith('/ml')) {
+             const newPath = path.replace(/^\/(hi|ml)/, '') || '/';
+             window.location.href = window.location.origin + newPath + window.location.search;
+          }
+        })();
+      </script>
     {% endif %}
 
-    
     <script>
         function handleFloCheckoutBtn() {
             if (window.shopflo && window.shopflo.checkout) {
@@ -261,7 +269,14 @@
       }
       window.addEventListener('pageshow', function(event) {
         if (event.persisted) {
-          window.scrollTo(0, 0);
+          var k = 'collScroll_' + window.location.pathname + window.location.search;
+          var sy = parseInt(sessionStorage.getItem(k), 10);
+          if (!isNaN(sy) && sy > 0) {
+            sessionStorage.removeItem(k);
+            window.scrollTo(0, sy);
+          } else {
+            window.scrollTo(0, 0);
+          }
         }
       });
     </script>

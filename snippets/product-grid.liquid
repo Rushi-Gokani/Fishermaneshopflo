@@ -7,6 +7,7 @@
   @param {string} [title] - Header of the collection or search results
   @param {string} children - List or grid of product cards
   @param {boolean} [enable_infinite_scroll] - Whether to enable infinite scroll (default: true)
+  @param {string} [on_click_handler] - Component function to handle pagination clicks.
 {%- enddoc -%}
 
 {% capture product_card_size %}
@@ -162,7 +163,7 @@
       {% if enable_infinite_scroll != false %}
         <span ref="viewMoreNext"></span>
       {% else %}
-        {% render 'pagination-controls', paginate: paginate %}
+        {% render 'pagination-controls', paginate: paginate, on_click_handler: on_click_handler %}
       {% endif %}
     {% endif %}
   </div>

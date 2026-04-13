@@ -20,7 +20,7 @@
       "type": "text",
       "id": "top_bar_text",
       "label": "Left Text",
-      "default": "Free shipping on orders over €50"
+      "default": "Free shipping on orders over Ã¢â€šÂ¬50"
     },
     {
       "type": "link_list",
@@ -340,6 +340,7 @@
   }
 
   .custom-header-container {
+    flex-wrap: nowrap;
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 40px;
@@ -352,6 +353,8 @@
   }
 
   .header-layout {
+    flex-wrap: nowrap;
+    min-width: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -359,7 +362,9 @@
     gap: 16px; 
   }
   @media screen and (max-width: 1280px) {
-    .header-layout { gap: 8px; }
+    .header-layout {
+    flex-wrap: nowrap;
+    min-width: 0; gap: 8px; }
   }
 
   /* Branding */
@@ -387,6 +392,8 @@
 
   /* Navigation Cluster (Centered) */
   .nav-cluster {
+    flex-wrap: nowrap;
+    min-width: 0;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -424,6 +431,7 @@
   }
 
   .main-nav .mega-nav__list {
+    flex-wrap: nowrap;
     display: flex;
     gap: 32px;
     list-style: none;
@@ -443,7 +451,8 @@
   }
   @media screen and (max-width: 1280px) {
     .mega-nav__link { font-size: 11px; }
-    .main-nav .mega-nav__list { gap: 16px; }
+    .main-nav .mega-nav__list {
+    flex-wrap: nowrap; gap: 16px; }
   }
   .mega-nav__link:hover { color: #000000; opacity: 1; }
 
@@ -693,9 +702,12 @@
   }
   
   @media (max-width: 1024px) {
-    .header-layout { display: none; }
+    .header-layout {
+    flex-wrap: nowrap;
+    min-width: 0; display: none; }
     .header-mobile { display: flex; }
-    .custom-header-container { height: auto; padding: 0; }
+    .custom-header-container {
+    flex-wrap: nowrap; height: auto; padding: 0; }
     
     /* Ensure account icon is visible in mobile view */
     .header-icons .icon-btn {
@@ -1009,12 +1021,21 @@
       width: calc(100% - 40px);
     }
     .custom-header-container {
-      flex-direction: column;
+    flex-direction: column;
       height: auto;
       padding-bottom: 15px;
     }
     .header-mobile {
       height: 60px;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    .custom-header-container, .header-layout, .nav-cluster, .main-nav .mega-nav__list {
+      flex-wrap: nowrap !important;
+    }
+    .header-layout, .nav-cluster {
+      min-width: 0 !important;
     }
   }
 </style>
