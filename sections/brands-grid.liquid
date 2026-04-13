@@ -386,7 +386,7 @@
             
             {% if image_url != blank %}
               <div class="brand-logo-wrapper">
-                <img src="{{ image_url }}" alt="{{ title }}" class="brand-logo" loading="lazy" width="150" height="150">
+                <img src="{{ image_url }}" alt="{{ title }}" class="brand-logo" loading="lazy" decoding="async" width="150" height="150">
               </div>
             {% endif %}
             
@@ -412,19 +412,19 @@
 
     let currentFilter = 'all';
     let currentSearch = '';
+    let searchTimer = null;
 
     function filterBrands() {
       let visibleCount = 0;
 
-      cards.forEach(card => {
+      for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
         const title = card.getAttribute('data-title');
         const letter = card.getAttribute('data-letter');
         const isNumeric = !isNaN(letter);
 
-        // Search Match
         const matchesSearch = title.includes(currentSearch);
 
-        // Letter Match
         let matchesFilter = true;
         if (currentFilter !== 'all') {
           if (currentFilter === '#') {
@@ -440,26 +440,19 @@
         } else {
           card.classList.add('hidden');
         }
-      });
-
-      // Show/Hide Empty State
-      if (visibleCount === 0) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
       }
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // Event: Search
     searchInput.addEventListener('input', (e) => {
       currentSearch = e.target.value.toLowerCase().trim();
-      filterBrands();
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(filterBrands, 150);
     });
 
-    // Event: A-Z Filter
     azButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Active state
         azButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 

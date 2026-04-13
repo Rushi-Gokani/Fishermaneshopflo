@@ -237,44 +237,9 @@
     }
   }
 
-  /* Mobile heading alignment fix (max-width: 768px) */
-  @media screen and (max-width: 768px) {
-    .section-resource-list__header {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      text-align: center !important;
-      padding: 0 1rem !important;
-    }
-    
-    .section-resource-list__header > * {
-      width: 100% !important;
-      max-width: 100% !important;
-      text-align: center !important;
-      margin-bottom: 0.5rem !important;
-    }
-    
-    .section-resource-list__header h1,
-    .section-resource-list__header h2,
-    .section-resource-list__header h3,
-    .section-resource-list__header h4,
-    .section-resource-list__header p {
-      text-align: center !important;
-      width: 100% !important;
-      margin: 0 0 0.5rem 0 !important;
-      line-height: 1.3 !important;
-    }
-    
-    .section-resource-list__content {
-      padding: 0 1rem !important;
-    }
-  }
-
-  /* Small mobile heading fix (max-width: 480px) */
-  @media screen and (max-width: 480px) {
-    .section-resource-list__header {
-      padding: 0 0.75rem !important;
-    }
+  .product-grid__item {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 520px;
   }
 {% endstylesheet %}
 

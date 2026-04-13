@@ -146,7 +146,7 @@
         });
       });
 
-      console.log('[CardSliderImage] Initialized', { images: this.images.length });
+
     }
 
     updateSlider() {
@@ -176,7 +176,7 @@
       this.isDragging = true;
       this.startX = e.touches[0].clientX;
       this.prevTranslate = this.currentIndex * -100;
-      console.log('[CardSliderImage] Touch start', { currentIndex: this.currentIndex, startX: this.startX });
+
     }
 
     handleTouchMove(e) {
@@ -203,7 +203,7 @@
       const endX = e.changedTouches[0].clientX;
       const diff = endX - this.startX;
 
-      console.log('[CardSliderImage] Touch end', { diff, currentIndex: this.currentIndex });
+
 
       if (Math.abs(diff) > 50) {
         if (diff < 0 && this.currentIndex < this.images.length - 1) {
@@ -266,6 +266,6 @@
     customElements.define('card-slider-image', CardSliderImage);
   }
 
-  console.log('[CardSliderImage] Script loaded');
+
 })();
 </script>

@@ -9,7 +9,6 @@
 {%- endcomment -%}
 
 {% assign block_settings = block.settings %}
-{% assign card_id = block.id | append: '-' | append: product.id %}
 {% assign accent_color = '#40C4FF' %}
 {% assign media_count = product.media | size %}
 
@@ -42,7 +41,7 @@
 %}
 
 {% style %}
-  .product-card-{{ card_id }} {
+  .pc-card {
     background-color: #FFFFFF;
     border: 1px solid #F0F0F0;
     border-radius: 10px;
@@ -52,22 +51,23 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     height: 100%;
     position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 520px;
   }
 
-  .product-card-{{ card_id }}:hover {
+  .pc-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     transform: translateY(-4px);
   }
 
-  /* Top section - Badge and Heart */
-  .product-card-top-{{ card_id }} {
+  .pc-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-shrink: 0;
   }
 
-  .product-card-badge-{{ card_id }} {
+  .pc-badge {
     background-color: #FFFFFF;
     color: #000000;
     font-size: 14px;
@@ -76,10 +76,7 @@
     border-radius: 10px;
   }
 
-
-
-  /* Image section with swipeable slider */
-  .product-card-image-wrapper-{{ card_id }} {
+  .pc-img-wrap {
     position: relative;
     margin-bottom: 8px;
     flex-shrink: 0;
@@ -88,14 +85,13 @@
     z-index: 2;
   }
 
-  .product-card-slider-{{ card_id }} {
+  .pc-slider {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
   }
 
-  /* Navigation arrows - visible by default for smooth swiping */
-  .product-card-arrow-{{ card_id }} {
+  .pc-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -110,37 +106,37 @@
     cursor: pointer;
     opacity: 1;
     visibility: visible;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     z-index: 10;
     box-shadow: none;
   }
 
-  .product-card-arrow-{{ card_id }}:hover {
+  .pc-arrow:hover {
     background-color: rgba(0, 0, 0, 0.05);
     box-shadow: none;
     transform: translateY(-50%) scale(1.1);
   }
 
-  .product-card-arrow-prev-{{ card_id }} {
+  .pc-arrow-prev {
     left: 8px;
   }
 
-  .product-card-arrow-next-{{ card_id }} {
+  .pc-arrow-next {
     right: 8px;
   }
 
-  .product-card-arrow-{{ card_id }}:disabled {
+  .pc-arrow:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
 
-  .product-card-arrow-{{ card_id }} svg {
+  .pc-arrow svg {
     width: 16px;
     height: 16px;
     color: #000000;
   }
 
-  .product-card-slider-container-{{ card_id }} {
+  .pc-slider-ct {
     display: flex;
     transition: transform 0.3s ease;
     cursor: grab;
@@ -151,24 +147,23 @@
     -webkit-touch-callout: none;
   }
 
-  /* Prevent images from being dragged natively */
-  .product-card-slider-container-{{ card_id }} img {
+  .pc-slider-ct img {
     -webkit-user-drag: none;
     user-drag: none;
     pointer-events: none;
   }
 
-  .product-card-slider-container-{{ card_id }}.dragging {
+  .pc-slider-ct.dragging {
     cursor: grabbing;
     transition: none;
   }
 
-  .product-card-slider-container-{{ card_id }} > * {
+  .pc-slider-ct > * {
     flex: 0 0 100%;
     display: block;
   }
 
-  .product-card-image-{{ card_id }} {
+  .pc-img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -178,8 +173,7 @@
     border-radius: 10px;
   }
 
-  /* Pagination dots */
-  .product-card-dots-{{ card_id }} {
+  .pc-dots {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,7 +183,7 @@
     z-index: 2;
   }
 
-  .product-card-dot-{{ card_id }} {
+  .pc-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -198,12 +192,11 @@
     cursor: pointer;
   }
 
-  .product-card-dot-{{ card_id }}.active {
+  .pc-dot.active {
     background-color: {{ accent_color }};
   }
 
-  /* Bottom section */
-  .product-card-content-{{ card_id }} {
+  .pc-content {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -211,7 +204,7 @@
     min-height: 0;
   }
 
-  .product-card-brand-{{ card_id }} {
+  .pc-brand {
     font-size: 12px;
     font-weight: 400;
     color: {{ accent_color }};
@@ -219,18 +212,18 @@
     flex-shrink: 0;
   }
 
-  .product-card-brand-link-{{ card_id }} {
+  .pc-brand-link {
     color: inherit;
     text-decoration: none;
     position: relative;
     z-index: 2;
   }
 
-  .product-card-brand-link-{{ card_id }}:hover {
+  .pc-brand-link:hover {
     opacity: 0.85;
   }
 
-  .product-card-title-{{ card_id }} {
+  .pc-title {
     font-size: 14px;
     font-weight: 700;
     font-family: var(--font-heading--family);
@@ -247,7 +240,7 @@
     text-overflow: ellipsis;
   }
 
-  .product-card-title-{{ card_id }} a {
+  .pc-title a {
     color: inherit;
     text-decoration: none;
     transition: opacity 0.3s ease;
@@ -258,18 +251,18 @@
     text-align: left;
   }
 
-  .product-card-title-{{ card_id }} a::after {
+  .pc-title a::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
   }
 
-  .product-card-title-{{ card_id }} a:hover {
+  .pc-title a:hover {
     opacity: 0.7;
   }
 
-  .product-card-price-{{ card_id }} {
+  .pc-price {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
@@ -277,19 +270,19 @@
     flex-shrink: 0;
   }
 
-  .product-card-price-{{ card_id }} .compare-price {
+  .pc-price .compare-price {
     text-decoration: line-through;
     opacity: 0.6;
     margin-left: 8px;
   }
 
-  .product-card-single-image-link-{{ card_id }} {
+  .pc-single-link {
     display: block;
     border-radius: 10px;
     overflow: hidden;
   }
 
-  .product-card-discount-badge-{{ card_id }} {
+  .pc-discount {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -306,7 +299,7 @@
   }
 
   @media screen and (max-width: 749px) {
-    .product-card-discount-badge-{{ card_id }} {
+    .pc-discount {
       top: 6px;
       right: 6px;
       font-size: 10px;
@@ -315,8 +308,7 @@
     }
   }
 
-  /* Buy Now button */
-  .product-card-buy-btn-{{ card_id }} {
+  .pc-buy-btn {
     width: 100%;
     background-color: {{ accent_color }};
     color: #000000;
@@ -326,58 +318,55 @@
     border-radius: 10px;
     padding: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     margin-top: 8px;
     flex-shrink: 0;
     position: relative;
     z-index: 2;
   }
 
-  .product-card-buy-btn-{{ card_id }}:hover:not(:disabled) {
+  .pc-buy-btn:hover:not(:disabled) {
     opacity: 0.9;
     transform: scale(1.02);
   }
 
-  .product-card-buy-btn-{{ card_id }}:disabled {
+  .pc-buy-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
   @media screen and (max-width: 749px) {
-    .product-card-{{ card_id }} {
-    }
-
-    .product-card-title-{{ card_id }} {
+    .pc-title {
       font-size: 14px;
     }
 
-    .product-card-buy-btn-{{ card_id }} {
+    .pc-buy-btn {
       font-size: 14px;
       padding: 12px;
     }
 
-    .product-card-arrow-{{ card_id }} {
+    .pc-arrow {
       display: none !important;
     }
 
-    .product-card-slider-container-{{ card_id }} {
+    .pc-slider-ct {
       touch-action: pan-y pan-x;
     }
   }
 {% endstyle %}
 
-<card-slider class="product-card-{{ card_id }}" data-total-slides="{{ product.media.size | default: 1 | at_most: 3 }}">
+<card-slider class="pc-card" data-total-slides="{{ product.media.size | default: 1 | at_most: 3 }}">
   <!-- Top Section: Badge -->
   {% if show_badge %}
-    <div class="product-card-top-{{ card_id }}" style="margin-bottom: 4px;">
-      <span class="product-card-badge-{{ card_id }}">Best Seller</span>
+    <div class="pc-top" style="margin-bottom: 4px;">
+      <span class="pc-badge">Best Seller</span>
     </div>
   {% endif %}
 
   <!-- Image Section with Swipeable Slider -->
-  <div class="product-card-image-wrapper-{{ card_id }}">
+  <div class="pc-img-wrap">
     {%- assign is_best_seller = false -%}
-    {%- for collection in product.collections -%}
+    {%- for collection in product.collections limit: 5 -%}
       {%- if collection.title == 'Best Sellers' -%}
         {%- assign is_best_seller = true -%}
         {%- break -%}
@@ -388,19 +377,20 @@
       <img src="https://cdn.shopify.com/s/files/1/0665/2887/0715/files/1722944964203-352234792-BADGES1.png?v=1722945193" 
            alt="Best Seller"
            class="best-seller-badge-image"
-           style="position: absolute; top: 10px; left: 10px; z-index: 5; width: 70px; height: auto;">
+           style="position: absolute; top: 10px; left: 10px; z-index: 5; width: 70px; height: auto;"
+           loading="lazy" decoding="async" width="70" height="70">
     {%- endif -%}
     {% if on_sale and discount_percent > 0 %}
-      <div class="product-card-discount-badge-{{ card_id }}">
+      <div class="pc-discount">
         Save {{ discount_percent | round }}%
       </div>
     {% endif %}
 
     {% if has_multiple_media %}
-      <div class="product-card-slider-{{ card_id }}">
+      <div class="pc-slider">
         <!-- Previous Arrow -->
         <button
-          class="product-card-arrow-{{ card_id }} product-card-arrow-prev-{{ card_id }}"
+          class="pc-arrow pc-arrow-prev"
           aria-label="Previous image"
           data-arrow-prev
         >
@@ -411,7 +401,7 @@
 
         <!-- Next Arrow -->
         <button
-          class="product-card-arrow-{{ card_id }} product-card-arrow-next-{{ card_id }}"
+          class="pc-arrow pc-arrow-next"
           aria-label="Next image"
           data-arrow-next
         >
@@ -420,26 +410,28 @@
           </svg>
         </button>
 
-        <div class="product-card-slider-container-{{ card_id }}" data-slider data-product-url="{{ product.url }}">
+        <div class="pc-slider-ct" data-slider data-product-url="{{ product.url }}">
           {% if media_count > 0 %}
             {% for media in product.media limit: 3 %}
               {% if media.media_type == 'image' %}
-                <a href="{{ product.url }}" tabindex="-1" draggable="false" class="product-card-image-link-{{ card_id }}">
+                <a href="{{ product.url }}" tabindex="-1" draggable="false" class="pc-img-link">
                   <img
                     src="{{ media | image_url: width: 400 }}"
                     alt="{{ media.alt | escape }}"
                     loading="lazy"
+                    decoding="async"
                     width="400"
                     height="400"
-                    class="product-card-image-{{ card_id }}"
+                    class="pc-img"
                   >
                 </a>
               {% elsif media.media_type == 'video' %}
                 <video
-                  class="product-card-image-{{ card_id }}"
+                  class="pc-img"
                   muted
                   loop
                   playsinline
+                  preload="none"
                   onclick="this.paused ? this.play() : this.pause()"
                 >
                   <source src="{{ media.sources[1].url }}" type="video/mp4">
@@ -447,16 +439,16 @@
               {% endif %}
             {% endfor %}
           {% else %}
-            {{ 'product-' | append: product.id | placeholder_svg_tag: 'product-card-image-' | append: card_id }}
+            {{ 'product-' | append: product.id | placeholder_svg_tag: 'pc-img' }}
           {% endif %}
         </div>
       </div>
 
       <!-- Pagination Dots -->
-      <div class="product-card-dots-{{ card_id }}">
+      <div class="pc-dots">
         {% for media in product.media limit: 3 %}
           <span
-            class="product-card-dot-{{ card_id }}{% if forloop.first %} active{% endif %}"
+            class="pc-dot{% if forloop.first %} active{% endif %}"
             data-dot
             data-index="{{ forloop.index | minus: 1 }}"
           ></span>
@@ -465,7 +457,7 @@
     {% else %}
       <a
         href="{{ product.url }}"
-        class="product-card-single-image-link-{{ card_id }}"
+        class="pc-single-link"
         aria-label="{{ product.title | escape }}"
       >
         {% if product.featured_image %}
@@ -473,33 +465,34 @@
             src="{{ product.featured_image | image_url: width: 400 }}"
             alt="{{ product.featured_image.alt | escape }}"
             loading="lazy"
+            decoding="async"
             width="400"
             height="400"
-            class="product-card-image-{{ card_id }}"
+            class="pc-img"
           >
         {% else %}
-          {{ 'product-' | append: product.id | placeholder_svg_tag: 'product-card-image-' | append: card_id }}
+          {{ 'product-' | append: product.id | placeholder_svg_tag: 'pc-img' }}
         {% endif %}
       </a>
     {% endif %}
   </div>
 
   <!-- Bottom Section: Brand, Title, Price, Button -->
-  <div class="product-card-content-{{ card_id }}">
+  <div class="pc-content">
     {% if product.vendor %}
       {%- assign vendor_handle = product.vendor | handleize -%}
-      <p class="product-card-brand-{{ card_id }}">
-        <a href="{{ routes.collections_url }}/{{ vendor_handle }}" class="product-card-brand-link-{{ card_id }}">
+      <p class="pc-brand">
+        <a href="{{ routes.collections_url }}/{{ vendor_handle }}" class="pc-brand-link">
           {{ product.vendor }}
         </a>
       </p>
     {% endif %}
 
-    <h3 class="product-card-title-{{ card_id }}">
+    <h3 class="pc-title">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
 
-    <p class="product-card-price-{{ card_id }}">
+    <p class="pc-price">
       {% if on_sale %}
         <span class="sale-price">{{ product.price | money }}</span>
         <span class="compare-price">{{ product.compare_at_price | money }}</span>
@@ -509,18 +502,18 @@
     </p>
 
     {% comment %} {% if sold_out %}
-      <button class="product-card-buy-btn-{{ card_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+      <button class="pc-buy-btn disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
     {% else %}
-      <button type="button" class="product-card-buy-btn-{{ card_id }}" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
+      <button type="button" class="pc-buy-btn" onclick="handleAddToCart(event, {{ product.selected_or_first_available_variant.id }})">
         {{ 'Add to Cart' }}
       </button>
 
     {% endif %} {% endcomment %}
-     <div class="product-card-buy-form-{{ card_id }}">
+     <div class="pc-buy-form">
         {% if sold_out %}
-          <button class="product-card-buy-btn-{{ card_id }} disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
+          <button class="pc-buy-btn disabled" disabled>{{ 'products.product.sold_out' | t | default: 'Sold Out' }}</button>
         {% else %}
-            <button type="button" class="collectionPreorderAddToCartBtn product-card-buy-btn-{{ card_id }}" onclick="window.location.href='{{ product.url }}'">
+            <button type="button" class="collectionPreorderAddToCartBtn pc-buy-btn" onclick="window.location.href='{{ product.url }}'">
               {{ 'View product' }}
             </button>
         {% endif %}
@@ -529,85 +522,77 @@
 </card-slider>
 
 <script>
+  if (typeof handleAddToCart !== 'function') {
+    function handleAddToCart(event, variantId) {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      const button = event.currentTarget;
+      const originalText = button.textContent;
+      button.textContent = 'Adding...';
+      button.disabled = true;
 
-  function handleAddToCart(event, variantId) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    const button = event.currentTarget;
-    const originalText = button.textContent;
-    button.textContent = 'Adding...';
-    button.disabled = true;
+      const sections = [];
+      document.querySelectorAll('cart-items-component').forEach(el => {
+          if (el.dataset.sectionId) sections.push(el.dataset.sectionId);
+      });
 
-    // Dynamically find section IDs to update (Cart Drawer, Cart Bubble)
-    const sections = [];
-    document.querySelectorAll('cart-items-component').forEach(el => {
-        if (el.dataset.sectionId) sections.push(el.dataset.sectionId);
-    });
-    // Add cart-icon-bubble section if present (often requires specific ID targeting or is part of header)
-    // We rely on component-cart-items to handle its own section update if included, 
-    // or if we miss it, the event dispatch will trigger a re-render fallback if configured.
-
-    const formData = {
-     'items': [{
-      'id': variantId,
-      'quantity': 1
-      }],
-      'sections': sections,
-      'sections_url': window.location.pathname
-    };
-
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      // Dispatch event to open drawer and update content
-      // Structure matches CartAddEvent/CartUpdateEvent expectations in component-cart-items.js
-      const eventDetail = {
-          resource: data, 
-          sourceId: 'product-card', 
-          data: {
-              source: 'product-card',
-              itemCount: 1, 
-              sections: data.sections
-          }
+      const formData = {
+       'items': [{
+        'id': variantId,
+        'quantity': 1
+        }],
+        'sections': sections,
+        'sections_url': window.location.pathname
       };
 
-      document.dispatchEvent(new CustomEvent('cart:update', { 
-          bubbles: true, 
-          detail: eventDetail 
-      }));
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const eventDetail = {
+            resource: data, 
+            sourceId: 'product-card', 
+            data: {
+                source: 'product-card',
+                itemCount: 1, 
+                sections: data.sections
+            }
+        };
 
-      // Dispatch additional event for drawer auto-open
-      document.dispatchEvent(new CustomEvent('ajaxProduct:added', {
-          bubbles: true,
-          detail: eventDetail
-      }));
+        document.dispatchEvent(new CustomEvent('cart:update', { 
+            bubbles: true, 
+            detail: eventDetail 
+        }));
 
-      // Directly open the cart drawer for better UX
-      const cartDrawer = document.querySelector('cart-drawer-component');
-      if (cartDrawer && typeof cartDrawer.open === 'function') {
-        handleFloCartBtn();
-          {% comment %} cartDrawer.open(); {% endcomment %}
-      }
+        document.dispatchEvent(new CustomEvent('ajaxProduct:added', {
+            bubbles: true,
+            detail: eventDetail
+        }));
 
-      button.textContent = 'Added';
-      setTimeout(() => {
+        const cartDrawer = document.querySelector('cart-drawer-component');
+        if (cartDrawer && typeof cartDrawer.open === 'function') {
+          handleFloCartBtn();
+        }
+
+        button.textContent = 'Added';
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.disabled = false;
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
         button.textContent = originalText;
         button.disabled = false;
-      }, 2000);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      button.textContent = originalText;
-      button.disabled = false;
-    });
+      });
+    }
   }
 </script>
