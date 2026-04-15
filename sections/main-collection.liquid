@@ -5,6 +5,7 @@
   fetchpriority="low"
 ></script>
 
+<style id="coll-scroll-hide">html{visibility:hidden!important}</style>
 <script>
   (function() {
     var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
@@ -14,19 +15,34 @@
     var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
     if (!isNaN(savedY) && savedY > 0) {
       sessionStorage.removeItem(STORAGE_KEY);
-      var attempts = 0;
-      function tryScroll() {
-        window.scrollTo(0, savedY);
-        if (window.scrollY < savedY - 50 && attempts < 40) {
-          attempts++;
-          requestAnimationFrame(tryScroll);
+      history.scrollRestoration = 'manual';
+      var done = false;
+      function tryRestore() {
+        if (done) return;
+        window.scrollTo({ top: savedY, behavior: 'instant' });
+        if (window.scrollY >= savedY - 10 || document.readyState === 'complete') {
+          done = true;
+          reveal();
         }
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() { setTimeout(tryScroll, 50); });
-      } else {
-        setTimeout(tryScroll, 50);
+      function reveal() {
+        var el = document.getElementById('coll-scroll-hide');
+        if (el) el.remove();
       }
+      tryRestore();
+      if (!done) {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', tryRestore);
+        }
+        document.addEventListener('readystatechange', tryRestore);
+        window.addEventListener('load', function() {
+          if (!done) { tryRestore(); reveal(); }
+        });
+        setTimeout(function() { if (!done) { tryRestore(); reveal(); } }, 2000);
+      }
+    } else {
+      var hideStyle = document.getElementById('coll-scroll-hide');
+      if (hideStyle) hideStyle.remove();
     }
 
     var saveTimer = null;
