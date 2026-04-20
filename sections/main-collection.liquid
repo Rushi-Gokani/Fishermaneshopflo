@@ -5,7 +5,7 @@
   fetchpriority="low"
 ></script>
 
-<style id="coll-scroll-hide">html{opacity:0!important;overflow:hidden!important;height:100%!important}</style>
+<style id="coll-scroll-hide">html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}</style>
 <script>
   (function() {
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -18,7 +18,7 @@
       if (!existing) {
         var s = document.createElement('style');
         s.id = 'coll-scroll-hide';
-        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important}';
+        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}';
         (document.head || document.documentElement).appendChild(s);
       }
     }
@@ -30,6 +30,8 @@
 
     function setScrollY(y) {
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.body.style.scrollBehavior = 'auto';
       window.scrollTo({ top: y, behavior: 'instant' });
       document.documentElement.scrollTop = y;
       document.body.scrollTop = y;
@@ -66,10 +68,18 @@
           
           setScrollY(savedY);
           
-          if (attempts > 30 || Math.abs(getScrollY() - savedY) < 5) {
+          // Use a stricter threshold and force position
+          if (attempts > 30 || Math.abs(getScrollY() - savedY) < 2) {
             iosDone = true;
+            
+            // Re-apply several times just to be sure Safari doesn't pull back
+            for(var i=0; i<5; i++) setScrollY(savedY);
+
             requestAnimationFrame(function() {
               requestAnimationFrame(function() {
+                // Restore smooth scroll after reveal
+                document.documentElement.style.scrollBehavior = '';
+                document.body.style.scrollBehavior = '';
                 revealPage();
               });
             });
