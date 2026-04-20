@@ -5,16 +5,7 @@
   fetchpriority="low"
 ></script>
 
-<style id="coll-scroll-hide">html{visibility:hidden!important}</style>
-<script>
-  (function() {
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (isIOS) {
-      var iosHide = document.getElementById('coll-scroll-hide');
-      if (iosHide) iosHide.textContent = 'html{visibility:hidden!important;overflow:hidden!important}';
-    }
-  })();
-</script>
+<style id="coll-scroll-hide">html{opacity:0!important;overflow:hidden!important;height:100%!important}</style>
 <script>
   (function() {
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -22,56 +13,139 @@
     var basePath = 'collScroll_' + window.location.pathname;
     var isPaginating = false;
 
-    var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
-    if (!isNaN(savedY) && savedY > 0) {
-      sessionStorage.removeItem(STORAGE_KEY);
-      history.scrollRestoration = 'manual';
-      var done = false;
-      function tryRestore() {
-        if (done) return;
-        if (isIOS) {
-          document.documentElement.scrollTop = savedY;
-          document.body.scrollTop = savedY;
-          window.scrollTo(0, savedY);
-        } else {
-          window.scrollTo({ top: savedY, behavior: 'instant' });
+    function ensureHidden() {
+      var existing = document.getElementById('coll-scroll-hide');
+      if (!existing) {
+        var s = document.createElement('style');
+        s.id = 'coll-scroll-hide';
+        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important}';
+        (document.head || document.documentElement).appendChild(s);
+      }
+    }
+
+    function revealPage() {
+      var el = document.getElementById('coll-scroll-hide');
+      if (el) el.remove();
+    }
+
+    function setScrollY(y) {
+      document.documentElement.scrollTop = y;
+      document.body.scrollTop = y;
+      window.scrollTo(0, y);
+    }
+
+    function getScrollY() {
+      return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    }
+
+    if (isIOS) {
+      var iosSavedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+
+      if (isNaN(iosSavedY) || iosSavedY <= 0) {
+        revealPage();
+      }
+
+      window.addEventListener('pageshow', function(event) {
+        var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+        if (isNaN(savedY) || savedY <= 0) {
+          revealPage();
+          return;
         }
-        var currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-        if (currentY >= savedY - 10 || document.readyState === 'complete') {
-          done = true;
-          if (isIOS) {
-            requestAnimationFrame(function() { reveal(); });
+        sessionStorage.removeItem(STORAGE_KEY);
+        history.scrollRestoration = 'manual';
+
+        var iosDone = false;
+        var attempts = 0;
+
+        function tryIOSRestore() {
+          if (iosDone) return;
+          if (attempts > 80) {
+            iosDone = true;
+            setScrollY(savedY);
+            revealPage();
+            return;
+          }
+          attempts++;
+          setScrollY(savedY);
+          var current = getScrollY();
+          if (current >= savedY - 5) {
+            iosDone = true;
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                revealPage();
+              });
+            });
           } else {
-            reveal();
+            requestAnimationFrame(tryIOSRestore);
           }
         }
-      }
-      function reveal() {
-        var el = document.getElementById('coll-scroll-hide');
-        if (el) el.remove();
-        if (isIOS) {
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          requestAnimationFrame(function() {
+            requestAnimationFrame(tryIOSRestore);
+          });
+        } else {
+          document.addEventListener('DOMContentLoaded', function() {
+            requestAnimationFrame(function() {
+              requestAnimationFrame(tryIOSRestore);
+            });
+          });
         }
-      }
-      tryRestore();
-      if (!done) {
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', tryRestore);
-        }
-        document.addEventListener('readystatechange', tryRestore);
-        window.addEventListener('load', function() {
-          if (!done) { tryRestore(); }
-        });
-        setTimeout(function() { if (!done) { tryRestore(); reveal(); } }, 2000);
-      }
+
+        setTimeout(function() {
+          if (!iosDone) {
+            iosDone = true;
+            setScrollY(savedY);
+            revealPage();
+          }
+        }, 3000);
+      });
+
+      window.addEventListener('pagehide', function() {
+        if (isPaginating) return;
+        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+        ensureHidden();
+      });
+
+      window.addEventListener('beforeunload', function() {
+        if (isPaginating) return;
+        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+        ensureHidden();
+      });
+
     } else {
-      var hideStyle = document.getElementById('coll-scroll-hide');
-      if (hideStyle) hideStyle.remove();
-      if (isIOS) {
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
+      var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+      if (!isNaN(savedY) && savedY > 0) {
+        sessionStorage.removeItem(STORAGE_KEY);
+        history.scrollRestoration = 'manual';
+        var done = false;
+        function tryRestore() {
+          if (done) return;
+          window.scrollTo({ top: savedY, behavior: 'instant' });
+          if (window.scrollY >= savedY - 10 || document.readyState === 'complete') {
+            done = true;
+            revealPage();
+          }
+        }
+        tryRestore();
+        if (!done) {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', tryRestore);
+          }
+          document.addEventListener('readystatechange', tryRestore);
+          window.addEventListener('load', function() {
+            if (!done) { tryRestore(); revealPage(); }
+          });
+          setTimeout(function() { if (!done) { tryRestore(); revealPage(); } }, 2000);
+        }
+      } else {
+        revealPage();
       }
+
+      window.addEventListener('beforeunload', function() {
+        if (isPaginating) return;
+        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+      });
     }
 
     var saveTimer = null;
@@ -97,11 +171,6 @@
           sessionStorage.removeItem(keysToRemove[j]);
         }
       }
-    });
-
-    window.addEventListener('beforeunload', function() {
-      if (isPaginating) return;
-      sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
     });
   })();
 </script>
