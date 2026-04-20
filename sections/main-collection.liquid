@@ -29,9 +29,10 @@
     }
 
     function setScrollY(y) {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo({ top: y, behavior: 'instant' });
       document.documentElement.scrollTop = y;
       document.body.scrollTop = y;
-      window.scrollTo(0, y);
     }
 
     function getScrollY() {
@@ -51,24 +52,21 @@
           revealPage();
           return;
         }
+        
+        // Remove key after reading to prevent issues on manual refresh
         sessionStorage.removeItem(STORAGE_KEY);
-        history.scrollRestoration = 'manual';
+        
+        if (history.scrollRestoration) history.scrollRestoration = 'manual';
 
         var iosDone = false;
         var attempts = 0;
 
         function tryIOSRestore() {
           if (iosDone) return;
-          if (attempts > 80) {
-            iosDone = true;
-            setScrollY(savedY);
-            revealPage();
-            return;
-          }
-          attempts++;
+          
           setScrollY(savedY);
-          var current = getScrollY();
-          if (current >= savedY - 5) {
+          
+          if (attempts > 30 || Math.abs(getScrollY() - savedY) < 5) {
             iosDone = true;
             requestAnimationFrame(function() {
               requestAnimationFrame(function() {
@@ -76,29 +74,22 @@
               });
             });
           } else {
+            attempts++;
             requestAnimationFrame(tryIOSRestore);
           }
         }
 
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          requestAnimationFrame(function() {
-            requestAnimationFrame(tryIOSRestore);
-          });
-        } else {
-          document.addEventListener('DOMContentLoaded', function() {
-            requestAnimationFrame(function() {
-              requestAnimationFrame(tryIOSRestore);
-            });
-          });
-        }
+        // Try immediately
+        tryIOSRestore();
 
+        // Fallback for slower loads
         setTimeout(function() {
           if (!iosDone) {
             iosDone = true;
             setScrollY(savedY);
             revealPage();
           }
-        }, 3000);
+        }, 500);
       });
 
       window.addEventListener('pagehide', function() {
