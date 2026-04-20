@@ -8,6 +8,16 @@
 <style id="coll-scroll-hide">html{visibility:hidden!important}</style>
 <script>
   (function() {
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      var iosHide = document.getElementById('coll-scroll-hide');
+      if (iosHide) iosHide.textContent = 'html{visibility:hidden!important;overflow:hidden!important}';
+    }
+  })();
+</script>
+<script>
+  (function() {
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
     var basePath = 'collScroll_' + window.location.pathname;
     var isPaginating = false;
@@ -19,15 +29,30 @@
       var done = false;
       function tryRestore() {
         if (done) return;
-        window.scrollTo({ top: savedY, behavior: 'instant' });
-        if (window.scrollY >= savedY - 10 || document.readyState === 'complete') {
+        if (isIOS) {
+          document.documentElement.scrollTop = savedY;
+          document.body.scrollTop = savedY;
+          window.scrollTo(0, savedY);
+        } else {
+          window.scrollTo({ top: savedY, behavior: 'instant' });
+        }
+        var currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        if (currentY >= savedY - 10 || document.readyState === 'complete') {
           done = true;
-          reveal();
+          if (isIOS) {
+            requestAnimationFrame(function() { reveal(); });
+          } else {
+            reveal();
+          }
         }
       }
       function reveal() {
         var el = document.getElementById('coll-scroll-hide');
         if (el) el.remove();
+        if (isIOS) {
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+        }
       }
       tryRestore();
       if (!done) {
@@ -36,13 +61,17 @@
         }
         document.addEventListener('readystatechange', tryRestore);
         window.addEventListener('load', function() {
-          if (!done) { tryRestore(); reveal(); }
+          if (!done) { tryRestore(); }
         });
         setTimeout(function() { if (!done) { tryRestore(); reveal(); } }, 2000);
       }
     } else {
       var hideStyle = document.getElementById('coll-scroll-hide');
       if (hideStyle) hideStyle.remove();
+      if (isIOS) {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
     }
 
     var saveTimer = null;
