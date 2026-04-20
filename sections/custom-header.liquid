@@ -1309,6 +1309,7 @@
             autocomplete="off"
             required
           >
+          <input type="hidden" name="options[unavailable_products]" value="last">
           <input type="hidden" name="type" value="product">
           <button type="submit" class="header-search-submit" aria-label="Submit Search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"/></svg>
@@ -1494,20 +1495,24 @@
     searchInputs.forEach((searchInput, index) => {
       const predictiveResults = predictiveResultsContainers[index];
       let debounceTimer;
+      let currentQuery = '';
 
       searchInput.addEventListener('input', function() {
         const query = this.value.trim();
         clearTimeout(debounceTimer);
 
         if (query.length === 0) {
+          currentQuery = '';
           predictiveResults.innerHTML = '';
           predictiveResults.classList.remove('has-results');
           return;
         }
 
+        currentQuery = query;
+
         debounceTimer = setTimeout(() => {
           fetchSuggestions(query, predictiveResults);
-        }, 300);
+        }, 150);
       });
 
       // Close dropdown when clicking outside
@@ -1525,25 +1530,20 @@
     });
 
     function fetchSuggestions(query, container) {
-      console.log('Fetching suggestions for:', query);
       container.innerHTML = '<div class="predictive-search-loading">Searching...</div>';
       container.classList.add('has-results');
 
-      const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=10`;
-      console.log('Fetch URL:', url);
+      const searchFields = 'title,body,product_type,tag,variants.title,vendor,variants.sku';
+      const url = `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=10&resources[options][unavailable_products]=last&resources[options][fields]=${searchFields}`;
 
       fetch(url)
-        .then(response => {
-          console.log('Fetch response status:', response.status);
-          return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-          console.log('Fetch results:', data);
           const products = data.resources && data.resources.results ? data.resources.results.products : [];
           if (products && products.length > 0) {
-            renderResults(products, container);
+            renderResults(products, container, query);
           } else {
-            container.innerHTML = '<div class="predictive-search-no-results">No products found for "' + query + '"</div>';
+            container.innerHTML = '<div class="predictive-search-no-results">No products found for "' + escapeHtml(query) + '"</div>';
           }
         })
         .catch(error => {
@@ -1552,26 +1552,42 @@
         });
     }
 
-    function renderResults(products, container) {
+    function escapeHtml(text) {
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(text));
+      return div.innerHTML;
+    }
+
+    function renderResults(products, container, query) {
       let html = '';
+      var searchInput = document.getElementById('HeaderSearchInput');
       products.forEach(product => {
+        var highlightedTitle = highlightMatch(product.title, query);
         html += `
           <a href="${product.url}" class="predictive-search-item">
-            ${product.image ? `<img src="${product.image}" alt="${product.title}">` : '<div class="predictive-search-item__placeholder"></div>'}
+            ${product.image ? `<img src="${product.image}" alt="${escapeHtml(product.title)}">` : '<div class="predictive-search-item__placeholder"></div>'}
             <div class="predictive-search-item__info">
-              <span class="predictive-search-item__title">${product.title}</span>
+              <span class="predictive-search-item__title">${highlightedTitle}</span>
               <span class="predictive-search-item__price">${product.price}</span>
             </div>
           </a>
         `;
       });
-      // Add 'View All' link if there might be more results
+      var currentQuery = searchInput ? searchInput.value : query;
       html += `
         <div style="padding: 12px 20px; text-align: center; border-top: 1px solid #f1f5f9; background: #f8fafc;">
-          <a href="/search?q=${encodeURIComponent(document.getElementById('HeaderSearchInput').value)}&type=product" style="display: inline-block; padding: 8px 24px; background: #40c4ff; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 8px; transition: background 0.2s;">View All Results</a>
+          <a href="/search?q=${encodeURIComponent(currentQuery)}&type=product" style="display: inline-block; padding: 8px 24px; background: #40c4ff; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 8px; transition: background 0.2s;">View All Results</a>
         </div>
       `;
       container.innerHTML = html;
+    }
+
+    function highlightMatch(title, query) {
+      if (!query || !title) return escapeHtml(title);
+      var escapedTitle = escapeHtml(title);
+      var escapedQuery = escapeHtml(query);
+      var regex = new RegExp('(' + escapedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      return escapedTitle.replace(regex, '<mark style="background:rgba(64,196,255,0.2);color:inherit;padding:0 2px;border-radius:2px;">$1</mark>');
     }
 
     const sidebarItems = document.querySelectorAll('.sidebar-item');
