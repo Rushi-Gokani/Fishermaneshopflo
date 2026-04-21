@@ -6,7 +6,9 @@
       placeholder="Search for rods, reels, lures..."
       class="header-search-inline__input"
       aria-label="Search"
+      autocomplete="off"
     >
+    <input type="hidden" name="options[prefix]" value="last">
     <div class="header-search-inline__actions">
       <button type="submit" class="header-search-inline__submit" aria-label="Submit Search">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
@@ -30,6 +32,8 @@
     </div>
   </form>
 </div>
+
+<script src="{{ 'smart-search.js' | asset_url }}" defer></script>
 
 <style>
 .header-search-inline {
@@ -106,5 +110,180 @@
   color: #333;
   display: flex;
   align-items: center;
+}
+
+/* ── Smart Search Dropdown ───────────────────────────────────────────── */
+.smart-search__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+  z-index: 1000;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 8px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d9e0 transparent;
+}
+.smart-search__dropdown[hidden] {
+  display: none;
+}
+
+.smart-search__correction {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #6b7280;
+  background: #f0f7ff;
+  border-bottom: 1px solid #e0e6ed;
+  margin-bottom: 4px;
+}
+.smart-search__correction strong {
+  color: #2563eb;
+}
+
+.smart-search__group {
+  padding: 4px 0;
+}
+.smart-search__group + .smart-search__group {
+  border-top: 1px solid #f0f2f5;
+}
+.smart-search__group-title {
+  padding: 6px 16px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+}
+
+.smart-search__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+.smart-search__item:hover,
+.smart-search__item--active {
+  background-color: #f5f7fa;
+}
+
+.smart-search__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #f0f2f5;
+  border-radius: 8px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.smart-search__item-image {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #f0f2f5;
+}
+.smart-search__item-image--placeholder {
+  display: block;
+}
+
+.smart-search__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.smart-search__item-title {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.smart-search__item-price {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+.smart-search__item-compare-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-weight: 400;
+  margin-right: 6px;
+}
+
+.smart-search__highlight {
+  background: #fef08a;
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.smart-search__view-all {
+  display: block;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  border-top: 1px solid #f0f2f5;
+  margin-top: 4px;
+  transition: background-color 0.15s ease;
+}
+.smart-search__view-all:hover {
+  background: #f0f7ff;
+}
+
+.smart-search__no-results {
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.smart-search__loading {
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.smart-search__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e0e6ed;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: smart-search-spin 0.6s linear infinite;
+}
+
+@keyframes smart-search-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media screen and (max-width: 749px) {
+  .smart-search__dropdown {
+    border-radius: 12px;
+    max-height: 60vh;
+  }
 }
 </style>
