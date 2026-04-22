@@ -8,14 +8,69 @@
   var MIN_QUERY_LENGTH = 2;
   var MAX_SUGGESTIONS = 8;
 
-  function fetchSuggestions(query, signal) {
+  function fetchProducts(query, signal) {
     var url = '/search/suggest.json?q=' + encodeURIComponent(query) +
-      '&resources[type]=product,collection&resources[limit]=10' +
+      '&resources[type]=product&resources[limit]=8' +
       '&resources[options][unavailable_products]=last' +
       '&resources[options][fields]=title,body,product_type,tag,variants.title,vendor,variants.sku';
     return fetch(url, { signal: signal })
       .then(function (r) { return r.ok ? r.json() : null; })
       .catch(function (e) { if (e && e.name === 'AbortError') throw e; return null; });
+  }
+
+  function fetchCollections(query, signal) {
+    var url = '/search/suggest.json?q=' + encodeURIComponent(query) +
+      '&resources[type]=collection&resources[limit]=5';
+    return fetch(url, { signal: signal })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function (e) { if (e && e.name === 'AbortError') throw e; return null; });
+  }
+
+  function getCollectionHandle(url) {
+    if (!url) return '';
+    var parts = url.split('/collections/');
+    return parts.length > 1 ? parts[parts.length - 1].split('?')[0] : '';
+  }
+
+  function fetchCollectionImage(handle, signal) {
+    if (!handle) return Promise.resolve(null);
+    return fetch('/collections/' + handle + '.json', { signal: signal })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.collection && d.collection.image && d.collection.image.src) {
+          var src = d.collection.image.src;
+          if (src.indexOf('?') === -1) src += '?width=100';
+          else src += '&width=100';
+          return src;
+        }
+        return null;
+      })
+      .catch(function () { return null; });
+  }
+
+  function enrichCollectionsWithImages(collections, signal) {
+    if (!collections || !collections.length) return Promise.resolve([]);
+    var promises = collections.map(function (col) {
+      var handle = getCollectionHandle(col.url);
+      return fetchCollectionImage(handle, signal).then(function (imgUrl) {
+        col._image = imgUrl;
+        return col;
+      });
+    });
+    return Promise.all(promises);
+  }
+
+  function fetchSuggestions(query, signal) {
+    return Promise.all([
+      fetchProducts(query, signal),
+      fetchCollections(query, signal)
+    ]).then(function (res) {
+      var products = (res[0] && res[0].resources && res[0].resources.results && res[0].resources.results.products) || [];
+      var collections = (res[1] && res[1].resources && res[1].resources.results && res[1].resources.results.collections) || [];
+      return enrichCollectionsWithImages(collections, signal).then(function (enrichedCollections) {
+        return { products: products, collections: enrichedCollections };
+      });
+    });
   }
 
   function getProducts(d) { return (d && d.resources && d.resources.results && d.resources.results.products) || []; }
@@ -28,26 +83,18 @@
     function add(v) { v = v.toLowerCase(); if (!seen[v] && v.length >= 2) { seen[v] = true; out.push(v); } }
 
     var vowels = 'aeiou', common = 'rstlnhd';
-    // Insert vowels
     for (var i = 1; i < q.length; i++)
       for (var c = 0; c < 5; c++) add(q.slice(0,i) + vowels[c] + q.slice(i));
-    // Insert consonants
     for (var i = 1; i < q.length; i++)
       for (var c = 0; c < common.length; c++) add(q.slice(0,i) + common[c] + q.slice(i));
-    // Replace with vowels
     for (var i = 0; i < q.length; i++)
       for (var c = 0; c < 5; c++) if (q[i] !== vowels[c]) add(q.slice(0,i) + vowels[c] + q.slice(i+1));
-    // Swaps
     for (var i = 0; i < q.length - 1; i++) add(q.slice(0,i) + q[i+1] + q[i] + q.slice(i+2));
-    // Delete each char
     for (var i = 0; i < q.length; i++) add(q.slice(0,i) + q.slice(i+1));
-    // Dedup letters
     add(q.replace(/(.)\1+/g, '$1'));
-    // Phonetic
     [['ph','f'],['f','ph'],['ck','k'],['k','ck'],['ee','ea'],['ea','ee'],['ai','a'],['a','ai']].forEach(function(p) {
       var idx = q.indexOf(p[0]); if (idx !== -1) add(q.slice(0,idx) + p[1] + q.slice(idx + p[0].length));
     });
-    // Word split
     if (q.indexOf(' ') === -1 && q.length >= 5)
       for (var i = 2; i < q.length - 1; i++) add(q.slice(0,i) + ' ' + q.slice(i));
 
@@ -59,19 +106,17 @@
     if (query.length < MIN_QUERY_LENGTH)
       return Promise.resolve({ products: [], collections: [], correctedQuery: null });
 
-    // STEP 1: Try original query ALONE (fast path)
     return fetchSuggestions(query, signal).then(function (data) {
-      var products = getProducts(data);
+      var products = data.products;
+      var collections = data.collections;
       if (products.length > 0) {
-        // Found results immediately — no need for variations
-        return { products: products.slice(0, MAX_SUGGESTIONS), collections: getCollections(data), correctedQuery: null };
+        return { products: products.slice(0, MAX_SUGGESTIONS), collections: collections, correctedQuery: null };
       }
 
-      // STEP 2: No results — fire variations in parallel
       var variations = generateVariations(query).slice(0, 12);
       var promises = variations.map(function (v) {
         return fetchSuggestions(v, signal).then(function (d) {
-          return { query: v, products: getProducts(d), collections: getCollections(d) };
+          return { query: v, products: d.products, collections: d.collections };
         }).catch(function () { return { query: v, products: [], collections: [] }; });
       });
 
@@ -87,7 +132,6 @@
     });
   }
 
-  // ── Helpers ───────────────────────────────────────────────────────────
   function escapeHTML(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
   function highlightMatch(text, query) {
@@ -108,12 +152,19 @@
     if (correctedQuery)
       html += '<div class="smart-search-correction">Showing results for "<strong>' + escapeHTML(correctedQuery) + '</strong>"</div>';
 
+    var collectionIconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
+
     if (collections && collections.length > 0) {
       html += '<div class="smart-search-group-title">Collections</div>';
       for (var c = 0; c < Math.min(collections.length, 3); c++) {
-        html += '<a href="' + collections[c].url + '" class="predictive-search-item">' +
-          '<div style="width:44px;height:44px;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><path d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg></div>' +
-          '<div class="predictive-search-item__info"><span class="predictive-search-item__title">' + highlightMatch(collections[c].title, dq) + '</span><span style="font-size:12px;color:#94a3b8;">Collection</span></div></a>';
+        var col = collections[c];
+        var colImg = col._image;
+        var colImgHtml = colImg
+          ? '<img src="' + colImg + '" alt="' + escapeHTML(col.title) + '" style="width:44px;height:44px;object-fit:contain;object-position:center;border-radius:8px;background:#f1f5f9;flex-shrink:0;padding:4px;">'
+          : '<div style="width:44px;height:44px;background:linear-gradient(135deg,#e0f2fe,#f1f5f9);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' + collectionIconSvg + '</div>';
+        html += '<a href="' + col.url + '" class="predictive-search-item">' +
+          colImgHtml +
+          '<div class="predictive-search-item__info"><span class="predictive-search-item__title">' + highlightMatch(col.title, dq) + '</span><span style="font-size:12px;color:#94a3b8;">Collection</span></div></a>';
       }
     }
 
@@ -133,7 +184,6 @@
     return html;
   }
 
-  // ── Init ──────────────────────────────────────────────────────────────
   function init() {
     document.querySelectorAll('.header-search-container').forEach(function (wrapper) {
       var input = wrapper.querySelector('.header-search-input');
