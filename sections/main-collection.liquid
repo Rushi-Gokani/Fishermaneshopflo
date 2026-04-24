@@ -5,13 +5,22 @@
   fetchpriority="low"
 ></script>
 
-<style id="coll-scroll-hide">html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}</style>
 <script>
   (function() {
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
     var basePath = 'collScroll_' + window.location.pathname;
     var isPaginating = false;
+
+    var savedYForHide = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+    if (!isNaN(savedYForHide) && savedYForHide > 0) {
+      if (!document.getElementById('coll-scroll-hide')) {
+        var s = document.createElement('style');
+        s.id = 'coll-scroll-hide';
+        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}';
+        (document.head || document.documentElement).appendChild(s);
+      }
+    }
 
     function ensureHidden() {
       var existing = document.getElementById('coll-scroll-hide');

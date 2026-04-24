@@ -157,6 +157,7 @@
           id="FacetFiltersForm--{{ section.id }}-desktop"
           class="facets__form"
           ref="facetsForm"
+          onsubmit="event.preventDefault();"
         >
           {% if should_show_pane %}
               {% render 'filter-remove-buttons',
@@ -311,6 +312,7 @@
               action="{{ results_url }}"
               id="FacetFiltersForm--{{ section.id }}-mobile-sorting-only"
               ref="facetsForm"
+              onsubmit="event.preventDefault();"
             >
               {% render 'sorting',
                 results: results,
@@ -356,6 +358,7 @@
           id="FacetFiltersForm--{{ section.id }}-overflow"
           class="facets__form"
           ref="facetsForm"
+          onsubmit="event.preventDefault();"
         >
           <div
             class="facets__title-wrapper"
