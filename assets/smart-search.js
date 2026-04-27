@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  var DEBOUNCE_MS = 150;
+  var DEBOUNCE_MS = 100;
   var MIN_QUERY_LENGTH = 2;
   var MAX_SUGGESTIONS = 8;
 
@@ -67,9 +67,7 @@
     ]).then(function (res) {
       var products = (res[0] && res[0].resources && res[0].resources.results && res[0].resources.results.products) || [];
       var collections = (res[1] && res[1].resources && res[1].resources.results && res[1].resources.results.collections) || [];
-      return enrichCollectionsWithImages(collections, signal).then(function (enrichedCollections) {
-        return { products: products, collections: enrichedCollections };
-      });
+      return { products: products, collections: collections };
     });
   }
 
@@ -113,7 +111,8 @@
         return { products: products.slice(0, MAX_SUGGESTIONS), collections: collections, correctedQuery: null };
       }
 
-      var variations = generateVariations(query).slice(0, 12);
+      var originalCollections = collections;
+      var variations = generateVariations(query).slice(0, 6);
       var promises = variations.map(function (v) {
         return fetchSuggestions(v, signal).then(function (d) {
           return { query: v, products: d.products, collections: d.collections };
@@ -126,8 +125,8 @@
           if (results[i].products.length > 0 && (!best || results[i].products.length > best.products.length))
             best = results[i];
         }
-        if (best) return { products: best.products.slice(0, MAX_SUGGESTIONS), collections: best.collections, correctedQuery: best.query };
-        return { products: [], collections: [], correctedQuery: null };
+        if (best) return { products: best.products.slice(0, MAX_SUGGESTIONS), collections: best.collections.length > 0 ? best.collections : originalCollections, correctedQuery: best.query };
+        return { products: [], collections: originalCollections, correctedQuery: null };
       });
     });
   }
@@ -136,16 +135,23 @@
 
   function highlightMatch(text, query) {
     if (!query) return escapeHTML(text);
-    var out = escapeHTML(text);
-    query.trim().split(/\s+/).forEach(function (w) {
-      if (w) out = out.replace(new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi'),
-        '<mark style="background:rgba(64,196,255,0.2);color:inherit;padding:0 2px;border-radius:2px;">$1</mark>');
-    });
-    return out;
+    var words = query.trim().split(/\s+/).filter(Boolean);
+    if (!words.length) return escapeHTML(text);
+    var pattern = new RegExp(words.map(function (w) {
+      return w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }).join('|'), 'gi');
+    var result = '', lastIndex = 0, match;
+    while ((match = pattern.exec(text)) !== null) {
+      result += escapeHTML(text.slice(lastIndex, match.index));
+      result += '<span class="search-hl">' + escapeHTML(match[0]) + '</span>';
+      lastIndex = pattern.lastIndex;
+    }
+    result += escapeHTML(text.slice(lastIndex));
+    return result;
   }
 
   function buildResultsHTML(products, collections, correctedQuery, query) {
-    if (!products.length && !collections.length)
+    if (!products.length && (!collections || !collections.length))
       return '<div class="predictive-search-no-results">No products found for "' + escapeHTML(query) + '"</div>';
 
     var html = '', dq = correctedQuery || query;
@@ -158,11 +164,9 @@
       html += '<div class="smart-search-group-title">Collections</div>';
       for (var c = 0; c < Math.min(collections.length, 3); c++) {
         var col = collections[c];
-        var colImg = col._image;
-        var colImgHtml = colImg
-          ? '<img src="' + colImg + '" alt="' + escapeHTML(col.title) + '" style="width:44px;height:44px;object-fit:contain;object-position:center;border-radius:8px;background:#f1f5f9;flex-shrink:0;padding:4px;">'
-          : '<div style="width:44px;height:44px;background:linear-gradient(135deg,#e0f2fe,#f1f5f9);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' + collectionIconSvg + '</div>';
-        html += '<a href="' + col.url + '" class="predictive-search-item">' +
+        var colHandle = getCollectionHandle(col.url);
+        var colImgHtml = '<div class="collection-img-placeholder" style="width:44px;height:44px;background:linear-gradient(135deg,#e0f2fe,#f1f5f9);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' + collectionIconSvg + '</div>';
+        html += '<a href="' + col.url + '" class="predictive-search-item" data-col-handle="' + escapeHTML(colHandle) + '">' +
           colImgHtml +
           '<div class="predictive-search-item__info"><span class="predictive-search-item__title">' + highlightMatch(col.title, dq) + '</span><span style="font-size:12px;color:#94a3b8;">Collection</span></div></a>';
       }
@@ -223,6 +227,20 @@
             dropdown.innerHTML = buildResultsHTML(r.products, r.collections, r.correctedQuery, query);
             selIdx = -1;
             dropdown.classList.add('has-results');
+            // Lazy-load collection images in background
+            if (r.collections && r.collections.length > 0) {
+              enrichCollectionsWithImages(r.collections, cur.signal).then(function () {
+                if (cur.signal.aborted) return;
+                dropdown.querySelectorAll('.predictive-search-item[data-col-handle]').forEach(function (el) {
+                  var handle = el.getAttribute('data-col-handle');
+                  var col = r.collections.find(function (c) { return getCollectionHandle(c.url) === handle; });
+                  if (col && col._image) {
+                    var imgEl = el.querySelector('.collection-img-placeholder');
+                    if (imgEl) imgEl.outerHTML = '<img src="' + col._image + '" alt="" style="width:44px;height:44px;object-fit:contain;object-position:center;border-radius:8px;background:#f1f5f9;flex-shrink:0;padding:4px;">';
+                  }
+                });
+              }).catch(function () {});
+            }
           }).catch(function (e) {
             if (e && e.name === 'AbortError') return;
             dropdown.innerHTML = '<div class="predictive-search-no-results">Something went wrong.</div>';
