@@ -1235,7 +1235,7 @@
         {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
           <cart-drawer-component class="cart-drawer" {% if settings.auto_open_cart_drawer %}auto-open{% endif %}>
             {% comment %} <button class="icon-btn" aria-label="Cart" on:click="/open"> {% endcomment %}
-            <button class="icon-btn flo-header-cart-btn" aria-label="Cart">
+            <button class="icon-btn flo-header-cart-btn flo-ignore-optimisation" aria-label="Cart">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
               <div class="header-actions__cart-icon">
                   {% render 'cart-bubble', limit: 100, live_region: true %}
@@ -1301,7 +1301,7 @@
         {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
           <cart-drawer-component class="cart-drawer" {% if settings.auto_open_cart_drawer %}auto-open{% endif %}>
             {% comment %} <button class="icon-btn" aria-label="Cart" on:click="/open"> {% endcomment %}
-            <button class="icon-btn flo-header-cart-btn" aria-label="Cart">
+            <button class="icon-btn flo-header-cart-btn flo-ignore-optimisation" aria-label="Cart">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
               <div class="header-actions__cart-icon">
                   {% render 'cart-bubble', limit: 100, live_region: true %}
