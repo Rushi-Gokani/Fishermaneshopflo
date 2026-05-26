@@ -199,11 +199,6 @@
           "type": "buy_buttons",
           "settings": {}
         },
-        "razorpay_trusted_business_rtb_widget_aNgxRH": {
-          "type": "shopify://apps/razorpay-trusted-business/blocks/rtb-widget/a54835d4-011c-47fe-94db-3731e39152d6",
-          "disabled": true,
-          "settings": {}
-        },
         "razorpay_affordability_widget_affordability_block_xYLNya": {
           "type": "shopify://apps/razorpay-affordability-widget/blocks/affordability-block/5bf9b115-5933-4c1b-ade0-ef564b250852",
           "settings": {}
@@ -224,7 +219,6 @@
         "variant_picker_Dw7d93",
         "quantity_selector_QCbQFQ",
         "buy_buttons_Uzcza3",
-        "razorpay_trusted_business_rtb_widget_aNgxRH",
         "razorpay_affordability_widget_affordability_block_xYLNya",
         "description_EFDYEG",
         "selleasy_lb_upsell_addon_block_FWxMz9"
@@ -249,6 +243,13 @@
     "main": {
       "type": "product-information",
       "blocks": {
+        "dealeasy_app_block_7xgHwH": {
+          "type": "shopify://apps/dealeasy/blocks/app-block/e47a8634-0496-480d-9e46-6f7fafd34b30",
+          "settings": {
+            "lb-product-handle": "",
+            "lb-product-id": ""
+          }
+        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -489,6 +490,9 @@
           ]
         }
       },
+      "block_order": [
+        "dealeasy_app_block_7xgHwH"
+      ],
       "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
