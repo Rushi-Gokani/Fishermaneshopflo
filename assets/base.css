@@ -3564,7 +3564,7 @@ slideshow-arrows {
   display: flex;
   z-index: var(--layer-heightened);
   pointer-events: none;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
   align-items: flex-end;
 
   &[position='left'] {
@@ -3583,11 +3583,6 @@ slideshow-arrows {
   }
 }
 
-slideshow-arrows:has(.slideshow-control--shape-square),
-slideshow-arrows:has(.slideshow-control--shape-circle) {
-  mix-blend-mode: normal;
-}
-
 slideshow-component[disabled='true'] slideshow-arrows {
   display: none;
 }
@@ -3595,26 +3590,66 @@ slideshow-component[disabled='true'] slideshow-arrows {
 slideshow-arrows .slideshow-control {
   pointer-events: auto;
   opacity: 0;
-  min-height: var(--minimum-touch-target);
-  min-width: var(--minimum-touch-target);
-  padding: 0 var(--padding-xs);
-  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color var(--animation-speed) var(--animation-easing), transform var(--animation-speed) var(--animation-easing);
+}
+
+slideshow-arrows .slideshow-control:hover {
+  background-color: #333333;
+  color: #ffffff;
 }
 
 slideshow-arrows .slideshow-control.slideshow-control--style-none {
   display: none;
 }
 
+slideshow-arrows .slideshow-control .svg-wrapper,
+slideshow-arrows .slideshow-control .svg-wrapper svg {
+  width: 18px;
+  height: 18px;
+}
+
 .media-gallery--carousel slideshow-arrows .slideshow-control {
-  padding-inline: 0 var(--padding-md);
   opacity: 1;
 }
 
 .card-gallery slideshow-arrows .slideshow-control {
   /* Align icons with quick-add button */
-  padding-inline: var(--padding-xl);
+  width: auto;
+  height: auto;
+  min-width: var(--minimum-touch-target);
+  min-height: var(--minimum-touch-target);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 0 var(--padding-xl);
+  box-shadow: none;
+}
 
-  @container (max-width: 249px) {
+.card-gallery slideshow-arrows .slideshow-control:hover {
+  background-color: transparent;
+  color: var(--color-white);
+}
+
+.card-gallery slideshow-arrows .slideshow-control .svg-wrapper,
+.card-gallery slideshow-arrows .slideshow-control .svg-wrapper svg {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+
+@container (max-width: 249px) {
+  .card-gallery slideshow-arrows .slideshow-control {
     padding-inline: 0 var(--padding-sm);
   }
 }
