@@ -52,6 +52,7 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     height: 100%;
     position: relative;
+    max-width: 100%;
   }
 
   .product-card-{{ card_id }}:hover {
@@ -92,6 +93,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    max-width: 100%;
   }
 
   /* Navigation arrows - visible by default for smooth swiping */
@@ -145,7 +147,7 @@
     transition: transform 0.3s ease;
     cursor: grab;
     width: 100%;
-    touch-action: none;
+    touch-action: pan-y;
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -361,7 +363,7 @@
     }
 
     .product-card-slider-container-{{ card_id }} {
-      touch-action: pan-y pan-x;
+      touch-action: pan-y;
     }
   }
 {% endstyle %}

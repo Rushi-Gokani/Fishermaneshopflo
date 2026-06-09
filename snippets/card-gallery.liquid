@@ -231,18 +231,18 @@
   }
 
   .card-gallery__link slideshow-component:not([disabled]) {
-    touch-action: pan-x pinch-zoom;
+    touch-action: pan-x pan-y pinch-zoom;
   }
 
   /* On mobile, ensure dragging works by removing touch-action constraints */
   @media screen and (max-width: 749px) {
     .card-gallery__link slideshow-component:not([disabled]) {
-      touch-action: none;
+      touch-action: pan-y;
     }
 
     /* Ensure the slideshow captures all pointer events */
     .card-gallery__link slideshow-component:not([disabled]) slideshow-slides {
-      touch-action: none;
+      touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
     }
 
