@@ -264,11 +264,8 @@
               {%- assign compare_price = nil -%}
               {%- assign current_price = current_var.price -%}
               
-              {%- comment -%} Check variant compare_at_price first, then product-level {%- endcomment -%}
-              {%- if current_var.compare_at_price != nil and current_var.compare_at_price != blank and current_var.compare_at_price > 0 -%}
+              {%- if current_var.compare_at_price != nil and current_var.compare_at_price != blank and current_var.compare_at_price > current_var.price -%}
                 {%- assign compare_price = current_var.compare_at_price -%}
-              {%- elsif product.compare_at_price != nil and product.compare_at_price != blank and product.compare_at_price > 0 -%}
-                {%- assign compare_price = product.compare_at_price -%}
               {%- endif -%}
               
               {%- if compare_price != nil and compare_price > current_price -%}
@@ -340,9 +337,6 @@
                                 assign variant_with_image = variant
                               endif
                               assign variant_compare = variant.compare_at_price
-                              if variant_compare == nil or variant_compare == blank or variant_compare == 0
-                                assign variant_compare = product.compare_at_price
-                              endif
                               if variant_compare != nil and variant_compare > variant.price
                                 assign has_variant_sale = true
                               endif
@@ -398,9 +392,7 @@
                               <span class="modern-variant-swatch-label">{{ value }}</span>
                             {%- endif -%}
 
-                            {%- if has_variant_sale -%}
-                              <span class="modern-variant-sale-dot" title="On Sale">SALE</span>
-                            {%- endif -%}
+                            <span class="modern-variant-sale-dot" title="On Sale" {% unless has_variant_sale %}style="display: none;"{% endunless %}>SALE</span>
                           </label>
                         {%- endunless -%}
                       {%- endfor -%}
@@ -435,9 +427,6 @@
                                 assign variant_with_image = variant
                               endif
                               assign variant_compare = variant.compare_at_price
-                              if variant_compare == nil or variant_compare == blank or variant_compare == 0
-                                assign variant_compare = product.compare_at_price
-                              endif
                               if variant_compare != nil and variant_compare > variant.price
                                 assign has_variant_sale = true
                               endif
@@ -493,9 +482,7 @@
                               <span class="modern-variant-swatch-label">{{ value }}</span>
                             {%- endif -%}
 
-                            {%- if has_variant_sale -%}
-                              <span class="modern-variant-sale-dot" title="On Sale">SALE</span>
-                            {%- endif -%}
+                            <span class="modern-variant-sale-dot" title="On Sale" {% unless has_variant_sale %}style="display: none;"{% endunless %}>SALE</span>
                             <span class="modern-variant-sold-out-cross" aria-hidden="true"></span>
                           </label>
                         {%- endif -%}

@@ -1,4 +1,5 @@
 import { morph } from '@theme/morph';
+import { startViewTransition } from '@theme/utilities';
 
 /**
  * A class to re-render sections using the Section Rendering API
@@ -35,7 +36,7 @@ class SectionRenderer {
    * @returns {Promise<string>} The rendered section HTML
    */
   async renderSection(sectionId, options) {
-    const { cache = !Shopify.designMode } = options ?? {};
+    const { cache = !Shopify.designMode, transition } = options ?? {};
     const { url } = options ?? {};
     this.#abortPendingMorph(sectionId);
 
@@ -47,7 +48,11 @@ class SectionRenderer {
     if (!abortController.signal.aborted) {
       this.#abortControllersBySectionId.delete(sectionId);
 
-      morphSection(sectionId, sectionHTML);
+      if (transition) {
+        startViewTransition(() => morphSection(sectionId, sectionHTML), transition);
+      } else {
+        morphSection(sectionId, sectionHTML);
+      }
     }
 
     return sectionHTML;

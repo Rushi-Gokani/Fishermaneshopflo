@@ -82,15 +82,13 @@ class FacetsFormComponent extends Component {
   /**
    * Updates the section
    */
-  #updateSection() {
+  #updateSection = debounce(() => {
     const viewTransition = !this.closest('dialog');
 
-    if (viewTransition) {
-      startViewTransition(() => sectionRenderer.renderSection(this.sectionId), ['product-grid']);
-    } else {
-      sectionRenderer.renderSection(this.sectionId);
-    }
-  }
+    sectionRenderer.renderSection(this.sectionId, {
+      transition: viewTransition ? ['product-grid'] : undefined,
+    });
+  }, 150);
 
   /**
    * Updates filters based on a provided URL

@@ -349,12 +349,7 @@ class ModernProductPage {
       const saveBadge = priceWrapper.querySelector('[data-save-badge]');
       const soldBadge = priceWrapper.querySelector('.modern-product__sold-badge');
 
-      // FALLBACK: Try variant compare_at_price first, then product-level
-      let comparePrice = variant.compare_at_price;
-      if (comparePrice === null || comparePrice === undefined || comparePrice === 0 || comparePrice === '') {
-        comparePrice = this.productJSON.compare_at_price || 0;
-      }
-
+      const comparePrice = variant.compare_at_price || 0;
       const hasDiscount = comparePrice > 0 && comparePrice > variant.price;
       const discountPercent = hasDiscount ? Math.round((comparePrice - variant.price) / comparePrice * 100) : 0;
 
@@ -546,6 +541,13 @@ class ModernProductPage {
         const soldOutCross = swatch.querySelector('.modern-variant-sold-out-cross');
         if (soldOutCross) {
           soldOutCross.style.display = isUnavailable ? 'block' : 'none';
+        }
+
+        // Update sale dot display dynamically based on the matching variant's compare_at_price
+        const saleDot = swatch.querySelector('.modern-variant-sale-dot');
+        if (saleDot) {
+          const hasSale = matchingVariant && matchingVariant.compare_at_price && matchingVariant.compare_at_price > matchingVariant.price;
+          saleDot.style.display = hasSale ? '' : 'none';
         }
       });
     });
