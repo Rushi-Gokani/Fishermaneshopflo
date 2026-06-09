@@ -40,11 +40,6 @@
             "lb-product-id": ""
           }
         },
-        "razorpay_trusted_hidden": {
-          "type": "shopify://apps/razorpay-trusted-business/blocks/rtb-widget/a54835d4-011c-47fe-94db-3731e39152d6",
-          "disabled": true,
-          "settings": {}
-        },
         "razorpay_affordability_hidden": {
           "type": "shopify://apps/razorpay-affordability-widget/blocks/affordability-block/5bf9b115-5933-4c1b-ade0-ef564b250852",
           "settings": {}
@@ -63,6 +58,7 @@
         },
         "trust_badges_hidden": {
           "type": "trust_badges",
+          "disabled": true,
           "settings": {}
         }
       },
@@ -73,7 +69,6 @@
         "variant_picker_hidden",
         "buy_buttons_hidden",
         "dealeasy_hidden",
-        "razorpay_trusted_hidden",
         "razorpay_affordability_hidden",
         "judge_me_snippet_hidden",
         "selleasy_hidden",
