@@ -397,8 +397,6 @@ class ModernProductPage {
         } else {
            if (!variant.available) {
              btnText.textContent = window.theme?.strings?.soldOut || 'Sold out';
-           } else if (isInCart) {
-             btnText.textContent = 'Go to Cart';
            } else {
              btnText.textContent = window.theme?.strings?.addToCart || 'Add to cart';
            }
@@ -406,13 +404,8 @@ class ModernProductPage {
       }
       addToCart.disabled = !variant.available;
 
-      if (isInCart) {
-        addToCart.classList.add('is-in-cart');
-        addToCart.setAttribute('data-action', 'go-to-cart');
-      } else {
-        addToCart.classList.remove('is-in-cart');
-        addToCart.setAttribute('data-action', 'add-to-cart');
-      }
+      addToCart.classList.remove('is-in-cart');
+      addToCart.setAttribute('data-action', 'add-to-cart');
 
       // Update data attributes for Globo
       if (variant.id) {
@@ -616,17 +609,6 @@ class ModernProductPage {
     const form = e.target;
     const addToCartBtn = this.container.querySelector('[data-add-to-cart]');
 
-    if (addToCartBtn && addToCartBtn.classList.contains('is-in-cart')) {
-      if (typeof handleFloCartBtn === 'function') {
-        handleFloCartBtn(null, { loadCartInBackground: true });
-      } else if (window.shopflo && window.shopflo.openCart) {
-        window.shopflo.openCart();
-      } else {
-        window.location.href = '/cart';
-      }
-      return;
-    }
-
     const defaultText = addToCartBtn?.querySelector('.modern-add-to-cart__default');
     const addedText = addToCartBtn?.querySelector('.modern-add-to-cart__added');
     const errorText = addToCartBtn?.querySelector('.modern-add-to-cart__error');
@@ -652,21 +634,8 @@ class ModernProductPage {
 
       if (response.ok) {
         // Success
-        const variantId = addToCartBtn.getAttribute('data-variant-id');
-        if (variantId && !this.cartItems.includes(parseInt(variantId))) {
-          this.cartItems.push(parseInt(variantId));
-        }
-
-        addToCartBtn.classList.add('is-in-cart');
-        addToCartBtn.setAttribute('data-action', 'go-to-cart');
-        if (defaultText) {
-          defaultText.textContent = 'Go to Cart';
-        }
-
         if (defaultText) defaultText.style.display = 'none';
         if (addedText) addedText.style.display = 'flex';
-
-        this.showAddToCartPopup();
 
         // Publish event
         this.publishCartEvent();
@@ -689,71 +658,7 @@ class ModernProductPage {
     }
   }
 
-  showAddToCartPopup() {
-    let existingPopup = document.getElementById('modern-cart-popup');
-    if (existingPopup) {
-      existingPopup.remove();
-    }
 
-    const popup = document.createElement('div');
-    popup.id = 'modern-cart-popup';
-    popup.innerHTML = `
-      <div class="modern-cart-popup__content">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        <span>Added to the cart</span>
-      </div>
-    `;
-
-    if (!document.getElementById('modern-cart-popup-styles')) {
-      const style = document.createElement('style');
-      style.id = 'modern-cart-popup-styles';
-      style.innerHTML = `
-        #modern-cart-popup {
-          position: fixed;
-          top: 20px;
-          right: -300px;
-          background: #fff;
-          border-left: 4px solid #40C4FF;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          padding: 16px 24px;
-          border-radius: 4px;
-          z-index: 999999;
-          transition: right 0.3s ease-in-out;
-          font-family: inherit;
-        }
-        #modern-cart-popup.show {
-          right: 20px;
-        }
-        .modern-cart-popup__content {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          color: #333;
-          font-weight: 500;
-          font-size: 14px;
-        }
-        .modern-cart-popup__content svg {
-          color: #40C4FF;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-
-    document.body.appendChild(popup);
-
-    setTimeout(() => {
-      popup.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-      popup.classList.remove('show');
-      setTimeout(() => {
-        popup.remove();
-      }, 300);
-    }, 3000);
-  }
 
   publishCartEvent() {
     // Trigger cart drawer or cart update
