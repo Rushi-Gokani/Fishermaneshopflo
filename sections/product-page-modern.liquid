@@ -540,23 +540,32 @@
 
                       <!-- Add to Cart Button -->
                       <div class="modern-atc-wrapper product-form__payment-container" style="flex: 1; display: flex; flex-direction: column;">
+                          {%- assign variant_in_cart = false -%}
+                          {%- for item in cart.items -%}
+                            {%- if item.variant_id == current_variant.id -%}
+                              {%- assign variant_in_cart = true -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+
                           <button
                             type="submit"
                             name="add"
-                            class="modern-add-to-cart modern-btn-primary product-form__add-button"
+                            class="modern-add-to-cart modern-btn-primary product-form__add-button {% if variant_in_cart %}is-in-cart{% endif %}"
                             style="background: #40C4FF; color: #fff; border: none; width: 100%; margin: 0; height: 100%; min-height: 48px;"
                             {% if current_variant.available == false %}disabled{% endif %}
                             data-add-to-cart
-                            data-action="add-to-cart"
+                            data-action="{% if variant_in_cart %}go-to-cart{% else %}add-to-cart{% endif %}"
                             data-product-id="{{ product.id }}"
                             data-variant-id="{{ current_variant.id }}"
                             data-product-available="{{ current_variant.available }}"
                           >
                         <span class="modern-add-to-cart__default">
-                          {% if current_variant.available %}
-                            Add to Cart
-                          {% else %}
+                          {% if current_variant.available == false %}
                             Sold Out
+                          {% elsif variant_in_cart %}
+                            Go to Cart
+                          {% else %}
+                            Add to Cart
                           {% endif %}
                         </span>
                         <span class="modern-add-to-cart__added" style="display: none;">
@@ -567,7 +576,7 @@
                         </span>
                         <span class="modern-add-to-cart__error" style="display: none;"></span>
                       </button>
-                    </div>
+                      </div>
                     </div>
 
                     <!-- Globo Pre-order / Back-in-Stock Position Hook - Outside buttons wrapper -->
@@ -736,6 +745,14 @@
       {{ product | json }}
     </script>
   {% endif %}
+
+  <script type="application/json" data-cart-items-json>
+    [
+      {%- for item in cart.items -%}
+        {{ item.variant_id }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
 
   <script type="application/json" data-inventory-json>
     {

@@ -11,6 +11,9 @@ class ModernProductPage {
     this.section = section;
     this.container = section; // The section element IS the container
     this.productJSON = JSON.parse(section.querySelector('[data-product-json]').textContent);
+    
+    const cartItemsJsonStr = section.querySelector('[data-cart-items-json]')?.textContent;
+    this.cartItems = cartItemsJsonStr ? JSON.parse(cartItemsJsonStr) : [];
 
     this.initGallery();
     this.initDriftZoom();
@@ -386,16 +389,30 @@ class ModernProductPage {
     const addToCart = this.container.querySelector('[data-add-to-cart]');
     if (addToCart) {
       const btnText = addToCart.querySelector('.modern-add-to-cart__default');
+      const isInCart = variant.id && this.cartItems.includes(parseInt(variant.id));
+
       if (btnText) {
         if (!variant.id) {
            btnText.textContent = 'Unavailable';
         } else {
-           btnText.textContent = variant.available
-            ? (window.theme?.strings?.addToCart || 'Add to cart')
-            : (window.theme?.strings?.soldOut || 'Sold out');
+           if (!variant.available) {
+             btnText.textContent = window.theme?.strings?.soldOut || 'Sold out';
+           } else if (isInCart) {
+             btnText.textContent = 'Go to Cart';
+           } else {
+             btnText.textContent = window.theme?.strings?.addToCart || 'Add to cart';
+           }
         }
       }
       addToCart.disabled = !variant.available;
+
+      if (isInCart) {
+        addToCart.classList.add('is-in-cart');
+        addToCart.setAttribute('data-action', 'go-to-cart');
+      } else {
+        addToCart.classList.remove('is-in-cart');
+        addToCart.setAttribute('data-action', 'add-to-cart');
+      }
 
       // Update data attributes for Globo
       if (variant.id) {
@@ -598,6 +615,18 @@ class ModernProductPage {
 
     const form = e.target;
     const addToCartBtn = this.container.querySelector('[data-add-to-cart]');
+
+    if (addToCartBtn && addToCartBtn.classList.contains('is-in-cart')) {
+      if (typeof handleFloCartBtn === 'function') {
+        handleFloCartBtn(null, { loadCartInBackground: true });
+      } else if (window.shopflo && window.shopflo.openCart) {
+        window.shopflo.openCart();
+      } else {
+        window.location.href = '/cart';
+      }
+      return;
+    }
+
     const defaultText = addToCartBtn?.querySelector('.modern-add-to-cart__default');
     const addedText = addToCartBtn?.querySelector('.modern-add-to-cart__added');
     const errorText = addToCartBtn?.querySelector('.modern-add-to-cart__error');
@@ -623,6 +652,17 @@ class ModernProductPage {
 
       if (response.ok) {
         // Success
+        const variantId = addToCartBtn.getAttribute('data-variant-id');
+        if (variantId && !this.cartItems.includes(parseInt(variantId))) {
+          this.cartItems.push(parseInt(variantId));
+        }
+
+        addToCartBtn.classList.add('is-in-cart');
+        addToCartBtn.setAttribute('data-action', 'go-to-cart');
+        if (defaultText) {
+          defaultText.textContent = 'Go to Cart';
+        }
+
         if (defaultText) defaultText.style.display = 'none';
         if (addedText) addedText.style.display = 'flex';
 
