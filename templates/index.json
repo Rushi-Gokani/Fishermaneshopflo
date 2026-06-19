@@ -12,6 +12,18 @@
     "hero_slider_blocks_GY7MXc": {
       "type": "hero-slider-blocks",
       "blocks": {
+        "slide_eMGFyz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/VMC_Desktop_Banner_1920x600_2a7baa20-0df9-4f22-8556-b77fb768798a.png",
+            "mobile_image": "shopify://shop_images/VMC_Mobile_Banner.png",
+            "show_content": true,
+            "heading": "Welcome to our store",
+            "subheading": "Discover our latest collection",
+            "button_text": "Shop now",
+            "button_link": "https://fishermanshub.com/collections/hooks?sort_by=best-selling&filter.p.product_type=Double+%26+Treble+Hooks&filter.p.product_type=Single+Hooks&filter.p.vendor=VMC&filter.v.availability=1"
+          }
+        },
         "slide_tEezD4": {
           "type": "slide",
           "settings": {
@@ -38,6 +50,7 @@
         }
       },
       "block_order": [
+        "slide_eMGFyz",
         "slide_tEezD4",
         "slide_r7J7kN"
       ],
