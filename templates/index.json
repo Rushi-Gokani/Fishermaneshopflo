@@ -43,8 +43,8 @@
             "mobile_image": "shopify://shop_images/VMC_Mobile_Banner_32f4ca84-c92f-4676-9d39-4e812c8e802d.png",
             "show_content": true,
             "heading": "",
-            "subheading": "Discover our latest collection",
-            "button_text": "Shop now",
+            "subheading": "",
+            "button_text": "",
             "button_link": ""
           }
         }
