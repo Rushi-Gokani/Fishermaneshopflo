@@ -12,6 +12,18 @@
     "hero_slider_blocks_GY7MXc": {
       "type": "hero-slider-blocks",
       "blocks": {
+        "slide_pD7c8m": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/web_1.png",
+            "mobile_image": "shopify://shop_images/mobile_design_2.png",
+            "show_content": true,
+            "heading": "Welcome to our store",
+            "subheading": "Discover our latest collection",
+            "button_text": "Shop now",
+            "button_link": ""
+          }
+        },
         "slide_tEezD4": {
           "type": "slide",
           "settings": {
@@ -50,6 +62,7 @@
         }
       },
       "block_order": [
+        "slide_pD7c8m",
         "slide_tEezD4",
         "slide_eMGFyz",
         "slide_r7J7kN"
