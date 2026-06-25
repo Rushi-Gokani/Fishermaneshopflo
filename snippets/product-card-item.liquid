@@ -43,6 +43,17 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  @media screen and (max-width: 749px) {
+    .product-card-title-{{ section_id }} {
+      min-height: 80px;
+    }
+    .product-card-{{ section_id }} .product-title-display-text {
+      -webkit-line-clamp: unset !important;
+      display: block !important;
+      overflow: visible !important;
+    }
+  }
 {% endstyle %}
 
 {%- liquid
@@ -162,7 +173,11 @@
     {% endif %}
 
     <h3 class="product-card-title-{{ section_id }}">
-      <a href="{{ product.url }}">{{ product.title }}</a>
+      <a href="{{ product.url }}">
+        <span class="product-card-title-text" data-tooltip="{{ product.title | escape }}">
+          <span class="product-title-display-text">{{ product.title }}</span>
+        </span>
+      </a>
     </h3>
 
     <p class="product-card-price-{{ section_id }}">
