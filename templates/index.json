@@ -39,8 +39,8 @@
         "slide_TkbmAi": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/VMC_Desktop_Banner_1920x600_f098dba5-e407-479b-8d0a-20c8b3548a45.png",
-            "mobile_image": "shopify://shop_images/VMC_Mobile_Banner_32f4ca84-c92f-4676-9d39-4e812c8e802d.png",
+            "image": "shopify://shop_images/new_web_1_vmc.png",
+            "mobile_image": "shopify://shop_images/vmc_mobile_banner_1.png",
             "show_content": true,
             "heading": "",
             "subheading": "",
