@@ -50,6 +50,7 @@
         },
         "slide_EGaLgE": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Untitled_design_59.png",
             "mobile_image": "shopify://shop_images/Untitled_design_-_3_1.png",
