@@ -47,12 +47,25 @@
             "button_text": "",
             "button_link": ""
           }
+        },
+        "slide_EGaLgE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_59.png",
+            "mobile_image": "shopify://shop_images/Untitled_design_-_3_1.png",
+            "show_content": false,
+            "heading": "",
+            "subheading": "",
+            "button_text": "",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
         "slide_tEezD4",
         "slide_r7J7kN",
-        "slide_TkbmAi"
+        "slide_TkbmAi",
+        "slide_EGaLgE"
       ],
       "name": "Hero Slider Blocks",
       "settings": {
