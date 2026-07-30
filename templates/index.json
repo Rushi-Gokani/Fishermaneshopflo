@@ -14,6 +14,7 @@
       "blocks": {
         "slide_tEezD4": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/new_w_1halco.png",
             "mobile_image": "shopify://shop_images/halco_mobile_banner_1.png",
@@ -22,18 +23,6 @@
             "subheading": "",
             "button_text": "",
             "button_link": "https://fishermanshub.com/collections/hard-lures?sort_by=best-selling&filter.p.product_type=Hard+Plastic%2FWood+Lures&filter.p.vendor=Halco&filter.v.m.custom.lure_length_2_cm_or_inch_=12+Cm&filter.v.m.custom.lure_length_2_cm_or_inch_=16+Cm&filter.v.m.custom.lure_length_2_cm_or_inch_=19+Cm&filter.p.m.custom.buoyancy=Floating&filter.p.tag=Trolling+Lures&filter.v.availability=1"
-          }
-        },
-        "slide_r7J7kN": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Generated_Image_January_24_2026_-_4_06PM.png",
-            "mobile_image": "shopify://shop_images/mobile-welcome-banner-horizontal-fish.png",
-            "show_content": false,
-            "heading": "Welcome to our store",
-            "subheading": "Discover our latest collection",
-            "button_text": "Shop now",
-            "button_link": ""
           }
         },
         "slide_TkbmAi": {
@@ -46,6 +35,18 @@
             "subheading": "",
             "button_text": "",
             "button_link": "https://fishermanshub.com/products/fishing-life-jacket?_pos=1&_psq=life+jacket&_psid=1ef3e98c5&_ss=e"
+          }
+        },
+        "slide_r7J7kN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Generated_Image_January_24_2026_-_4_06PM.png",
+            "mobile_image": "shopify://shop_images/mobile-welcome-banner-horizontal-fish.png",
+            "show_content": false,
+            "heading": "Welcome to our store",
+            "subheading": "Discover our latest collection",
+            "button_text": "Shop now",
+            "button_link": ""
           }
         },
         "slide_EGaLgE": {
@@ -64,8 +65,8 @@
       },
       "block_order": [
         "slide_tEezD4",
-        "slide_r7J7kN",
         "slide_TkbmAi",
+        "slide_r7J7kN",
         "slide_EGaLgE"
       ],
       "name": "Hero Slider Blocks",
