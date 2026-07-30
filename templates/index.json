@@ -72,7 +72,7 @@
       "name": "Hero Slider Blocks",
       "settings": {
         "autoplay": true,
-        "autoplay_speed": 10,
+        "autoplay_speed": 2,
         "show_arrows": true,
         "show_dots": true,
         "background_color": "#000000",
