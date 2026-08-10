@@ -7,183 +7,46 @@
 
 <script>
   (function() {
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var STORAGE_KEY = 'collScroll_' + window.location.pathname + window.location.search;
-    var basePath = 'collScroll_' + window.location.pathname;
-    var isPaginating = false;
-
-    var savedYForHide = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
-    if (!isNaN(savedYForHide) && savedYForHide > 0) {
-      if (!document.getElementById('coll-scroll-hide')) {
-        var s = document.createElement('style');
-        s.id = 'coll-scroll-hide';
-        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}';
-        (document.head || document.documentElement).appendChild(s);
-      }
-    }
-
-    function ensureHidden() {
-      var existing = document.getElementById('coll-scroll-hide');
-      if (!existing) {
-        var s = document.createElement('style');
-        s.id = 'coll-scroll-hide';
-        s.textContent = 'html{opacity:0!important;overflow:hidden!important;height:100%!important;scroll-behavior:auto!important}body{scroll-behavior:auto!important}';
-        (document.head || document.documentElement).appendChild(s);
-      }
-    }
-
-    function revealPage() {
-      var el = document.getElementById('coll-scroll-hide');
-      if (el) el.remove();
-    }
-
-    function setScrollY(y) {
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      document.documentElement.style.scrollBehavior = 'auto';
-      document.body.style.scrollBehavior = 'auto';
-      window.scrollTo({ top: y, behavior: 'instant' });
-      document.documentElement.scrollTop = y;
-      document.body.scrollTop = y;
-    }
-
-    function getScrollY() {
-      return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-    }
-
-    if (isIOS) {
-      var iosSavedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
-
-      if (isNaN(iosSavedY) || iosSavedY <= 0) {
-        revealPage();
-      }
-
-      window.addEventListener('pageshow', function(event) {
-        var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
-        if (isNaN(savedY) || savedY <= 0) {
-          revealPage();
-          return;
-        }
-        
-        // Remove key after reading to prevent issues on manual refresh
-        sessionStorage.removeItem(STORAGE_KEY);
-        
-        if (history.scrollRestoration) history.scrollRestoration = 'manual';
-
-        var iosDone = false;
-        var attempts = 0;
-
-        function tryIOSRestore() {
-          if (iosDone) return;
-          
-          setScrollY(savedY);
-          
-          // Use a stricter threshold and force position
-          if (attempts > 30 || Math.abs(getScrollY() - savedY) < 2) {
-            iosDone = true;
-            
-            // Re-apply several times just to be sure Safari doesn't pull back
-            for(var i=0; i<5; i++) setScrollY(savedY);
-
-            requestAnimationFrame(function() {
-              requestAnimationFrame(function() {
-                // Restore smooth scroll after reveal
-                document.documentElement.style.scrollBehavior = '';
-                document.body.style.scrollBehavior = '';
-                revealPage();
-              });
-            });
-          } else {
-            attempts++;
-            requestAnimationFrame(tryIOSRestore);
-          }
-        }
-
-        // Try immediately
-        tryIOSRestore();
-
-        // Fallback for slower loads
-        setTimeout(function() {
-          if (!iosDone) {
-            iosDone = true;
-            setScrollY(savedY);
-            revealPage();
-          }
-        }, 500);
-      });
-
-      window.addEventListener('pagehide', function() {
-        if (isPaginating) return;
-        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
-        ensureHidden();
-      });
-
-      window.addEventListener('beforeunload', function() {
-        if (isPaginating) return;
-        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
-        ensureHidden();
-      });
-
-    } else {
-      var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
-      if (!isNaN(savedY) && savedY > 0) {
-        sessionStorage.removeItem(STORAGE_KEY);
-        history.scrollRestoration = 'manual';
-        var done = false;
-        function tryRestore() {
-          if (done) return;
-          window.scrollTo({ top: savedY, behavior: 'instant' });
-          if (window.scrollY >= savedY - 10 || document.readyState === 'complete') {
-            done = true;
-            revealPage();
-          }
-        }
-        tryRestore();
-        if (!done) {
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', tryRestore);
-          }
-          document.addEventListener('readystatechange', tryRestore);
-          window.addEventListener('load', function() {
-            if (!done) { tryRestore(); revealPage(); }
-          });
-          setTimeout(function() { if (!done) { tryRestore(); revealPage(); } }, 2000);
-        }
-      } else {
-        revealPage();
-      }
-
-      window.addEventListener('beforeunload', function() {
-        if (isPaginating) return;
-        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
-      });
-    }
 
     var saveTimer = null;
+    function saveScrollPosition() {
+      if (window.scrollY >= 0) {
+        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
+      }
+    }
+
     window.addEventListener('scroll', function() {
       clearTimeout(saveTimer);
-      saveTimer = setTimeout(function() {
-        sessionStorage.setItem(STORAGE_KEY, window.scrollY.toString());
-      }, 100);
+      saveTimer = setTimeout(saveScrollPosition, 100);
     }, { passive: true });
 
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest('.pagination__link');
-      if (link) {
-        isPaginating = true;
-        var keysToRemove = [];
-        for (var i = 0; i < sessionStorage.length; i++) {
-          var key = sessionStorage.key(i);
-          if (key && key.indexOf(basePath) === 0) {
-            keysToRemove.push(key);
-          }
-        }
-        for (var j = 0; j < keysToRemove.length; j++) {
-          sessionStorage.removeItem(keysToRemove[j]);
-        }
+    window.addEventListener('pagehide', saveScrollPosition);
+
+    function restoreScrollPosition() {
+      var savedY = parseInt(sessionStorage.getItem(STORAGE_KEY), 10);
+      if (!isNaN(savedY) && savedY > 0) {
+        window.scrollTo({ top: savedY, behavior: 'instant' });
+        requestAnimationFrame(function() {
+          window.scrollTo({ top: savedY, behavior: 'instant' });
+        });
+      }
+    }
+
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted || performance.navigation?.type === 2 || (window.performance && performance.getEntriesByType('navigation')[0]?.type === 'back_forward')) {
+        restoreScrollPosition();
       }
     });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', restoreScrollPosition);
+    } else {
+      restoreScrollPosition();
+    }
   })();
 </script>
+
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>

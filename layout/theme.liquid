@@ -15,12 +15,11 @@
       >
     {%- endif -%}
 
-    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    {% comment %} View transition element {% endcomment %}
     {% if settings.transition_to_main_product or settings.page_transition_enabled %}
       <link
         rel="expect"
         href="#MainContent"
-        blocking="render"
         id="view-transition-render-blocker"
       >
     {% endif %}
@@ -264,19 +263,17 @@
     </script>
 
     <script>
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
+      // Ensure pages restored from BFCache (back/forward navigation) are immediately visible & unblocked
       window.addEventListener('pageshow', function(event) {
         if (event.persisted) {
-          var k = 'collScroll_' + window.location.pathname + window.location.search;
-          var sy = parseInt(sessionStorage.getItem(k), 10);
-          if (!isNaN(sy) && sy > 0) {
-            sessionStorage.removeItem(k);
-            window.scrollTo(0, sy);
-          } else {
-            window.scrollTo(0, 0);
-          }
+          var hideStyle = document.getElementById('coll-scroll-hide');
+          if (hideStyle) hideStyle.remove();
+          var blocker = document.getElementById('view-transition-render-blocker');
+          if (blocker) blocker.remove();
+          document.documentElement.style.opacity = '';
+          document.documentElement.style.overflow = '';
+          document.body.style.opacity = '';
+          document.body.style.overflow = '';
         }
       });
     </script>

@@ -1,16 +1,8 @@
 (function () {
   const viewTransitionRenderBlocker = document.getElementById('view-transition-render-blocker');
-  // Remove the view transition render blocker if the user has reduced motion enabled or is on a low power device.
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLowPowerDevice()) {
-    viewTransitionRenderBlocker?.remove();
-  } else {
-    // If the browser didn't manage to parse the main content quickly, at least let the user see something.
-    // We're aiming for the FCP to be under 1.8 seconds since the navigation started.
-    const RENDER_BLOCKER_TIMEOUT_MS = Math.max(0, 1800 - performance.now());
-
-    setTimeout(() => {
-      viewTransitionRenderBlocker?.remove();
-    }, RENDER_BLOCKER_TIMEOUT_MS);
+  // Immediately remove render blocker element to ensure fast page load
+  if (viewTransitionRenderBlocker) {
+    viewTransitionRenderBlocker.remove();
   }
 
   const idleCallback = typeof requestIdleCallback === 'function' ? requestIdleCallback : setTimeout;
@@ -69,7 +61,11 @@
       viewTransition.types.clear();
       viewTransition.types.add(customTransitionType);
 
-      await viewTransition.finished;
+      try {
+        await viewTransition.finished;
+      } catch (_) {
+        // Prevent hanging on canceled or errored view transition
+      }
 
       viewTransition.types.clear();
       viewTransition.types.add('page-navigation');
