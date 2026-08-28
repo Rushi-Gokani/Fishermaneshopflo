@@ -143,6 +143,23 @@
         "type": "shopify://apps/rapid-search/blocks/script/bd827795-feaa-41a8-9219-2b83f238aa7d",
         "disabled": false,
         "settings": {}
+      },
+      "3770645089152979137": {
+        "type": "shopify://apps/rapid-search-bar-filter/blocks/csb/bd827795-feaa-41a8-9219-2b83f238aa7d",
+        "disabled": true,
+        "settings": {
+          "picker_enabled": true,
+          "icon_color": "#6F6F6F",
+          "button_background_color": "#D6D6D6",
+          "position": "below",
+          "placeholder": "Search",
+          "width": 250,
+          "height": 37,
+          "show_on_desktop": true,
+          "show_on_mobile": true,
+          "hideDefaultSearch": true,
+          "css": ".rps-csb-container {\n}"
+        }
       }
     },
     "color_schemes": {
