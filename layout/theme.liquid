@@ -203,7 +203,8 @@
     </style>
 
     {{ content_for_header }}
-  </head>
+    {% render 'rapid-search-settings' %}
+</head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
