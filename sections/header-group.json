@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_X7gMka": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p>Free shipping on orders over €50</p>"
           }
@@ -23,7 +24,7 @@
         "announcement_FRD8bH": {
           "type": "announcement",
           "settings": {
-            "text": "<h6><strong>Ganesh Holiday Notice: No Dispatches between 12th–15th & 18th–20th Sept. Dispatches on 16th & 17th may be irregular. Customer Service will have limited availability during this period. Please plan your orders accordingly.</strong></h6>"
+            "text": "<h6><strong>Ganesh Holiday Notice: Dispatches between 12th to 20th will be limited & irregular. Customer Service will have limited availability during this period. Please plan your orders accordingly.</strong></h6>"
           }
         },
         "announcement_m6fqhC": {
