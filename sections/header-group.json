@@ -22,36 +22,35 @@
         },
         "announcement_m6fqhC": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p>Notice – There will be No Dispatches on 01/06/2026 on the occasion Labour Day. All the orders received during these days will be Dispatched from 04/05/2026.</p>"
           }
         },
         "announcement_EJAUAQ": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p>Free shipping on orders over €50</p>"
           }
         },
         "announcement_YjapkF": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p><br/>FREE FMH Gear Merch On Orders Above ₹10,000<br/><br/></p>"
           }
         },
-        "announcement_azKm8M": {
-          "type": "announcement",
-          "settings": {
-            "text": "<p>Free shipping on orders over €50</p>"
-          }
-        },
         "announcement_PrkxPm": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p><br/>Do not make payments to unknown callers or QR codes claiming your payment was canceled or not received. Always confirm with us via our official WhatsApp about such calls</p>"
           }
         },
         "announcement_PRpUyJ": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p><br/>FREE Gift on Orders Above ₹7500</p>"
           }
@@ -62,7 +61,6 @@
         "announcement_m6fqhC",
         "announcement_EJAUAQ",
         "announcement_YjapkF",
-        "announcement_azKm8M",
         "announcement_PrkxPm",
         "announcement_PRpUyJ"
       ],
