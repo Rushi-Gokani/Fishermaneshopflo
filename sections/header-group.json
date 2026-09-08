@@ -14,6 +14,12 @@
     "top_bar_section": {
       "type": "top-bar",
       "blocks": {
+        "announcement_FRD8bH": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>Ganesh Chaturthi Holiday Notice: Dispatches will remain closed from 12th–15th September and 18th–20th September. Dispatches on 16th & 17th September may be irregular. Customer Service will also have limited availability during this period. Please plan your orders accordingly.</p>"
+          }
+        },
         "announcement_m6fqhC": {
           "type": "announcement",
           "settings": {
@@ -52,6 +58,7 @@
         }
       },
       "block_order": [
+        "announcement_FRD8bH",
         "announcement_m6fqhC",
         "announcement_EJAUAQ",
         "announcement_YjapkF",
