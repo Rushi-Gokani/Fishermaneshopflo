@@ -109,10 +109,7 @@
         {%- endif -%}
 
         {%- if block.settings.show_overlay -%}
-          {% render 'overlay',
-            settings: block.settings,
-            overlay_color: block.settings.overlay_color | default: '#00000026'
-          %}
+          {% render 'overlay', settings: block.settings, overlay_color: block.settings.overlay_color, default: '#00000026' %}
         {%- endif -%}
       </div>
 
@@ -429,3 +426,18 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'overlay',
+                settings: block.settings,
+                overlay_color: block.settings.overlay_color | default: '#00000026'
+              %}
+  to: "{% render 'overlay', settings: block.settings, overlay_color: block.settings.overlay_color,
+    default: '#00000026' %}"
+  position: 3710..3825
+{% endcomment %}
