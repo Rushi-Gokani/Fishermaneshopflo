@@ -30,6 +30,7 @@
         },
         "announcement_FRD8bH": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<h6><strong>Ganesh Holiday Notice: Dispatches between 12th to 20th will be limited & irregular. Customer Service will have limited availability during this period. Please plan your orders accordingly.</strong></h6>"
           }
