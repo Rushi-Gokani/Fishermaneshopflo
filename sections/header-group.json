@@ -16,9 +16,8 @@
       "blocks": {
         "announcement_X7gMka": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "<p>Free shipping on orders over €50</p>"
+            "text": "<p>Notice – There will be No Dispatches on 02/10/2026 on the occasion Gandhi Jayanti. All the orders received during these days will be Dispatched from 05/10/2026.<br/></p>"
           }
         },
         "announcement_rbnqhh": {
