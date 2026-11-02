@@ -3671,7 +3671,8 @@
       "county": "ജില്ല",
       "emirate": "എമിറേറ്റ്",
       "governorate": "ഗവർണറേറ്റ്",
-      "confirm": "ഈ വിലാസം നീക്കം ചെയ്യാൻ ആഗ്രഹിക്കുന്നുവെന്ന് ഉറപ്പാണോ?"
+      "confirm": "ഈ വിലാസം നീക്കം ചെയ്യാൻ ആഗ്രഹിക്കുന്നുവെന്ന് ഉറപ്പാണോ?",
+      "zip_code": "പിൻ കോഡ്"
     },
     "collections": {
       "sorting": {
@@ -3876,7 +3877,8 @@
       "password_confirmation": "പാസ്‌വേഡ് സ്ഥിരീകരണം",
       "first_name": "ആദ്യ പേര്",
       "last_name": "കുടുംബപ്പേര്",
-      "body": "ശരീരം"
+      "body": "ശരീരം",
+      "signature": "മേൽവിലാസം"
     }
   },
   "customer_accounts": {
@@ -4743,9 +4745,101 @@
             "not_eligible_for_cancellation": "റദ്ദാക്കാൻ അർഹതയില്ല",
             "return_window_closed": "മടക്കിനൽകാനുള്ള കാലാവധി അവസാനിച്ചു",
             "already_returned": "ഇനിയും തിരിച്ചെത്തി",
-            "not_eligible_for_return": "മടക്കിനൽകാൻ അർഹതയില്ല"
-          }
+            "not_eligible_for_return": "മടക്കിനൽകാൻ അർഹതയില്ല",
+            "not_eligible": "അർഹതയില്ല"
+          },
+          "quantity_less_than_or_equal_to_error": "{{maxQuantity}} വരെയോ അതിൽ കുറവോ ആയ അളവ് നൽകുക",
+          "quantity_greater_than_or_equal_to_error": "1-നോ അതിലധികമോ ആയ ഒരു അളവ് നൽകുക",
+          "whole_number_quantity_error": "ഒരു പൂർണ്ണസംഖ്യ നൽകുക",
+          "missing_quantity_error": "അളവ് ആവശ്യമാണ്"
+        },
+        "view_all_line_items": "എല്ലാ ഇനങ്ങളും കാണുക",
+        "return_policy_heading": "റീഫണ്ട് പോളിസി"
+      },
+      "banner": {
+        "cannot_request_return_title": "മടക്കിനൽകാൻ അഭ്യർത്ഥിക്കാനാവില്ല",
+        "cannot_request_return_banner": "മടക്കിനൽകൽ ഫീസുകൾ കാരണം, ഈ ഇനങ്ങൾക്ക് നിങ്ങൾക്ക് ലഭിക്കാനിരിക്കുന്ന ഏകദേശ റീഫണ്ട് തുക നെഗറ്റീവ് ആവുന്നു. നിങ്ങൾക്ക് എന്തെങ്കിലും ചോദ്യങ്ങളുണ്ടെങ്കിൽ {{contactUsLink}}.",
+        "contact_us": "ഞങ്ങളെ ബന്ധപ്പെടുക",
+        "selection_limit_title": "നിങ്ങൾ റിട്ടേൺ പരിധിയിലെത്തിയിരിക്കുന്നു",
+        "selection_limit_content": "നിങ്ങൾക്ക് കൂടുതൽ ഇനങ്ങളെ തിരിച്ചുനൽകേണ്ടതുണ്ടെങ്കിൽ, രണ്ടാമതൊരു റിട്ടേൺ അഭ്യർത്ഥന സൃഷ്ടിക്കുക",
+        "cancellation_selection_limit_title": "നിങ്ങൾ റദ്ദാക്കാനുള്ള പരിധിയിലെത്തിയിരിക്കുന്നു",
+        "cancellation_selection_limit_content": "നിങ്ങൾക്ക് കൂടുതൽ ഇനങ്ങളെ റദ്ദാക്കേണ്ടതുണ്ടെങ്കിൽ, രണ്ടാമതൊരു റദ്ദാക്കൽ അഭ്യർത്ഥന സൃഷ്ടിക്കുക"
+      },
+      "customer_mismatch_banner": {
+        "title": {
+          "full_name": "ഈ ഓർഡർ നൽകിയ {{firstName}} {{lastName}}ക്ക് വേണ്ടി നിങ്ങൾ ഒരു റിട്ടേൺ അഭ്യർത്ഥിക്കുകയാണ്",
+          "first_name": "ഈ ഓർഡർ നൽകിയ {{firstName}}-ന് വേണ്ടിയാണ് നിങ്ങൾ റിട്ടേൺ അഭ്യർത്ഥിക്കുന്നത്",
+          "last_name": "ഈ ഓർഡർ നൽകിയ {{lastName}}-ന് വേണ്ടിയാണ് നിങ്ങൾ റിട്ടേൺ അഭ്യർത്ഥിക്കുന്നത്",
+          "no_name": "ഈ ഓർഡർ നൽകിയ ഉപഭോക്താവിന് വേണ്ടി നിങ്ങൾ റിട്ടേൺ അഭ്യർത്ഥിക്കുകയാണ്"
+        },
+        "cancellation_title": {
+          "full_name": "ഈ ഓർഡർ നൽകിയ {{firstName}} {{lastName}}ക്ക് വേണ്ടി നിങ്ങൾ റദ്ദാക്കൽ അഭ്യർത്ഥിക്കുകയാണ്",
+          "first_name": "ഈ ഓർഡർ നൽകിയ {{firstName}}-ന് വേണ്ടി നിങ്ങൾ റദ്ദാക്കാൻ അഭ്യർത്ഥിക്കുകയാണ്",
+          "last_name": "ഈ ഓർഡർ നൽകിയ {{lastName}}ക്ക് വേണ്ടി നിങ്ങൾ റദ്ദാക്കൽ അഭ്യർത്ഥിക്കുകയാണ്",
+          "no_name": "ഈ ഓർഡർ നൽകിയ ഉപഭോക്താവിന് വേണ്ടി നിങ്ങൾ റദ്ദാക്കാൻ അഭ്യർത്ഥിക്കുകയാണ്"
+        },
+        "cancellation_or_return_title": {
+          "full_name": "ഈ ഓർഡർ നൽകിയ {{firstName}} {{lastName}}-ന് വേണ്ടി നിങ്ങൾ റദ്ദാക്കലിനോ മടക്കയറ്റലിനോ അപേക്ഷിക്കുകയാണ്",
+          "first_name": "ഈ ഓർഡർ നൽകിയ {{firstName}}ക്ക് വേണ്ടിയാണ് നിങ്ങൾ റദ്ദാക്കലിനോ മടക്കിനൽകലിനോ അപേക്ഷിക്കുന്നത്",
+          "last_name": "ഈ ഓർഡർ നൽകിയ {{lastName}}ക്ക് വേണ്ടി നിങ്ങൾ റദ്ദാക്കലിനോ മടക്കിനൽകലിനോ അപേക്ഷിക്കുകയാണ്",
+          "no_name": "ഈ ഓർഡർ നൽകിയ ഉപഭോക്താവിന് വേണ്ടി നിങ്ങൾ റദ്ദാക്കലോ മടക്കയറ്റമോ അഭ്യർത്ഥിക്കുകയാണ്"
+        },
+        "description": {
+          "with_email": "ഈ റിട്ടേൺ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട എല്ലാ അറിയിപ്പുകളും {{email}} എന്ന ഇമെയിലിലേക്ക് അയയ്ക്കുന്നതാണ്.",
+          "without_email": "ഈ ഓർഡറുമായി ബന്ധപ്പെട്ട് ഇമെയിൽ വിലാസം ഒന്നും നൽകിയിട്ടില്ലാത്തതിനാൽ, ഈ റിട്ടേൺ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട അറിയിപ്പുകൾ അയയ്ക്കില്ല"
+        },
+        "cancellation_description": {
+          "with_email": "ഈ റദ്ദാക്കൽ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട ഏതൊരു അറിയിപ്പുകളും {{email}} എന്ന ഇമെയിലിലേക്ക് അയയ്ക്കുന്നതാണ്.",
+          "without_email": "ഈ ഓർഡറുമായി ബന്ധപ്പെട്ട് ഇമെയിൽ വിലാസമൊന്നും നൽകിയിട്ടില്ലാത്തതിനാൽ, ഈ റദ്ദാക്കൽ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട അറിയിപ്പുകൾ അയയ്ക്കില്ല"
+        },
+        "cancellation_or_return_description": {
+          "with_email": "ഈ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട അറിയിപ്പുകൾ {{email}} എന്നതിലേക്ക് അയയ്ക്കും",
+          "without_email": "ഈ ഓർഡറുമായി ബന്ധപ്പെട്ട് ഒരു ഇമെയിൽ വിലാസവും നൽകിയിട്ടില്ലാത്തതിനാൽ ഈ അഭ്യർത്ഥനയുമായി ബന്ധപ്പെട്ട അറിയിപ്പുകൾ അയയ്ക്കില്ല"
         }
+      },
+      "errors": {
+        "submit_error": "നിങ്ങളുടെ അഭ്യർത്ഥന പ്രോസസ്സ് ചെയ്യുന്നതിൽ ഒരു പിശക് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക.",
+        "not_authorized_error": "നിങ്ങളുടെ റിട്ടേൺ ഞങ്ങൾക്ക് ഓൺലൈനായി പ്രോസസ്സ് ചെയ്യാൻ കഴിയില്ല. റിട്ടേണിനായി അഭ്യർത്ഥിക്കാൻ ദയവായി {{contactUs}}.",
+        "not_authorized_cancellation_error": "നിങ്ങളുടെ റദ്ദാക്കൽ ഞങ്ങൾക്ക് ഓൺലൈനായി പ്രോസസ്സ് ചെയ്യാൻ കഴിയില്ല. റദ്ദാക്കൽ അഭ്യർത്ഥിക്കാൻ ദയവായി {{contactUs}}.",
+        "contact_us": "ഞങ്ങളെ ബന്ധപ്പെടുക"
+      },
+      "not_found": {
+        "heading": "ഈ പേജ് ലോഡ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ട്",
+        "content": "URL പരിശോധിക്കുക അല്ലെങ്കിൽ ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ വീണ്ടും ശ്രമിക്കുക"
+      },
+      "order_not_found": {
+        "heading": "ഈ വിലാസത്തിൽ ഓർഡറുകൾ ഒന്നുമില്ല",
+        "description": "URL പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക"
+      },
+      "estimated_refund_summary_card": {
+        "return_label": "തിരിച്ചുപോകുന്നു",
+        "item_subtotal_label": "ഇനത്തിന്റെ ഉപആകെത്തുക",
+        "subtotal_with_count": {
+          "one": "ഉപആകെ തുക · {{count}} ഇനം",
+          "other": "ആകെത്തുക · {{count}} ഇനങ്ങൾ"
+        },
+        "discount_label": "കിഴിവ്",
+        "taxes_label": "നികുതികൾ",
+        "estimated_total_label": "ആകെ കണക്കാക്കിയ തുക",
+        "item_selected": {
+          "one": "{{count}} ഇനം",
+          "other": "{{count}} ഇനങ്ങൾ"
+        },
+        "refund_policy_notice": "മടക്കിനൽകലിനും പണം തിരിച്ചുനൽകലിനും അർഹത ഞങ്ങളുടെ {{refundPolicy}}-നെ അടിസ്ഥാനമാക്കിയായിരിക്കും.",
+        "refund_policy": "റീഫണ്ട് നയം",
+        "no_policy_notice": "മടക്കിനൽകൽ, പണം തിരിച്ചുനൽകൽ എന്നിവയ്ക്കുള്ള അർഹത ഞങ്ങളുടെ പണം തിരിച്ചുനൽകൽ നയത്തിന്റെ അടിസ്ഥാനത്തിലായിരിക്കും.",
+        "free": "സൗജന്യം",
+        "restocking_fee_title": "റീസ്റ്റോക്കിംഗ് ഫീ",
+        "return_shipping_fee_title": "ഷിപ്പിംഗ് ഫീസ്"
+      },
+      "order_action": {
+        "request_return": "തിരികെ നൽകാൻ അഭ്യർത്ഥിക്കുക",
+        "cancel_items": "ഇനങ്ങൾ റദ്ദാക്കുക",
+        "return_items": "സാധനങ്ങൾ തിരിച്ചുനൽകുക",
+        "cancel_or_return": "റദ്ദാക്കുക അല്ലെങ്കിൽ മടക്കിനൽകുക",
+        "cancel_items_accessibility_label": "{{orderName}} ഓർഡറിലെ ഇനങ്ങളെ റദ്ദാക്കുക",
+        "return_items_accessibility_label": "{{orderName}} ഓർഡറിലെ ഇനങ്ങളെ മടക്കിനൽകുക",
+        "cancel_or_return_accessibility_label": "{{orderName}} ഓർഡറിലെ ഇനങ്ങളെ റദ്ദാക്കുകയോ തിരിച്ചുനൽകുകയോ ചെയ്യുക"
       }
     },
     "address_form": {
@@ -4759,7 +4853,13 @@
       "save": "സേവ് ചെയ്യുക",
       "save_accessibility_label": "വിലാസം സംരക്ഷിക്കുക {{address}}",
       "section_title_accessibility_label": "മേൽവിലാസം ചേർക്കുക",
-      "update_success_notification": "മേൽവിലാസം പുതുക്കി"
+      "update_success_notification": "മേൽവിലാസം പുതുക്കി",
+      "attention_company": "കമ്പനി/ശ്രദ്ധയ്ക്ക്",
+      "attention_help_text": "ഒരു വ്യക്തിയുടെയോ വകുപ്പിന്റെയോ പേര്",
+      "auto_complete_close_accessibility_label": "നിർദ്ദേശങ്ങൾ ഒഴിവാക്കുക",
+      "auto_complete_title": "നിർദ്ദേശങ്ങൾ",
+      "billing_address": "ബില്ലിംഗ് വിലാസമായി ഉപയോഗിക്കുക",
+      "cancel": "റദ്ദാക്കുക"
     },
     "account_menu": {
       "signed_out_state": {
@@ -5152,6 +5252,44 @@
       "expand_label": "അനൗൺസ്‌മെന്റ് ബാർ വികസിപ്പിക്കുക",
       "collapse_label": "അനൗൺസ്‌മെന്റ് ബാർ ചുരുക്കുക",
       "close_label": "അനൗൺസ്‌മെന്റ് ബാർ ക്ലോസ് ചെയ്യുക"
+    },
+    "addresses": {
+      "add_button_text": "ചേർക്കുക",
+      "add_button_accessibility_label": "മേൽവിലാസം ചേർക്കുക",
+      "back_button": "തിരികെ",
+      "back_button_accessibility_label": "<p>എഡിറ്റിംഗ് വിലാസത്തിലേക്ക് മടങ്ങുക {{address}}</p>",
+      "no_addresses_banner": "വിലാസങ്ങളൊന്നും ചേർത്തിട്ടില്ല",
+      "address_deleted_notification": "വിലാസം നീക്കം ചെയ്തു",
+      "cancel_adding_address_accessibility_label": "വിലാസം ചേർക്കുന്നത് റദ്ദാക്കുക",
+      "default_address": {
+        "badge_label": "സ്വതവേയുള്ളത്",
+        "title": "സ്ഥിര വിലാസം",
+        "title_accessibility_label": "സ്ഥിരസ്ഥിതി വിലാസം: {{address}}"
+      },
+      "delete_button": "നീക്കം ചെയ്യുക",
+      "delete_button_accessibility_label": "{{address}} ഇല്ലാതാക്കുക",
+      "delete_confirmation_button": "വിലാസം നീക്കം ചെയ്യുക",
+      "delete_confirmation_button_accessibility_label": "{{address}} ഇല്ലാതാക്കുക",
+      "delete_confirmation_title": "വിലാസം നീക്കം ചെയ്യണോ?",
+      "delete_confirmation_description": "നിലവിലുള്ള ഓർഡറുകളെ ഇത് ബാധിക്കില്ല.",
+      "edit_button_accessibility_label": "എഡിറ്റ് ചെയ്യുക {{address}}",
+      "edit_modal_title": {
+        "default": "വിലാസം തിരുത്തുക",
+        "billing": "ബില്ലിംഗ് വിലാസം തിരുത്തുക",
+        "shipping": "ഷിപ്പിംഗ് വിലാസം തിരുത്തുക"
+      },
+      "loading_accessibility_message": "വിലാസം ലോഡ് ചെയ്യുന്നു",
+      "loading_addresses_accessibility_message": "വിലാസങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+      "loading_billing_accessibility_message": "ബില്ലിംഗ് വിലാസം ലോഡ് ചെയ്യുന്നു",
+      "loading_finished_accessibility_message": "വിലാസങ്ങളുടെ പുതിയ പേജ് ലോഡ് ആയി.",
+      "loading_shipping_accessibility_message": "ഷിപ്പിംഗ് വിലാസം ലോഡ് ചെയ്യുന്നു",
+      "pagination": {
+        "load_more": "കൂടുതൽ കാണിക്കുക",
+        "load_more_accessibility_label": "കൂടുതൽ വിലാസങ്ങൾ കാണിക്കുക"
+      },
+      "save_new_address_accessibility_label": "വിലാസം സേവ് ചെയ്യുക",
+      "title": "വിലാസങ്ങൾ",
+      "billing_address_dropdown_placeholder": "ബില്ലിംഗ് വിലാസം"
     }
   },
   "content": {
