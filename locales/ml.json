@@ -2766,6 +2766,136 @@
           }
         }
       }
+    },
+    "ui_components": {
+      "clear": "വ്യക്തം",
+      "clipboardCopied": "പകർത്തി",
+      "clipboardFailedToCopy": "പകർത്തുന്നതിൽ പരാജയപ്പെട്ടു",
+      "closeNotification": "അടയ്ക്കുക",
+      "expandNotification": "കൂടുതൽ കാണുക",
+      "closeModal": "അടയ്ക്കുക",
+      "submit": "സമർപ്പിക്കുക",
+      "processing": "പ്രോസസ്സ് ചെയ്യുന്നു…",
+      "increase": "{{type}} വർദ്ധിപ്പിക്കുക",
+      "decrease": "{{type}} കുറയ്ക്കുക",
+      "minimumReached": "കുറഞ്ഞത് {{value}} എത്തി",
+      "maximumReached": "പരമാവധി {{value}} എന്നതിൽ എത്തിച്ചേർന്നു",
+      "january": "ജനുവരി",
+      "february": "ഫെബ്രുവരി",
+      "march": "മാർച്ച്",
+      "april": "ഏപ്രിൽ",
+      "may": "മെയ്",
+      "june": "ജൂൺ",
+      "july": "ജൂലൈ",
+      "august": "ഓഗസ്റ്റ്",
+      "september": "സെപ്റ്റംബർ",
+      "october": "ഒക്ടോബർ",
+      "november": "നവംബർ",
+      "december": "ഡിസംബർ",
+      "monday": "തിങ്കളാഴ്ച",
+      "tuesday": "ചൊവ്വ",
+      "wednesday": "ബുധനാഴ്ച",
+      "thursday": "വ്യാഴാഴ്ച",
+      "friday": "വെള്ളി",
+      "saturday": "ശനിയാഴ്ച",
+      "sunday": "ഞായറാഴ്ച",
+      "mondayAbbreviation": "മോ",
+      "tuesdayAbbreviation": "നീ",
+      "wednesdayAbbreviation": "ഞങ്ങൾ",
+      "thursdayAbbreviation": "ത",
+      "fridayAbbreviation": "അതെ, സത്യം തന്നെ",
+      "saturdayAbbreviation": "സ",
+      "sundayAbbreviation": "സു",
+      "showNextMonth": "അടുത്ത മാസം കാണിക്കുക, {{month}} {{year}}",
+      "showPreviousMonth": "മുമ്പത്തെ മാസം കാണിക്കുക, {{month}} {{year}}",
+      "rangeStart": "പരിധി ആരംഭം",
+      "inRange": "പരിധിക്കുള്ളിൽ",
+      "rangeEnd": "പരിധിയുടെ അവസാനം",
+      "autocompleteOptionsAvailable": {
+        "one": "{{count}} എണ്ണം ലഭ്യമാണ്",
+        "other": "{{count}} ഇനങ്ങൾ ലഭ്യമാണ്"
+      },
+      "removeItem": "{{label}} നീക്കം ചെയ്യുക",
+      "removeTag": "ടാഗ് നീക്കം ചെയ്യുക",
+      "mapClusterTitle": {
+        "one": "{{number}} അടയാളക്കാരന്റെ കൂട്ടം",
+        "other": "{{number}} അടയാളങ്ങളുടെ ക്ലസ്റ്റർ"
+      },
+      "expandSheet": "വികസിപ്പിക്കുക",
+      "qrCode": "ക്യുആർ കോഡ്",
+      "addFile": "ഫയൽ ചേർക്കുക",
+      "dropzoneInvalidFileType": "ഫയൽ തരം പിന്തുണയ്ക്കുന്നില്ല",
+      "dropzoneDraggedOver": "അപ്‌ലോഡ് ചെയ്യാൻ ഫയൽ ഡ്രോപ്പ് ചെയ്യുക",
+      "external": "പുറത്തുള്ള വെബ്‌സൈറ്റ് തുറക്കുന്നു.",
+      "externalNewWindow": "പുറമെ നിന്നുള്ള വെബ്സൈറ്റ് പുതിയൊരു വിൻഡോയിൽ തുറക്കുന്നു.",
+      "loading": "ലോഡ് ആകുന്നു…",
+      "moneyLinesHeaderItem": "ഇനം",
+      "moneyLinesHeaderValue": "മൂല്യം",
+      "newWindow": "പുതിയ വിൻഡോയിൽ തുറക്കുന്നു.",
+      "productThumbnailQuantityLabel": "അളവ്",
+      "removeChip": "ഇനം നീക്കം ചെയ്യുക",
+      "reviewItemHeaderChangeValue": "മൂല്യം മാറ്റുക",
+      "reviewItemHeaderSection": "വിഭാഗം",
+      "reviewItemHeaderValue": "മൂല്യം",
+      "chooseDate": "ഒരു തീയതി തിരഞ്ഞെടുക്കുക"
+    },
+    "profile_preview_bar": {
+      "badge_active": "സജീവം",
+      "badge_draft": "കരട്",
+      "badge_launches": "പ്രകാശനം ചെയ്യുന്നു {{date}}",
+      "badge_paused": "താൽക്കാലികമായി നിർത്തി",
+      "badge_scheduled": "ക്രമീകരിച്ചിരിക്കുന്നു",
+      "badge_traffic": "{{percentage}} ട്രാഫിക്",
+      "edit": "തിരുത്തുക",
+      "exit_preview": "പ്രിവ്യൂവിൽ നിന്ന് പുറത്തുകടക്കുക",
+      "rollout_label": "പുറത്തിറക്കുക",
+      "hide_bar": "ബാർ മറയ്ക്കുക",
+      "navigate_to_admin": "അഡ്മിനിലേക്ക് പോകുക",
+      "actions_button": "പ്രവർത്തനങ്ങൾ"
+    },
+    "editor": {
+      "link_new_tab_confirmation": "<p>ഈ ലിങ്ക് എഡിറ്ററിനുള്ളിൽ തുറക്കാൻ സാധിക്കില്ല. ഇത് ഒരു പുതിയ വിൻഡോയിൽ തുറക്കും ({{resolved_to_link}}). തുടരാൻ OK ക്ലിക്ക് ചെയ്യുക.</p>"
+    },
+    "settings": {
+      "log_out_everywhere": {
+        "button": "എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും സൈൻ ഔട്ട് ചെയ്യുക"
+      }
+    },
+    "shop_ads": {
+      "title": "നിങ്ങൾക്ക് ഇഷ്ടപ്പെട്ടേക്കാവുന്ന മറ്റ് ഉൽപ്പന്നങ്ങൾ"
+    },
+    "knowledge_base": {
+      "self_serve_returns": {
+        "enabled": "ഉപഭോക്താക്കൾക്ക് അവരുടെ അക്കൗണ്ട് വഴി തന്നെ റിട്ടേണുകൾ ആവശ്യപ്പെടാനും കൈകാര്യം ചെയ്യാനും സാധിക്കും.",
+        "disabled": "ഈ സ്റ്റോറിൽ ഉപഭോക്തൃ അക്കൗണ്ടുകൾ വഴി നേരിട്ട് റിട്ടേൺ ചെയ്യാൻ സാധിക്കില്ല. എങ്കിലും റിട്ടേണുകൾ സ്വീകരിക്കുന്നതാണ്. റിട്ടേൺ ചെയ്യുന്നതെങ്ങനെയെന്ന് അറിയാൻ സ്റ്റോറിന്റെ റിട്ടേൺ പോളിസിയോ വെബ്സൈറ്റോ പരിശോധിക്കുക, അല്ലെങ്കിൽ സ്റ്റോറുമായി ബന്ധപ്പെടുക."
+      }
+    },
+    "subscriptions": {
+      "update_payment_instrument": {
+        "title": "പേയ്‌മെന്റ് രീതി മാറ്റുക",
+        "loading": "പേയ്‌മെന്റ് രീതികൾ ലോഡ് ആകുന്നുണ്ട്",
+        "no_payment_methods_available": "പേയ്‌മെന്റ് രീതികളൊന്നും ലഭ്യമല്ല",
+        "cancel": "റദ്ദാക്കുക",
+        "save": "സേവ് ചെയ്യുക",
+        "success": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു",
+        "use_new_payment_method": "+ പുതിയ പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക"
+      }
+    },
+    "intents": {
+      "subscription_replace_payment_method": {
+        "card_number": "കാർഡ് നമ്പർ",
+        "replace_with": "ഇതുപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കുക",
+        "add_new_payment_method": "പുതിയത് ചേർക്കുക",
+        "save_button": "സേവ് ചെയ്യുക",
+        "loading": "പേയ്‌മെന്റ് രീതി മാറ്റുന്നതിനുള്ള മോഡൽ ലോഡ് ചെയ്യുന്നു",
+        "success": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു",
+        "invalid_subscription_contract": "സബ്‌സ്‌ക്രിപ്‌ഷൻ കണ്ടെത്താൻ കഴിഞ്ഞില്ല"
+      }
+    },
+    "order_receipt": {
+      "back_to_order_accessibility_label": "ഓർഡറിലേക്ക് തിരിച്ചുപോവുക",
+      "document_accessibility_label": "രസീത് രേഖ",
+      "exchange_subtitle": "എക്സ്ചേഞ്ച് {{name}} · {{date}}"
     }
   },
   "content": {
