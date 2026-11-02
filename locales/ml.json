@@ -1107,7 +1107,8 @@
   "customer_accounts": {
     "payment_methods": {
       "add_success": {
-        "done_button": "ഷോപ്പിംഗ് തുടരുക"
+        "done_button": "ഷോപ്പിംഗ് തുടരുക",
+        "title": "പേയ്‌മെന്റ് രീതി ചേർത്തു"
       },
       "card_fields": {
         "card_number_label": "കാർഡ് നമ്പർ",
@@ -1197,6 +1198,137 @@
       "three_d_secure": {
         "title": "ത്രീ-ഡി സെക്യൂർ",
         "verification_failed": "നിങ്ങളുടെ പേയ്‌മെന്റ് പരിശോധിക്കാൻ സാധിച്ചില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക."
+      },
+      "expiring_badge_label": "കാലഹരണപ്പെടുന്നു",
+      "card_update_consent": "ഈ പേയ്‌മെന്റ് രീതി ഭാവിയിലുള്ള പർച്ചേസുകൾക്കായി സേവ് ചെയ്യപ്പെടും.",
+      "card_update_consent_subscriptions": "ഈ പേയ്‌മെന്റ് രീതി ഭാവിയിലെ വാങ്ങലുകൾക്കായി സേവ് ചെയ്യപ്പെടും, കൂടാതെ ആവർത്തിച്ചുള്ളതോ വൈകിയുള്ളതോ ആയ ഏത് വാങ്ങലിനും ഇത് ഉപയോഗിക്കാവുന്നതാണ്.",
+      "digital_wallet_title": "ഡിജിറ്റൽ വാലറ്റ്",
+      "credit_or_debit_card_title": "ക്രെഡിറ്റ് അല്ലെങ്കിൽ ഡെബിറ്റ് കാർഡ്",
+      "credit_card_title": "ക്രെഡിറ്റ് കാർഡ്",
+      "additional_payment_methods": "കൂടുതൽ പേയ്‌മെന്റ് രീതികൾ",
+      "or": "അല്ലെങ്കിൽ",
+      "google_pay": {
+        "iframe_title_accessibility_label": "Google Pay പേയ്‌മെന്റ് രീതി ചേർക്കുക",
+        "loading_accessibility_message": "ഗൂഗിൾ പേ ലോഡ് ആകുന്നു",
+        "errors": {
+          "generic": "Google Pay-യുമായി ബന്ധപ്പെട്ട് ഒരു പ്രശ്നമുണ്ടായിട്ടുണ്ട്. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക.",
+          "missing_billing_address": "Google Pay-യിൽ ഒരു ബില്ലിംഗ് വിലാസം ആവശ്യമാണ്. ദയവായി നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് ഒന്ന് ചേർക്കുക."
+        }
+      },
+      "pay_pal": {
+        "iframe_title_accessibility_label": "PayPal പേയ്‌മെന്റ് രീതി ചേർക്കുക",
+        "loading_accessibility_message": "പേയ്‌പാൽ ലോഡ് ആകുന്നു",
+        "errors": {
+          "generic": "PayPal-ൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക."
+        }
+      },
+      "apple_pay": {
+        "loading": "Apple Pay ലോഡ് ആകുന്നു",
+        "errors": {
+          "generic": "ആപ്പിൾ പേയിൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക.",
+          "not_available": "ഈ ഉപകരണത്തിൽ ആപ്പിൾ പേ (Apple Pay) ലഭ്യമല്ല.",
+          "missing_billing_address": "Apple Pay ഉപയോഗിക്കുന്നതിന് ബില്ലിംഗ് വിലാസം ആവശ്യമാണ്. ദയവായി നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് ഒരു വിലാസം ചേർക്കുക."
+        }
+      },
+      "store_credit": {
+        "label": "സ്റ്റോർ ക്രെഡിറ്റ്",
+        "expirable_amounts_label": "കാലാവധി കഴിയുന്ന തുകകൾ",
+        "details_modal": {
+          "load_error": "സ്റ്റോർ ക്രെഡിറ്റ് ലോഡ് ചെയ്യാനായില്ല.",
+          "events": {
+            "adjustment": "ക്രമീകരണം",
+            "order_payment": "ഓർഡർ പേയ്‌മെന്റ്",
+            "order_refund": "ഓർഡർ റീഫണ്ട്",
+            "payment_failure": "പേയ്‌മെന്റ് പരാജയപ്പെട്ടു",
+            "payment_returned": "പണം തിരിച്ചയച്ചു",
+            "order_cancellation": "ഓർഡർ റദ്ദാക്കൽ",
+            "tax_finalization": "നികുതി തീർപ്പാക്കൽ",
+            "recurring_payment": "ആവർത്തിച്ചുള്ള പേയ്‌മെന്റ്"
+          },
+          "expirable_amounts_info": "ഏറ്റവും നേരത്തെ കാലാവധി തീരുന്ന തുകകൾ ചെക്ക്ഔട്ടിൽ ആദ്യം ഉപയോഗിക്കപ്പെടും.",
+          "pagination": {
+            "expirable_transactions_loading": "കൂടുതൽ കാലാവധി തീരാറായ തുകകൾ ലോഡ് ചെയ്യുന്നു",
+            "transactions_loading": "കൂടുതൽ ഇടപാടുകൾ ലോഡ് ചെയ്യുന്നു",
+            "load_more_label": "കൂടുതൽ കാണിക്കുക",
+            "load_more_accessibility_label": "കാലാവധി തീരാറായ തുകകൾ കാണിക്കുക",
+            "load_more_transactions_accessibility_label": "കൂടുതൽ ഇടപാടുകൾ കാണിക്കുക",
+            "expirable_transactions_loaded": "കൂടുതൽ കാലഹരണപ്പെടുന്ന തുകകൾ ലോഡ് ചെയ്തു",
+            "transactions_loaded": "കൂടുതൽ ഇടപാടുകൾ ലോഡ് ചെയ്തു"
+          },
+          "expirable_indicator": "{{formattedAmount}} കാലഹരണപ്പെടും",
+          "expirable_indicator_accessibility_label": "{{formattedAmount}} കാലഹരണപ്പെടും. കാലഹരണപ്പെടുന്ന തുകകൾ കാണുക.",
+          "expirable_indicator_with_date_accessibility_label": "{{formattedAmount}} എന്നതിൻ്റെ കാലാവധി {{date}}-ന് അവസാനിക്കും. കാലാവധി തീരുന്ന തുകകൾ കാണുക.",
+          "expires_at": "കാലഹരണപ്പെടുന്നത് {{date}}",
+          "expirable_transactions_list_accessibility_label": "കാലാവധി തീരുന്ന സ്റ്റോർ ക്രെഡിറ്റ് ഇടപാടുകൾ",
+          "loading_accessibility_message": "സ്റ്റോർ ക്രെഡിറ്റ് വിശദാംശങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+          "transactions_list_accessibility_label": "സ്റ്റോർ ക്രെഡിറ്റ് ഇടപാടുകൾ",
+          "transaction_types": {
+            "credit": "ചേർത്തു",
+            "debit": "ചെലവഴിച്ചു",
+            "debit_revert": "റീഫണ്ട് ചെയ്തു",
+            "expiration": "കാലാവധി കഴിഞ്ഞു"
+          }
+        }
+      },
+      "payment_details": {
+        "title": "പേയ്‌മെന്റ് രീതിയുടെ വിവരങ്ങൾ",
+        "credit_card_details_accessibility_label": "{{lastDigits}}-ൽ അവസാനിക്കുന്നു",
+        "billing_title": "ബില്ലിംഗ് വിലാസം",
+        "card_info_title": "കാർഡ് വിവരങ്ങൾ",
+        "payment_method_expiring_on": "{{expiryDate}}-ന് കാലഹരണപ്പെടും",
+        "payment_method_expired_on": "കാലഹരണപ്പെട്ട തീയതി: {{expiryDate}}",
+        "close_payment_modal": "അടയ്ക്കുക",
+        "close_payment_modal_accessibility_label": "പേയ്‌മെന്റ് രീതിയുടെ വിവരങ്ങൾ അടങ്ങിയ വിൻഡോ അടയ്ക്കുക",
+        "payment_method_not_found_error": "പേയ്മെന്റ് രീതി കണ്ടെത്താനായില്ല",
+        "payment_details_loading": "പേയ്‌മെന്റ് രീതിയുടെ വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+        "pre_authorized_payments": "മുൻകൂട്ടി അംഗീകരിച്ച പേയ്‌മെന്റുകൾ",
+        "total_amount_of_subscription_line_items_left": "കൂടാതെ {{total}} എണ്ണം കൂടി",
+        "total_amount_of_subscription_line_items_left_accessibility_label": "{{totalItems}} ഇനങ്ങൾ മൊത്തത്തിൽ, {{totalItemsToDisplay}} ഇനങ്ങൾ പ്രദർശിപ്പിക്കുന്നു.",
+        "next_payment_due": "അടുത്ത പേയ്‌മെന്റ് നൽകേണ്ട തീയതി {{dueDateInMonthDayYear}}",
+        "edit_payment_method_button": "തിരുത്തുക",
+        "edit_payment_method_button_accessibility_label": "{{lastDigits}}-ൽ അവസാനിക്കുന്ന പേയ്‌മെൻ്റ് രീതി എഡിറ്റ് ചെയ്യുക",
+        "loading_shop_pay": "ഷോപ്പ് പേ ലോഡ് ആകുന്നു",
+        "invalid_payment_method": "അസാധുവായ പേയ്‌മെന്റ് രീതി",
+        "invalid_payment_method_message": "വരാനിരിക്കുന്ന ഓർഡറുകൾ ലഭിക്കുന്നത് തുടരാൻ ഒരു പുതിയ ക്രെഡിറ്റ് കാർഡ് ഉപയോഗിക്കുക.",
+        "replace_payment_method": "പേയ്‌മെന്റ് രീതി മാറ്റുക",
+        "checkout_card_banner": "ഈ പേയ്‌മെന്റ് രീതി മുൻകൂട്ടി അംഗീകരിച്ച പേയ്‌മെന്റുകൾക്ക് മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ. നിങ്ങൾ ഈ സ്റ്റോറിൽ ലോഗിൻ ചെയ്തിട്ടുണ്ടെങ്കിൽ ചെക്ക്ഔട്ട് സമയത്ത് ഇത് കാണിക്കില്ല.",
+        "default_checkbox": "സ്വതസ്ഥമായി സജ്ജീകരിക്കുക",
+        "default_checkbox_accessibility_label": "ഈ പേയ്‌മെന്റ് രീതി ഡിഫോൾട്ടായി സജ്ജീകരിക്കുക",
+        "replace_payment_method_button": "മാറ്റിസ്ഥാപിക്കുക"
+      },
+      "edit_payment_method": {
+        "title": "പേയ്‌മെന്റ് രീതി എഡിറ്റ് ചെയ്യുക",
+        "save_payment_method_button": "സേവ് ചെയ്യുക",
+        "cancel_edit_payment_method_button": "റദ്ദാക്കുക",
+        "payment_method_updated_toast": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു",
+        "generic_error": "അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. ദയവായി വീണ്ടും ശ്രമിക്കുക."
+      },
+      "update_payment_method": {
+        "title": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യുക",
+        "button_title": "അപ്‌ഡേറ്റ് ചെയ്യുക",
+        "billing_address": "ബില്ലിംഗ് വിലാസം",
+        "disclaimer": "ഈ പേയ്‌മെന്റ് രീതി ഭാവിയിലെ വാങ്ങലുകൾക്കായി സേവ് ചെയ്യപ്പെടും, കൂടാതെ ആവർത്തിച്ചുള്ളതോ വൈകിയുള്ളതോ ആയ ഏത് വാങ്ങലിനും ഇത് ഉപയോഗിക്കാവുന്നതാണ്.",
+        "error_message": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യാൻ സാധിക്കുന്നില്ല",
+        "subscriptions_title": "സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ",
+        "pre_orders_title": "വരാനിരിക്കുന്ന",
+        "resources_list_accessibility_label": "ഈ പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുന്ന സബ്‌സ്‌ക്രിപ്ഷൻ ഉൽപ്പന്നങ്ങളും തീർപ്പുകൽപ്പിക്കാത്ത ഓർഡർ ഉൽപ്പന്നങ്ങളും",
+        "resources_card_scroll": "കൂടുതൽ ഇനങ്ങൾക്ക് താഴേക്ക് സ്ക്രോൾ ചെയ്യുക",
+        "resources_card_show_more": "കൂടുതൽ കാണിക്കുക",
+        "resources_card_show_less": "കുറച്ചു കാണിക്കുക",
+        "loading_form_accessibility_message": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യുന്നതിനുള്ള ഫോം ലോഡ് ആകുന്നു",
+        "loading_current_payment_method": "നിലവിലെ പേയ്‌മെന്റ് രീതി ലോഡ് ചെയ്യുന്നു",
+        "loading_digital_wallets": "ഡിജിറ്റൽ വാലറ്റ് ഓപ്ഷനുകൾ ലോഡ് ചെയ്യുന്നു",
+        "loading_card_fields": "ക്രെഡിറ്റ് കാർഡ് വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+        "loading_resources": "സബ്‌സ്‌ക്രിപ്‌ഷനുകളും വരാനിരിക്കുന്ന ഓർഡറുകളും ലോഡ് ചെയ്യുന്നു"
+      },
+      "link_expired": {
+        "update_message": "നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യുന്നതിനുള്ള ഈ ലിങ്കിന്റെ കാലാവധി കഴിഞ്ഞു.",
+        "add_message": "നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി ചേർക്കുന്നതിനുള്ള ഈ ലിങ്കിന്റെ കാലാവധി അവസാനിച്ചിരിക്കുന്നു.",
+        "return_home_button": "ഹോം പേജിലേക്ക് മടങ്ങുക"
+      },
+      "update_success": {
+        "title": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു",
+        "done_button": "ഷോപ്പിംഗ് തുടരുക"
       }
     },
     "payment_method_brands": {
@@ -1459,7 +1591,80 @@
     "recipient_form_fields_visible": "സ്വീകർത്താവിന്റെ ഫോം ഫീൽഡുകൾ ഇപ്പോൾ ദൃശ്യമാണ്",
     "recipient_form_fields_hidden": "സ്വീകർത്താവിന്റെ ഫോം ഫീൽഡുകൾ ഇപ്പോൾ മറച്ചിരിക്കുന്നു",
     "recipient_form_error": "ഫോം സമർപ്പിക്കുന്നതിൽ ഒരു പിശക് സംഭവിച്ചു",
-    "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} അക്ഷരങ്ങൾ ഉപയോഗിച്ചു"
+    "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} അക്ഷരങ്ങൾ ഉപയോഗിച്ചു",
+    "cancel": "റദ്ദാക്കുക",
+    "discount": "കിഴിവ്",
+    "account_title": "അക്കൗണ്ട്",
+    "terms_and_policies": "നിബന്ധനകളും നയങ്ങളും",
+    "account_title_personalized": "Hi {{ first_name }}",
+    "account_orders": "ഓർഡറുകൾ",
+    "account_profile": "പ്രൊഫൈൽ",
+    "cart_estimated_total": "ആകെ കണക്കാക്കിയ തുക",
+    "cart_title": "കാർട്ട്",
+    "cart_subtotal": "ഉപ ആകെത്തുക",
+    "cart_total": "കാർട്ട് ടോട്ടൽ",
+    "checkout": "പരിശോധിക്കൂ",
+    "collection_placeholder": "ശേഖരണത്തിന്റെ പേര്",
+    "discount_code": "ഡിസ്കൗണ്ട് കോഡ്",
+    "shipping_discount_error": "ഷിപ്പിംഗ് ഡിസ്‌കൗണ്ടുകൾ വിലാസം ചേർത്തതിന് ശേഷം ചെക്ക്ഔട്ടിൽ കാണാവുന്നതാണ്.",
+    "discount_code_error": "ഡിസ്‌കൗണ്ട് കോഡ് നിങ്ങളുടെ കാർട്ടിൽ ഉപയോഗിക്കാൻ കഴിയില്ല",
+    "discounts": "കിഴിവുകൾ",
+    "duties_and_taxes_included": "ഡ്യൂട്ടികളും നികുതികളും ഉൾപ്പെടുത്തിയിട്ടുണ്ട്.",
+    "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "തീരുവകളും നികുതികളും ഉൾപ്പെടുത്തിയിരിക്കുന്നു. <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഷിപ്പിംഗും</a> കിഴിവുകളും ചെക്ക്ഔട്ടിൽ കണക്കാക്കുന്നതാണ്.",
+    "duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html": "ഡ്യൂട്ടികളും നികുതികളും ഉൾപ്പെടുത്തിയിട്ടുണ്ട്. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "duties_and_taxes_included_shipping_at_checkout_without_policy": "ഡ്യൂട്ടികളും നികുതികളും ഉൾപ്പെടുത്തിയിരിക്കുന്നു. കിഴിവുകളും ഷിപ്പിംഗും ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts": "ഡ്യൂട്ടികളും നികുതികളും ഉൾപ്പെടുത്തിയിട്ടുണ്ട്. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "duties_included": "ചുമതലകൾ ഉൾപ്പെടുന്നു.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "ഡ്യൂട്ടികൾ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്. നികുതികളും കിഴിവുകളും <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഷിപ്പിംഗും</a> ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html": "നികുതി ഉൾപ്പെടെ. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കുന്നതാണ്.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "നികുതികൾ ഉൾപ്പെടെ. നികുതി, ഡിസ്കൗണ്ട്, ഷിപ്പിംഗ് എന്നിവ ചെക്ക്ഔട്ട് സമയത്ത് കണക്കാക്കും.",
+    "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts": "നികുതി ഉൾപ്പെടെ. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കുന്നതാണ്.",
+    "featured_products": "പ്രത്യേക ഉൽപ്പന്നങ്ങൾ",
+    "filters": "ഫിൽട്ടറുകൾ",
+    "grid_view": {
+      "default_view": "സ്വതവേയുള്ളത്",
+      "grid_fieldset": "കോളം ഗ്രിഡ്",
+      "single_item": "അവിവാഹിതൻ",
+      "zoom_out": "സൂം ഔട്ട് ചെയ്യുക"
+    },
+    "inventory_low_stock_show_count": {
+      "one": "{{ count }} എണ്ണം ബാക്കിയുണ്ട്",
+      "other": "{{ count }} എണ്ണം ബാക്കിയുണ്ട്"
+    },
+    "inventory_low_stock": "സ്റ്റോക്ക് കുറവാണ്",
+    "inventory_in_stock": "സ്റ്റോക്കുണ്ട്",
+    "inventory_out_of_stock": "സ്റ്റോക്കില്ല",
+    "item_count": {
+      "one": "{{ count }} ഇനം",
+      "other": "{{ count }} ഇനങ്ങൾ"
+    },
+    "item_count_cutoff": "{{ count }} ഇനങ്ങളിൽ കൂടുതൽ",
+    "language": "ഭാഷ",
+    "localization_region_and_language": "മേഖലയും ഭാഷയും",
+    "no_products_found": "ഉൽപ്പന്നങ്ങളൊന്നും കണ്ടെത്തിയില്ല.",
+    "no_results_found": "ഫലങ്ങളൊന്നും ലഭ്യമല്ല",
+    "page_placeholder_title": "പേജ് ശീർഷകം",
+    "page_placeholder_content": "അതിന്റെ ഉള്ളടക്കം പ്രദർശിപ്പിക്കുന്നതിന് ഒരു പേജ് തിരഞ്ഞെടുക്കുക.",
+    "pagination": {
+      "nav_label": "പേജ് തിരിച്ചുള്ള നാവിഗേഷൻ",
+      "previous": "മുമ്പത്തെ",
+      "next": "അടുത്തത്",
+      "page": "പേജ് {{ page }}"
+    },
+    "pickup_available_at_html": "<b>{{ location }}</b>-ൽ നിന്ന് എടുക്കാം",
+    "pickup_available_in": "പിക്കപ്പ് ലഭ്യമാണ്, {{ pickup_time }}",
+    "pickup_not_available": "പിക്കപ്പ് നിലവിൽ ലഭ്യമല്ല",
+    "powered_by": "ഈ കട പ്രവർത്തിക്കുന്നത്‌",
+    "price": "വില",
+    "price_compare_at": "യഥാർത്ഥ വിലയുമായി താരതമ്യം ചെയ്യുക",
+    "price_from": "From {{ price }}",
+    "price_regular": "സാധാരണ വില",
+    "price_sale": "വിൽപന വില",
+    "price_filter_html": "ഏറ്റവും ഉയർന്ന വില {{ price }}",
+    "product_image": "ഉൽപ്പന്ന ചിത്രം",
+    "product_information": "ഉൽപ്പന്ന വിവരങ്ങൾ",
+    "product_subtotal": "ഉൽപ്പന്നത്തിന്റെ ആകെ തുക",
+    "product_total": "ഉൽപ്പന്നങ്ങളുടെ ആകെത്തുക"
   },
   "fields": {
     "separator": "-ലേക്ക്"
@@ -1496,6 +1701,57 @@
       "added_to_cart": "കാർട്ടിലേക്ക് ചേർത്തു",
       "add_to_cart_error": "കാർട്ടിലേക്ക് ചേർക്കുന്നതിൽ പിശക് സംഭവിച്ചു",
       "quantity_error_max": "ഈ ഇനത്തിന് പരമാവധി {{ maximum }}"
+    }
+  },
+  "actions": {
+    "view_all": "എല്ലാം കാണുക",
+    "more": "കൂടുതൽ",
+    "zoom": "സൂം",
+    "close_dialog": "ഡയലോഗ് ക്ലോസ് ചെയ്യുക",
+    "reset": "റീസെറ്റ് ചെയ്യുക",
+    "enter_using_password": "പാസ്‌വേഡ് ഉപയോഗിച്ച് പ്രവേശിക്കുക",
+    "sign_up": "രജിസ്റ്റർ ചെയ്യുക",
+    "submit": "സമർപ്പിക്കുക",
+    "view_store_information": "സ്റ്റോർ വിവരങ്ങൾ കാണുക",
+    "sort": "ക്രമീകരിക്കുക"
+  },
+  "blocks": {
+    "contact_form": {
+      "name": "പേര്",
+      "email": "ഇമെയിൽ",
+      "phone": "ഫോൺ",
+      "comment": "അഭിപ്രായം",
+      "post_success": "ഞങ്ങളെ ബന്ധപ്പെട്ടതിന് നന്ദി. എത്രയും വേഗം ഞങ്ങൾ നിങ്ങളെ ബന്ധപ്പെടാം.",
+      "error_heading": "ദയവായി താഴെ പറയുന്നവയിൽ മാറ്റം വരുത്തുക:"
+    },
+    "email_signup": {
+      "label": "ഇമെയിൽ",
+      "placeholder": "ഇമെയിൽ വിലാസം",
+      "success": "സബ്‌സ്‌ക്രൈബ് ചെയ്തതിന് നന്ദി!"
+    },
+    "filter": "ഫിൽട്ടർ",
+    "load_video": "വീഡിയോ ലോഡ് ചെയ്യുക: {{ description }}",
+    "sold_out": "വിറ്റുതീർന്നു",
+    "payment_methods": "പേയ്‌മെന്റ് രീതികൾ",
+    "slider_label": "സ്ലൈഡർ"
+  },
+  "blogs": {
+    "article": {
+      "comments_heading": {
+        "one": "{{ count }} കമൻ്റ്",
+        "other": "{{ count }} അഭിപ്രായങ്ങൾ"
+      }
+    },
+    "comment_form": {
+      "email": "ഇമെയിൽ",
+      "error": "കമന്റ് പോസ്റ്റ് ചെയ്യാൻ സാധിച്ചില്ല, ദയവായി താഴെ പറയുന്നവ പരിശോധിക്കുക:",
+      "heading": "ഒരു അഭിപ്രായം രേഖപ്പെടുത്തുക",
+      "message": "സന്ദേശം",
+      "moderated": "ശ്രദ്ധിക്കുക, കമന്റുകൾ പ്രസിദ്ധീകരിക്കുന്നതിന് മുൻപ് അവ പരിശോധിക്കേണ്ടതുണ്ട്.",
+      "name": "പേര്",
+      "post": "അഭിപ്രായം പോസ്റ്റ് ചെയ്യുക",
+      "success_moderated": "അഭിപ്രായം പോസ്റ്റ് ചെയ്തു, പരിശോധനയ്ക്കായി കാത്തിരിക്കുന്നു",
+      "success": "അഭിപ്രായം പോസ്റ്റ് ചെയ്തു"
     }
   }
 }
