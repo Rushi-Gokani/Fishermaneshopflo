@@ -2075,6 +2075,148 @@
       "paid_amount": "പണമടച്ചു",
       "payment_confirmation": {
         "payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെൻ്റ് ലഭിച്ചു."
+      },
+      "edit_summary": {
+        "custom_line_discount_removed": "ഇഷ്‌ടാനുസൃത ഡിസ്കൗണ്ട് ({{value}}) നീക്കം ചെയ്തു",
+        "code_discount": "കോഡ് ഡിസ്കൗണ്ട് ({{value}})",
+        "discount": "കിഴിവ്",
+        "shipping_address": "ഷിപ്പിംഗ് വിലാസം",
+        "shipping_address_taxes": "മുമ്പത്തെ നികുതികൾ: {{previousTaxes}} → പുതിയ നികുതികൾ: {{newTaxes}}",
+        "taxes_none": "ഒന്നുമില്ല",
+        "updated": "അപ്ഡേറ്റ് ചെയ്‌തു",
+        "updated_count": {
+          "one": "ഓർഡർ ഒരിക്കൽ അപ്‌ഡേറ്റ് ചെയ്‌തു",
+          "other": "ഓർഡർ {{count}} തവണ അപ്‌ഡേറ്റ് ചെയ്‌തു"
+        }
+      },
+      "shop_pay": {
+        "order_completed_with": "ഓർഡർ പൂർത്തിയായി",
+        "usdc_rewards_terms": "USDC റിവാർഡ് നിബന്ധനകൾ കാണുക"
+      },
+      "taxes": "നികുതികൾ",
+      "taxes_included": "നികുതിയിനത്തിൽ {{amount}} ഉൾപ്പെടെ",
+      "duties_and_taxes_included": "ആകെ തുകയിൽ നികുതികളും തീരുവകളും ഉൾപ്പെടുന്നു. ഡെലിവറി സമയത്ത് അധിക ചാർജുകൾ ഉണ്ടായിരിക്കുന്നതല്ല.",
+      "duties": "കടമകൾ",
+      "ok_duties_tooltip": "ഈ ഓർഡർ മറ്റൊരു രാജ്യത്തുനിന്നാണ് അയക്കുന്നത്, അതിനാൽ നിങ്ങളുടെ ഓർഡർ തുകയിൽ നികുതി ഉൾപ്പെടുത്തിയിട്ടുണ്ട്.",
+      "error_duties_tooltip": "ഈ ഓർഡർ മറ്റൊരു രാജ്യത്ത് നിന്നാണ് അയക്കുന്നത്, അതിനാൽ ഡെലിവറി സമയത്ത് നികുതികളും തീരുവകളും ഈടാക്കിയേക്കാം.",
+      "zero_duties_tooltip": "ഈ ഓർഡർ മറ്റൊരു രാജ്യത്തുനിന്നാണ് അയക്കുന്നത്. ഈ തുകയ്ക്കുള്ള ഓർഡറുകൾക്ക് നികുതി ഈടാക്കുന്നതല്ല.",
+      "tip": "നുറുങ്ങ് വിദ്യ",
+      "title": "ഓർഡർ {{name}}",
+      "total": "ആകെ",
+      "unit_price": "{{price}}/ഓരോന്നിനും",
+      "pagination": {
+        "load_more": "കൂടുതൽ കാണിക്കുക",
+        "load_more_accessibility_label": "കൂടുതൽ ഇനങ്ങൾ കാണിക്കുക",
+        "loading_accessibility_label": "ഇനങ്ങൾ ലോഡ് ചെയ്യുന്നു"
+      },
+      "logged_in_account_no_permission_to_order": "നിങ്ങൾ {{email}} എന്നതിൽ സൈൻ ഇൻ ചെയ്തിരിക്കുന്നു. ഈ ഓർഡർ നിയന്ത്രിക്കാൻ ഈ അക്കൗണ്ടിന് അനുമതിയില്ല.",
+      "log_in_to_a_different_account": "മറ്റൊരു അക്കൗണ്ടിലേക്ക് സൈൻ ഇൻ ചെയ്യുക",
+      "fees": {
+        "restocking_fee": "റീസ്റ്റോക്കിംഗ് ഫീ",
+        "return_shipping_fee": "തിരികെ അയക്കുന്നതിനുള്ള ഷിപ്പിംഗ്",
+        "fees": "ഫീസ്"
+      },
+      "vat_invoices": {
+        "label": "വാറ്റ്"
+      },
+      "link_sent": "ലിങ്ക് അയച്ചു",
+      "cash_rounding": "ക്യാഷ് റൗണ്ടിംഗ്",
+      "adjusted_payment": "ക്രമീകരിച്ച പേയ്‌മെന്റ്",
+      "adjusted_total": "ക്രമീകരിച്ച ആകെത്തുക",
+      "due_on_date": "അവസാന തിയ്യതി {{date}}",
+      "due_on_fulfillment": "പൂർത്തീകരണ സമയത്ത് അടയ്ക്കേണ്ടത്",
+      "due_on_receipt": "ലഭ്യമാകുമ്പോൾ തന്നെ അടയ്ക്കുക",
+      "timeline_images": {
+        "return_accessibility_label": "ഈ റിട്ടേണിലെ ഇനികൾ",
+        "requested_edit_accessibility_label": "ഈ എഡിറ്റ് അഭ്യർത്ഥനയിലെ ഇനങ്ങൾ"
+      },
+      "line_item_status": {
+        "cancel_requested": "റദ്ദാക്കാൻ അഭ്യർത്ഥിച്ചു",
+        "return_in_progress": "മടക്കൽ നടന്നുകൊണ്ടിരിക്കുന്നു",
+        "return_requested": "മടക്കിനൽകാൻ അഭ്യർത്ഥിച്ചു"
+      },
+      "order_actions": {
+        "show_more": "കൂടുതൽ",
+        "show_more_accessibility_label": "കൂടുതൽ ഓർഡർ നടപടികൾ കാണിക്കുക"
+      },
+      "waived": "ഒഴിവാക്കി",
+      "readonly_custom_fields": {
+        "boolean_true": "അതെ"
+      },
+      "shop_promise_badging": {
+        "free_returns": "സൗജന്യ റിട്ടേണുകൾ",
+        "free_returns_on_eligible_items": "യോഗ്യമായ ഇനങ്ങളിൽ സൗജന്യ റിട്ടേൺ",
+        "returns_accepted": "മടക്കിനൽകൽ സ്വീകരിക്കുന്നു",
+        "returns_on_eligible_items": "യോഗ്യമായ ഇനങ്ങളുടെ റിട്ടേണുകൾ",
+        "trusted_delivery": "വിശ്വസനീയമായ ഡെലിവറി"
+      }
+    },
+    "returns_and_cancellations": {
+      "request_withdrawal_page": {
+        "heading": {
+          "return": "സാധനങ്ങൾ തിരിച്ചുനൽകുക",
+          "cancel": "ഇനങ്ങൾ റദ്ദാക്കുക",
+          "cancel_or_return": "റദ്ദാക്കുക അല്ലെങ്കിൽ മടക്കിനൽകുക"
+        },
+        "back_to_order_accessibility_label": "ഓർഡറിലേക്ക് തിരിച്ചുപോവുക",
+        "select_item_to_return_heading": "തിരിച്ചുനൽകാനുള്ള ഇനങ്ങൾ തിരഞ്ഞെടുക്കുക",
+        "select_item_to_cancel_heading": "റദ്ദാക്കേണ്ട ഇനങ്ങളെ തിരഞ്ഞെടുക്കുക",
+        "item_return_heading": "മടക്കിനൽകേണ്ട ഇനങ്ങൾ",
+        "item_cancel_heading": "റദ്ദാക്കേണ്ട ഇനങ്ങൾ",
+        "apply_return_reason_to_all_items": "എല്ലാം കൂടിന് കാരണം ചേർക്കുക",
+        "bulk_apply_return_reason_modal": {
+          "title": "മടക്കിനൽകാനുള്ള കാരണം നൽകുക",
+          "description": "തിരിച്ചുനൽകാനുള്ള ഈ കാരണം തിരഞ്ഞെടുത്ത എല്ലാ ഇനgetItems നും ബാധകമായിരിക്കും",
+          "shared_return_reasons": "തിരഞ്ഞെടുത്ത എല്ലാ ഇനങ്ങളെയും ബാധിക്കുന്ന കാരണങ്ങൾ മാത്രമേ കാണിച്ചിട്ടുള്ളൂ",
+          "apply": "അപേക്ഷിക്കുക",
+          "apply_accessibility_label": "തിരിച്ചുനൽകാനുള്ള കാരണം തിരഞ്ഞെടുത്ത ഇനങ്ങളിൽ ബാധകമാക്കുക",
+          "cancel": "റദ്ദാക്കുക",
+          "cancel_accessibility_label": "മടക്കിനൽകാനുള്ള കാരണം നൽകുന്നത് റദ്ദാക്കുക"
+        },
+        "review_changes_action": "മാറ്റങ്ങൾ അവലോകനം ചെയ്യുക",
+        "review_changes_modal": {
+          "title": "മാറ്റങ്ങൾ അവലോകനം ചെയ്യുക",
+          "items_to_cancel": {
+            "one": "{{count}} ഇനം റദ്ദാക്കാൻ",
+            "other": "ക്ാൻസൽ ചെയ്യാൻ {{count}} ഇനങ്ങൾ"
+          },
+          "items_to_return": {
+            "one": "{{count}} ഇനം തിരിച്ചുനൽകാനുണ്ട്",
+            "other": "മടക്കിനൽകാനുള്ള {{count}} ഇനങ്ങൾ"
+          },
+          "confirm_action": "അഭ്യർത്ഥന അയയ്ക്കുക",
+          "back_action": "തിരികെ",
+          "confirmation_email": "ഞങ്ങൾ {{email}} എന്ന ഇമെയിലിലേക്ക് ഒരു സ്ഥിരീകരണ ഇമെയിൽ അയക്കും",
+          "confirmation_unknown_email": "ഞങ്ങൾ നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ ഇമെയിൽ അയയ്ക്കും",
+          "confirmation_email_hint": "ഞങ്ങൾ ഈ വിലാസത്തിലേക്ക് ഒരു സ്ഥിരീകരണ ഇമെയിൽ അയക്കും",
+          "email_label": "ഇമെയിൽ വിലാസം",
+          "invalid_email_error": "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക"
+        },
+        "select_all_action": "എല്ലാം തിരഞ്ഞെടുക്കുക",
+        "unselect_all_action": "എല്ലാം അൺസെലക്ട് ചെയ്യുക",
+        "line_items": {
+          "return_reason_label": "കാരണം",
+          "bundle_group_title_label": "ഭാഗം: {{groupTitle}}",
+          "nested_line_item_parent_title_label": "ഇതിനായി: {{groupTitle}} - {{parentVariantTitle}}",
+          "return_reason_default_label": "ഒരു കാരണം തിരഞ്ഞെടുക്കുക",
+          "quantity_label": "അളവ്",
+          "note_label": "കുറിപ്പ് (ഐച്ഛികം)",
+          "ineligible_items": {
+            "one": "{{count}} അയോഗ്യമായ ഇനം",
+            "other": "{{count}} അയോഗ്യമായ ഇനങ്ങൾ"
+          },
+          "ineligible_reason": {
+            "final_sale": "അന്തിമ വില്പന",
+            "not_yet_shipped": "ഇതുവരെ അയച്ചിട്ടില്ല",
+            "already_shipped": "ഇനിയും അയച്ചിരിക്കുന്നു",
+            "cancellation_window_closed": "റദ്ദാക്കാനുള്ള സമയം അവസാനിച്ചു",
+            "cancellation_pending": "റദ്ദാക്കൽlpending",
+            "not_eligible_for_cancellation": "റദ്ദാക്കാൻ അർഹതയില്ല",
+            "return_window_closed": "മടക്കിനൽകാനുള്ള കാലാവധി അവസാനിച്ചു",
+            "already_returned": "ഇനിയും തിരിച്ചെത്തി",
+            "not_eligible_for_return": "മടക്കിനൽകാൻ അർഹതയില്ല"
+          }
+        }
       }
     }
   },
