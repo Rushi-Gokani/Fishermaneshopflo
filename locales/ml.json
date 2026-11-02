@@ -1436,10 +1436,128 @@
               "other": "ഓരോ %{count} ദിവസവും"
             },
             "week": {
-              "one": "എല്ലാ ആഴ്ചയും"
+              "one": "എല്ലാ ആഴ്ചയും",
+              "other": "ഓരോ %{count} ആഴ്ചയിലും"
+            },
+            "month": {
+              "one": "എല്ലാ മാസവും",
+              "other": "ഓരോ %{count} മാസത്തിലും"
+            },
+            "year": {
+              "one": "എല്ലാവർഷവും",
+              "other": "ഓരോ %{count} വർഷത്തിലും"
             }
+          },
+          "multiple_subscriptions_shipping_price_label": "ഡെലിവറി ഒന്നിന് %{shipping_price}",
+          "prepaid_shipping_price_label": "ഓരോ ഡെലിവറിക്കും %{shipping_price} വീതം x %{delivery_interval_count}",
+          "initial_order_discounted": "ആദ്യത്തെ ഷിപ്പിംഗ് നിരക്ക് %{discounted_shipping_cost}, പിന്നീട് %{frequency_description}",
+          "prepaid_initial_order_discounted": "ആദ്യത്തെ ഷിപ്പിംഗ് നിരക്ക് %{discounted_shipping_price} %{prepaid_delivery_frequency}",
+          "prepaid_initial_order_discounted_with_per_delivery_price": "ആദ്യത്തെ ഷിപ്പിംഗ് നിരക്ക് %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery})",
+          "prepaid_initial_order_discounted_with_renewal": "ആദ്യത്തെ ഷിപ്പിംഗ് നിരക്ക് %{discounted_shipping_price} %{prepaid_delivery_frequency}, പിന്നീട് %{shipping_price} %{billing_cycle}",
+          "prepaid_initial_order_discounted_with_per_delivery_price_and_renewal": "ആദ്യത്തെ ഷിപ്പിംഗ് നിരക്ക് %{discounted_shipping_price} %{prepaid_delivery_frequency} (%{discounted_cost_per_delivery}), പിന്നീട് %{shipping_price} %{billing_cycle}",
+          "shipping_price_included": "ഉൾപ്പെടുത്തിയിരിക്കുന്നു",
+          "recurring_order_shipping_price": "തുടർന്ന് %{recurring_order_shipping_price}",
+          "first_order_shipping_price_included": "ആദ്യത്തെ ഓർഡർ ഉൾപ്പെടെ, തുടർന്ന് %{recurring_order_shipping_price}",
+          "first_order_different_shipping_price": "%{first_order_shipping_price} (ഓരോ ഡെലിവറിക്കും %{per_delivery_price} വീതം), തുടർന്ന് %{recurring_order_shipping_price}",
+          "first_n_order_free": {
+            "one": "ആദ്യത്തെ ഓർഡർ സൗജന്യമാണ്",
+            "other": "ആദ്യത്തെ %{count} ഓർഡറുകൾ സൗജന്യം"
+          },
+          "free_for_first_n_order": {
+            "one": "ആദ്യ ഓർഡറിനായി",
+            "other": "ആദ്യത്തെ %{count} ഓർഡറുകൾക്ക്"
           }
-        }
+        },
+        "one_time_purchase_shipping": "ഒറ്റത്തവണത്തെ ഷിപ്പിംഗ്",
+        "duties_and_taxes_title": "ഡ്യൂട്ടികളും നികുതികളും",
+        "shipping_information_required_notice": "ഷിപ്പിംഗ് വിവരങ്ങൾ ആവശ്യമാണ്. {{link}}.",
+        "shipping_information_redirect_link": "നിങ്ങളുടെ വിവരങ്ങൾ ഇവിടെ നൽകുക",
+        "loading_progressive_rates": "കൂടുതൽ നിരക്കുകൾക്കായി തിരയുന്നു…",
+        "no_other_methods_available": "മറ്റ് മാർഗ്ഗങ്ങളൊന്നും ലഭ്യമല്ല",
+        "duties_and_taxes_options": {
+          "ddu_title": "ഡെലിവറി സമയത്ത് പണം അടയ്ക്കുക",
+          "ddu_caption": "അധിക ഫീസുകൾ ബാധകമായേക്കാം",
+          "ddp_title": "ഇപ്പോൾ പണമടയ്ക്കുക",
+          "ddp_caption": "ഡെലിവറിക്ക് അധിക ഫീസില്ല"
+        },
+        "shipping_method_combinations": {
+          "without_separator": "%{firstMethod}, %{secondMethod}",
+          "with_separator": "%{rest}, %{current},",
+          "combination": "%{rest}, %{current} എന്നിവ"
+        },
+        "shipping_used_as_billing_notice": "ഈ ഓർഡറിനായുള്ള നിങ്ങളുടെ ബില്ലിംഗ് വിലാസമായും ഇത് ഉപയോഗിക്കും.",
+        "address_update": "വിലാസം പുതുക്കുക",
+        "shipping_address_title": "അയക്കേണ്ട വിലാസം",
+        "shipping_address_rollup_accessibility_label": "ഷിപ്പിംഗ് വിലാസത്തിനായുള്ള ഓപ്ഷനുകൾ",
+        "third_party_address_timeout": "വിലാസങ്ങൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു വിലാസം ഉപയോഗിക്കുക.",
+        "third_party_address_error": "മേൽവിലാസം തിരഞ്ഞെടുക്കുന്നതിൽ പിശക് സംഭവിച്ചു. നിങ്ങളുടെ മേൽവിലാസം താഴെ സ്വമേധയാ നൽകുക.",
+        "third_party_payment_timeout": "പേയ്‌മെന്റ് രീതികൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക.",
+        "third_party_payment_error": "പേയ്‌മെന്റ് തിരഞ്ഞെടുക്കൽ ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചു. മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക.",
+        "add_address": "മറ്റൊരു വിലാസം ഉപയോഗിക്കുക",
+        "add_delivery_instructions": "ഡെലിവറി നിർദ്ദേശങ്ങൾ ചേർക്കുക",
+        "edit": "തിരുത്തുക",
+        "delete": "നീക്കം ചെയ്യുക",
+        "back": "തിരികെ",
+        "address_more": "ഈ വിലാസത്തിനായുള്ള കൂടുതൽ പ്രവർത്തനങ്ങൾ",
+        "address_edit": "വിലാസം തിരുത്തുക",
+        "address_delete": "വിലാസം നീക്കം ചെയ്യുക",
+        "address_confirm": "ഈ വിലാസം നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് നീക്കം ചെയ്യാൻ തീർച്ചയാണോ?",
+        "address_default": "സ്വതസ്ഥമായി സജ്ജീകരിക്കുക",
+        "address_form": {
+          "add_address": "മേൽവിലാസം ചേർക്കുക",
+          "save": "സേവ് ചെയ്യുക",
+          "cancel": "റദ്ദാക്കുക",
+          "edit": "വിലാസം തിരുത്തുക",
+          "update": "മാറ്റങ്ങൾ സംരക്ഷിക്കുക",
+          "generic_error": "നിങ്ങളുടെ വിലാസം സേവ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുക.",
+          "one_time_address_subtitle": "ഈ ഓർഡറിനായി ഒറ്റത്തവണ മാത്രം ഉപയോഗിക്കാവുന്ന വിലാസം ഉപയോഗിക്കുക"
+        },
+        "different_shipping_method_summary": "ലഭ്യമായ ഷിപ്പിംഗ് രീതികൾ കാണുന്നതിനായി മറ്റൊരു ഷിപ്പിംഗ് വിലാസം നൽകുക.",
+        "invalid_shipping_method_summary": "ലഭ്യമായ ഷിപ്പിംഗ് രീതികൾ കാണുന്നതിനായി ശരിയായ ഷിപ്പിംഗ് വിലാസം നൽകുക.",
+        "invalid_shipping_method_summary_selected": "ലഭ്യമായ ഷിപ്പിംഗ് രീതികൾ കാണുന്നതിനായി മറ്റൊരു ഷിപ്പിംഗ് വിലാസം തിരഞ്ഞെടുക്കുക",
+        "method_summary": {
+          "incomplete_address_entered": "ലഭ്യമായ ഷിപ്പിംഗ് രീതികൾ കാണുന്നതിന് പൂർണ്ണമായ ഷിപ്പിംഗ് വിലാസം നൽകുക.",
+          "incomplete_address_selected": "ലഭ്യമായ ഷിപ്പിംഗ് രീതികൾ കാണുന്നതിന് പൂർണ്ണമായ ഒരു ഷിപ്പിംഗ് വിലാസം തിരഞ്ഞെടുക്കുക"
+        },
+        "local_pickup": {
+          "search_address": "വിലാസത്തിനായി തിരയുക",
+          "rollup_title": "പിക്ക് അപ്പ് സ്ഥലം",
+          "rollup_accessibility_label": "പിക്കപ്പ് ലൊക്കേഷൻ ഓപ്ഷനുകൾ"
+        },
+        "missing_shipping_address": "ഷിപ്പിംഗ് വിലാസം നൽകിയിട്ടില്ല",
+        "split_shipping_merchandise_quantity_label_standard": "%{quantity} ഇനങ്ങൾ",
+        "split_shipping_merchandise_quantity_label_additional": "+%{quantity} എണ്ണം കൂടി",
+        "split_shipping_merchandise_shipment_number": "ഷിപ്പ്‌മെന്റ് %{number} / %{total}",
+        "pre_order_ships_now": "ഇപ്പോൾ അയക്കുക",
+        "pre_order_ships_later": "വൈകി അയക്കും",
+        "pre_order_ships_date": "%{date}-ന് അയക്കുന്നു",
+        "split_shipping_shipped_by_shop": "%{shop_name} വഴി അയച്ചു",
+        "split_shipping_multiple_shipment_label": "ഒന്നിലധികം ഷിപ്പ്‌മെന്റുകൾ",
+        "split_shipping_shipping_label": "രീതി",
+        "split_shipping_shipment_notice": "നിങ്ങളുടെ ഓർഡർ %{quantity_shipments}-ൽ എത്തുന്നതാണ്",
+        "split_shipping_first_shipment_notice": "നിങ്ങളുടെ ആദ്യ ഓർഡർ %{quantity_shipments}-ൽ എത്തിച്ചേരും",
+        "split_shipping_multiple_shipment_quantity_label": "%{quantity} ഷിപ്പ്മെന്റുകൾ",
+        "split_shipping_multiple_shipment_notice": "നിങ്ങളുടെ ഓർഡർ ഒന്നിലധികം ഷിപ്പ്‌മെന്റുകളിലായാണ് ലഭിക്കുക.",
+        "split_shipping_multiple_shipment_notice_one_time_purchase": "നിങ്ങളുടെ ഓർഡർ %{quantity} ഷിപ്പ്‌മെന്റുകളിലായി എത്തിച്ചേരും",
+        "split_shipping_shipment_count_notice_one_time_purchase": {
+          "one": "നിങ്ങളുടെ ഓർഡർ %{count} ഷിപ്പ്മെന്റായി എത്തുന്നതാണ്",
+          "other": "നിങ്ങളുടെ ഓർഡർ %{count} ഷിപ്പ്‌മെന്റുകളായി എത്തും"
+        },
+        "split_shipping_arrives_in_shipments": {
+          "one": "%{count} ഷിപ്പ്‌മെന്റുകളിലായി എത്തിച്ചേരുന്നു",
+          "other": "%{count} ഷിപ്പ്‌മെന്റുകളിലായി എത്തിച്ചേരുന്നു"
+        },
+        "includes_recurring_items": "ആവർത്തിച്ചുള്ള ഇനങ്ങളും ഉൾപ്പെടുന്നു",
+        "split_shipping_more_shipping_options": "കൂടുതൽ ഷിപ്പിംഗ് ഓപ്ഷനുകൾ",
+        "split_shipping_shipment_number": "ഷിപ്പ്മെന്റ് %{number}",
+        "split_shipping_option_free": "സൗജന്യ ഷിപ്പിംഗ്",
+        "split_shipping_option_lowest_price": "ഏറ്റവും കുറഞ്ഞ വില",
+        "split_shipping_option_fastest": "ഏറ്റവും വേഗതയേറിയത്",
+        "split_shipping_option_recommended": "നിർദ്ദേശിക്കപ്പെട്ടത്",
+        "split_shipping_option_custom": "കസ്റ്റം",
+        "add_shipping_address": "ഷിപ്പിംഗ് വിലാസം ചേർക്കുക",
+        "add_new_delivery_address": "പുതിയ ഡെലിവറി വിലാസം ചേർക്കുക",
+        "choose_new_address": "ഒരു പുതിയ വിലാസം തിരഞ്ഞെടുക്കുക"
       },
       "shop_policies": {
         "policy_label": "നയം",
@@ -2427,7 +2545,11 @@
           "shipping_credential_es": "തിരിച്ചറിയൽ രേഖ (DNI/NIF)",
           "shipping_credential_tw": "ദേശീയ തിരിച്ചറിയൽ നമ്പർ/വാറ്റ് (VAT)",
           "tax_credential_tr": "തുർക്കി റിപ്പബ്ലിക് ഐഡന്റിറ്റി നമ്പർ/വാറ്റ് (VAT)",
-          "shipping_credential_tr": "തുർക്കി റിപ്പബ്ലിക് ഐഡന്റിറ്റി നമ്പർ/വാറ്റ് (VAT)"
+          "shipping_credential_tr": "തുർക്കി റിപ്പബ്ലിക് ഐഡന്റിറ്റി നമ്പർ/വാറ്റ് (VAT)",
+          "title": "കൂടുതൽ വിവരങ്ങൾ",
+          "tax_credential_br": "സിപിഎഫ്/സിഎൻപിജെ",
+          "shipping_credential_br": "സിപിഎഫ്/സിഎൻപിജെ",
+          "shipping_credential_kr": "പേഴ്സണൽ കസ്റ്റംസ് കോഡ്"
         }
       },
       "cart_checkout_validation": {
