@@ -3790,7 +3790,9 @@
       "update_success": {
         "title": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു",
         "done_button": "ഷോപ്പിംഗ് തുടരുക"
-      }
+      },
+      "expired": "ഈ കാർഡ് കാലഹരണപ്പെട്ടതാണ്",
+      "expired_badge_label": "കാലാവധി കഴിഞ്ഞു"
     },
     "payment_method_brands": {
       "visa": "വിസ",
@@ -4702,7 +4704,20 @@
     "order_receipt": {
       "back_to_order_accessibility_label": "ഓർഡറിലേക്ക് തിരിച്ചുപോവുക",
       "document_accessibility_label": "രസീത് രേഖ",
-      "exchange_subtitle": "എക്സ്ചേഞ്ച് {{name}} · {{date}}"
+      "exchange_subtitle": "എക്സ്ചേഞ്ച് {{name}} · {{date}}",
+      "heading": "രസീത്",
+      "loading": "രസീത് ലോഡ് ചെയ്യുന്നു…",
+      "receipt_types": {
+        "exchange": "ഇടപകരുക",
+        "return": "തിരികെ നൽകുക",
+        "sale": "വില്‍പ്പന"
+      },
+      "return_subtitle": "മടക്കി അയച്ചത് {{name}} · {{date}}",
+      "select_receipt_accessibility_label": "{{date}}, രസീത് തിരഞ്ഞെടുക്കുക",
+      "subtitle_with_type": "ഓർഡർ {{name}} · {{type}}",
+      "unavailable": "വീണ്ടും ശ്രമിക്കുക, അല്ലെങ്കിൽ നിങ്ങളുടെ ഓർഡറിലേക്ക് മടങ്ങിപ്പോയി പിന്നീട് രസീത് തുറക്കുക.",
+      "unavailable_title": "രസീത് ലോഡ് ചെയ്യാൻ കഴിയുന്നില്ല",
+      "view_receipt": "രസീത് കാണുക"
     },
     "account_information": {
       "loading_accessibility_message": "അക്കൗണ്ട് വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു",
@@ -4838,6 +4853,36 @@
       "expand_label": "അനൗൺസ്‌മെന്റ് ബാർ വികസിപ്പിക്കുക",
       "collapse_label": "അനൗൺസ്‌മെന്റ് ബാർ ചുരുക്കുക",
       "close_label": "അനൗൺസ്‌മെന്റ് ബാർ ക്ലോസ് ചെയ്യുക"
+    },
+    "sign_in": {
+      "brand_logo_alt_text": "%{shop_name} ലോഗോ",
+      "processing": "പ്രോസസ്സ് ചെയ്യുന്നു…",
+      "step_one": {
+        "page_title": "ലോഗിൻ ചെയ്യുക - %{shop_name}",
+        "heading": "ലോഗിൻ ചെയ്യുക",
+        "subheading": "നിങ്ങളുടെ ഇമെയിൽ നൽകുക, ഞങ്ങൾ ഒരു വെരിഫിക്കേഷൻ കോഡ് അയച്ചുതരുന്നതാണ്.",
+        "subheading_with_sign_in_options": "സൈൻ ഇൻ ചെയ്യുക അല്ലെങ്കിൽ ഒരു അക്കൗണ്ട് സൃഷ്ടിക്കുക",
+        "input_field_label": "ഇമെയിൽ",
+        "button": "തുടരുക",
+        "or": "അല്ലെങ്കിൽ",
+        "consent_agreement": "തുടരുന്നതിലൂടെ, നിങ്ങൾ %{terms} അംഗീകരിക്കുന്നു",
+        "last_used_pill": "അവസാനം ഉപയോഗിച്ചത്"
+      },
+      "step_two": {
+        "page_title": "കോഡ് നൽകുക - %{shop_name}",
+        "heading": "കോഡ് നൽകുക",
+        "subheading": "%{email}-ലേക്ക് അയച്ചു",
+        "change_email": "മാറ്റം",
+        "restart_link": "മറ്റൊരു ഇമെയിൽ ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക",
+        "input_field_label": "6-അക്ക കോഡ്",
+        "button": "സമർപ്പിക്കുക"
+      },
+      "error": {
+        "invalid": {
+          "invalid_email": "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക",
+          "invalid_code": "ശരിയായ 6-അക്ക കോഡ് നൽകുക"
+        }
+      }
     }
   },
   "content": {
@@ -5050,7 +5095,33 @@
     "sign_up": "രജിസ്റ്റർ ചെയ്യുക",
     "submit": "സമർപ്പിക്കുക",
     "view_store_information": "സ്റ്റോർ വിവരങ്ങൾ കാണുക",
-    "sort": "ക്രമീകരിക്കുക"
+    "sort": "ക്രമീകരിക്കുക",
+    "add": "ചേർക്കുക",
+    "add_to_cart": "കാർട്ടിലേക്ക് ചേർക്കുക",
+    "added": "ചേർത്തു",
+    "apply": "അപേക്ഷിക്കുക",
+    "back": "തിരികെ",
+    "choose": "തിരഞ്ഞെടുക്കുക",
+    "clear": "വ്യക്തം",
+    "clear_all": "എല്ലാം മായ്‌ക്കുക",
+    "close": "അടയ്ക്കുക",
+    "open": "തുറക്കുക",
+    "continue_shopping": "ഷോപ്പിംഗ് തുടരുക",
+    "enter_password": "പാസ്‌വേഡ് നൽകുക",
+    "log_in_html": "നിങ്ങൾക്ക് അക്കൗണ്ട് ഉണ്ടോ? വേഗത്തിൽ ചെക്ക്ഔട്ട് ചെയ്യുന്നതിനായി <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ലോഗിൻ ചെയ്യുക</a>.",
+    "log_in": "ലോഗിൻ ചെയ്യുക",
+    "log_out": "ലോഗ് ഔട്ട് ചെയ്യുക",
+    "open_image_in_full_screen": "ചിത്രം ഫുൾ സ്ക്രീനിൽ തുറക്കുക",
+    "remove": "നീക്കം ചെയ്യുക",
+    "remove_discount": "ഒഴിവുകഴിവ് നീക്കം ചെയ്യുക {{ code }}",
+    "show_all_options": "എല്ലാ ഓപ്ഷനുകളും കാണിക്കുക",
+    "see_items": {
+      "one": "{{ count }} ഇനം കാണുക",
+      "other": "{{ count }} ഇനങ്ങൾ കാണുക"
+    },
+    "show_filters": "ഫിൽട്ടർ",
+    "show_less": "കുറച്ചു കാണിക്കുക",
+    "show_more": "കൂടുതൽ കാണിക്കുക"
   },
   "blocks": {
     "contact_form": {
@@ -5090,5 +5161,52 @@
       "success_moderated": "അഭിപ്രായം പോസ്റ്റ് ചെയ്തു, പരിശോധനയ്ക്കായി കാത്തിരിക്കുന്നു",
       "success": "അഭിപ്രായം പോസ്റ്റ് ചെയ്തു"
     }
+  },
+  "accessibility": {
+    "account": "അക്കൗണ്ട്",
+    "cart": "കാർട്ട്",
+    "cart_count": "കാർട്ടിലെ ആകെ ഇനങ്ങൾ",
+    "close_dialog": "ഡയലോഗ് ക്ലോസ് ചെയ്യുക",
+    "country_region": "രാജ്യം/പ്രദേശം",
+    "country_results_count": "{{ count }} ഫലങ്ങൾ",
+    "decrease_quantity": "എണ്ണം കുറയ്ക്കുക",
+    "discount": "ഡിസ്കൗണ്ട് കോഡ് അപ്ലൈ ചെയ്യുക",
+    "discount_menu": "ഡിസ്കൗണ്ട് കോഡുകൾ",
+    "discount_applied": "ഉപയോഗിച്ച ഡിസ്‌കൗണ്ട് കോഡ്: {{ code }}",
+    "filters": "ഫിൽട്ടറുകൾ",
+    "filter_count": {
+      "one": "{{ count }} ഫിൽട്ടർ പ്രയോഗിച്ചു",
+      "other": "{{ count }} ഫിൽട്ടറുകൾ പ്രയോഗിച്ചു"
+    },
+    "increase_quantity": "എണ്ണം വർദ്ധിപ്പിക്കുക",
+    "inventory_status": "ഇൻവെന്ററി സ്റ്റാറ്റസ്",
+    "localization_region_and_language": "മേഖലയും ഭാഷയും തിരഞ്ഞെടുക്കുന്നതിനുള്ള സംവിധാനം",
+    "menu": "മെനു",
+    "new_window": "പുതിയ വിൻഡോയിൽ തുറക്കുന്നു.",
+    "open_hotspot": "ഹോട്ട്സ്പോട്ട് തുറക്കുക",
+    "quantity": "അളവ്",
+    "pause_video": "വീഡിയോ താൽക്കാലികമായി നിർത്തുക",
+    "play_model": "3D മോഡൽ പ്ലേ ചെയ്യുക",
+    "play_video": "വീഡിയോ പ്ലേ ചെയ്യുക",
+    "loading_product_recommendations": "ഉൽപ്പന്ന നിർദ്ദേശങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+    "rating": "ഈ ഉൽപ്പന്നത്തിന്‍റെ റേറ്റിംഗ് 5-ൽ {{ rating }} ആണ്",
+    "remove_item": "{{ title}} നീക്കം ചെയ്യുക",
+    "remove": "നീക്കം ചെയ്യുക",
+    "reset_search": "തിരച്ചിൽ പുനഃസജ്ജമാക്കുക",
+    "scroll_to": "{{ title }} എന്നതിലേക്ക് സ്ക്രോൾ ചെയ്യുക",
+    "search_results_count": "{{ count }} തിരയൽ ഫലങ്ങൾ \"{{ query }}\" എന്നതിനായി കണ്ടെത്തി",
+    "search_results_no_results": "\"{{ query }}\" എന്നതിനായി ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല",
+    "skip_to_product_info": "ഉൽപ്പന്ന വിവരങ്ങളിലേക്ക് പോകുക",
+    "skip_to_results_list": "ഫലങ്ങളുടെ പട്ടികയിലേക്ക് പോകുക",
+    "skip_to_text": "ഉള്ളടക്കത്തിലേക്ക് പോകുക",
+    "slide_status": "സ്ലൈഡ് {{ index }} ഓഫ് {{ length }}",
+    "slideshow": "സ്ലൈഡ് ഷോ",
+    "slideshow_next": "അടുത്ത സ്ലൈഡ്",
+    "slideshow_pause": "സ്ലൈഡ്‌ഷോ താൽക്കാലികമായി നിർത്തുക",
+    "slideshow_play": "സ്ലൈഡ്ഷോ പ്ലേ ചെയ്യുക",
+    "slideshow_previous": "മുമ്പത്തെ സ്ലൈഡ്",
+    "unit_price": "യൂണിറ്റ് വില",
+    "find_country": "രാജ്യം കണ്ടെത്തുക",
+    "view_pricing_info": "വില വിവരങ്ങൾ കാണുക"
   }
 }
