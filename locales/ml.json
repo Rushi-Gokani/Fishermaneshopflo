@@ -541,6 +541,256 @@
           "mobile_phone_number": "മൊബൈൽ ഫോൺ നമ്പർ",
           "get_offers_by_text": "ഓഫറുകൾ മെസ്സേജായി ലഭിക്കൂ"
         }
+      },
+      "contact": {
+        "street_number_label": "കെട്ടിട നമ്പർ",
+        "optional_street_number_label": "കെട്ടിട നമ്പർ (വേണമെങ്കിൽ)",
+        "address2_label": "അപ്പാർട്ട്‌മെന്റ്, സ്യൂട്ട് തുടങ്ങിയവ",
+        "optional_address2_label": "അപ്പാർട്ട്മെന്റ്, സ്യൂട്ട്, മുതലായവ (ഓപ്ഷണൽ)",
+        "neighborhood_label": "അയൽപക്കം",
+        "optional_neighborhood_label": "സമീപപ്രദേശം (വേണമെങ്കിൽ)",
+        "barangay_label": "ബാരംഗെ",
+        "optional_barangay_label": "ബരാംഗേ (നിർബന്ധമില്ല)",
+        "colony_label": "കോളനി",
+        "optional_colony_label": "കോളനി (ഓപ്ഷണൽ)",
+        "commune_label": "കമ്മ്യൂൺ",
+        "optional_commune_label": "കോമ്യൂൺ (ഓപ്ഷണൽ)",
+        "district_label": "ജില്ല",
+        "optional_district_label": "ജില്ല (ഓപ്ഷണൽ)",
+        "subdistrict_label": "താലൂക്ക്",
+        "optional_subdistrict_label": "ഉപജില്ല (ഓപ്ഷണൽ)",
+        "ward_label": "വാർഡ്",
+        "optional_ward_label": "വാർഡ് (ഓപ്ഷണൽ)",
+        "block_label": "ബ്ലോക്ക്",
+        "optional_block_label": "ബ്ലോക്ക് ചെയ്യുക (ഓപ്ഷണൽ)",
+        "area_label": "വിസ്തീർണ്ണം",
+        "optional_area_label": "പ്രദേശം (ഓപ്ഷണൽ)",
+        "city_label": "നഗരം",
+        "suburb_label": "നഗരപ്രാന്തം",
+        "country_label": "രാജ്യം/പ്രദേശം",
+        "country_code": "രാജ്യം/മേഖല കോഡ്",
+        "province_label": "പ്രവിശ്യ",
+        "province_placeholder": "പ്രവിശ്യ",
+        "county_label": "ജില്ല",
+        "county_placeholder": "ജില്ല",
+        "state_label": "അവസ്ഥ",
+        "state_placeholder": "അവസ്ഥ",
+        "region_label": "മേഖല",
+        "region_placeholder": "മേഖല",
+        "region_none": "ഒന്നും തിരഞ്ഞെടുത്തിട്ടില്ല",
+        "prefecture_label": "പ്രവിശ്യ",
+        "prefecture_placeholder": "പ്രവിശ്യ",
+        "governorate_label": "ഗവർണറേറ്റ്",
+        "governorate_placeholder": "ഗവർണറേറ്റ്",
+        "emirate_label": "എമിറേറ്റ്",
+        "emirate_placeholder": "എമിറേറ്റ്",
+        "state_and_territory_label": "സംസ്ഥാനം/ഭരണപ്രദേശം",
+        "state_and_territory_placeholder": "സംസ്ഥാനം/ഭരണപ്രദേശം",
+        "phone_label": "ഫോൺ",
+        "phone_rollup_accessibility_label": "ഫോൺ ഓപ്ഷനുകൾ",
+        "phone_country_code_label": "ഫോൺ നമ്പർ കൺട്രി കോഡ്",
+        "optional_phone_label": "ഫോൺ (ഓപ്ഷണൽ)",
+        "phone_placeholder": "ഫോൺ",
+        "phone_tooltip": "നിങ്ങളുടെ ഓർഡറിനെക്കുറിച്ച് ഞങ്ങൾക്ക് നിങ്ങളെ ബന്ധപ്പെടേണ്ടി വന്നാൽ",
+        "zip_code_label": "പിൻ കോഡ്",
+        "optional_zip_code_label": "പിൻ കോഡ് (ഓപ്ഷണൽ)",
+        "zip_code_placeholder": "പിൻ കോഡ്",
+        "postal_code_label": "പോസ്റ്റൽ കോഡ്",
+        "optional_postal_code_label": "പോസ്റ്റൽ കോഡ് (ഓപ്ഷണൽ)",
+        "postal_code_placeholder": "പോസ്റ്റൽ കോഡ്",
+        "postcode_label": "പിൻകോഡ്",
+        "optional_postcode_label": "പോസ്റ്റൽ കോഡ് (ഓപ്ഷണൽ)",
+        "postcode_placeholder": "പിൻകോഡ്",
+        "pincode_label": "പിൻ കോഡ്",
+        "optional_pincode_label": "പിൻ കോഡ് (ഓപ്ഷണൽ)",
+        "pincode_placeholder": "പിൻ കോഡ്",
+        "civic_number_warning": "നിങ്ങളുടെ വീട്ടുനമ്പർ ഉണ്ടെങ്കിൽ അത് ചേർക്കുക",
+        "optional_last_name_label": "അവസാന പേര് (ഓപ്ഷണൽ)",
+        "different_shipping_address_label": "മറ്റൊരു വിലാസത്തിലേക്ക് അയക്കുക",
+        "different_shipping_address_text": "ഈ ഓർഡറിനായി ഒറ്റത്തവണ മാത്രം ഉപയോഗിക്കാവുന്ന വിലാസം ഉപയോഗിക്കുക",
+        "change_company_location_link_label": "കമ്പനിയുടെ സ്ഥാനം മാറ്റുക",
+        "change_location_link_label": "സ്ഥലം മാറ്റുക",
+        "ship_to_company": "{{companyName}}-ലേക്ക് ഷിപ്പ് ചെയ്യുക"
+      },
+      "delivery_options": {
+        "free_total_label": "സൗജന്യം",
+        "ship": "കപ്പൽ",
+        "ship_to_address": "ഡെലിവറി ചെയ്യേണ്ട വിലാസം",
+        "shipping_address": "ഷിപ്പിംഗ് വിലാസം",
+        "pick_up": "എടുത്തു കൊള്ളുക",
+        "pickup": "എടുക്കുക",
+        "pickup_store": "സ്റ്റോറിൽനിന്ന് ശേഖരിക്കുക",
+        "pickup_point": "പിക്കപ്പ് പോയിന്റ്",
+        "pick_up_from_store": "സ്റ്റോറിൽ നിന്ന് നേരിട്ട് കൈപ്പറ്റുക",
+        "pick_up_locations": "പിക്കപ്പ് സ്ഥലങ്ങൾ",
+        "pickup_point_map_title": "പിക്കപ്പ് പോയിന്റ് മാപ്പ്",
+        "pick_up_in_one_hour": "സാധാരണയായി 1 മണിക്കൂറിനുള്ളിൽ തയ്യാറാകും",
+        "pick_up_in_two_hours": "സാധാരണയായി 2 മണിക്കൂറിനുള്ളിൽ തയ്യാറാകും",
+        "pick_up_in_four_hours": "സാധാരണയായി 4 മണിക്കൂറിനുള്ളിൽ തയ്യാറാകും",
+        "pick_up_in_twenty_four_hours": "സാധാരണയായി 24 മണിക്കൂറിനുള്ളിൽ തയ്യാറാകും",
+        "pick_up_in_two_to_four_days": "സാധാരണയായി 2-4 ദിവസത്തിനുള്ളിൽ തയ്യാറാകും",
+        "pick_up_in_five_or_more_days": "സാധാരണയായി 5 ദിവസത്തിലധികം സമയം എടുക്കും",
+        "pick_up_in_zero_to_two_hours": "2 മണിക്കൂറിനുള്ളിൽ പിക്ക് അപ്പിനായി തയ്യാറാകും",
+        "pick_up_in_two_to_four_hours": "4 മണിക്കൂറിനുള്ളിൽ പിക്ക്-അപ്പിനായി തയ്യാറാകും",
+        "pick_up_immediately": "ഇപ്പോൾ വന്ന് എടുക്കാം",
+        "pick_up_next_day": "അടുത്ത ദിവസം പിക്ക് അപ്പിന് തയ്യാറാകും",
+        "pickup_point_method_definition": "പിക്കപ്പ് പോയിന്റിലേക്ക് അയക്കുക",
+        "retail_method_definition": "റീട്ടെയിൽ ഷിപ്പിംഗ്",
+        "company_location_no_address_banner": "മേൽവിലാസമില്ലാത്ത സ്ഥലങ്ങളിലേക്കുള്ള ഓർഡറുകൾ പരിശോധനയ്ക്കായി സമർപ്പിക്കപ്പെടും.",
+        "none_method_definition": "ഷിപ്പിംഗ് ലഭ്യമല്ല",
+        "digital_product": "ഡിജിറ്റൽ ഉൽപ്പന്നം",
+        "subscription_pickup_information": "നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷന്റെ എല്ലാ ഭാവി ഓർഡറുകൾക്കുമുള്ള പിക്കപ്പ് സ്ഥലം ഇതായിരിക്കും."
+      },
+      "customer_account": {
+        "not_user_label": "%{first_name} അല്ലേ?",
+        "have_an_account_label": "അക്കൗണ്ട് ഉണ്ടോ?",
+        "sign_in_link_label": "ലോഗിൻ ചെയ്യുക",
+        "sign_out_link_label": "സൈൻ ഔട്ട് ചെയ്യുക",
+        "save_my_information_label": "ഈ വിവരങ്ങൾ അടുത്ത തവണത്തേക്കായി സേവ് ചെയ്തു വയ്ക്കുക."
+      }
+    },
+    "notices": {
+      "customer": {
+        "denylisted_reset_password": "നിലവിലെ പാസ്‌വേഡ് സുരക്ഷിതമല്ലാത്തതിനാൽ നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് പ്രവേശിക്കാൻ സാധിച്ചില്ല. പാസ്‌വേഡ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിനായി നിങ്ങൾക്ക് ഒരു ഇമെയിൽ ലഭിക്കും.",
+        "signup_disabled": "ഉപഭോക്തൃ അക്കൗണ്ട് സൃഷ്ടിക്കുന്നത് പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു."
+      },
+      "address": {
+        "updated": "വിലാസം വിജയകരമായി അപ്‌ഡേറ്റ് ചെയ്തു.",
+        "error_updating": "വിലാസം അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പിശക്",
+        "created": "വിലാസം വിജയകരമായി സൃഷ്ടിച്ചു",
+        "error_creating": "വിലാസം സൃഷ്ടിക്കുന്നതിൽ പിശക്.",
+        "deleted": "വിലാസം വിജയകരമായി നീക്കം ചെയ്തു",
+        "error_deleting": "വിലാസം നീക്കം ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചു."
+      },
+      "line_item": {
+        "item_status": {
+          "add_variant": "%{delta} ചേർത്തു",
+          "increment_item": "%{delta} ചേർത്തു",
+          "decrement_item": "%{total}-ൽ %{delta} നീക്കം ചെയ്തു",
+          "decrement_fulfilled_line_item": "%{total}-ൽ %{delta} എണ്ണം തിരികെ ലഭിച്ചു",
+          "decrement_return_line_item": "മടക്കത്തിൽ നിന്ന് %{delta} നീക്കം ചെയ്തു"
+        }
+      },
+      "order": {
+        "not_available": "ഈ ഓർഡർ ലഭ്യമല്ല",
+        "financial_status": {
+          "authorized": "അനുവദനീയമായ",
+          "pending": "തീർപ്പാക്കാനുള്ളത്",
+          "paid": "പണമടച്ചു",
+          "unpaid": "അടയ്ക്കാത്തത്",
+          "voided": "റദ്ദാക്കി",
+          "partially_paid": "ഭാഗികമായി പണമടച്ചു",
+          "partially_refunded": "ഭാഗികമായി റീഫണ്ട് ചെയ്തു",
+          "refunded": "റീഫണ്ട് ചെയ്തു",
+          "expired": "കാലാവധി കഴിഞ്ഞു"
+        },
+        "fulfillment_status": {
+          "fulfilled": "നിറവേറ്റി",
+          "complete": "പൂർത്തിയായി",
+          "partial": "ഭാഗികമായ",
+          "unfulfilled": "പൂർത്തീകരിക്കപ്പെടാത്ത",
+          "restocked": "വീണ്ടും സ്റ്റോക്ക് ചെയ്തു"
+        },
+        "transaction_status": {
+          "success": "വിജയം",
+          "pending": "തീർപ്പാക്കാനുള്ളത്",
+          "failure": "പരാജയം",
+          "error": "പിശക്"
+        },
+        "cancel_reason": {
+          "declined": "പേയ്‌മെന്റ് നിരസിച്ചു",
+          "inventory": "ഇനങ്ങൾ ലഭ്യമല്ല",
+          "fraud": "തട്ടിപ്പിലൂടെയുള്ള ഓർഡർ",
+          "customer": "ഉപഭോക്താവ് ഓർഡർ മാറ്റുകയോ റദ്ദാക്കുകയോ ചെയ്തു",
+          "staff": "ജീവനക്കാരുടെ പിഴവ്",
+          "other": "മറ്റുള്ളവ"
+        },
+        "cash_on_delivery": "ക്യാഷ് ഓൺ ഡെലിവറി (COD)"
+      },
+      "cart": {
+        "not_found": "കാർട്ട് കണ്ടെത്തിയില്ല",
+        "only_n_items_available": "നിങ്ങൾക്ക് %{count} %{name} മാത്രമേ കാർട്ടിൽ ചേർക്കാൻ കഴിയൂ.",
+        "too_many_items_in_cart": "നിങ്ങൾക്ക് കൂടുതൽ %{name} കാർട്ടിലേക്ക് ചേർക്കാൻ കഴിയില്ല.",
+        "only_one_added_to_cart": "ലഭ്യത കുറവായതിനാൽ 1 ഇനം മാത്രമേ നിങ്ങളുടെ കാർട്ടിൽ ചേർത്തിട്ടുള്ളൂ.",
+        "only_n_added_to_cart": "ലഭ്യതക്കുറവ് കാരണം %{quantity} ഇനങ്ങൾ മാത്രമാണ് നിങ്ങളുടെ കാർട്ടിൽ ചേർത്തിട്ടുള്ളത്.",
+        "maximum_available_quantity_reached": "ഈ ഇനത്തിന്റെ അനുവദനീയമായ പരമാവധി എണ്ണം ഇതിനകം നിങ്ങളുടെ കാർട്ടിലുണ്ട്.",
+        "less_than_minimum": "ഈ ഇനത്തിന് കുറഞ്ഞത് %{min} എണ്ണമെങ്കിലും ഉണ്ടായിരിക്കണം.",
+        "more_than_maximum": "ഈ ഇനത്തിന് പരമാവധി %{max} ഉണ്ട്.",
+        "not_respect_step": "നിങ്ങൾക്ക് ഈ ഇനം %{step} എന്ന ക്രമത്തിൽ മാത്രമേ ചേർക്കാൻ കഴിയൂ.",
+        "all_items_in_cart": "എല്ലാ %{count} %{name} ഉം നിങ്ങളുടെ കാർട്ടിലുണ്ട്.",
+        "empty_update": "ഒഴിഞ്ഞ കാർട്ട് അപ്‌ഡേറ്റ് ചെയ്യാൻ കഴിയില്ല",
+        "missing_parameters": "സാധുവായ ഐഡിയോ ലൈൻ പാരാമീറ്ററോ ലഭ്യമല്ല",
+        "generic_error": "കാർട്ട് പിശക്",
+        "invalid_input": "%{parameter} പാരാമീറ്റർ അസാധുവാണ്.",
+        "product_not_available": "ഉൽപ്പന്നം ലഭ്യമല്ല",
+        "too_many_line_items_error": "നിങ്ങളുടെ കാർട്ടിൽ %{max}-ൽ കൂടുതൽ ഇനങ്ങൾ ഉൾക്കൊള്ളാൻ കഴിയില്ല.",
+        "link_expired": "ലിങ്ക് കാലഹരണപ്പെട്ടു",
+        "link_no_longer_exists": "ഈ ലിങ്ക് ഇനി നിലവിലില്ല.",
+        "stock_problems_html": "ഒന്നോ അതിലധികമോ ഇനങ്ങൾ ഇപ്പോൾ ലഭ്യമല്ല. ഞങ്ങൾ ഒരു <a href=\"%{link}\">അപ്‌ഡേറ്റ് ചെയ്‌ത കാർട്ട്</a> നൽകിയിട്ടുണ്ട്.",
+        "changed": "കാർട്ട് മാറ്റിയിരിക്കുന്നു",
+        "items_changed": "ഒന്നോ അതിലധികമോ ഇനങ്ങളിൽ മാറ്റം വരുത്തിയിട്ടുണ്ട്.",
+        "product_sold_out": "'%{name}' എന്ന ഉൽപ്പന്നം ഇതിനകം വിറ്റുതീർന്നു.",
+        "variant_not_found": "വേരിയന്റ് കണ്ടെത്താനായില്ല",
+        "variant_requires_selling_plan": "ഈ വേരിയന്റ് ഒരു സെല്ലിംഗ് പ്ലാനിലൂടെ മാത്രമേ വാങ്ങാൻ കഴിയൂ.",
+        "selling_plan_not_available_for_company_locations": "B2B ഓർഡറുകൾക്ക് ഒറ്റത്തവണ പർച്ചേസ് മാത്രമേ ലഭ്യമാകൂ.",
+        "digital_product_not_available_for_company_locations": "ഈ ഇനം ഒരു ബി2ബി (B2B) ഓർഡറിലേക്ക് ചേർക്കാൻ കഴിയില്ല.",
+        "buyer_cannot_purchase_for_company_locations": "ഈ ലൊക്കേഷനിലേക്ക് നിങ്ങൾക്ക് പർച്ചേസ് ചെയ്യാൻ കഴിയില്ല",
+        "selling_plan_not_applicable": "വേരിയന്റിൽ സെല്ലിംഗ് പ്ലാൻ പ്രയോഗിക്കാൻ കഴിയില്ല",
+        "shipping_address_not_required": "ഈ കാർട്ടിന് ഷിപ്പിംഗ് ആവശ്യമില്ല",
+        "shipping_address_invalid": "നിങ്ങളുടെ ഷിപ്പിംഗ് നിരക്കുകൾ കണക്കാക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. ഓർഡർ പൂർത്തിയാക്കുന്നതിന് മുമ്പ് ഷിപ്പിംഗ് നിരക്ക് തിരഞ്ഞെടുക്കുന്നതിനായി ചെക്ക്ഔട്ടിലേക്ക് തുടരുക.",
+        "bundle_requires_components": "'%{name}' എന്ന ബണ്ടിൽ ഉൽപ്പന്നം കാർട്ടിലേക്ക് ചേർക്കാൻ കഴിയില്ല.",
+        "gift_card_with_components_not_supported": "'%{name}' എന്ന ബണ്ടിൽ ഉൽപ്പന്നം കാർട്ടിലേക്ക് ചേർക്കാൻ കഴിയില്ല.",
+        "gift_card_price_must_be_greater_than_zero": "'%{name}' എന്ന ബണ്ടിൽ ഉൽപ്പന്നം കാർട്ടിലേക്ക് ചേർക്കാൻ കഴിയില്ല.",
+        "gift_card_recipient_validation_error": "നിർദ്ദേശിച്ച ഗിഫ്റ്റ് കാർഡ് സ്വീകർത്താവ് അസാധുവാണ്",
+        "view_lines_limit_reached": "വരികൾ %{limit}-ൽ താഴെയോ തുല്യമോ ആയിരിക്കണം",
+        "cart_too_large": "കാർട്ട് വളരെ വലുതാണ്.",
+        "cart_attributes_error": "കാർട്ട് ആട്രിബ്യൂട്ടുകളിൽ അസാധുവായ ഡാറ്റ അടങ്ങിയിരിക്കുന്നു.",
+        "merchandise_line_transformers": {
+          "run_error": "നിങ്ങളുടെ കാർട്ടിൽ ഒരു പിശക് സംഭവിച്ചു."
+        },
+        "merchandise_not_applicable": "ഈ ക്രമീകരണത്തിൽ ഇനം വാങ്ങാൻ കഴിയില്ല."
+      },
+      "storefront": {
+        "invalid_password": "പാസ്‌വേഡ് തെറ്റാണ്, ദയവായി വീണ്ടും ശ്രമിക്കുക."
+      },
+      "tags": {
+        "add_articles": "%{tag} എന്ന ടാഗ് കൂടി ഉള്ള ലേഖനങ്ങളിലേക്ക് തിരച്ചിൽ ചുരുക്കുക",
+        "add_products": "%{tag} എന്ന ടാഗുമായി പൊരുത്തപ്പെടുന്ന ഉൽപ്പന്നങ്ങളിലേക്ക് തിരഞ്ഞെടുപ്പ് ചുരുക്കുക",
+        "remove_articles": "%{tag} എന്ന് ടാഗ് ചെയ്യാത്ത ലേഖനങ്ങളിലേക്കും തിരയൽ വ്യാപിപ്പിക്കുക",
+        "remove_products": "%{tag} ടാഗ് നീക്കം ചെയ്യുക"
+      }
+    },
+    "email_marketing": {
+      "subscribed": {
+        "confirmation": "ഞങ്ങളുടെ മെയിലിംഗ് ലിസ്റ്റിൽ സബ്സ്ക്രൈബ് ചെയ്തതിന് നന്ദി.",
+        "disclaimer": "നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും അൺസബ്സ്ക്രൈബ് ചെയ്യാവുന്നതാണ്.",
+        "unsubscribe": "അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യുക"
+      },
+      "unsubscribed": {
+        "confirmation": "ഞങ്ങളുടെ മെയിലിംഗ് ലിസ്റ്റിൽ നിന്ന് നിങ്ങൾ അൺസബ്‌സ്‌ക്രൈബ് ചെയ്തിരിക്കുന്നു.",
+        "disclaimer": "ഇനി മുതൽ ഞങ്ങളിൽ നിന്ന് നിങ്ങൾക്ക് മാർക്കറ്റിംഗ് അപ്‌ഡേറ്റുകൾ ലഭിക്കില്ല. നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും വീണ്ടും സബ്‌സ്‌ക്രൈബ് ചെയ്യാവുന്നതാണ്.",
+        "preview": "ഉപഭോക്താക്കൾ അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യുമ്പോൾ അവർക്ക് എന്തായിരിക്കും കാണാൻ കഴിയുക എന്ന് നിങ്ങൾ പ്രിവ്യൂ ചെയ്യുകയാണ്."
+      },
+      "unsubscribe_confirm": {
+        "title": "ഇമെയിലുകളിൽ നിന്ന് അൺസബ്സ്ക്രൈബ് ചെയ്യണോ?",
+        "description": "ഇനി മുതൽ %{shop_name}-ൽ നിന്നുള്ള ഇമെയിൽ മാർക്കറ്റിംഗ് നിങ്ങൾക്ക് ലഭിക്കില്ല",
+        "button": "അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യുക"
+      },
+      "sms_unsubscribe_confirm": {
+        "message": "SMS മാർക്കറ്റിംഗിൽ നിന്ന് അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യാൻ നിങ്ങൾ തീർച്ചയായും ആഗ്രഹിക്കുന്നുണ്ടോ?",
+        "button": "അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യുക"
+      },
+      "open_tracking": {
+        "opt_in": {
+          "opted_in_html": "<b>നിങ്ങൾ ഇമെയിൽ ഓപ്പൺ ട്രാക്കിംഗ് തിരഞ്ഞെടുത്തിട്ടുണ്ട്.</b>",
+          "visibility": "ഇമെയിൽ ഓപ്പൺ നിരക്കുകൾ അജ്ഞാതമായാണ് റിപ്പോർട്ട് ചെയ്യപ്പെടുക. നിങ്ങൾ ഒരു ഇമെയിൽ തുറന്നോ എന്നത് മൊത്തത്തിലുള്ള ഇമെയിൽ ഓപ്പൺ നിരക്കിന്റെ ഭാഗമായി മാത്രമേ ഞങ്ങൾ കാണുകയുള്ളൂ.",
+          "opt_out_html": "ഈ വിവരങ്ങൾ പങ്കിടാൻ നിങ്ങൾക്ക് താല്പര്യമില്ലെങ്കിൽ ഇമെയിൽ ഓപ്പൺ ട്രാക്കിംഗിൽ നിന്ന് <a style=\"text-decoration:underline;\" href=\"%{link}\">ഒഴിവാകാവുന്നതാണ്</a>.",
+          "preview_bar": "ഇമെയിൽ ഓപ്പൺ ട്രാക്കിംഗിനായി ഉപഭോക്താക്കൾ തിരഞ്ഞെടുക്കുമ്പോൾ അവർക്ക് എന്ത് കാണാനാകുമെന്ന് നിങ്ങൾ പ്രിവ്യൂ ചെയ്യുന്നു."
+        },
+        "opt_out": {
+          "opted_out_html": "<b>ഇമെയിൽ ഓപ്പൺ ട്രാക്കിംഗിൽ നിന്ന് നിങ്ങൾ ഒഴിവാക്കപ്പെട്ടിരിക്കുന്നു.</b>",
+          "visibility": "ഞങ്ങൾ അയക്കുന്ന ഇമെയിലുകൾ നിങ്ങൾ തുറന്നോ എന്ന് ഞങ്ങൾ പരിശോധിക്കില്ല."
+        }
       }
     }
   },
