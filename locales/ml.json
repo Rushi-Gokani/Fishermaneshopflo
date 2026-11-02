@@ -3186,7 +3186,9 @@
       "no_data_provided_accessibility_label": "{{fieldName}} ഒഴിഞ്ഞതാണ്",
       "paid_amount": "പണമടച്ചു",
       "payment_confirmation": {
-        "payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെൻ്റ് ലഭിച്ചു."
+        "payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെൻ്റ് ലഭിച്ചു.",
+        "full_payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെന്റ് ലഭിച്ചു, ഈ ഓർഡറിന്റെ മുഴുവൻ തുകയും അടച്ചിട്ടുണ്ട്.",
+        "payment_authorized": "നന്ദി! പണമടച്ചുകഴിയുമ്പോൾ ബാലൻസ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതാണ്."
       },
       "edit_summary": {
         "custom_line_discount_removed": "ഇഷ്‌ടാനുസൃത ഡിസ്കൗണ്ട് ({{value}}) നീക്കം ചെയ്തു",
@@ -3199,7 +3201,14 @@
         "updated_count": {
           "one": "ഓർഡർ ഒരിക്കൽ അപ്‌ഡേറ്റ് ചെയ്‌തു",
           "other": "ഓർഡർ {{count}} തവണ അപ്‌ഡേറ്റ് ചെയ്‌തു"
-        }
+        },
+        "added": "ചേർത്തു",
+        "removed": "നീക്കം ചെയ്തു",
+        "updated_at": "ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്‌തു {{date}}",
+        "returned": "തിരികെ നൽകി",
+        "return_line_item_removed": "തിരിച്ചയക്കുന്നതിൽ നിന്ന് ഒഴിവാക്കി",
+        "custom_discount": "ഇഷ്‌താനുസൃത ഇളവ് ({{value}})",
+        "custom_line_discount_added": "ഇഷ്‌താനുസൃത ഇളവ് ({{value}}) ചേർത്തു"
       },
       "shop_pay": {
         "order_completed_with": "ഓർഡർ പൂർത്തിയായി",
@@ -3261,6 +3270,125 @@
         "returns_accepted": "മടക്കിനൽകൽ സ്വീകരിക്കുന്നു",
         "returns_on_eligible_items": "യോഗ്യമായ ഇനങ്ങളുടെ റിട്ടേണുകൾ",
         "trusted_delivery": "വിശ്വസനീയമായ ഡെലിവറി"
+      },
+      "payment": {
+        "title": "പേയ്‌മെന്റ്",
+        "payment_type": {
+          "gift_card": "ഗിഫ്റ്റ് കാർഡ്",
+          "store_credit": "സ്റ്റോർ ക്രെഡിറ്റ്",
+          "money_order": "മണി ഓർഡർ",
+          "cash_on_delivery": "ക്യാഷ് ഓൺ ഡെലിവറി (COD)",
+          "bank_deposit": "ബാങ്ക് നിക്ഷേപം",
+          "manual": "മാനുവൽ"
+        },
+        "shop_pay_installments": {
+          "summary": "കടയുടെ തവണകൾ",
+          "view_schedule": "ഷെഡ്യൂൾ കാണുക"
+        },
+        "transactions": {
+          "show_all": "എല്ലാം കാണിക്കുക",
+          "show_less": "കുറച്ചു കാണിക്കുക",
+          "details": "വിശദാംശങ്ങൾ",
+          "payment_details": "പേയ്‌മെന്റ് വിവരങ്ങൾ"
+        },
+        "emv_details": {
+          "auth": "അംഗീകാരം:",
+          "aid": "സഹായം:",
+          "source": "ലഭ്യമായ ഉറവിടം:"
+        },
+        "voucher": {
+          "apple_wallet_badge_alt": "ആപ്പിൾ വാലറ്റിലേക്ക് ചേർക്കുക",
+          "code_copied": "പകർത്തി",
+          "copy_code": "{{label}} കോപ്പി ചെയ്യുക",
+          "expired": "കാലഹരണപ്പെട്ടത് {{date}}",
+          "expired_title": "ബാർകോഡിന്റെ കാലാവധി കഴിഞ്ഞു",
+          "expires": "കാലഹരണപ്പെടുന്നത് {{date}}",
+          "konbini_choose_outlet": "നിങ്ങളുടെ കോഡുകളും പണമടയ്ക്കേണ്ട രീതിയും കാണുന്നതിന് ഒരു കോൺബിനി (Konbini) തിരഞ്ഞെടുക്കുക.",
+          "konbini_expired_title": "പേയ്‌മെന്റ് കോഡ് കാലഹരണപ്പെട്ടു",
+          "konbini_keep_receipt": "പണമടച്ചതിന്റെ തെളിവായി നിങ്ങളുടെ രസീത് സൂക്ഷിക്കുക",
+          "multibanco_expired_title": "പേയ്‌മെന്റ് റഫറൻസ് കാലഹരണപ്പെട്ടു",
+          "oxxo_already_paid": "ഇനിയും പണം നൽകിയിട്ടുണ്ടോ? പ്രോസസ്സിംഗ് 1–3 ദിവസം വരെ എടുത്തേക്കാം",
+          "pay": "{{amount}} നൽകുക",
+          "reference_number": "റഫറൻസ് നമ്പർ:",
+          "section_title": "പേയ്‌മെന്റ് നിർദ്ദേശങ്ങൾ"
+        }
+      },
+      "paid_with_shop_pay_installments_card": {
+        "title": "Shop Pay Installments-നായുള്ള പേയ്‌മെന്റ് റിമൈൻഡറുകൾ",
+        "paid_with_shop_pay_installments": "ഷോപ്പ് പേ ഇൻസ്റ്റാൾമെന്റ്‌സ് വഴി പണമടച്ചു",
+        "description": "ഷോപ്പ് (Shop) ആപ്പിലെ റിമൈൻഡറുകൾ ഉപയോഗിച്ച് നിങ്ങളുടെ പേയ്‌മെന്റ് ഷെഡ്യൂൾ കൃത്യമായി പാലിക്കൂ.",
+        "payment_reminders_button": "പേയ്‌മെന്റ് ഓർമ്മപ്പെടുത്തലുകൾ സ്വീകരിക്കുക",
+        "desktop_qr_code_content": {
+          "title": "ഓർമ്മപ്പെടുത്തലുകൾക്കായി സ്കാൻ ചെയ്യുക",
+          "description": "ഷോപ്പ് (Shop) ഉപയോഗിച്ച് നിങ്ങളുടെ ഇൻസ്റ്റാൾമെന്റുകളെക്കുറിച്ചുള്ള ഓർമ്മപ്പെടുത്തലുകൾ നേടൂ."
+        }
+      },
+      "refunded_amount": "റീഫണ്ട് ചെയ്തു",
+      "login_card": {
+        "title": "ഓർഡർ വിവരങ്ങൾ കാണുക",
+        "resend_link_and_login": "നിങ്ങളുടെ ഓർഡർ വിവരങ്ങൾ കാണുന്നതിനായി, സൈൻ ഇൻ ചെയ്യുക അല്ലെങ്കിൽ ചെക്ക്ഔട്ടിനായി ഉപയോഗിച്ച ഇമെയിലിലേക്കോ ഫോൺ നമ്പറിലേക്കോ പുതിയൊരു ലിങ്ക് അയക്കുക.",
+        "resend_link_only": "നിങ്ങളുടെ ഓർഡർ വിവരങ്ങൾ കാണുന്നതിന്, ചെക്ക്ഔട്ട് സമയത്ത് നൽകിയ ഇമെയിലിലേക്കോ ഫോൺ നമ്പറിലേക്കോ ഒരു പുതിയ ലിങ്ക് അയക്കുക.",
+        "log_in": "ലോഗിൻ ചെയ്യുക",
+        "resend_link": "പുതിയ ലിങ്ക് അയക്കുക",
+        "link_expired": "ലിങ്ക് കാലഹരണപ്പെട്ടു"
+      },
+      "remaining_amount": "ശേഷിക്കുന്നത്",
+      "marketing_section_title": "വാർത്തകളും ഓഫറുകളും",
+      "marketing_checkbox_label": "വാർത്തകളും ഓഫറുകളും എനിക്ക് ഇമെയിൽ ചെയ്യുക",
+      "marketing_checkmark_label": "ഇമെയിൽ വാർത്തകളും ഓഫറുകളും ലഭിക്കുന്നതിനായി നിങ്ങൾ സബ്‌സ്‌ക്രൈബ് ചെയ്തിരിക്കുന്നു",
+      "marketing_pending_confirmation": "സ്ഥിരീകരിക്കുന്നതിനായി നിങ്ങളുടെ ഇമെയിലിലുള്ള ലിങ്കിൽ ക്ലിക്ക് ചെയ്യുക.",
+      "marketing_resend_email": "ഇമെയിൽ വീണ്ടും അയക്കുക",
+      "marketing_resend_email_success": "ലിങ്ക് അയച്ചു",
+      "returns": {
+        "expand_events_label": "വിശദാംശങ്ങൾ കാണിക്കുക",
+        "hide_events_label": "വിശദാംശങ്ങൾ മറയ്ക്കുക",
+        "ineligible_return_message": "ഈ ഓർഡറിലെ ഇനങ്ങൾ ഒന്നും തന്നെ മടക്കി നൽകാൻ അർഹമല്ല.",
+        "ineligible_return_message_when_returned": "ഈ ഓർഡറിലെ മറ്റ് ഇനങ്ങൾ ഒന്നും തന്നെ മടക്കി നൽകാൻ അർഹമല്ല.",
+        "print_shipping_label": "ഷിപ്പിംഗ് ലേബൽ പ്രിന്റ് ചെയ്യുക",
+        "tracking_number": "ട്രാക്കിംഗ് നമ്പർ:",
+        "exchange_header": "ഇനങ്ങൾ മാറ്റുക",
+        "exchange_subheader": "റിട്ടേൺ നടപടികൾ പൂർത്തിയായതിന് ശേഷം എക്സ്ചേഞ്ച് ഇനങ്ങൾ ഓർഡറിലേക്ക് ചേർക്കപ്പെടും."
+      },
+      "shipping": {
+        "address": "ഷിപ്പിംഗ് വിലാസം",
+        "method": "ഷിപ്പിംഗ് രീതി",
+        "method_short": "രീതി",
+        "ship_to": "അയക്കേണ്ട വിലാസം",
+        "summary": "ഷിപ്പിംഗ്",
+        "free": "സൗജന്യം",
+        "one_time": "ഒറ്റത്തവണത്തെ ഷിപ്പിംഗ്",
+        "subscription": "സബ്‌സ്‌ക്രിപ്‌ഷൻ ഷിപ്പിംഗ്"
+      },
+      "pickup": {
+        "pickup": "എടുക്കുക",
+        "pickup_location": "പിക്ക് അപ്പ് സ്ഥലം",
+        "pickup_point": "പിക്കപ്പ് പോയിന്റ്"
+      },
+      "total_savings": "ആകെ സമ്പാദ്യം",
+      "subtitle": "സ്ഥിരീകരിച്ചു {{date}}",
+      "subtotal_label_with_quantity": {
+        "one": "ഉപ ആകെത്തുക",
+        "other": "ആകെത്തുക · {{count}} ഇനങ്ങൾ"
+      },
+      "summary_list_title_accessibility_label": "ഓർഡർ ചെയ്ത ഇനങ്ങൾ",
+      "summary_title": "ഓർഡർ സംഗ്രഹം",
+      "summary_totals_title_accessibility_label": "ഓർഡർ തുകകൾ",
+      "shop_order_tracking": {
+        "open_in_shop": "{{shop}} തുറക്കുക",
+        "track_order_with_shop": "{{shop}}-മായി ഓർഡർ ട്രാക്ക് ചെയ്യുക",
+        "animated_intro_value_props": "തത്സമയ അപ്‌ഡേറ്റുകൾ നേടുക",
+        "leave_review_with_shop": "{{shop}}-ൽ റിവ്യൂ നൽകുക",
+        "popover_description_pickup_updates": "Shop ആപ്പിൽ പിക്ക്അപ്പിനെക്കുറിച്ചുള്ള തത്സമയ അപ്‌ഡേറ്റുകൾ పొందുക",
+        "popover_description_review": "നിങ്ങളുടെ ഓർഡറിനെക്കുറിച്ചുള്ള അഭിപ്രായം Shop ആപ്പിൽ പങ്കുവെക്കുക",
+        "popover_description_tracking_updates": "Shop ആപ്പിൽ തത്സമയ ട്രാക്കിംഗ് അപ്‌ഡേറ്റുകൾ పొందുക",
+        "popover_qr_iframe_title": "കടയിലെ ക്യുആർ കോഡ്",
+        "popover_title_leave_review": "ഷോപ്പിൽ ഒരു റിവ്യൂ നൽകുക",
+        "popover_title_track_all_orders": "Shop-ലൂടെ നിങ്ങളുടെ എല്ലാ ഓർഡറുകളും ട്രാക്ക് ചെയ്യുക",
+        "popover_title_track_order": "Shop-ലൂടെ നിങ്ങളുടെ ഓർഡർ ട്രാക്ക് ചെയ്യുക",
+        "popover_title_track_pickup_order": "Shop-ലൂടെ നിങ്ങളുടെ പിക്ക്അപ്പ് ഓർഡർ ട്രാക്ക് ചെയ്യുക",
+        "shop_brand_name": "കട",
+        "track_all_your_orders_with_shop": "{{shop}}-ലെ നിങ്ങളുടെ എല്ലാ ഓർഡറുകളും ട്രാക്ക് ചെയ്യുക",
+        "track_pickup_with_shop": "{{shop}}-നൊപ്പം പിക്ക്അപ്പ് ട്രാക്ക് ചെയ്യുക"
       }
     },
     "returns_and_cancellations": {
