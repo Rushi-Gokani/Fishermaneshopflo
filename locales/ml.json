@@ -2691,8 +2691,70 @@
         "empty_state_product_navigation_accessibility_label": "ശുപാർശിക്കുന്ന ഉൽപ്പന്നങ്ങൾ",
         "empty_state_product_navigation_instructions": "ഉൽപ്പന്നങ്ങൾ പരിശോധിക്കാൻ ഇടത്, വലത് ആരോ കീകൾ ഉപയോഗിക്കുക. തുറക്കാൻ Enter അല്ലെങ്കിൽ Space അമർത്തുക.",
         "filters_title": "ഫിൽട്ടറുകൾ",
-        "sort_by_title": "ഇതനുസരിച്ച് ക്രമീകരിക്കുക"
-      }
+        "sort_by_title": "ഇതനുസരിച്ച് ക്രമീകരിക്കുക",
+        "empty_state_redesign_cta": "ഇപ്പോൾ തന്നെ ഷോപ്പിംഗ് നടത്തൂ",
+        "empty_state_redesign_subtitle": "വാങ്ങാൻ തയ്യാറാണോ?",
+        "empty_state_redesign_welcome": "സ്വാഗതം",
+        "empty_state_redesign_welcome_with_name": "സ്വാഗതം, {{firstName}}",
+        "empty_state_title": "ഓർഡറുകൾ ഒന്നും ലഭിച്ചിട്ടില്ല",
+        "empty_state_with_location_title": "{{locationName}}-ന് ഓർഡറുകളൊന്നുമില്ല",
+        "empty_state_title_for_pending_orders": "തീർപ്പാകാത്ത ഓർഡറുകളൊന്നുമില്ല",
+        "no_order_banner": "ഓർഡർ സ്റ്റാറ്റസ് പേജിൽ നിങ്ങളുടെ എക്സ്റ്റൻഷൻ പരിശോധിക്കുന്നതിനായി, ഒരു ഓർഡർ ക്രിയേറ്റ് ചെയ്യുക.",
+        "one_images_accessibility_label": "ഓർഡറിൽ ഉൾപ്പെടുന്നു {{lineItemName1}}",
+        "two_images_accessibility_label": "ഓർഡറിൽ ഉൾപ്പെടുന്നത് {{lineItemName1}}, {{lineItemName2}}",
+        "three_images_accessibility_label": "ഓർഡറിൽ ഉൾപ്പെടുന്നത് {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}",
+        "four_images_accessibility_label": "ഓർഡറിൽ ഉൾപ്പെടുന്നത് {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}, {{lineItemName4}}",
+        "more_than_three_products_accessibility_label": "ഓർഡറിൽ {{lineItemName1}}, {{lineItemName2}}, കൂടാതെ മറ്റ് {{numberOfAdditionalProducts}} ഉൽപ്പന്നങ്ങൾ ഉൾപ്പെടുന്നു",
+        "more_than_four_products_accessibility_label": "ഓർഡറിൽ {{lineItemName1}}, {{lineItemName2}}, {{lineItemName3}}, കൂടാതെ മറ്റ് {{numberOfAdditionalProducts}} ഉൽപ്പന്നങ്ങളും ഉൾപ്പെടുന്നു",
+        "plus_more": "+{{numberOfAdditionalProducts}}",
+        "no_filtered_results_description": "നിങ്ങളുടെ ഓർഡറുകൾ കാണുന്നതിനായി ഫിൽട്ടറുകൾ നീക്കം ചെയ്യുകയോ മാറ്റുകയോ ചെയ്യുക",
+        "no_filtered_results_title": "ഫിൽട്ടർ ചെയ്ത ഫലങ്ങളൊന്നുമില്ല",
+        "order_link": "ഓർഡർ കാണുക {{name}}, {{status}}, {{total}}",
+        "order_number": "ഓർഡർ {{name}}",
+        "orders_title": "സ്ഥിരീകരിച്ചു",
+        "pagination": {
+          "load_more": "കൂടുതൽ കാണിക്കുക",
+          "load_more_accessibility_label": "കൂടുതൽ ഓർഡറുകൾ കാണിക്കുക"
+        },
+        "payment_status": {
+          "list_view": {
+            "overdue": "കാലാവധി കഴിഞ്ഞു",
+            "due": "അവസാന തിയ്യതി {{date}}",
+            "due_today": "ഇന്ന് അവസാന തീയതിയാണ്",
+            "due_without_date": "അവസാന തീയതി",
+            "due_on_fulfillment": "പൂർത്തീകരണ സമയത്ത് അടയ്ക്കേണ്ടത്",
+            "pay_to_confirm": "സ്ഥിരീകരിക്കുന്നതിനായി പണമടയ്ക്കുക",
+            "payment_not_due": "ഇതുവരെ സമയമായിട്ടില്ല"
+          }
+        },
+        "sort_by": "ഇതിൻ്റെ അടിസ്ഥാനത്തിൽ തരംതിരിക്കുക: {{option}}",
+        "sort_options_accessibility_label": "സ്ഥിരീകരിച്ച ഓർഡറുകൾക്കായുള്ള അടുക്കാനുള്ള ഓപ്ഷനുകൾ",
+        "sort_show_options_accessibility_label": "സ്ഥിരീകരിച്ച ഓർഡറുകൾ ക്രമീകരിക്കുന്നതിനുള്ള ഓപ്ഷനുകൾ കാണിക്കുക.",
+        "sort_currently_sorted_by_accessibility_label": "നിലവിൽ തരംതിരിച്ചത്: {{option}}",
+        "sort": {
+          "date": {
+            "newest": "ഏറ്റവും പുതിയത് മുതൽ പഴയത് വരെ",
+            "oldest": "ഏറ്റവും പഴയത് മുതൽ പുതിയത് വരെ"
+          },
+          "location": {
+            "ascending": "സ്ഥലം (എ-സെഡ്)",
+            "descending": "സ്ഥലം (Z-A)"
+          },
+          "order_number": {
+            "ascending": "ഓർഡർ നമ്പർ (ചെറുതിൽ നിന്ന് വലുതിലേക്ക്)",
+            "descending": "ഓർഡർ നമ്പർ (ഉയർന്നതിൽ നിന്ന് കുറഞ്ഞതിലേക്ക്)"
+          },
+          "order_total": {
+            "ascending": "ഓർഡർ തുക (കുറഞ്ഞതിൽ നിന്ന് ഉയർന്നതിലേക്ക്)",
+            "descending": "ഓർഡർ തുക (ഏറ്റവും ഉയർന്നതിൽ നിന്ന് കുറഞ്ഞതിലേക്ക്)"
+          }
+        }
+      },
+      "list_title": "ഓർഡറുകൾ",
+      "list_title_confirmed_orders_accessibility_label": "ഓർഡറുകൾ: സ്ഥിരീകരിച്ചു",
+      "list_title_pending_orders_accessibility_label": "ഓർഡറുകൾ: തീർപ്പാകാനുള്ളവ",
+      "switch_order_type_pending_orders_accessibility_label": "ഓർഡർ തരം മാറ്റുക, നിലവിൽ തീർപ്പാകാനുള്ള ഓർഡറുകൾ കാണിക്കുന്നു",
+      "switch_order_type_confirmed_orders_accessibility_label": "ഓർഡർ തരം മാറ്റുക, നിലവിൽ സ്ഥിരീകരിച്ച ഓർഡറുകളാണ് കാണിക്കുന്നത്"
     },
     "order_details": {
       "order_details": "ഓർഡർ വിവരങ്ങൾ",
@@ -3152,6 +3214,80 @@
       "back_to_order_accessibility_label": "ഓർഡറിലേക്ക് തിരിച്ചുപോവുക",
       "document_accessibility_label": "രസീത് രേഖ",
       "exchange_subtitle": "എക്സ്ചേഞ്ച് {{name}} · {{date}}"
+    },
+    "account_information": {
+      "loading_accessibility_message": "അക്കൗണ്ട് വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+      "loading_finished_accessibility_message": "അക്കൗണ്ട് വിവരങ്ങൾ ലോഡ് ആയിട്ടുണ്ട്",
+      "profile_card": {
+        "cancel": "റദ്ദാക്കുക",
+        "cancel_accessibility_label": "പ്രൊഫൈൽ എഡിറ്റിംഗ് റദ്ദാക്കുക",
+        "edit": "തിരുത്തുക",
+        "edit_accessibility_label": "പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക",
+        "email_help_text": "ഇമെയിൽ എഡിറ്റ് ചെയ്യാൻ കഴിയില്ല.",
+        "first_name": "ആദ്യ നാമം",
+        "last_name": "കുടുംബപ്പേര്",
+        "email": "ഇമെയിൽ",
+        "phone_number_help_text": "ഫോൺ നമ്പർ എഡിറ്റ് ചെയ്യാൻ കഴിയില്ല",
+        "save": "സേവ് ചെയ്യുക",
+        "save_accessibility_label": "പ്രൊഫൈൽ സേവ് ചെയ്യുക",
+        "title": "പ്രൊഫൈൽ",
+        "errors": {
+          "name_too_long": "{{fieldName}} വളരെ വലുതാണ് (പരമാവധി 255 അക്ഷരങ്ങൾ)",
+          "name_cannot_contain_url": "{{fieldName}}-ൽ URL ഉൾപ്പെടുത്താൻ കഴിയില്ല",
+          "name_cannot_contain_html_tags": "{{fieldName}} എന്നതിന് HTML ടാഗുകൾ ഉൾക്കൊള്ളാൻ കഴിയില്ല",
+          "email_cant_be_blank": "ഇമെയിൽ ശൂന്യമായിരിക്കാൻ പാടില്ല",
+          "invalid_email_format": "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക"
+        }
+      },
+      "verify_current_email_modal": {
+        "cancel_button": "റദ്ദാക്കുക",
+        "cancel_button_accessibility_label": "പ്രൊഫൈൽ എഡിറ്റിംഗ് റദ്ദാക്കുക",
+        "description": "നിങ്ങളുടെ യഥാർത്ഥ ഇമെയിലിലേക്ക് അയച്ച 6 അക്ക കോഡ് നൽകുക:",
+        "email_resend_button_accessibility_label": "വെരിഫിക്കേഷൻ കോഡ് വീണ്ടും അയക്കുക",
+        "title": "നിങ്ങൾ തന്നെയല്ലേ?",
+        "verify_button": "അടുത്തത്",
+        "verify_button_accessibility_label": "നിങ്ങളുടെ നിലവിലെ ഇമെയിൽ പരിശോധിക്കുക"
+      },
+      "verify_new_email_modal": {
+        "title": "നിങ്ങളുടെ പുതിയ ഇമെയിൽ പരിശോധിച്ചുറപ്പിക്കുക",
+        "description": "ഇപ്പോൾ നിങ്ങളുടെ പുതിയ ഇമെയിലിലേക്ക് അയച്ച 6 അക്ക കോഡ് നൽകുക:",
+        "one_time_password_label": "6-അക്ക കോഡ്",
+        "email_resend_button": "കോഡ് വീണ്ടും അയക്കുക",
+        "email_resend_button_accessibility_label": "വെരിഫിക്കേഷൻ കോഡ് വീണ്ടും അയക്കുക",
+        "verify_button": "സ്ഥിരീകരിക്കുക",
+        "verify_button_accessibility_label": "ഒരു തവണ ഉപയോഗിക്കാവുന്ന രഹസ്യ കോഡ് (OTP) പരിശോധിക്കുക",
+        "cancel_button": "റദ്ദാക്കുക",
+        "cancel_button_accessibility_label": "പ്രൊഫൈൽ എഡിറ്റിംഗ് റദ്ദാക്കുക",
+        "email_resend_button_success_toast_message": "വെരിഫിക്കേഷൻ കോഡ് അയച്ചു",
+        "email_resend_button_failure_banner_message": "വെരിഫിക്കേഷൻ കോഡ് അയക്കാൻ സാധിച്ചില്ല"
+      },
+      "marketing_preferences": {
+        "email_label": "ഇമെയിൽ",
+        "pending_confirmation": "സ്ഥിരീകരിക്കുന്നതിനായി നിങ്ങളുടെ ഇമെയിലിലുള്ള ലിങ്കിൽ ക്ലിക്ക് ചെയ്യുക.",
+        "resend_email": "ഇമെയിൽ വീണ്ടും അയക്കുക",
+        "resend_email_success": "ലിങ്ക് അയച്ചു",
+        "title": "മാർക്കറ്റിംഗ് മുൻഗണനകൾ",
+        "unsubscribe_confirmation": {
+          "cancel": "റദ്ദാക്കുക",
+          "description": "നിങ്ങൾക്ക് ഇനിമുതൽ {{shopName}}-ൽ നിന്നുള്ള ഇമെയിൽ മാർക്കറ്റിംഗ് ലഭിക്കുകയില്ല",
+          "title": "ഇമെയിലുകളിൽ നിന്ന് അൺസബ്സ്ക്രൈബ് ചെയ്യണോ?",
+          "unsubscribe": "അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യുക"
+        },
+        "update_error": {
+          "description": "നിങ്ങളുടെ മാർക്കറ്റിംഗ് മുൻഗണനകൾ അപ്ഡേറ്റ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. ദയവായി ഈ പേജ് റീഫ്രഷ് ചെയ്യുകയോ നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുകയോ ചെയ്യുക."
+        },
+        "update_success": "മാർക്കറ്റിംഗ് മുൻഗണനകൾ അപ്ഡേറ്റ് ചെയ്തു"
+      },
+      "profile_update_confirmation_message": "പ്രൊഫൈൽ അപ്‌ഡേറ്റ് ചെയ്തു",
+      "title": "പ്രൊഫൈൽ",
+      "people": {
+        "pagination": {
+          "load_more": "കൂടുതൽ കാണിക്കുക",
+          "load_more_accessibility_label": "കൂടുതൽ ആളുകളെ കാണിക്കുക",
+          "loading_accessibility_label": "ആളുകളെ ലോഡ് ചെയ്യുന്നു"
+        }
+      },
+      "add_button": "ചേർക്കുക"
     }
   },
   "content": {
