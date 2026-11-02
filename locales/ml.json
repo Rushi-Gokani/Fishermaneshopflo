@@ -351,7 +351,10 @@
           "continue_purchase_in_window": "{{walletName}} വിൻഡോയിൽ നിങ്ങളുടെ വാങ്ങൽ തുടരുക",
           "and_return_to_checkout": "ചെക്ക്ഔട്ടിലേക്ക് മടങ്ങുക",
           "cancel": "റദ്ദാക്കുക"
-        }
+        },
+        "return_to_store": "സ്റ്റോറിലേക്ക് മടങ്ങുക",
+        "return_to_checkout": "ചെക്ക്ഔട്ടിലേക്ക് മടങ്ങുക",
+        "redirect_hint": "നിങ്ങൾ {{walletName}} ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യാൻ ആവശ്യപ്പെടും."
       },
       "note": {
         "length_exceeds_maximum": "കുറിപ്പിന്റെ വലിപ്പം 5000 അല്ലെങ്കിൽ അതിൽ കുറവ് അക്ഷരങ്ങളായി ചുരുക്കുക."
@@ -1927,6 +1930,177 @@
         "manual_payment_gateway_label": "മാനുവൽ",
         "billing_address_title": "ബില്ലിംഗ് വിലാസം",
         "free_label": "സൗജന്യം"
+      },
+      "local_pickup": {
+        "cancel": "റദ്ദാക്കുക",
+        "your_location": "നിങ്ങളുടെ സ്ഥാനം",
+        "search_button": "സ്റ്റോറുകൾ കണ്ടെത്തുക",
+        "no_stores_found": "കടകളൊന്നും കണ്ടെത്താനായില്ല",
+        "all_stores_far_away": {
+          "title": "ഏറ്റവും അടുത്തുള്ള സ്ഥലങ്ങൾ %{distance}-ൽ കൂടുതൽ അകലെയാണ്",
+          "title_with_item": {
+            "one": "നിങ്ങളുടെ ഇനം ലഭ്യമായ ഏറ്റവും അടുത്തുള്ള സ്ഥലം %{location}-ൽ നിന്ന് %{distance}-ൽ അധികം ദൂരത്താണ്.",
+            "other": "നിങ്ങളുടെ സാധനങ്ങൾ ലഭ്യമായ ഏറ്റവും അടുത്ത സ്ഥലം %{location}-ൽ നിന്ന് %{distance}-ൽ കൂടുതലാണ്"
+          },
+          "title_with_location": "ഏറ്റവും അടുത്തുള്ള സ്ഥാനം %{location}-ൽ നിന്ന് %{distance} ദൂരത്തിലാണ്.",
+          "title_with_specific_location": "നിങ്ങളുടെ സാധനം ലഭ്യമായ ഏറ്റവും അടുത്തുള്ള സ്ഥലം %{location}-ൽ നിന്ന് %{distance}-ൽ കൂടുതൽ അകലെയാണ്.",
+          "description": "ഒരു സ്ഥലം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ %{ship_to_address_link}",
+          "description_with_location": "%{change_location_link} അല്ലെങ്കിൽ %{ship_to_address_link}",
+          "ship_to_address_link": "ഷിപ്പിംഗ് വിലാസം",
+          "change_location_link": "നിങ്ങളുടെ ലൊക്കേഷൻ മാറ്റുക"
+        },
+        "selected_pickup_option_no_longer_available": {
+          "title": "നിങ്ങൾ മുൻപ് തിരഞ്ഞെടുത്ത സ്ഥലം ഇപ്പോൾ ലഭ്യമല്ല.",
+          "description": "നിങ്ങളുടെ സാധനങ്ങളുള്ള ഏറ്റവും അടുത്തുള്ള സ്ഥലം ഞങ്ങൾ കണ്ടെത്തിയിട്ടുണ്ട്."
+        },
+        "could_not_resolve_address": "നിങ്ങളുടെ വിലാസം കണ്ടെത്താനായില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു വിലാസം ഉപയോഗിക്കുക.",
+        "paginator": {
+          "accessibility_label": "ലോക്കൽ പിക്കപ്പ് പേജിനേഷൻ",
+          "previous": "മുമ്പത്തെ പേജ്",
+          "next": "അടുത്ത പേജ്",
+          "label": {
+            "one": "%{first} - %{last}, %{count} സ്റ്റോറുകളിൽ നിന്ന്",
+            "other": "%{first} - %{count} സ്റ്റോറുകളിൽ %{last} എണ്ണം"
+          }
+        },
+        "reveal_more_label": {
+          "one": "%{count} ലൊക്കേഷൻ കൂടി കാണിക്കുക",
+          "other": "%{count} ലൊക്കേഷനുകൾ കൂടി കാണിക്കുക"
+        },
+        "no_pickup_locations_found": "പിക്കപ്പ് ചെയ്യുന്നതിനുള്ള സ്ഥലങ്ങളൊന്നും കണ്ടെത്തിയില്ല",
+        "pickup_unavailable_banner_title": {
+          "one": "നിങ്ങളുടെ ഇനം ലഭ്യമായ സ്ഥലങ്ങളൊന്നുമില്ല",
+          "other": "നിങ്ങളുടെ ഇനങ്ങൾക്കായി ലൊക്കേഷനുകളൊന്നും ലഭ്യമല്ല"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "one": "%{country}-ൽ നിങ്ങളുടെ ഇനം ലഭ്യമല്ല",
+          "other": "%{country}-ൽ നിങ്ങളുടെ ഇനങ്ങൾ ലഭ്യമായ സ്ഥലങ്ങളൊന്നുമില്ല"
+        },
+        "pickup_unavailable_banner_body": {
+          "try_different_location": "മറ്റൊരു സ്ഥലം പരീക്ഷിക്കുക",
+          "ship_to_address": "ഷിപ്പിംഗ് വിലാസം",
+          "there_are_no_stores": "നിങ്ങളുടെ വിലാസത്തിന് അടുത്തോ നിങ്ങളുടെ സാധനങ്ങൾ എടുക്കുന്നതിന് ലഭ്യമോ ആയ സ്റ്റോറുകളൊന്നും നിലവിലില്ല.",
+          "ship_items": "നിങ്ങളുടെ സാധനങ്ങൾ അയക്കുക",
+          "search_elsewhere": "മറ്റിടങ്ങളിൽ തിരയുക",
+          "search_elsewhere_standalone": "മറ്റെവിടെയെങ്കിലും തിരയുക",
+          "ship_items_or_search_elsewhere": "%{ship_items} അല്ലെങ്കിൽ %{search_elsewhere}"
+        },
+        "geolocation": {
+          "permission_not_allowed": "ലൊക്കേഷൻ പങ്കിടാൻ അനുവദിക്കുക അല്ലെങ്കിൽ തിരയുക."
+        }
+      },
+      "split_delivery": {
+        "accessibility": {
+          "status": {
+            "ship_separately": "%{items} പ്രത്യേകം അയക്കുന്നതാണ്.",
+            "pickup_in_store": "%{items} സ്റ്റോറിൽ നിന്ന് എടുക്കും.",
+            "remove_items": "%{items} കാർട്ടിൽ നിന്ന് നീക്കം ചെയ്തു."
+          }
+        },
+        "all_items": "എല്ലാ ഇനങ്ങളും",
+        "pickup_all_items": "എല്ലാ വസ്തുക്കളും എടുത്തു വയ്ക്കുക",
+        "pickup_and_ship": "എടുത്ത് അയക്കുക",
+        "ship_all_items": "എല്ലാ ഇനങ്ങളും അയക്കുക",
+        "separate_pickup_email_notice": "നിങ്ങളുടെ ഓർഡർ പിക്ക്-അപ്പിനായി തയ്യാറാകുമ്പോൾ നിങ്ങൾക്ക് പ്രത്യേകമായി ഒരു ഇമെയിൽ ലഭിക്കുന്നതാണ്.",
+        "items_for_pickup": "എടുക്കാനുള്ള സാധനങ്ങൾ",
+        "items_for_shipping": "അയക്കാനുള്ള സാധനങ്ങൾ",
+        "items_moved_to_shipping_toast": "എടുത്തു കൊണ്ടുപോകാൻ കഴിയാത്ത സാധനങ്ങൾ ഷിപ്പിംഗിലേക്ക് മാറ്റുകഴിഞ്ഞു",
+        "delivery_updated_toast": {
+          "shipping_only": "നിങ്ങളുടെ ഡെലിവറി അപ്‌ഡേറ്റ് ചെയ്തിരിക്കുന്നു. {{shipping}}",
+          "removal_only": "നിങ്ങളുടെ ഡെലിവറി അപ്‌ഡേറ്റ് ചെയ്തിരിക്കുന്നു. {{removal}}",
+          "shipping_and_removal": "നിങ്ങളുടെ ഡെലിവറി അപ്‌ഡേറ്റ് ചെയ്തിരിക്കുന്നു. {{shipping}} {{removal}}",
+          "shipping": {
+            "one": "{{count}} ഇനം ഷിപ്പിംഗിലേക്ക് മാറ്റിയതായി.",
+            "other": "{{count}} ഇനങ്ങൾ ഷിപ്പിംഗിലേക്ക് മാറ്റിയതായി."
+          },
+          "removal": {
+            "one": "{{count}} ഇനം നീക്കം ചെയ്യപ്പെട്ടു.",
+            "other": "{{count}} ഇനങ്ങൾ നീക്കം ചെയ്യപ്പെട്ടു."
+          }
+        },
+        "items_count": {
+          "one": "%{count} ഇനം",
+          "other": "%{count} ഇനങ്ങൾ"
+        },
+        "pickup_items_count": {
+          "one": "%{count} ഇനം എടുക്കുക",
+          "other": "%{count} ഇനങ്ങൾ എടുക്കുക"
+        },
+        "ship_items_count": {
+          "one": "%{count} ഇനം അയക്കുക",
+          "other": "%{count} ഇനങ്ങൾ അയയ്ക്കുക"
+        },
+        "delivery_method": "സ്പ്ലിറ്റ് ഡെലിവറി രീതി",
+        "delivery_method_menu": "സ്പ്ലിറ്റ് ഡെലിവറി രീതി മെനു",
+        "inventory_issue_banner": {
+          "heading": {
+            "cannot_be_picked_up": {
+              "one": "%{count} ഇനം എടുക്കാൻ കഴിയില്ല",
+              "other": "%{count} ഇനങ്ങൾ എടുക്കാൻ കഴിയില്ല"
+            },
+            "cannot_be_shipped": {
+              "one": "%{count} ഇനം അയക്കാൻ കഴിയില്ല",
+              "other": "%{count} ഇനങ്ങൾ ഷിപ്പ് ചെയ്യാൻ കഴിയില്ല"
+            }
+          },
+          "remove_item": {
+            "one": "ഇനം നീക്കം ചെയ്യുക",
+            "other": "വസ്തുക്കൾ നീക്കം ചെയ്യുക"
+          },
+          "remove_item_only": {
+            "one": "ഇനം നീക്കം ചെയ്യുക",
+            "other": "ഇനങ്ങൾ നീക്കം ചെയ്യുക"
+          },
+          "ship_separately": {
+            "one": "അതൊരു പ്രത്യേകമായി അയക്കുക",
+            "other": "അവ വെവ്വേറെ അയയ്‌ക്കുക"
+          },
+          "pick_them_up_in_store": {
+            "one": "സ്റ്റോറിൽ നിന്ന് എടുക്കുക",
+            "other": "സ്റ്റോറിൽ നിന്ന് എടുക്കുക"
+          },
+          "remove_items_or_ship": "%{ship_separately_link} അല്ലെങ്കിൽ %{remove_items_link}",
+          "remove_items_or_pickup": "%{pickup_in_store_link} അല്ലെങ്കിൽ %{remove_items_link}",
+          "merchandise_line_with_quantity": "%{title} (×%{quantity})"
+        },
+        "cross_border": {
+          "modal": {
+            "heading": "രാജ്യം മാറ്റണോ?",
+            "content": "നിങ്ങളുടെ പിക്കപ്പ്, ഷിപ്പിംഗ് ലൊക്കേഷനുകൾ ഒരേ രാജ്യത്തായിരിക്കണം. രാജ്യം മാറ്റുന്നത് എല്ലാ ഇനങ്ങളെയും ഷിപ്പിംഗിലേക്ക് മാറ്റും.",
+            "country_changed_heading": "രാജ്യം മാറ്റി",
+            "change_country": "രാജ്യം മാറ്റുക"
+          },
+          "banner": "നിങ്ങളുടെ ഡെലിവറി രീതി അപ്‌ഡേറ്റ് ചെയ്‌തു"
+        }
+      },
+      "captcha": {
+        "title": "തുടരുന്നതിനായി ക്യാപ്‌ച പൂർത്തിയാക്കുക",
+        "errors": {
+          "not_solved": "തുടരുന്നതിനായി ക്യാപ്‌ച പൂർത്തിയാക്കുക"
+        }
+      },
+      "clipboard": {
+        "copied": "പകർത്തി",
+        "failed_to_copy": "പകർത്തുന്നതിൽ പരാജയപ്പെട്ടു"
+      },
+      "discount_errors": {
+        "generic_error": "നിങ്ങളുടെ ഡിസ്കൗണ്ട് കോഡ് ഇപ്പോൾ ലഭ്യമല്ലാത്തതിനാൽ ഓർഡർ പ്രോസസ്സ് ചെയ്യാൻ സാധിച്ചില്ല. നിങ്ങളുടെ ഓർഡർ തുക പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+      },
+      "b2b_errors": {
+        "lost_b2b_purchasing_permissions": "നിങ്ങൾക്ക് ഇനി B2B ഓർഡറുകൾ നൽകാനുള്ള അനുമതിയില്ല. വ്യക്തിഗത ഓർഡർ നൽകുന്നതിനായി %{logout_url} സന്ദർശിക്കുക.",
+        "log_out_link_text": "സൈൻ ഔട്ട് ചെയ്യുക",
+        "lost_permissions_subtitle": "നിങ്ങൾക്ക് ഇനി B2B ഓർഡറുകൾ നൽകാനുള്ള അനുമതിയില്ല. വ്യക്തിഗത ഓർഡർ നൽകുന്നതിനായി ലോഗ് ഔട്ട് ചെയ്യുക.",
+        "lost_permissions_title": "ലൊക്കേഷൻ അനുമതികളില്ല"
+      },
+      "shop_pay_external": {
+        "title": "ഷോപ്പ് പേ ചെക്ക്ഔട്ട്",
+        "errors": {
+          "problem_loading": "Shop Pay ലോഡ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ട്",
+          "try_again_later": "നിങ്ങളുടെ കണക്ഷൻ പരിശോധിക്കുക അല്ലെങ്കിൽ ഈ വിൻഡോ ക്ലോസ് ചെയ്ത് അല്പസമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.",
+          "checkout_has_expired": "നിങ്ങളുടെ ചെക്ക്ഔട്ട് സെഷന്റെ കാലാവധി കഴിഞ്ഞിരിക്കുന്നു. ഈ വിൻഡോ അടച്ച് {{shopName}}-ൽ നിന്ന് വീണ്ടും ചെക്ക്ഔട്ട് ചെയ്യാൻ ശ്രമിക്കുക."
+        },
+        "return_to_store": "{{shopName}}-ലേക്ക് തിരികെ പോകുക",
+        "return_to_store_simple": "സ്റ്റോറിലേക്ക് മടങ്ങുക"
       }
     },
     "notices": {
