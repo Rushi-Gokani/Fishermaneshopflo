@@ -797,6 +797,166 @@
         "sign_in_link_label": "ലോഗിൻ ചെയ്യുക",
         "sign_out_link_label": "സൈൻ ഔട്ട് ചെയ്യുക",
         "save_my_information_label": "ഈ വിവരങ്ങൾ അടുത്ത തവണത്തേക്കായി സേവ് ചെയ്തു വയ്ക്കുക."
+      },
+      "order_summary": {
+        "component_quantity_title": "%{quantity} × %{product_title}",
+        "discount_discovery": {
+          "add_code": "കിഴിവ് ചേർക്കുക",
+          "back_to_finalize_order": "ഓർഡർ അന്തിമമാക്കാൻ തിരിച്ചെത്തിയിരിക്കുന്നു",
+          "merchandise_quantity_label": {
+            "one": "%{count} ഇനം",
+            "other": "%{count} ഇനങ്ങൾ"
+          }
+        },
+        "alternative_payment_currency_total": "%{amount_due} ഈടാക്കി",
+        "alternative_payment_currency_chinese_yuan": "%{wallet} എന്ന ആപ്പിൽ CNY-യുടെ അന്തിമ തുക ഉറപ്പിക്കുക.",
+        "lpm": {
+          "wechat_pay": {
+            "checkout_disclosure": "WeChat ആപ്പിൽ അന്തിമ CNY തുക സ്ഥിരീകരിക്കുക",
+            "checkout_disclosure_with_alternative_payment_currency": "%{shop_name} ഈ പേയ്‌മെന്റ് %{amount_due} %{processing_currency} ആയി പ്രോസസ്സ് ചെയ്യും, അത് WeChat CNY ആയി മാറ്റും",
+            "checkout_disclosure_charged_in_cny": "%{shop_name} ഈ പേയ്‌മെന്റ് %{amount_due} %{processing_currency} ആയി പ്രോസസ്സ് ചെയ്യും",
+            "post_purchase_disclosure": "WeChat-ൽ CNY ആകെ തുക കാണുക"
+          },
+          "alipay": {
+            "checkout_disclosure": "അലിപേ ആപ്പിൽ CNY തുക ഉറപ്പിക്കുക",
+            "checkout_disclosure_with_alternative_payment_currency": "%{shop_name} ഈ പണം %{amount_due} %{processing_currency} ആയി പ്രോസസ്സ് ചെയ്യും, ഇത് Alipay CNY-യിലേക്ക് മാറ്റും",
+            "checkout_disclosure_charged_in_cny": "%{shop_name} ഈ പേയ്‌മെന്റ് %{amount_due} %{processing_currency} ആയി പ്രോസസ്സ് ചെയ്യും",
+            "post_purchase_disclosure": "അലിപേയിലെ CNY തുക കാണുക"
+          }
+        },
+        "pay_merchant_label": "%{merchant_name}-ക്ക് പണം നൽകുക",
+        "discount_applies_to_subscription_items_only": "ഈ കിഴിവ് സബ്‌സ്‌ക്രിപ്‌ഷൻ ഇനങ്ങൾക്ക് മാത്രമേ ബാധകമാകൂ."
+      },
+      "shipping": {
+        "title": "ഷിപ്പിംഗ്",
+        "delivery_title": "ഡെലിവറി",
+        "shipping_method_title": "ഷിപ്പിംഗ് രീതി",
+        "shipping_method_rollup_accessibility_label": "ഷിപ്പിംഗ് രീതികളിലെ ഓപ്ഷനുകൾ",
+        "shipping_method_one_time_purchase_group_title": "ഒറ്റത്തവണ വാങ്ങൽ",
+        "shipping_method_first_shipment_group_title": {
+          "one": "ആദ്യത്തെ ചരക്ക് നീക്കം",
+          "other": "ആദ്യ കയറ്റുമതികൾ"
+        },
+        "shipping_method_subscription_group_title": "സബ്‌സ്‌ക്രിപ്‌ഷൻ",
+        "shipping_method_recurring_shipments_group_title": {
+          "one": "ആവർത്തിച്ചുള്ള ഷിപ്പ്‌മെന്റ്",
+          "other": "ആവർത്തിച്ചുള്ള ഷിപ്പിംഗുകൾ"
+        },
+        "subscription_shipping": "സബ്‌സ്‌ക്രിപ്‌ഷൻ ഷിപ്പിംഗ്",
+        "subscription_local_delivery": "സബ്‌സ്‌ക്രിപ്ഷൻ ലോക്കൽ ഡെലിവറി",
+        "subscription_pickup": "സബ്‌സ്‌ക്രിപ്ഷൻ പിക്കപ്പ്",
+        "waiting_on_rate_notice": "ഷിപ്പിംഗ് നിരക്കുകൾ ലഭ്യമാക്കുന്നു...",
+        "waiting_on_pickup_location_notice": "ലഭ്യമായ പിക്കപ്പ് സ്ഥലങ്ങൾ പരിശോധിക്കുന്നു…",
+        "no_rates_for_cart_or_destination_notice": "നിങ്ങളുടെ കാർട്ടിലേക്കോ വിലാസത്തിലേക്കോ ഷിപ്പിംഗ് രീതികളൊന്നും ലഭ്യമല്ല.",
+        "no_pickup_location_notice": "നിങ്ങളുടെ ഉൽപ്പന്നങ്ങളിൽ കുറഞ്ഞത് ഒന്നെങ്കിലും നേരിട്ട് കൈപ്പറ്റാൻ (pick up) ലഭ്യമല്ല.",
+        "no_rates_for_country_notice": "ഈ വിലാസത്തിലേക്ക് ഷിപ്പിംഗ് നിരക്കുകളൊന്നും ലഭ്യമല്ല.",
+        "no_rates_contact_notice": "കൂടുതൽ വിവരങ്ങൾക്ക് ഞങ്ങളെ ബന്ധപ്പെടുക",
+        "free_rate_label": "സൗജന്യം",
+        "cheapest_rate_label": "ഏറ്റവും വിലക്കുറവുള്ളത്",
+        "estimated_delivery_date": {
+          "one": "%{count} പ്രവൃത്തിദിവസം",
+          "other": "%{count} പ്രവൃത്തിദിവസങ്ങൾ"
+        },
+        "estimated_delivery_date_range": "%{minimum} മുതൽ %{maximum} പ്രവൃത്തിദിവസങ്ങൾ വരെ",
+        "delivery_date_range": "%{min_time}–%{max_time}",
+        "estimated_delivery_time": "ഏകദേശ ഡെലിവറി സമയം %{time}",
+        "estimated_delivery_time_range": "ഏകദേശ ഡെലിവറി സമയം %{min_time}–%{max_time}",
+        "delivery_today": "അതേ ദിവസം തന്നെ ഡെലിവറി %{time}",
+        "delivery_tomorrow": "അടുത്ത ദിവസം തന്നെ ഡെലിവറി %{time}",
+        "two_day_delivery": "2 ദിവസത്തിനുള്ളിൽ ഡെലിവറി %{time}",
+        "delivery": "ഡെലിവറി %{time}",
+        "delivery_to": "ഡെലിവറി ചെയ്യേണ്ട സ്ഥലം",
+        "arrives_time": "%{time}-ന് എത്തിച്ചേരുന്നു",
+        "arrives_time_range": "%{min_time}–%{max_time}-നുള്ളിൽ എത്തിച്ചേരും",
+        "estimated_time": "അനുമാനിക്കാവുന്ന %{time}",
+        "estimated_time_range": "ഏകദേശ സമയം %{min_time}–%{max_time}",
+        "default_description": "1 പ്രവൃത്തിദിവസത്തിനുള്ളിൽ അയയ്ക്കുന്നു",
+        "unbranded_default_description": "അയക്കാൻ തയ്യാറാണ്",
+        "unbranded_description_same_day": "അതേ പ്രവൃത്തിദിവസം തന്നെ അയക്കുന്നു",
+        "unbranded_description_with_fulfillment_days": {
+          "one": "അടുത്ത പ്രവൃത്തിദിവസം അയയ്ക്കുന്നു",
+          "other": "%{count} പ്രവൃത്തി ദിവസങ്ങൾക്കുള്ളിൽ അയയ്ക്കും"
+        },
+        "unbranded_description_with_fulfillment_weeks": {
+          "one": "%{count} ആഴ്ചയ്ക്കുള്ളിൽ അയയ്ക്കും",
+          "other": "%{count} ആഴ്ചയ്ക്കുള്ളിൽ അയക്കും"
+        },
+        "shipping_line_phone_label": "മൊബൈൽ ഫോൺ നമ്പർ (ആവശ്യമാണ്)",
+        "shipping_line_phone": "നിങ്ങളുടെ കൊറിയർ നിങ്ങളെ ബന്ധപ്പെടാൻ ഈ നമ്പർ ഉപയോഗിച്ചേക്കാം.",
+        "shipping_line_delivery_phone_label": "മൊബൈൽ ഫോൺ നമ്പർ",
+        "shipping_line_delivery_phone": "നിങ്ങളുടെ ഡെലിവറിയെക്കുറിച്ചുള്ള അപ്‌ഡേറ്റുകൾ നിങ്ങളെ അറിയിക്കുന്നതാണ്.",
+        "optional_shipping_line_delivery_instructions_label": "ഡെലിവറി നിർദ്ദേശങ്ങൾ (ആവശ്യമെങ്കിൽ മാത്രം)",
+        "shipping_line_delivery_instructions": "ഡോർ കോഡുകൾ അല്ലെങ്കിൽ ഡ്രോപ്പ്-ഓഫ് നിർദ്ദേശങ്ങൾ പോലുള്ള ആവശ്യമായ വിവരങ്ങൾ നൽകുക.",
+        "other_method": {
+          "zero": "മറ്റ് മാർഗ്ഗങ്ങളൊന്നും ലഭ്യമല്ല",
+          "one": "%{count} മറ്റ് രീതികൾ ഇവിടെ ലഭ്യമാണ്",
+          "other": "%{count} മറ്റ് രീതികൾ ലഭ്യമാണ്, തുടങ്ങുന്നത്"
+        },
+        "shipping_rate_discounted_amount": "മുമ്പ്: %{original_amount}. ഇപ്പോൾ: %{amount}",
+        "local_delivery": "ലോക്കൽ ഡെലിവറി",
+        "prime_not_available": {
+          "default": "നിങ്ങളുടെ ഓർഡറിന് പ്രൈം ഡെലിവറി ലഭ്യമല്ല. നിങ്ങളുടെ ഷിപ്പിംഗ് ഓപ്ഷനുകൾ അപ്‌ഡേറ്റ് ചെയ്തിട്ടുണ്ട്."
+        },
+        "subscription_delivery_description": {
+          "free_shipping_cycles": {
+            "one": "%{count} ഡെലിവറിക്ക് കൂടി സൗജന്യ ഷിപ്പിംഗ്",
+            "other": "%{count} ഡെലിവറികൾക്ക് കൂടി സൗജന്യ ഷിപ്പിംഗ്"
+          },
+          "free_shipping_cycles_delivery_not_included": {
+            "one": "%{count} ഡെലിവറികൾക്ക് സൗജന്യ ഷിപ്പിംഗ്",
+            "other": "%{count} ഡെലിവറികൾക്ക് സൗജന്യ ഷിപ്പിംഗ്"
+          },
+          "first_n_order_free_with_cycle": {
+            "one": "%{count} ഡെലിവറികൾ കൂടി സൗജന്യ ഷിപ്പിംഗ്, അതിനുശേഷം %{recurring_order_shipping_price}",
+            "other": "ഇനിയുള്ള %{count} ഡെലിവറികൾക്ക് സൗജന്യ ഷിപ്പിംഗ്, അതിനുശേഷം %{recurring_order_shipping_price}"
+          },
+          "first_n_order_free_with_cycle_delivery_not_included": {
+            "one": "%{count} ഡെലിവറികൾക്ക് സൗജന്യ ഷിപ്പിംഗ്, പിന്നീട് %{recurring_order_shipping_price}",
+            "other": "%{count} ഡെലിവറികൾക്ക് സൗജന്യ ഷിപ്പിംഗ്, അതിനുശേഷം %{recurring_order_shipping_price}"
+          },
+          "max_cycles_base_shipping": {
+            "one": "%{shipping_price}-ക്ക് %{count} ഡെലിവറി കൂടി",
+            "other": "%{count} ഡെലിവറികൾ കൂടി, ഓരോന്നിനും %{shipping_price} വീതം"
+          },
+          "max_cycles_base_shipping_delivery_not_included": {
+            "one": "%{count} ഡെലിവറി %{shipping_price}-ന്",
+            "other": "%{count} ഡെലിവറികൾ കൂടി, ഓരോന്നിനും %{shipping_price} വീതം"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "one": "ആദ്യത്തെ %{cycle}-ന് സൗജന്യ ഷിപ്പിംഗ്, തുടർന്ന് %{recurring_order_shipping_price}",
+            "other": "ആദ്യത്തെ %{cycle}-ന് സൗജന്യ ഷിപ്പിംഗ്, തുടർന്ന് %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "one": "%{count} ഡെലിവറികൾ കൂടി ചെയ്യുന്നതിനായി %{shipping_price}",
+            "other": "%{count} ഡെലിവറികൾ കൂടി ചെയ്യുന്നതിനായി %{shipping_price} (%{per_delivery_cost})"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "one": "%{count} ഡെലിവറിക്കായി %{shipping_price}",
+            "other": "%{count} ഡെലിവറികൾക്കായി %{shipping_price} (%{per_delivery_cost} വീതം)"
+          },
+          "prepaid_order_no_cycle": {
+            "one": "%{count} ഡെലിവറികൾക്ക് കൂടി %{shipping_price}, തുടർന്ന് %{recurring_order_shipping_price}",
+            "other": "%{count} ഡെലിവറികൾക്ക് കൂടി %{shipping_price} (%{per_delivery_cost}), തുടർന്ന് %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "one": "%{count} ഡെലിവറിക്കായി %{shipping_price}, തുടർന്ന് %{recurring_order_shipping_price}",
+            "other": "%{count} ഡെലിവറികൾക്കായി %{shipping_price} (%{per_delivery_cost}), തുടർന്ന് %{recurring_order_shipping_price}"
+          },
+          "subscription_free_with_frequency_label": "സൗജന്യ ഷിപ്പിംഗ് %{delivery_frequency}",
+          "prepaid_delivery_frequency": {
+            "one": "%{count} ഡെലിവറിക്കായി",
+            "other": "%{count} ഡെലിവറികൾക്കായി"
+          },
+          "subscription_delivery_frequency": {
+            "day": {
+              "one": "എല്ലാ ദിവസവും",
+              "other": "ഓരോ %{count} ദിവസവും"
+            },
+            "week": {
+              "one": "എല്ലാ ആഴ്ചയും"
+            }
+          }
+        }
       }
     },
     "notices": {
