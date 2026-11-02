@@ -254,8 +254,99 @@
             "metadata_missing": "ഈ ചെക്ക്ഔട്ട് പൂർത്തിയാക്കുന്നതിന് ഒരു ക്യാപ്‌ച (captcha) പൂരിപ്പിക്കേണ്ടതുണ്ട്.",
             "metadata_mismatch": "നൽകിയിട്ടുള്ള ക്യാപ്‌ച പ്രൊവൈഡറും തരവും പ്രതീക്ഷിച്ച മൂല്യങ്ങളുമായി പൊരുത്തപ്പെടുന്നില്ല.",
             "token_missing": "ഈ ചെക്ക്ഔട്ട് പൂർത്തിയാക്കാൻ ഒരു ക്യാപ്‌ച ടോക്കൺ നൽകേണ്ടതുണ്ട്.",
-            "job_enqueue_failed": "ക്യാപ്‌ച വാലിഡേഷൻ ജോബ് ക്യൂവിലേക്ക് ചേർക്കുന്നതിൽ പരാജയപ്പെട്ടു."
+            "job_enqueue_failed": "ക്യാപ്‌ച വാലിഡേഷൻ ജോബ് ക്യൂവിലേക്ക് ചേർക്കുന്നതിൽ പരാജയപ്പെട്ടു.",
+            "job_already_queued": "ഈ ക്യാപ്‌ച ടോക്കണിനായി ക്യാപ്‌ച പരിശോധന ഇതിനകം ക്യൂ ചെയ്തിട്ടുണ്ട്.",
+            "token_expired": "നൽകിയിട്ടുള്ള ക്യാപ്‌ച ടോക്കണിന്റെ കാലാവധി കഴിഞ്ഞു. ചെക്ക്ഔട്ട് തുടരുന്നതിനായി പുതിയൊരു ക്യാപ്‌ച പൂർത്തിയാക്കുക.",
+            "token_invalid": "നൽകിയിട്ടുള്ള ക്യാപ്‌ച ടോക്കൺ അസാധുവാണ്. പേയ്‌മെന്റ് പൂർത്തിയാക്കാൻ പുതിയൊരു ക്യാപ്‌ച പൂർത്തിയാക്കുക.",
+            "token_not_valid_for_session": "നൽകിയിട്ടുള്ള ക്യാപ്‌ച ഈ ചെക്കൗട്ടിനൊപ്പം ഉപയോഗിക്കാൻ കഴിയില്ല."
+          },
+          "fx_reconciliation_override": {
+            "shop_currency_mismatch": "ലഭിക്കുന്ന തുക സ്റ്റോർ കറൻസിയിലായിരിക്കണം."
+          },
+          "checkout_source": {
+            "revoked": "ഈ ചെക്ക്ഔട്ട് ഇപ്പോൾ ലഭ്യമല്ല."
           }
+        },
+        "full_price": "പൂർണ്ണ വില:",
+        "title": "ചെക്കൗട്ട് - {{shopName}}",
+        "full_title": "{{pageTitle}} - {{shopName}} - ചെക്ക്ഔട്ട്",
+        "loading": "ലോഡ് ആകുന്നു…",
+        "loading_title": "ചെക്കൗട്ട് - {{shopName}}",
+        "google_map_title": "ഗൂഗിൾ മാപ്പ്",
+        "confirm_order_button_label": "ഓർഡർ സ്ഥിരീകരിക്കുക",
+        "submit_order_button_label": "ഓർഡർ സമർപ്പിക്കുക",
+        "submit_for_review_button_label": "പരിശോധനയ്ക്കായി സമർപ്പിക്കുക",
+        "submit_for_review_notice_label": "നിങ്ങളുടെ ഓർഡർ പരിശോധിച്ചതിന് ശേഷം മാത്രമേ പണമടയ്ക്കേണ്ടതുള്ളൂ.",
+        "continue_to_payment_plans_button_label": "പേയ്‌മെന്റ് പ്ലാനുകളിലേക്ക് തുടരുക",
+        "back_button_label": "തിരികെ നൽകുക",
+        "choose_delivery_strategy": "ഡെലിവറി രീതി തിരഞ്ഞെടുക്കുക",
+        "autocomplete_zero_item": "ലഭ്യമായ ഇനങ്ങളൊന്നുമില്ല",
+        "autocomplete_powered_by_google": "Powered by {{brandName}}",
+        "submit": "സമർപ്പിക്കുക",
+        "processing": "പ്രോസസ്സ് ചെയ്യുന്നു…",
+        "stepper": {
+          "increase": "{{type}} വർദ്ധിപ്പിക്കുക",
+          "decrease": "{{type}} കുറയ്ക്കുക",
+          "minimum_reached": "കുറഞ്ഞത് {{value}} എത്തി",
+          "maximum_reached": "പരമാവധി {{value}} എന്നതിൽ എത്തിച്ചേർന്നു"
+        },
+        "remove_chip": "ഇനം നീക്കം ചെയ്യുക",
+        "remove_item": "%{label} നീക്കം ചെയ്യുക",
+        "remove_tag": "ടാഗ് നീക്കം ചെയ്യുക",
+        "dates": {
+          "weekdays": {
+            "monday": "തിങ്കളാഴ്ച",
+            "tuesday": "ചൊവ്വ",
+            "wednesday": "ബുധനാഴ്ച",
+            "thursday": "വ്യാഴാഴ്ച",
+            "friday": "വെള്ളി",
+            "saturday": "ശനിയാഴ്ച",
+            "sunday": "ഞായറാഴ്ച"
+          },
+          "weekdays_abbreviation": {
+            "monday": "മോ",
+            "tuesday": "നീ",
+            "wednesday": "ഞങ്ങൾ",
+            "thursday": "ത",
+            "friday": "അതെ, സത്യം തന്നെ",
+            "saturday": "സ",
+            "sunday": "സു"
+          },
+          "months": {
+            "january": "ജനുവരി",
+            "february": "ഫെബ്രുവരി",
+            "march": "മാർച്ച്",
+            "april": "ഏപ്രിൽ",
+            "may": "മെയ്",
+            "june": "ജൂൺ",
+            "july": "ജൂലൈ",
+            "august": "ഓഗസ്റ്റ്",
+            "september": "സെപ്റ്റംബർ",
+            "october": "ഒക്ടോബർ",
+            "november": "നവംബർ",
+            "december": "ഡിസംബർ"
+          }
+        },
+        "datepicker": {
+          "show_previous_month": "മുമ്പത്തെ മാസം കാണിക്കുക, {{month}} {{year}}",
+          "show_next_month": "അടുത്ത മാസം കാണിക്കുക, {{month}} {{year}}",
+          "range_start": "പരിധി ആരംഭം",
+          "in_range": "പരിധിക്കുള്ളിൽ",
+          "range_end": "പരിധിയുടെ അവസാനം"
+        },
+        "map": {
+          "cluster_title": {
+            "one": "{{number}} അടയാളക്കാരന്റെ കൂട്ടം",
+            "other": "{{number}} അടയാളങ്ങളുടെ ക്ലസ്റ്റർ"
+          }
+        },
+        "sheet": {
+          "expand": "വികസിപ്പിക്കുക"
+        },
+        "dropzone": {
+          "add_file": "ഫയൽ ചേർക്കുക",
+          "invalid_file_type": "ഫയൽ തരം പിന്തുണയ്ക്കുന്നില്ല",
+          "dragged_over": "അപ്‌ലോഡ് ചെയ്യാൻ ഫയൽ ഡ്രോപ്പ് ചെയ്യുക"
         }
       },
       "wallets": {
@@ -1231,7 +1322,34 @@
         "different_shipping_address_text": "ഈ ഓർഡറിനായി ഒറ്റത്തവണ മാത്രം ഉപയോഗിക്കാവുന്ന വിലാസം ഉപയോഗിക്കുക",
         "change_company_location_link_label": "കമ്പനിയുടെ സ്ഥാനം മാറ്റുക",
         "change_location_link_label": "സ്ഥലം മാറ്റുക",
-        "ship_to_company": "{{companyName}}-ലേക്ക് ഷിപ്പ് ചെയ്യുക"
+        "ship_to_company": "{{companyName}}-ലേക്ക് ഷിപ്പ് ചെയ്യുക",
+        "title": "വിവരം",
+        "address_title": "മേൽവിലാസം",
+        "shipping_used_as_billing_notice": "ഈ ഓർഡറിനായുള്ള നിങ്ങളുടെ ബില്ലിംഗ് വിലാസമായും ഇത് ഉപയോഗിക്കും.",
+        "delivery_option_title": "ഡെലിവറി രീതി",
+        "contact_method_title": "ബന്ധപ്പെടുക",
+        "email_label": "ഇമെയിൽ",
+        "email_rollup_accessibility_label": "ഇമെയിൽ ഓപ്ഷനുകൾ",
+        "email_placeholder": "ഇമെയിൽ",
+        "email_or_phone_label": "ഇമെയിൽ അല്ലെങ്കിൽ മൊബൈൽ ഫോൺ നമ്പർ",
+        "email_or_phone_placeholder": "ഇമെയിൽ അല്ലെങ്കിൽ മൊബൈൽ ഫോൺ നമ്പർ",
+        "field_saved_label": "സേവ് ചെയ്തു",
+        "field_tooltip_helper_text": "നിങ്ങളുടെ ഓർഡർ സ്ഥിരീകരണത്തിനും കാർട്ട് ഓർമ്മപ്പെടുത്തലുകൾക്കുമായി ഉപയോഗിക്കുന്നു",
+        "field_tooltip_accessibility_label": "നിങ്ങളുടെ കോൺടാക്റ്റ് വിവരങ്ങൾ എങ്ങനെ ഉപയോഗിക്കുന്നു എന്നതിനെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾ",
+        "stored_addresses_label": "സംരക്ഷിച്ച വിലാസങ്ങൾ",
+        "available_addresses_label": "ലഭ്യമായ വിലാസങ്ങൾ",
+        "new_address_label": "പുതിയൊരു വിലാസം ഉപയോഗിക്കുക",
+        "first_name_label": "ആദ്യ നാമം",
+        "optional_first_name_label": "ആദ്യ നാമം (ഓപ്ഷണൽ)",
+        "last_name_label": "കുടുംബപ്പേര്",
+        "company_label": "കമ്പനി",
+        "storefront_link": "വ്യാപാരിയുടെ വെബ്‌സൈറ്റ്",
+        "company_attention_label": "കമ്പനി/ശ്രദ്ധിക്കുക",
+        "optional_company_attention_label": "കമ്പനി/ശ്രദ്ധയ്ക്ക് (ഓപ്ഷണൽ)",
+        "optional_company_label": "കമ്പനി (ഓപ്ഷണൽ)",
+        "address1_label": "മേൽവിലാസം",
+        "street_name_label": "തെരുവ്",
+        "optional_street_name_label": "തെരുവ് (നിർബന്ധമില്ല)"
       },
       "delivery_options": {
         "free_total_label": "സൗജന്യം",
@@ -2711,6 +2829,24 @@
         "all_violations_content": "ഈ വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാനും നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കാനും വിളിക്കുക അല്ലെങ്കിൽ {{emailLink}} എന്നതിൽ ഞങ്ങൾക്ക് ഇമെയിൽ ചെയ്യുക:",
         "all_violations_email_link": "ഇമെയിൽ",
         "editable_shipping_address_violations_message_title": "നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കാൻ ഈ വിവരങ്ങൾ ചേർക്കുക:"
+      },
+      "datepicker": {
+        "choose_date": "ഒരു തീയതി തിരഞ്ഞെടുക്കുക"
+      },
+      "embed": {
+        "header": {
+          "review_order": "നിങ്ങളുടെ ഓർഡർ പരിശോധിക്കുക"
+        },
+        "shipping": {
+          "shipping_options": "എല്ലാ ഷിപ്പിംഗ് ഓപ്ഷനുകളും കാണുക"
+        },
+        "payment": {
+          "payment_options": "എല്ലാ പേയ്‌മെന്റ് ഓപ്ഷനുകളും കാണുക"
+        }
+      },
+      "payment_collection": {
+        "cancelled": "ഈ പേയ്‌മെന്റ് ഇനി ആവശ്യമില്ല. വിവരങ്ങൾക്ക് ഓർഡർ പേജ് സന്ദർശിക്കുക.",
+        "paid": "ഈ പേയ്‌മെന്റ് ഇതിനകം സമർപ്പിച്ചതാണ്. വിശദാംശങ്ങൾക്കായി ഓർഡർ പേജ് സന്ദർശിക്കുക."
       }
     },
     "notices": {
