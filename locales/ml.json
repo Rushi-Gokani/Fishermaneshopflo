@@ -890,7 +890,85 @@
         "vault_for_payment_later": {
           "pay_button_label": "ഓർഡർ നൽകുക",
           "notice": "നിങ്ങൾക്ക് ഇപ്പോൾ പണം ഈടാക്കില്ല. പേയ്‌മെൻ്റുമായി മുന്നോട്ട് പോകുന്നതിലൂടെ, നിങ്ങളുടെ ഓർഡർ പ്രോസസ്സ് ചെയ്യുമ്പോൾ പേയ്‌മെൻ്റ് രീതിയിൽ നിന്ന് പണം ഈടാക്കുന്നതിന് നിങ്ങൾ സമ്മതിക്കുന്നു."
-        }
+        },
+        "shop_pay_hsa": {
+          "eligible_product": "HSA/FSA യോഗ്യതയുള്ളത്",
+          "mixed_cart_description": "നിങ്ങളുടെ കാർട്ടിൽ HSA/FSA-ന് അർഹമായ ഉൽപ്പന്നങ്ങൾ മാത്രമേ ഉൾപ്പെടുത്താൻ കഴിയൂ.",
+          "label": "ഈ വാങ്ങലിനായി എനിക്ക് HSA/FSA ഫണ്ടുകൾ ഉപയോഗിക്കണം.",
+          "description": "നിങ്ങളുടെ ബെനിഫിറ്റ്സ് കാർഡ് ഉപയോഗിച്ച് നേരിട്ട് പണമടയ്ക്കുക, അല്ലെങ്കിൽ ഒരു പേഴ്സണൽ കാർഡ് ഉപയോഗിച്ച് അർഹമായ തുക തിരികെ ലഭിക്കുന്നതിനായി അപേക്ഷിക്കുക.",
+          "eligibility_disclaimer_html": "HSA/FSA യോഗ്യത Truemed നിർണ്ണയിക്കുന്നു. %{terms_link}",
+          "truemed": "ട്രൂമെഡ്",
+          "view_terms": "നിബന്ധനകൾ കാണുക",
+          "login_message": "നിങ്ങളുടെ HSA/FSA ഫണ്ടുകൾ ഉപയോഗിക്കുന്നതിനായി Shop-ൽ ലോഗിൻ ചെയ്യുക"
+        },
+        "network_card_payment_options": "ഒരു കാർഡ് നെറ്റ്‌വർക്ക് തിരഞ്ഞെടുക്കുക",
+        "network_card_persistence_description": "തിരഞ്ഞെടുത്ത നെറ്റ്‌വർക്ക് ഭാവിയിലെ ഇടപാടുകൾക്കായി നിങ്ങളുടെ പേയ്‌മെന്റ് രീതിക്കൊപ്പം സേവ് ചെയ്യപ്പെടും.",
+        "amazon_payments_label": "ആമസോൺ പേ",
+        "amazon_payments_login_hint": "നിങ്ങളോട് ആമസോൺ ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യാൻ ആവശ്യപ്പെടും.",
+        "amazon_payments_logout": "അമസോൺ പേയിൽ നിന്ന് സൈൻ ഔട്ട് ചെയ്യുക",
+        "amazon_payments_failed_mfa_challenge": "തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കാൻ കഴിഞ്ഞില്ല. മറ്റൊരു രീതി തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ നിങ്ങളുടെ ബാങ്കുമായോ കാർഡ് ഇഷ്യൂവറുമായോ ബന്ധപ്പെടുക.",
+        "amazon_payments_abandoned_mfa_challenge": "നിങ്ങളുടെ പേയ്‌മെന്റ് പൂർത്തിയാക്കാൻ സാധിച്ചില്ല. മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക അല്ലെങ്കിൽ നിങ്ങളുടെ ബാങ്കുമായോ കാർഡ് നൽകിയവരുമായോ ബന്ധപ്പെടുക.",
+        "amazon_payments_could_not_enqueue_authorize": "നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. വീണ്ടും ശ്രമിക്കുകയോ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുകയോ ചെയ്യുക.",
+        "title": "പേയ്‌മെന്റ്",
+        "amount_left_to_pay_label": "അടയ്ക്കാനുള്ള തുക:",
+        "discount_button_action_label": "ഡിസ്കൗണ്ട് കോഡ് ഉപയോഗിക്കുക",
+        "discount_codes_removed_summary": {
+          "one": "%{count} ഡിസ്‌കൗണ്ട് കോഡ് നീക്കം ചെയ്‌തു",
+          "other": "%{count} ഡിസ്‌കൗണ്ട് കോഡുകൾ നീക്കം ചെയ്‌തു"
+        },
+        "discount_codes_modified_summary": {
+          "one": "%{count} ഡിസ്‌കൗണ്ട് കോഡ് പരിഷ്‌ക്കരിച്ചു",
+          "other": "%{count} ഡിസ്‌കൗണ്ട് കോഡുകൾ പരിഷ്‌ക്കരിച്ചു"
+        },
+        "discount_codes_removed_or_modified_summary": {
+          "one": "%{count} ഡിസ്‌കൗണ്ട് കോഡ് നീക്കം ചെയ്യുകയോ മാറ്റം വരുത്തുകയോ ചെയ്തു",
+          "other": "%{count} ഡിസ്‌കൗണ്ട് കോഡുകൾ നീക്കം ചെയ്യുകയോ മാറ്റം വരുത്തുകയോ ചെയ്തു"
+        },
+        "discount_show_more_warnings": {
+          "one": "%{count} എണ്ണം കൂടി കാണിക്കുക",
+          "other": "%{count} എണ്ണം കൂടി കാണിക്കുക"
+        },
+        "gift_card_code_label": "ഗിഫ്റ്റ് കാർഡ് കോഡ്",
+        "apply_gift_card_button_label": "അപേക്ഷിക്കുക",
+        "gift_card_balance_label": "ബാലൻസ്:",
+        "supported_card_brands_more_label": "കൂടാതെ మరిన్ని…",
+        "detected_card_brand": "കണ്ടെത്തിയ കാർഡ് ബ്രാൻഡ്: {brand}",
+        "credit_card_vaulting_sign_in_banner_title": "നിങ്ങളുടെ ക്രെഡിറ്റ് കാർഡ് സേവ് ചെയ്യുക",
+        "credit_card_vaulting_sign_in_banner_info": "ഭാവിയിലെ പർച്ചേസുകൾക്കായി നിങ്ങളുടെ ക്രെഡിറ്റ് കാർഡ് സേവ് ചെയ്യാൻ ലോഗ് ഇൻ ചെയ്യുക അല്ലെങ്കിൽ ഒരു അക്കൗണ്ട് സൃഷ്ടിക്കുക.",
+        "credit_card_vaulting_sign_in_banner_button_label": "ലോഗിൻ ചെയ്യുക",
+        "ftd_vault_credit_card_label": "വേഗത്തിലുള്ള പേയ്‌മെന്റിനായി ഈ ക്രെഡിറ്റ് കാർഡ് എന്റെ അക്കൗണ്ടിൽ സേവ് ചെയ്യുക.",
+        "card_number_label": "കാർഡ് നമ്പർ",
+        "card_number_placeholder": "കാർഡ് നമ്പർ",
+        "bogus_test_checkout": {
+          "title": "പരിശോധനാ നിർദ്ദേശം",
+          "intro": "നിങ്ങളുടെ ചെക്കൗട്ട് പരിശോധിക്കാൻ ഈ മൂല്യങ്ങൾ ഉപയോഗിക്കുക:",
+          "approved_transaction": "{{card_number}} ഉപയോഗിച്ച് ഒരു അംഗീകൃത ഇടപാട് അനുകരിക്കാൻ",
+          "declined_transaction": "{{card_number}} ഉപയോഗിച്ച് നിരസിച്ച ഇടപാട് അനുകരിക്കുക",
+          "gateway_failure": "ഒരു ഗേറ്റ്‌വേ തകരാർ അനുകരിക്കാൻ {{card_number}} ഉപയോഗിക്കുക",
+          "additional_instructions": "ഏതെങ്കിലും ഭാവിയിലെ കാലഹരണ തീയതിയും ഏതെങ്കിലും 3-അക്ക സുരക്ഷാ കോഡും ഉപയോഗിക്കുക.",
+          "support_link": "പിന്തുണ നേടുക"
+        },
+        "card_pay_with": "ഇവ ഉപയോഗിച്ച് പണമടയ്ക്കുക:",
+        "card_security_notice": "എല്ലാ ഇടപാടുകളും സുരക്ഷിതവും എൻക്രിപ്റ്റ് ചെയ്തതുമാണ്.",
+        "card_security_vault_notice": "ഭാവിയിലെ പേയ്‌മെന്റുകൾക്കായി നിങ്ങളുടെ വിശദാംശങ്ങൾ ഞങ്ങൾക്ക് ആവശ്യമാണ്. എല്ലാ ഇടപാടുകളും സുരക്ഷിതവും എൻക്രിപ്റ്റ് ചെയ്തതുമാണ്.",
+        "card_information_notice": "എല്ലാ ഇടപാടുകളും സുരക്ഷിതവും എൻക്രിപ്റ്റ് ചെയ്തതുമാണ്. ക്രെഡിറ്റ് കാർഡ് വിവരങ്ങൾ ഒരിക്കലും ശേഖരിക്കില്ല.",
+        "name_on_card_label": "കാർഡിലെ പേര്",
+        "name_on_card_placeholder": "കാർഡിലെ പേര്",
+        "card_nickname_label": "വിളിപ്പേര് (ആവശ്യമെങ്കിൽ)",
+        "card_expired": "കാലാവധി കഴിഞ്ഞു",
+        "card_expiry_label": "കാലാവധി തീരുന്ന തീയതി (MM / YY)",
+        "card_expiry_placeholder": "കാലാവധി തീരുന്ന തീയതി (MM / YY)",
+        "credit_card_start_month": "ആരംഭ മാസം",
+        "credit_card_start_year": "ആരംഭ വർഷം",
+        "delete_customer_mandate_modal_title": "ഈ പേയ്മെന്റ് കാർഡ് നീക്കം ചെയ്യണോ?",
+        "delete_customer_mandate_modal_body": "ഈ കാർഡ് നീക്കം ചെയ്യുകയാണെങ്കിൽ, പേയ്‌മെന്റുകൾക്കായി ഉപയോഗിക്കുന്നതിന് മുൻപ് നിങ്ങൾക്കത് വീണ്ടും ചേർക്കേണ്ടി വരും.",
+        "delete_customer_mandate_modal_confirm": "കാർഡ് നീക്കം ചെയ്യുക",
+        "delete_customer_mandate_modal_cancel": "റദ്ദാക്കുക",
+        "card_verification_value_label": "സുരക്ഷാ കോഡ്",
+        "card_verification_value_placeholder": "സുരക്ഷാ കോഡ്",
+        "card_verification_confirm": "സ്ഥിരീകരണത്തിനായി, നിങ്ങളുടെ കാർഡിന്റെ സെക്യൂരിറ്റി കോഡ് നൽകുക.",
+        "card_expiry_date_explanation": "കാർഡിന്റെ കാലാവധി അവസാനിക്കുന്ന തീയതി: മാസം, മാസം, വർഷം, വർഷം എന്ന ക്രമത്തിൽ",
+        "card_expiration_month_label": "കാലാവധി തീരുന്ന മാസം"
       },
       "thank_you": {
         "track_shipment": "ഷിപ്പ്‌മെന്റ് ട്രാക്ക് ചെയ്യുക",
@@ -2312,6 +2390,44 @@
           "expand": "കൂടുതൽ കാണുക",
           "processing": "പ്രോസസ്സ് ചെയ്യുന്നു…",
           "submit": "സമർപ്പിക്കുക"
+        }
+      },
+      "localized_fields": {
+        "additional_information": {
+          "shipping_credential_cn": "റസിഡന്റ് ഐഡി നമ്പർ",
+          "tax_credential_it": "Codice Fiscale (ഓപ്ഷണൽ)",
+          "tax_email_it": "പി ഇ സി (ഓപ്ഷണൽ)",
+          "tax_credential_cl": "റൂട്ട്",
+          "shipping_credential_cl": "റൂട്ട്",
+          "tax_credential_co": "തിരിച്ചറിയൽ രേഖ/ജിഎസ്ടി (PAN/GST)",
+          "tax_credential_type_co": "തിരിച്ചറിയൽ രേഖയുടെ തരം",
+          "shipping_credential_co": "തിരിച്ചറിയൽ രേഖ/ജിഎസ്ടി (PAN/GST)",
+          "shipping_credential_type_co": "തിരിച്ചറിയൽ രേഖയുടെ തരം",
+          "tax_credential_cr": "തിരിച്ചറിയൽ നമ്പർ/RUT",
+          "shipping_credential_cr": "തിരിച്ചറിയൽ നമ്പർ/RUT",
+          "tax_credential_ec": "സിഐ/ആർയുസി/ഐവിഎ (CI/RUC/IVA)",
+          "shipping_credential_ec": "സിഐ/ആർയുസി/ഐവിഎ (CI/RUC/IVA)",
+          "tax_credential_gt": "എൻഐടി/ഐവിഎ (NIT/IVA)",
+          "shipping_credential_gt": "എൻഐടി/ഐവിഎ (NIT/IVA)",
+          "tax_credential_id": "നികുതിദായക തിരിച്ചറിയൽ നമ്പർ (NPWP)",
+          "shipping_credential_id": "നികുതിദായക തിരിച്ചറിയൽ നമ്പർ (NPWP)",
+          "tax_credential_my": "TIN/രജിസ്ട്രേഷൻ നമ്പർ",
+          "shipping_credential_my": "TIN/രജിസ്ട്രേഷൻ നമ്പർ",
+          "shipping_credential_mx": "അഭിപ്രായങ്ങൾക്കായുള്ള അഭ്യർത്ഥന",
+          "tax_credential_mx": "അഭിപ്രായങ്ങൾക്കായുള്ള അഭ്യർത്ഥന",
+          "tax_credential_type_mx": "നികുതി വ്യവസ്ഥ",
+          "tax_credential_use_mx": "CFDI ഉപയോഗം",
+          "tax_credential_py": "സിഐ/ആർയുസി/ഐവിഎ (CI/RUC/IVA)",
+          "shipping_credential_py": "സിഐ/ആർയുസി/ഐവിഎ (CI/RUC/IVA)",
+          "tax_credential_pe": "DNI/RUC/CE",
+          "shipping_credential_pe": "DNI/RUC/CE",
+          "tax_credential_pt": "നിഫ്/വാറ്റ് (NIF/IVA)",
+          "shipping_credential_pt": "നിഫ്/വാറ്റ് (NIF/IVA)",
+          "tax_credential_es": "തിരിച്ചറിയൽ രേഖ (DNI/NIF)",
+          "shipping_credential_es": "തിരിച്ചറിയൽ രേഖ (DNI/NIF)",
+          "shipping_credential_tw": "ദേശീയ തിരിച്ചറിയൽ നമ്പർ/വാറ്റ് (VAT)",
+          "tax_credential_tr": "തുർക്കി റിപ്പബ്ലിക് ഐഡന്റിറ്റി നമ്പർ/വാറ്റ് (VAT)",
+          "shipping_credential_tr": "തുർക്കി റിപ്പബ്ലിക് ഐഡന്റിറ്റി നമ്പർ/വാറ്റ് (VAT)"
         }
       }
     },
