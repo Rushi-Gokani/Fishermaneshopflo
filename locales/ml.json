@@ -2430,13 +2430,143 @@
         "pickup_address_map_link_accessibility_label": "{{address}} എന്ന പിക്കപ്പ് ലൊക്കേഷൻ മാപ്പിൽ കാണുക (പുതിയ വിൻഡോയിൽ തുറക്കുന്നു)",
         "pickup_location_label": "എടുക്കേണ്ട സ്ഥലം:",
         "predicted_by_shop": "ഷോപ്പ് പ്രവചിച്ചത്",
-        "confirmed_description_awaiting_payment": "നിങ്ങളുടെ പേയ്‌മെന്റ് ലഭിച്ചുകഴിഞ്ഞാൽ ഞങ്ങൾ ഈ ഇനങ്ങൾ തയ്യാറാക്കുന്നതാണ്."
+        "confirmed_description_awaiting_payment": "നിങ്ങളുടെ പേയ്‌മെന്റ് ലഭിച്ചുകഴിഞ്ഞാൽ ഞങ്ങൾ ഈ ഇനങ്ങൾ തയ്യാറാക്കുന്നതാണ്.",
+        "fulfillment_tracking": {
+          "attempted_delivery_banner": "ഡെലിവറി വിവരങ്ങൾ അറിയുന്നതിനോ പുതിയ ഡെലിവറി ഷെഡ്യൂൾ ചെയ്യുന്നതിനോ {{carrier}} പരിശോധിക്കുക",
+          "buyer_action_required_banner": "{{carrier}} പരിശോധിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് ഞങ്ങളെ ബന്ധപ്പെടുക",
+          "carrier_banner_link_accessibility_label": "{{carrier}} ട്രാക്കിംഗ് വിവരങ്ങൾ കാണുക (പുതിയൊരു വിൻഡോ തുറക്കുന്നു)",
+          "carrier_link_accessibility_label": "{{carrier}} ഷിപ്പ്‌മെന്റ് ട്രാക്ക് ചെയ്യുക (പുതിയ വിൻഡോയിൽ തുറക്കുന്നു)",
+          "completed_gift_card": "പൂർത്തിയായി {{date}}",
+          "delivered_on": "ഡെലിവർ ചെയ്തത് {{date}}",
+          "delivery_progress_heading": "ഡെലിവറി പുരോഗതി",
+          "gift_card_sent_to_recipient": {
+            "one": "ഗിഫ്റ്റ് കാർഡ് സ്വീകർത്താവിന് അയച്ചു നൽകിയിട്ടുണ്ട്.",
+            "other": "ഗിഫ്റ്റ് കാർഡുകൾ സ്വീകർത്താക്കൾക്ക് അയച്ചുകൊടുത്തു."
+          },
+          "in_store_purchase": "നേരിട്ടുള്ള പർച്ചേസ്",
+          "picked_up_on": "{{date}}-ൽ ശേഖരിച്ചു",
+          "pickup_details_banner": "പിക്കപ്പ് വിവരങ്ങൾക്കായി {{carrier}} പരിശോധിക്കുക",
+          "pickup_details_link_accessibility_label": "{{carrier}} പിക്കപ്പ് വിശദാംശങ്ങൾ കാണുക (ഒരു പുതിയ വിൻഡോ തുറക്കുന്നു)",
+          "status": {
+            "attempted_delivery": "ഡെലിവറിക്ക് ശ്രമിച്ചു",
+            "buyer_action_required": "നടപടി ആവശ്യമാണ്",
+            "carrier_picked_up": "കാരിയർ ഏറ്റെടുത്തു",
+            "confirmed": "സ്ഥിരീകരിച്ചു",
+            "delayed": "വൈകി",
+            "delivered": "വിതരണം ചെയ്തു",
+            "exception": "ഡെലിവറി സംബന്ധമായ പ്രശ്നം",
+            "failure": "ഡെലിവറി സംബന്ധമായ പ്രശ്നം",
+            "in_transit": "വഴിയിലാണ്",
+            "label_printed": "ലേബൽ പ്രിന്റ് ചെയ്തു",
+            "label_purchased": "ലേബൽ വാങ്ങിയത്",
+            "out_for_delivery": "ഡെലിവറിക്കായി അയച്ചു",
+            "picked_up": "എടുത്തു",
+            "ready_for_pickup": "കരിയർ പിക്ക്അപ്പിനായി തയ്യാറാണ്",
+            "ready_for_recipient_pickup": "കൈപ്പറ്റാൻ തയ്യാറാണ്",
+            "returning_to_sender": "അയച്ചയാൾക്ക് തിരികെ നൽകുന്നു"
+          },
+          "delivery_progress_for_shipment_accessibility_label": "ഷിപ്പ്‌മെന്റ് {{position}}-ന്റെ ഡെലിവറി പുരോഗതി",
+          "tracking_link_accessibility_label": "{{carrier}} ഷിപ്പ്‌മെന്റ് {{trackingNumber}} ട്രാക്ക് ചെയ്യുക (പുതിയൊരു വിൻഡോയിൽ തുറക്കുന്നു)",
+          "unknown_carrier_banner": "കൂടുതൽ വിവരങ്ങൾക്ക് ഞങ്ങളെ ബന്ധപ്പെടുക"
+        },
+        "attempted_delivery_label": "ഡെലിവറിക്ക് ശ്രമിച്ചു",
+        "attempted_to_deliver_label": "ഡെലിവറി ചെയ്യാൻ ശ്രമിച്ചു",
+        "preparing_for_shipping_label": "ഷിപ്പിംഗിനായി തയ്യാറെടുക്കുന്നു",
+        "ready_for_pickup_label": "കൈപ്പറ്റാൻ തയ്യാറാണ്",
+        "ready_for_pickup_description": "ഈ സാധനങ്ങൾ കൈപ്പറ്റാൻ തയ്യാറാണ്. ഓർഡർ കൈപ്പറ്റാൻ വരുമ്പോൾ ദയവായി നിങ്ങളുടെ ഓർഡർ കൺഫർമേഷൻ കൂടെ കരുതുക.",
+        "picked_up_label": "എടുത്തു",
+        "canceled_label": "റദ്ദാക്കി",
+        "canceled_title": "നിങ്ങളുടെ ഓർഡർ റദ്ദാക്കിയിരിക്കുന്നു",
+        "come_back": "നിങ്ങളുടെ ഷിപ്പ്‌മെന്റ് സ്റ്റാറ്റസിലെ അപ്‌ഡേറ്റുകൾക്കായി ഈ പേജിലേക്ക് തിരികെ വരിക.",
+        "company_tracking_number": "{{company}} ട്രാക്കിംഗ് നമ്പർ:",
+        "confirmed_label": "സ്ഥിരീകരിച്ചു",
+        "confirmed_title": "നിങ്ങളുടെ ഓർഡർ സ്ഥിരീകരിച്ചു",
+        "confirmed_description_pickup": "ഈ സാധനങ്ങൾ എടുക്കാൻ തയ്യാറാക്കുകയാണ്.",
+        "confirmed_description_shipping": "ഈ സാധനങ്ങൾ കയറ്റി അയക്കാൻ ഞങ്ങൾ തയ്യാറാക്കുകയാണ്.",
+        "confirmed_description_digital": "നിങ്ങളുടെ ഓർഡർ തയ്യാറാകുമ്പോൾ നിങ്ങൾക്ക് ഒരു ഇമെയിൽ ലഭിക്കും.",
+        "confirmed_description_gift_card_text": "നിങ്ങളുടെ ഓർഡർ തയ്യാറാകുമ്പോൾ നിങ്ങൾക്ക് ഒരു സന്ദേശം ലഭിക്കും.",
+        "complete_label": "പൂർത്തിയായി",
+        "delivered_label": "വിതരണം ചെയ്തു",
+        "delivered_description_gift_card": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് ഇമെയിൽ വഴി അയച്ചു.",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ ഇമെയിൽ വഴി അയച്ചിട്ടുണ്ട്."
+        },
+        "delivered_description_gift_card_text": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് ടെക്സ്റ്റ് മെസേജിലൂടെ അയച്ചിട്ടുണ്ട്.",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ ടെക്സ്റ്റ് സന്ദേശമായി അയച്ചു."
+        },
+        "gift_card_resend_button": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് വീണ്ടും അയക്കുക",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ വീണ്ടും അയക്കുക"
+        },
+        "gift_resend_success": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് വീണ്ടും അയച്ചു",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ വീണ്ടും അയച്ചു"
+        },
+        "gift_resend_failure": {
+          "one": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡ് വീണ്ടും അയക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. ദയവായി വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഞങ്ങളെ ബന്ധപ്പെടുക.",
+          "other": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡുകൾ വീണ്ടും അയക്കുന്നതിൽ ഒരു തടസ്സമുണ്ടായി. ദയവായി വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഞങ്ങളെ ബന്ധപ്പെടുക."
+        },
+        "confirmed_gift_card_additional_description": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് മറ്റൊരു ഇമെയിലായി അയക്കുന്നതാണ്.",
+          "other": "ഓരോ ഗിഫ്റ്റ് കാർഡും വെവ്വേറെ ഇമെയിലുകളായി അയക്കുന്നതാണ്."
+        },
+        "confirmed_gift_card_additional_description_text": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് മറ്റൊരു സന്ദേശമായി അയക്കുന്നതാണ്.",
+          "other": "ഓരോ ഗിഫ്റ്റ് കാർഡും വെവ്വേറെ മെസ്സേജുകളായി അയക്കുന്നതാണ്."
+        },
+        "status_timestamp": "അപ്ഡേറ്റ് ചെയ്തത് {{date}}",
+        "estimated_delivery": "പ്രതീക്ഷിക്കുന്ന തീയതി {{date}}",
+        "was_expected_by": "{{date}}-ഓടുകൂടി പ്രതീക്ഷിച്ചിരുന്നു",
+        "delivered": "ഡെലിവർ ചെയ്തത് {{date}}",
+        "buy_with_prime_logo_accessibility_label": "ആമസോൺ ബൈ വിത്ത് പ്രൈം ലോഗോ",
+        "in_review_label": "പരിശോധനയിൽ",
+        "in_review_title": "നിങ്ങളുടെ ഓർഡർ പരിശോധിച്ചുവരികയാണ്",
+        "last_updated": "അവസാനം അപ്ഡേറ്റ് ചെയ്തത് {{date}}",
+        "multiple_shipments_label": "ഒന്നിലധികം ഷിപ്പ്‌മെന്റുകൾ",
+        "multiple_statuses_label": "ഒന്നിലധികം ഓർഡർ സ്റ്റാറ്റസുകൾ",
+        "tracking_number": {
+          "one": "ട്രാക്കിംഗ് നമ്പർ",
+          "other": "ട്രാക്കിംഗ് നമ്പറുകൾ"
+        },
+        "on_its_way_label": "വഴിയിലാണ്",
+        "out_for_delivery_label": "ഡെലിവറിക്കായി അയച്ചു",
+        "resume_tracking": "ട്രാക്കിംഗ് പുനരാരംഭിക്കുക"
       },
       "fulfillment_status_title": "പൂർത്തീകരണ നില: {{status}}",
       "buy_again": "വീണ്ടും വാങ്ങുക",
       "buy_again_accessibility_label": "{{orderId}} ഓർഡറിനായി വീണ്ടും വാങ്ങുക",
       "manage": "നിയന്ത്രിക്കുക",
-      "manage_accessiblity_label": "ഓർഡർ മാനേജ് ചെയ്യുക {{orderId}}"
+      "manage_accessiblity_label": "ഓർഡർ മാനേജ് ചെയ്യുക {{orderId}}",
+      "order_list": {
+        "location_filter_picker": {
+          "all_location": "എല്ലാ ലൊക്കേഷനുകളും",
+          "current_location": "നിലവിലെ സ്ഥാനം",
+          "switch_view": "കാഴ്ച മാറ്റുക"
+        },
+        "filter": {
+          "clear_section": "വിഭാഗം വ്യക്തമാക്കുക",
+          "apply": "അപേക്ഷിക്കുക",
+          "date_section_accessibility_label": "{{sectionTitle}} വെച്ച് ഫിൽറ്റർ ചെയ്യുക",
+          "date": {
+            "start_date": "തുടങ്ങുന്ന തീയതി",
+            "end_date": "അവസാന തീയതി",
+            "title": "ഓർഡർ ചെയ്ത തീയതി",
+            "today": "ഇന്ന്",
+            "last_7_days": "കഴിഞ്ഞ 7 ദിവസങ്ങൾ",
+            "last_30_days": "കഴിഞ്ഞ 30 ദിവസങ്ങൾ",
+            "last_90_days": "കഴിഞ്ഞ 90 ദിവസങ്ങൾ",
+            "last_365_days": "കഴിഞ്ഞ 12 മാസം",
+            "custom": "കസ്റ്റം"
+          }
+        },
+        "view_order": "ഓർഡർ കാണുക",
+        "view_order_accessibility_label": "ഓർഡർ കാണുക {{orderName}}",
+        "empty_state_product_navigation_accessibility_label": "ശുപാർശിക്കുന്ന ഉൽപ്പന്നങ്ങൾ",
+        "empty_state_product_navigation_instructions": "ഉൽപ്പന്നങ്ങൾ പരിശോധിക്കാൻ ഇടത്, വലത് ആരോ കീകൾ ഉപയോഗിക്കുക. തുറക്കാൻ Enter അല്ലെങ്കിൽ Space അമർത്തുക.",
+        "filters_title": "ഫിൽട്ടറുകൾ",
+        "sort_by_title": "ഇതനുസരിച്ച് ക്രമീകരിക്കുക"
+      }
     },
     "order_details": {
       "order_details": "ഓർഡർ വിവരങ്ങൾ",
