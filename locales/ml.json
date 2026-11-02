@@ -2826,7 +2826,124 @@
           "permission_not_allowed": "ലൊക്കേഷൻ പങ്കിടാൻ അനുവദിക്കുക അല്ലെങ്കിൽ തിരയുക."
         },
         "pick_up_location": "പിക്ക് അപ്പ് സ്ഥലം",
-        "or": "അല്ലെങ്കിൽ"
+        "or": "അല്ലെങ്കിൽ",
+        "title": "സ്ഥലം",
+        "only_fully_stocked_locations": "എല്ലാ ഇനങ്ങളും സ്റ്റോക്കിലുള്ള ലൊക്കേഷനുകൾ മാത്രം കാണിക്കുക",
+        "unavailable_item_count": {
+          "one": "%{count} ഇനം ലഭ്യമല്ല",
+          "other": "%{count} ഇനങ്ങൾ ലഭ്യമല്ല"
+        },
+        "ship_separately_notice": {
+          "one": "%{count} ഇനം വെവ്വേറെ അയക്കുന്നതാണ്",
+          "other": "%{count} ഇനങ്ങൾ വെവ്വേറെ അയക്കുന്നതാണ്"
+        },
+        "stock_details": {
+          "out_of_stock": "ഈ സ്ഥലത്ത് സ്റ്റോക്കില്ല",
+          "in_stock": "സ്റ്റോക്കുണ്ട്",
+          "ship_separately": {
+            "one": "വേറെയായി അയയ്ക്കും",
+            "other": "വേറെയായി അയയ്ക്കും"
+          },
+          "remove_items": {
+            "one": "നിങ്ങളുടെ ഓർഡറിൽ നിന്ന് നീക്കം ചെയ്യും",
+            "other": "നിങ്ങളുടെ ഓർഡറിൽ നിന്ന് നീക്കം ചെയ്യും"
+          }
+        },
+        "stock_details_modal": {
+          "unavailable_title": "പിക്അപ്പിന് ലഭ്യമല്ല",
+          "location": "%{location}-ൽ",
+          "can_ship_description": {
+            "one": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഉൽപ്പന്നം സ്റ്റോക്കിൽ ലഭ്യമല്ല.",
+            "other": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഇനങ്ങളുടെ സ്റ്റോക്ക് തീർന്നുപോയി."
+          },
+          "cannot_ship_description": {
+            "one": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഇനം സ്റ്റോക്കിൽ ലഭ്യമല്ല, കൂടാതെ ഇത് ഷിപ്പ് ചെയ്യാൻ സാധിക്കില്ല.",
+            "other": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഇനങ്ങളുടെ സ്റ്റോക്ക് തീർന്നുപോയി, അതിനാൽ ഇവ അയയ്ക്കാൻ കഴിയില്ല."
+          },
+          "cannot_ship_bundle_description": {
+            "one": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഇനം സ്റ്റോക്കിൽ ഇല്ലാത്തതിനാൽ അയയ്ക്കാൻ കഴിയില്ല. പാക്കേജിലുള്ള മറ്റ് ഇനങ്ങളും നീക്കം ചെയ്യും.",
+            "other": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷനിൽ ഈ ഇനങ്ങളുടെ സ്റ്റോക്ക് തീർന്നുപോയി, അതിനാൽ ഇവ അയയ്ക്കാൻ കഴിയില്ല. പാക്കേജിലുള്ള ഇനങ്ങളും നീക്കം ചെയ്യും."
+          },
+          "ship_separately": "വേർതിരിച്ചു അയക്കുക",
+          "choose_different_location": "മറ്റൊരു സ്ഥലം തിരഞ്ഞെടുക്കുക"
+        },
+        "stock_details_banner": {
+          "heading": {
+            "one": "%{location}-ൽ നിന്ന് കൈപ്പറ്റാൻ %{count} ഇനം ലഭ്യമല്ല",
+            "other": "%{location}-ൽ നിന്ന് കൈപ്പറ്റാൻ %{count} ഇനങ്ങൾ ലഭ്യമല്ല"
+          },
+          "closest_location": "എല്ലാ ഇനങ്ങളും സ്റ്റോക്കിലുള്ള ഏറ്റവും അടുത്ത പിക്ക്അപ്പ് ലൊക്കേഷൻ %{distance} അകലെയാണ്",
+          "change_location_or_ship_separately": "%{change_location_link} അല്ലെങ്കിൽ %{ship_separately_link}",
+          "change_location_or_remove_items": "%{change_location_link} അല്ലെങ്കിൽ %{remove_items_link}",
+          "ship_separately": {
+            "one": "അത് പ്രത്യേകം അയയ്ക്കുക",
+            "other": "അവയെ പ്രത്യേകം അയക്കുക"
+          }
+        },
+        "location_address_search_label": "മേൽവിലാസം",
+        "location_address_search_placeholder": "%{postal_code_label} അല്ലെങ്കിൽ വിലാസം",
+        "location_closest": "നിങ്ങളുടെ സാധനം ലഭ്യമായ ഏറ്റവും അടുത്തുള്ള സ്ഥലം",
+        "location_closest_one_item": "നിങ്ങളുടെ സാധനം ലഭ്യമായ ഏറ്റവും അടുത്തുള്ള സ്ഥലം",
+        "location_closest_other_items": "നിങ്ങളുടെ സാധനങ്ങളുള്ള ഏറ്റവും അടുത്തുള്ള സ്ഥലം",
+        "location_selected": "നിങ്ങൾ തിരഞ്ഞെടുത്ത സ്ഥലം",
+        "location_information": {
+          "one": "നിങ്ങളുടെ അടുത്തായി സ്റ്റോക്കുള്ള %{count} സ്ഥലമുണ്ട്",
+          "other": "നിങ്ങളുടെ അടുത്തുള്ള %{count} സ്ഥലങ്ങളിൽ സ്റ്റോക്ക് ലഭ്യമാണ്"
+        },
+        "location_information_far_away": {
+          "one": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലമുണ്ട്",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലങ്ങളുണ്ട്"
+        },
+        "location_information_far_away_one_item": {
+          "one": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലമുണ്ട്",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലങ്ങളുണ്ട്"
+        },
+        "location_information_far_away_other_items": {
+          "one": "നിങ്ങളുടെ സാധനങ്ങളുള്ള %{count} ലൊക്കേഷനുണ്ട്",
+          "other": "നിങ്ങളുടെ ഇനങ്ങൾ ഉള്ള %{count} ലൊക്കേഷനുകൾ ഉണ്ട്"
+        },
+        "location_nearby": {
+          "one": "നിങ്ങളുടെ ഐറ്റം ഉള്ള %{count} സ്ഥലം അടുത്തുണ്ട്",
+          "other": "നിങ്ങളുടെ ഇനം ലഭ്യമായ %{count} സമീപ സ്ഥലങ്ങളുണ്ട്"
+        },
+        "location_nearby_one_item": {
+          "one": "നിങ്ങളുടെ ഐറ്റം ഉള്ള %{count} സ്ഥലം അടുത്തുണ്ട്",
+          "other": "നിങ്ങളുടെ ഇനം ലഭ്യമായ %{count} സമീപ സ്ഥലങ്ങളുണ്ട്"
+        },
+        "location_nearby_other_items": {
+          "one": "നിങ്ങളുടെ സാധനങ്ങളുള്ള %{count} അടുത്തുള്ള ലൊക്കേഷൻ ഉണ്ട്",
+          "other": "നിങ്ങളുടെ സാധനങ്ങളുള്ള %{count} അടുത്തുള്ള സ്ഥലങ്ങളുണ്ട്"
+        },
+        "location_nearby_short": {
+          "one": "നിങ്ങളുടെ ഐറ്റം ഉള്ള സമീപത്തെ %{count} ലൊക്കേഷൻ",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള സമീപത്തുള്ള %{count} സ്ഥലങ്ങൾ"
+        },
+        "location_nearby_short_one_item": {
+          "one": "നിങ്ങളുടെ ഐറ്റം ഉള്ള സമീപത്തെ %{count} ലൊക്കേഷൻ",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള സമീപത്തുള്ള %{count} സ്ഥലങ്ങൾ"
+        },
+        "location_nearby_short_other_items": {
+          "one": "നിങ്ങളുടെ സാധനങ്ങളുള്ള %{count} അടുത്തുള്ള ലൊക്കേഷൻ",
+          "other": "നിങ്ങളുടെ ഇനങ്ങൾ ലഭ്യമായ അടുത്തുള്ള %{count} ലൊക്കേഷനുകൾ"
+        },
+        "location_far_away": {
+          "one": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലം",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലങ്ങൾ"
+        },
+        "location_far_away_one_item": {
+          "one": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലം",
+          "other": "നിങ്ങളുടെ ഇനം ഉള്ള %{count} സ്ഥലങ്ങൾ"
+        },
+        "location_far_away_other_items": {
+          "one": "നിങ്ങളുടെ സാധനങ്ങളുള്ള %{count} ലൊക്കേഷൻ",
+          "other": "നിങ്ങളുടെ ഇനങ്ങൾ ഉള്ള %{count} ലൊക്കേഷനുകൾ"
+        },
+        "toggle_location": "സ്ഥലം മാറ്റുക",
+        "toggle_more_locations": {
+          "one": "%{count} ലൊക്കേഷൻ കൂടി",
+          "other": "%{count} ലൊക്കേഷനുകൾ കൂടി"
+        },
+        "toggle_multiple_locations": "%{count}+ സ്ഥലങ്ങൾ കൂടി"
       },
       "split_delivery": {
         "accessibility": {
@@ -3184,7 +3301,43 @@
         },
         "all_violations_content": "ഈ വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാനും നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കാനും വിളിക്കുക അല്ലെങ്കിൽ {{emailLink}} എന്നതിൽ ഞങ്ങൾക്ക് ഇമെയിൽ ചെയ്യുക:",
         "all_violations_email_link": "ഇമെയിൽ",
-        "editable_shipping_address_violations_message_title": "നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കാൻ ഈ വിവരങ്ങൾ ചേർക്കുക:"
+        "editable_shipping_address_violations_message_title": "നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കാൻ ഈ വിവരങ്ങൾ ചേർക്കുക:",
+        "editable_shipping_address_violations_message_footer": "ഈ ലൊക്കേഷനായുള്ള വിലാസം ശാശ്വതമായി അപ്ഡേറ്റ് ചെയ്യുന്നതിന്, {{emailLink}}.",
+        "editable_shipping_address_violations_email_link": "ഞങ്ങളെ ബന്ധപ്പെടുക",
+        "delivery_address_validation_errors_banner": {
+          "title": "ഷിപ്പിംഗ് വിലാസം അസാധുവാണ്",
+          "text_html": "നിങ്ങളുടെ വിലാസം എഡിറ്റ് ചെയ്യാൻ %{contact_us} ചെയ്യുക",
+          "contact_us": "ഞങ്ങളെ ബന്ധപ്പെടുക",
+          "use_different_address": "മറ്റൊരു ഷിപ്പിംഗ് വിലാസം ഉപയോഗിക്കുക"
+        },
+        "shipping_address_incomplete_title": "ഷിപ്പിംഗ് വിലാസം അപൂർണ്ണമാണ്",
+        "calculating_shipping": "ഷിപ്പിംഗ് നിരക്ക് കണക്കാക്കിക്കൊണ്ടിരിക്കുകയാണ്. കുറച്ച് നിമിഷങ്ങൾക്ക് ശേഷം വീണ്ടും ശ്രമിക്കുക. നിങ്ങളിൽ നിന്ന് തുക ഈടാക്കിയിട്ടില്ല.",
+        "calculating_taxes": "നികുതി കണക്കാക്കിക്കൊണ്ടിരിക്കുകയാണ്. കുറച്ച് നിമിഷങ്ങൾ കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക. നിങ്ങളിൽ നിന്ന് തുക ഈടാക്കിയിട്ടില്ല.",
+        "generic_processing_error": {
+          "title": "നിങ്ങളുടെ ഓർഡർ പ്രോസസ്സ് ചെയ്യുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി.",
+          "body": "നിങ്ങളിൽ നിന്നും പണം ഈടാക്കിയിട്ടില്ല. വീണ്ടും ശ്രമിക്കുകയോ അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുകയോ ചെയ്യുക."
+        },
+        "payment_method_not_available_with_payment_terms": "{{paymentTerms}} നിബന്ധനകളിലായതുകൊണ്ട് നിങ്ങൾ തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതി ഇപ്പോൾ ലഭ്യമല്ല",
+        "payment_method_not_available_with_fulfillment_terms": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതി ഇപ്പോൾ ലഭ്യമല്ല, കാരണം ഈ ഓർഡറിനായുള്ള പേയ്‌മെന്റ് ഇപ്പോൾ ഓർഡർ പൂർത്തിയാക്കുമ്പോഴാണ് (fulfillment) നൽകേണ്ടത്.",
+        "payment_method_not_available_with_fixed_terms": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതി ഇപ്പോൾ ലഭ്യമല്ല, കാരണം ഈ ഓർഡറിനുള്ള പേയ്‌മെന്റ് പിന്നീട് നൽകേണ്ടതുണ്ട്.",
+        "payment_method_not_available_with_review_requirement": "നിങ്ങൾ തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതി ഇപ്പോൾ ലഭ്യമല്ല, കാരണം ഓർഡർ സ്ഥിരീകരിച്ചുകഴിഞ്ഞാൽ മാത്രമേ പേയ്‌മെന്റ് നടത്തേണ്ടതുള്ളൂ.",
+        "contact_information": {
+          "title": "ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ അസാധുവാണ്",
+          "header": "നിങ്ങളുടെ വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്യുന്നതിനായി, {{emailLink}}.",
+          "email_link": "ഞങ്ങളെ ബന്ധപ്പെടുക"
+        },
+        "validation_errors_banner": {
+          "heading": {
+            "one": "ഒരു പിശകുണ്ട്:",
+            "other": "{{count}} പിശകുകളുണ്ട്:"
+          },
+          "section_label": {
+            "delivery": "ഡെലിവറി",
+            "contact": "ബന്ധപ്പെടുക",
+            "payment": "പേയ്‌മെന്റ്",
+            "billing": "ബില്ലിംഗ്"
+          }
+        }
       },
       "datepicker": {
         "choose_date": "ഒരു തീയതി തിരഞ്ഞെടുക്കുക"
@@ -3318,6 +3471,27 @@
       },
       "address_management": {
         "saved_with_store": "ഈ സ്റ്റോറിൽ സേവ് ചെയ്തു"
+      },
+      "review_address_modal": {
+        "title": "മേൽവിലാസം പരിശോധിക്കുക",
+        "subtitle": {
+          "one": "{{merchant}} നൽകിയ വിലാസത്തിലേക്കാണ് ഈ ഓർഡർ ഷിപ്പ് ചെയ്യുന്നത്.",
+          "other": "ഈ ഓർഡർ {{merchant}} നൽകുന്ന ഒരു വിലാസത്തിലേക്ക് ഷിപ്പ് ചെയ്യും. ഒരു ഷിപ്പിംഗ് വിലാസം തിരഞ്ഞെടുക്കുക."
+        },
+        "subtitle_no_match": "ഈ വിലാസം നിങ്ങൾ സേവ് ചെയ്ത വിലാസങ്ങളിലൊന്നുമായും യോജിക്കുന്നില്ല.",
+        "subtitle_must_use": "നിങ്ങളുടെ ഓർഡർ ഈ വിലാസത്തിലേക്ക് അയക്കുന്നതാണ്.",
+        "continue": "ഈ വിലാസത്തിൽ തുടരുക",
+        "use_saved_address": "മറ്റൊരു വിലാസം ഉപയോഗിക്കുക",
+        "return_to_cart": "കാർട്ടിലേക്ക് മടങ്ങുക"
+      },
+      "marketplaces": {
+        "legal_notice": {
+          "legal_text": "അവലോകനം",
+          "link_label": "{{partnerDisplayName}} നിബന്ധനകളും വ്യവസ്ഥകളും"
+        }
+      },
+      "online_store_chat": {
+        "title": "എന്തെങ്കിലും സംശയങ്ങളുണ്ടോ? ഞങ്ങളുമായി ചാറ്റ് ചെയ്യൂ"
       }
     },
     "notices": {
