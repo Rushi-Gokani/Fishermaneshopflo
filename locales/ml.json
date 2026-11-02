@@ -390,7 +390,157 @@
         "alipay_label": "അലിപേ",
         "wechat_pay_label": "വിചാറ്റ് പേ",
         "wechat_app_label": "വിചാറ്റ്",
-        "oxxo_label": "ഓക്സോ"
+        "oxxo_label": "ഓക്സോ",
+        "konbini_label": "കൺവീനിയൻസ് സ്റ്റോർ",
+        "satispay_label": "സാറ്റിസ്പേ",
+        "paynow_label": "പേനൗ (PayNow)",
+        "paypay_label": "പേപേ (PayPay)",
+        "scalapay_label": "സ്കാലപേ",
+        "usdc_label": "യുഎസ്ഡിസി",
+        "usdc_cashback_title": "%{incentive_percentage}% ക്യാഷ്ബാക്ക്",
+        "usdc_cashback_additional_info": "Base-ൽ USDC ഉപയോഗിച്ച് പണമടയ്ക്കൂ, 30 ദിവസത്തിനുള്ളിൽ %{incentive_percentage}%% നിങ്ങളുടെ വാലെറ്റിൽ തിരിച്ചുപിടിക്കൂ.",
+        "usdc_cashback_terms": "നിബന്ധനകളും പരിമിതികളും ബാധകമാണ്",
+        "purchase_options_card_update_agreement_label_html": "നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യുന്നതിലൂടെ, ഈ സ്റ്റോറിന്റെ <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{cancellation_policy}\" href=\"%{policy_href}\">റദ്ദാക്കൽ നയമനുസരിച്ച്</a> ആവർത്തിച്ചുള്ളതോ വൈകിയുള്ളതോ ആയ ഏത് പർച്ചേസിനും പേയ്‌മെന്റുകൾ നടത്തുന്നതിന് നിങ്ങൾ അനുമതി നൽകുന്നു.",
+        "subscription_card_update_agreement_label": "പേയ്‌മെന്റ് രീതി മാറ്റുന്നത് നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷനിലും ഭാവിയിലുള്ള ആവർത്തന പേയ്‌മെന്റുകളിലും മാറ്റം വരുത്തും.",
+        "subscription_agreement_label": "നിങ്ങളുടെ കാർട്ടിലെ ഒന്നോ അതിലധികമോ ഇനങ്ങൾ ഡെഫേർഡ് (deferred) അല്ലെങ്കിൽ സബ്സ്ക്രിപ്ഷൻ പർച്ചേസുകളാണ്. പേയ്‌മെന്റ് തുടരുന്നതിലൂടെ, ഈ പേജിൽ സൂചിപ്പിച്ചിരിക്കുന്ന വിലയിലും ഇടവേളയിലും, സബ്‌സ്‌ക്രിപ്‌ഷൻ അവസാനിക്കുന്നത് വരെയോ അല്ലെങ്കിൽ നിങ്ങൾ അത് റദ്ദാക്കുന്നത് വരെയോ നിങ്ങളുടെ പേയ്‌മെന്റ് രീതിയിൽ നിന്ന് തുക താനേ ഈടാക്കപ്പെടുമെന്ന് നിങ്ങൾ സമ്മതിക്കുന്നു. എല്ലാ റദ്ദാക്കലുകളും %{cancelled}-ന് വിധേയമായിരിക്കും.",
+        "subscription_agreement_cancelled": "റദ്ദാക്കൽ നയം",
+        "subscription_heading": "സബ്‌സ്‌ക്രിപ്ഷൻ കരാർ",
+        "subscription_agreement_label_html": "ഒരു സബ്സ്ക്രിപ്ഷനാണ് ഞാൻ അംഗീകരിക്കുന്നതെന്ന് എനിക്ക് മനസ്സിലായി. ഇത് അവസാനിക്കുന്നത് വരെയോ റദ്ദാക്കുന്നത് വരെയോ ലിസ്റ്റ് ചെയ്തിട്ടുള്ള വിലയിലും ആവൃത്തിയിലും പുതുക്കും.\n<a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">റദ്ദാക്കപ്പെടുകയോ</a> ചെയ്യുന്നത് വരെയോ ഇത് തുടരും.\n",
+        "purchase_options_agreement_label": "നിങ്ങളുടെ കാർട്ടിലുള്ള ഒന്നോ അതിലധികമോ ഇനങ്ങൾ മാറ്റിവെച്ചതോ ആവർത്തിച്ചുള്ളതോ ആയ വാങ്ങലുകളാണ്. പേയ്‌മെൻ്റുമായി മുന്നോട്ട് പോകുന്നതിലൂടെ, നിങ്ങളുടെ പേയ്‌മെൻ്റ് രീതിക്ക് ഈ പേജിൽ ലിസ്റ്റ് ചെയ്തിരിക്കുന്ന വിലയിലും തവണകളിലും ഇത് അവസാനിക്കുകയോ നിങ്ങൾ റദ്ദാക്കുകയോ ചെയ്യുന്നത് വരെ സ്വയമേവ ചാർജ്ജ് ചെയ്യപ്പെടും എന്ന് നിങ്ങൾ സമ്മതിക്കുന്നു. എല്ലാ റദ്ദാക്കലുകളും %{cancellation_policy_label} ബാധകമായിരിക്കും.",
+        "purchase_options_agreement_label_html": "എൻ്റെ കാർട്ടിലുള്ള ഒന്നോ അതിലധികമോ ഇനങ്ങൾ മാറ്റിവെച്ചതോ ആവർത്തിച്ചുള്ളതോ ആയ വാങ്ങലുകളാണെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു. തുടരുന്നതിലൂടെ, ഈ പേജിൽ ലിസ്റ്റുചെയ്‌തിട്ടുള്ള വിലകൾ, ആവൃത്തി, തീയതികൾ എന്നിവ പ്രകാരം എൻ്റെ പേയ്മെൻ്റ് രീതിയിൽ നിരക്ക് ഈടാക്കാൻ ഞാൻ നിങ്ങളെ അംഗീകരിക്കുകയും അധികാരപ്പെടുത്തുകയും ചെയ്യുന്നു. എൻ്റെ ഓർഡർ നിറവേറ്റപ്പെടുകയോ അല്ലെങ്കിൽ ഞാൻ റദ്ദാക്കുകയോ ചെയ്യുന്നത് വരെ ഇത് തുടരും (അനുവദനീയമാണെങ്കിൽ).\nകൂടാതെ, ഞാൻ റദ്ദാക്കൽ നയത്തോട് യോജിക്കുന്നു.",
+        "purchase_options_agreement_label_wallets": "പേയ്‌മെന്റുമായി മുന്നോട്ട് പോകുന്നതിലൂടെ, ഈ പേജിൽ ലിസ്റ്റ് ചെയ്തിരിക്കുന്ന ഭാവിയിലെ നിരക്കുകളും %{cancellation_policy_label} എന്നതും നിങ്ങൾ അംഗീകരിക്കുന്നു.",
+        "purchase_options_subscription_confirmation_title": "നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ സ്ഥിരീകരിക്കുക",
+        "purchase_options_subscription_agreement_label": "നിങ്ങളുടെ കാർട്ടിൽ സ്വയമേവ പുതുക്കുന്ന സബ്‌സ്‌ക്രിപ്‌ഷൻ അടങ്ങിയിരിക്കുന്നു. \"%{button_label}\" ക്ലിക്ക് ചെയ്യുന്നതിലൂടെ, %{consent_text} %{cancellation_instructions}",
+        "purchase_options_subscription_agreement_label_wallets": "നിങ്ങളുടെ കാർട്ടിൽ സ്വയമേവ പുതുക്കപ്പെടുന്ന ഒരു സബ്‌സ്‌ക്രിപ്‌ഷൻ ഉൾപ്പെടുന്നു. എക്സ്പ്രസ് ചെക്ക്ഔട്ട് ഉപയോഗിക്കുന്നതിലൂടെ, %{consent_text} %{cancellation_instructions}",
+        "purchase_options_subscription_consent_text": "നിങ്ങളുടെ കാർട്ടിൽ കാണിച്ചിരിക്കുന്ന ആവർത്തന തുക(കൾ) (ഷിപ്പിംഗും നികുതിയും ഉൾപ്പെടെ) സബ്‌സ്‌ക്രിപ്‌ഷൻ(കൾ) അവസാനിക്കുകയോ നിങ്ങൾ റദ്ദാക്കുകയോ ചെയ്യുന്നതുവരെ സ്വയമേവ ഈടാക്കുമെന്ന് നിങ്ങൾ വ്യക്തമായും ഉറപ്പായും സമ്മതിക്കുന്നു.",
+        "purchase_options_subscription_cancellation_instructions": "%{cancel_text} ദയവായി %{cancellation_policy_label} കാണുക.",
+        "purchase_options_subscription_cancel_text": "നിങ്ങളുടെ അക്കൗണ്ടിൽ പോയിട്ടോ സ്റ്റോറുമായി ബന്ധപ്പെട്ടിട്ടോ നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും റദ്ദാക്കാം.",
+        "change_currency_section_description": "കറൻസി ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക",
+        "no_real_orders_dev_store": "ഈ സ്റ്റോറിൽ യഥാർത്ഥ ഓർഡറുകളോ പണമടയ്ക്കലുകളോ സ്വീകരിക്കാൻ കഴിയില്ല.",
+        "loading": "പണം കൈമാറുന്നു...",
+        "waiting_on_payment_methods": "ലഭ്യമായ പേയ്‌മെന്റ് രീതികൾ ലഭ്യമാക്കുന്നു...",
+        "apple_pay_payment_error": "നിങ്ങളുടെ പേയ്‌മെന്റ് പൂർത്തിയാക്കാൻ സാധിച്ചില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു പേയ്‌മെന്റ് രീതി ഉപയോഗിക്കുക.",
+        "taxes_not_included": "നികുതി ഉൾപ്പെടുത്തിയിട്ടില്ല",
+        "no_taxes_banner_content": "ഈ ഓർഡറിന് നികുതി ഈടാക്കുന്നതല്ല. പേയ്‌മെന്റ് സ്വീകരിച്ചുകഴിഞ്ഞാൽ, പിന്നീട് നികുതി ചേർക്കാൻ സാധിക്കില്ല.",
+        "paypal": {
+          "connect": "നിങ്ങളുടെ പേപാൽ (PayPal) അക്കൗണ്ട് ബന്ധിപ്പിക്കുന്നതിന് ക്ലിക്ക് ചെയ്യുക"
+        },
+        "apple": {
+          "connect": "നിങ്ങളുടെ Apple Pay അക്കൗണ്ട് കണക്ട് ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക",
+          "not_available": "ഈ ബ്രൗസറിൽ Apple Pay ലഭ്യമല്ല. നിങ്ങളുടെ Apple Pay അക്കൗണ്ട് കണക്റ്റ് ചെയ്യുന്നതിന്, ഒരു Apple ഉപകരണത്തിൽ Safari ഉപയോഗിക്കേണ്ടതുണ്ട്."
+        },
+        "google": {
+          "connect": "നിങ്ങളുടെ Google Pay അക്കൗണ്ടുമായി ബന്ധിപ്പിക്കാൻ ക്ലിക്ക് ചെയ്യുക",
+          "error_authorizing": "പേയ്‌മെന്റ് അംഗീകരിക്കുന്നതിൽ പിശക് സംഭവിച്ചു"
+        },
+        "account_connected": "അക്കൗണ്ട് കണക്റ്റ് ചെയ്തു.",
+        "mor_disclaimer_html": "താഴെ ക്ലിക്ക് ചെയ്ത് ഓർഡർ പൂർത്തിയാക്കുന്നതിലൂടെ, ഈ ഇടപാടിനായി ഒരു മർച്ചൻ്റ് ഓഫ് റെക്കോർഡായി ഗ്ലോബൽ-ഇയിൽ നിന്ന് നിങ്ങളുടെ ഉൽപ്പന്നം(ങ്ങൾ) വാങ്ങാൻ നിങ്ങൾ സമ്മതിക്കുന്നു, ഗ്ലോബൽ-ഇയുടെ <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{mor_terms}\" href=\"%{terms_href}\"> നിബന്ധനകളും വ്യവസ്ഥകളും</a>\n കൂടാതെ <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{privacy_policy}\" href=\"%{policy_href}\">സ്വകാര്യതാ നയവും</a>. %{shop_name} എന്നതിനായുള്ള ഒരു അന്താരാഷ്ട്ര\n പൂർത്തീകരണ സേവന ദാതാവാണ് ഗ്ലോബൽ-ഇ.\n",
+        "lpm": {
+          "multibanco": {
+            "voucher": {
+              "label": "മൾട്ടിബാങ്കോ",
+              "codes": {
+                "entity": "സ്ഥാപനം",
+                "reference_number": "അവലംബം"
+              },
+              "steps": {
+                "pay_at_atm_or_online": "താഴെ നൽകിയിരിക്കുന്ന വിവരങ്ങൾ ഉപയോഗിച്ച് ഒരു മൾട്ടിബാൻകോ എടിഎമ്മിലോ അല്ലെങ്കിൽ നിങ്ങളുടെ ഓൺലൈൻ ബാങ്കിംഗ് വഴിയോ പണമടയ്ക്കുക."
+              }
+            }
+          },
+          "konbini": {
+            "voucher": {
+              "label": "കൺവീനിയൻസ് സ്റ്റോർ",
+              "outlets": {
+                "familymart": "ഫാമിലിമാർട്ട്",
+                "lawson": "ലോസൺ",
+                "ministop": "മിനിസ്റ്റോപ്പ്",
+                "seicomart": "സെയ്‌കോമാർട്ട്",
+                "seven_eleven": "സെവൻ-ഇലവൻ"
+              },
+              "codes": {
+                "reference_number": "പേയ്‌മെന്റ് കോഡ്",
+                "confirmation_number": "സ്ഥിരീകരണ കോഡ്"
+              },
+              "steps": {
+                "familymart": {
+                  "1": "മൾട്ടി-കോപ്പി മെഷീനിൽ, 代金支払い／チャージ (\"Payment / Charge\") തിരഞ്ഞെടുക്കുക.",
+                  "2": "നിങ്ങളുടെ പേയ്‌മെന്റ് കോഡ് നൽകി 'OK' അമർത്തുക.",
+                  "3": "നിങ്ങളുടെ സ്ഥിരീകരണ കോഡ് നൽകി OK അമർത്തുക",
+                  "4": "വിവരങ്ങൾ പരിശോധിച്ച്, നിങ്ങളുടെ സ്ലിപ്പ് പ്രിന്റ് ചെയ്യുന്നതിനായി \"Confirm\" ബട്ടൺ അമർത്തുക.",
+                  "5": "30 മിനിറ്റിനുള്ളിൽ സ്ലിപ്പ് രജിസ്റ്ററിൽ കൊണ്ടുപോയി പണമായോ ഫാമീപെയ് (FamiPay) വഴിയോ പണമടയ്ക്കുക."
+                },
+                "lawson": {
+                  "1": "Loppi ടെർമിനലിൽ, 各種番号をお持ちの方 (\"എന്റെ പക്കൽ ഒരു നമ്പറുണ്ട്\") എന്നത് തിരഞ്ഞെടുക്കുക.",
+                  "2": "നിങ്ങളുടെ പേയ്‌മെന്റ് കോഡ് നൽകി \"Next\" (അടുത്തത്) അമർത്തുക.",
+                  "3": "നിങ്ങളുടെ സ്ഥിരീകരണ കോഡ് നൽകി '次へ' അമർത്തുക",
+                  "4": "വിവരങ്ങൾ പരിശോധിച്ച ശേഷം നിങ്ങളുടെ സ്ലിപ്പ് പ്രിന്റ് ചെയ്യാൻ \"はい\" (Yes) അമർത്തുക.",
+                  "5": "30 മിനിറ്റിനുള്ളിൽ സ്ലിപ്പ് രജിസ്റ്ററിൽ കൊണ്ടുപോയി പണമായി അടയ്ക്കുക."
+                },
+                "ministop": {
+                  "1": "Loppi ടെർമിനലിൽ, 各種番号をお持ちの方 (\"എന്റെ പക്കൽ ഒരു നമ്പറുണ്ട്\") എന്നത് തിരഞ്ഞെടുക്കുക.",
+                  "2": "നിങ്ങളുടെ പേയ്‌മെന്റ് കോഡ് നൽകി \"Next\" (അടുത്തത്) അമർത്തുക.",
+                  "3": "നിങ്ങളുടെ സ്ഥിരീകരണ കോഡ് നൽകി '次へ' അമർത്തുക",
+                  "4": "വിവരങ്ങൾ പരിശോധിച്ച ശേഷം നിങ്ങളുടെ സ്ലിപ്പ് പ്രിന്റ് ചെയ്യാൻ \"はい\" (Yes) അമർത്തുക.",
+                  "5": "30 മിനിറ്റിനുള്ളിൽ സ്ലിപ്പ് രജിസ്റ്ററിൽ കൊണ്ടുപോയി പണമായി അടയ്ക്കുക."
+                },
+                "seicomart": {
+                  "1": "ക്യാഷ് കൗണ്ടറിൽ, ക്യാഷിയറോട് \"ഇന്റർനെറ്റ് പേയ്‌മെന്റ്\" (internet payment) എന്ന് പറയുക.",
+                  "2": "കസ്റ്റമർ സ്ക്രീനിൽ നിങ്ങളുടെ പേയ്‌മെന്റ് കോഡ് നൽകി 登録 (\"Enter\") തിരഞ്ഞെടുക്കുക.",
+                  "3": "നിങ്ങളുടെ സ്ഥിരീകരണ കോഡ് നൽകി '登録' തിരഞ്ഞെടുക്കുക",
+                  "4": "വിവരങ്ങൾ പരിശോധിച്ച് OK തിരഞ്ഞെടുക്കുക",
+                  "5": "പണമായി നൽകുക"
+                },
+                "seven_eleven": {
+                  "1": "ക്യാഷ്യർക്ക് സ്കാൻ ചെയ്യാൻ രജിസ്റ്ററിൽ Show barcode ടാപ്പ് ചെയ്യുക"
+                },
+                "1": "പേയ്‌മെന്റ് കോഡും കൺഫർമേഷൻ കോഡും സ്റ്റോറിലെ ടെർമിനലിലോ രജിസ്റ്ററിലോ കാണിച്ച്, വൗച്ചർ കാലഹരണപ്പെടുന്നതിന് മുൻപായി പണമായി അടയ്ക്കുക."
+              },
+              "pay": "%{amount} അടയ്ക്കുക",
+              "choose_outlet": "നിങ്ങളുടെ കോഡുകളും പണമടയ്ക്കേണ്ട രീതിയും കാണുന്നതിന് ഒരു കോൺബിനി (Konbini) തിരഞ്ഞെടുക്കുക.",
+              "expires_at": "%{date}-ന് കാലാവധി അവസാനിക്കുന്നു",
+              "expiry_date_time": "%{date} %{time} JST-ൽ",
+              "expired_title": "പേയ്‌മെന്റ് കോഡ് കാലഹരണപ്പെട്ടു",
+              "expired": "%{date}-ന് കാലാവധി കഴിഞ്ഞു",
+              "copy_code": "%{label} പകർത്തുക",
+              "code_copied": "പകർത്തി",
+              "show_barcode": "ബാർകോഡ് കാണിക്കുക",
+              "keep_receipt": "പണമടച്ചതിന്റെ തെളിവായി നിങ്ങളുടെ രസീത് സൂക്ഷിക്കുക",
+              "view_instructions": "പേയ്‌മെന്റ് നിർദ്ദേശങ്ങൾ കാണുക",
+              "view_instructions_accessibility_label": "പേയ്മെന്റ് നിർദ്ദേശങ്ങൾ കാണുക (പുതിയ ടാബിൽ തുറക്കുന്നു)"
+            }
+          },
+          "oxxo": {
+            "voucher": {
+              "label": "ഓക്സോ",
+              "number": "റെഫറൻസ് നമ്പർ",
+              "steps": {
+                "scan_barcode_at_oxxo": "നിങ്ങളുടെ അടുത്തുള്ള OXXO-യിൽ ബാർകോഡ് സ്കാൻ ചെയ്യുക."
+              },
+              "barcode_alt": "റഫറൻസ് നമ്പർ %{reference_number}-നായുള്ള OXXO വൗച്ചർ ബാർകോഡ്"
+            }
+          }
+        },
+        "pending_payment": {
+          "apple_wallet": {
+            "badge_alt": "ആപ്പിൾ വാലറ്റിലേക്ക് ചേർക്കുക",
+            "pass": {
+              "description": "%{shop_name} പേയ്മെന്റ് വൗച്ചർ",
+              "logo_text": "പേയ്‌മെന്റ് വൗച്ചർ",
+              "store_label": "കട",
+              "expiry_date_label": "കാലാവധി തീരുന്ന തീയതി",
+              "payment_due_label": "അടയ്ക്കാനുള്ള തുക",
+              "reference_number_label": "റെഫറൻസ് നമ്പർ",
+              "ordered_on_label": "ഓർഡർ ചെയ്ത തീയതി"
+            }
+          },
+          "due_notice": "%{due_date}-നകം താങ്കൾ %{amount_due} അടയ്ക്കേണ്ടതുണ്ട്.",
+          "multibanco": {
+            "buyer_action_info": "%{amount_due} രൂപയുടെ നിങ്ങളുടെ പേയ്‌മെന്റ് അടയ്ക്കേണ്ടതുണ്ട്.",
+            "instruction_html": "താഴെ നൽകിയിരിക്കുന്ന വിവരങ്ങൾ ഉപയോഗിച്ച് മൾട്ടിബാങ്കോ വഴിയോ ഓൺലൈനായോ നിങ്ങളുടെ പേയ്മെന്റ് നടത്തുക. സംശയങ്ങൾക്കോ പേയ്മെന്റ് വിവരങ്ങൾ പുതുക്കുന്നതിനോ, %{contact_us}.",
+            "entity": "സ്ഥാപനം"
+          }
+        }
       },
       "thank_you": {
         "track_shipment": "ഷിപ്പ്‌മെന്റ് ട്രാക്ക് ചെയ്യുക",
@@ -1068,6 +1218,124 @@
       "payment_confirmation": {
         "payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെൻ്റ് ലഭിച്ചു."
       }
+    }
+  },
+  "content": {
+    "product_badge_sold_out": "വിറ്റുതീർന്നു",
+    "product_badge_sale": "വില്‍പ്പന",
+    "product_card_placeholder": "ഉൽപ്പന്നത്തിന്റെ പേര്",
+    "placeholder_image": "പ്ലേസ്‌ഹോൾഡർ ചിത്രം",
+    "quantity": "അളവ്",
+    "quantity_per_item": "/ea",
+    "recently_viewed_products": "അടുത്തിടെ കണ്ടവ",
+    "remove_all": "എല്ലാം നീക്കം ചെയ്യുക",
+    "remove_all_items_confirmation": "നിങ്ങളുടെ കാർട്ടിൽ നിന്ന് എല്ലാ {{ count }} ഇനങ്ങളും നീക്കം ചെയ്യണോ?",
+    "remove_one_item_confirmation": "നിങ്ങളുടെ കാർട്ടിൽ നിന്ന് 1 ഇനം നീക്കം ചെയ്യണോ?",
+    "reviews": "അഭിപ്രായങ്ങൾ",
+    "read_more": "കൂടുതൽ വായിക്കുക...",
+    "search_input_label": "തിരയുക",
+    "search_input_placeholder": "തിരയുക",
+    "search": "തിരയുക",
+    "search_results": "തിരയൽ ഫലങ്ങൾ",
+    "search_results_label": "തിരയൽ ഫലങ്ങൾ",
+    "search_results_no_results": "\"{{ terms }}\" എന്നതിനായുള്ള ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല. മറ്റൊരു തിരയൽ നടത്തുക.",
+    "search_results_no_results_check_spelling": "\"{{ terms }}\" എന്നതിനായി ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല. അക്ഷരത്തെറ്റ് പരിശോധിക്കുക അല്ലെങ്കിൽ മറ്റൊരു വാക്കോ ശൈലിയോ ഉപയോഗിക്കുക.",
+    "search_results_resource_articles": "ബ്ലോഗ് പോസ്റ്റുകൾ",
+    "search_results_resource_collections": "ശേഖരങ്ങൾ",
+    "search_results_resource_pages": "പേജുകൾ",
+    "search_results_resource_products": "ഉൽപ്പന്നങ്ങൾ",
+    "search_results_resource_products_count": {
+      "one": "{{ count }} ഉൽപ്പന്നം",
+      "other": "{{ count }} ഉൽപ്പന്നങ്ങൾ"
+    },
+    "search_results_resource_queries": "തിരയൽ നിർദ്ദേശങ്ങൾ",
+    "total_items": "ആകെ ഇനങ്ങൾ",
+    "variant": "ഭേദം",
+    "variant_total": "ആകെ വകഭേദങ്ങൾ",
+    "view_cart": "കാർട്ട് കാണുക",
+    "your_cart": "നിങ്ങളുടെ കാർട്ട്",
+    "items_added_to_cart": {
+      "one": "1 ഇനം കാർട്ടിലേക്ക് ചേർത്തു",
+      "other": "{{ count }} ഇനങ്ങൾ കാർട്ടിൽ ചേർത്തു"
+    },
+    "search_results_view_all": "എല്ലാം കാണുക",
+    "search_results_view_all_button": "എല്ലാം കാണുക",
+    "seller_note": "പ്രത്യേക നിർദ്ദേശങ്ങൾ",
+    "shipping_policy": "ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "shipping_policy_html": "<a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഷിപ്പിംഗ്</a> ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "store_owner_link_html": "നിങ്ങൾ കടയുടെ ഉടമയാണോ? <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഇവിടെ ലോഗിൻ ചെയ്യുക</a>",
+    "taxes_at_checkout_shipping_at_checkout_with_policy_html": "നികുതികളും കിഴിവുകളും <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഷിപ്പിംഗും</a> ചെക്ക്ഔട്ടിൽ കണക്കാക്കുന്നതാണ്.",
+    "taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html": "ചെക്ക്ഔട്ടിൽ നികുതികളും <a href=\"{{%20link%20}}\">ഷിപ്പിംഗും</a> കണക്കാക്കും.",
+    "taxes_at_checkout_shipping_at_checkout_without_policy": "നികുതി, കിഴിവ്, ഷിപ്പിംഗ് നിരക്കുകൾ എന്നിവ ചെക്ക്ഔട്ട് സമയത്ത് കണക്കാക്കപ്പെടുന്നതാണ്.",
+    "taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts": "നികുതിയും ഷിപ്പിംഗ് നിരക്കും ചെക്ക്ഔട്ടിൽ കണക്കാക്കപ്പെടും.",
+    "taxes_included": "നികുതി ഉൾപ്പെടെ.",
+    "taxes_included_shipping_at_checkout_with_policy_html": "നികുതികൾ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്. കിഴിവുകളും <a href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">ഷിപ്പിംഗും</a> ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "taxes_included_shipping_at_checkout_with_policy_without_discounts_html": "നികുതി ഉൾപ്പെടെ. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "taxes_included_shipping_at_checkout_without_policy": "നികുതി ഉൾപ്പെടെ. ഡിസ്കൗണ്ടും ഷിപ്പിംഗും ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "taxes_included_shipping_at_checkout_without_policy_without_discounts": "നികുതി ഉൾപ്പെടെ. ഷിപ്പിംഗ് നിരക്ക് ചെക്ക്ഔട്ടിൽ കണക്കാക്കും.",
+    "unavailable": "ലഭ്യമല്ല",
+    "use_fewer_filters_html": "കുറഞ്ഞ ഫിൽട്ടറുകൾ ഉപയോഗിക്കാൻ ശ്രമിക്കുക, അല്ലെങ്കിൽ <a class=\"&lt;span class='notranslate'&gt;{{ class }}&lt;/span&gt;\" href=\"&lt;span%20class='notranslate'&gt;{{%20link%20}}&lt;/span&gt;\">എല്ലാ ഫിൽട്ടറുകളും മായ്ക്കുക</a>.",
+    "view_more_details": "കൂടുതൽ വിവരങ്ങൾ കാണുക",
+    "volume_pricing_available": "ബൾക്ക് ഓർഡറുകൾക്ക് പ്രത്യേക വില ലഭ്യമാണ്",
+    "volume_pricing": "ബൾക്ക് പ്രൈസിങ്",
+    "at_price_each": "{{ price }}/ഒന്നിന്",
+    "each": "{{ price }}/ഒന്നിന്",
+    "each_abbreviation": "ഇ.എ.",
+    "price_at": "-ൽ",
+    "price_range": "വിലനിലവാരം",
+    "your_cart_is_empty": "നിങ്ങളുടെ കാർട്ട് കാലിയാണ്",
+    "product_count": "ഉൽപ്പന്നങ്ങളുടെ എണ്ണം",
+    "errors": "പിശകുകൾ",
+    "wrong_password": "തെറ്റായ പാസ്‌വേഡ്",
+    "recipient_form_send_to": "അയക്കുക",
+    "recipient_form_email_label": "സ്വീകർത്താവിന്റെ ഇമെയിൽ",
+    "recipient_form_email_label_my_email": "എന്റെ ഇമെയിൽ",
+    "recipient_form_email_address": "സ്വീകർത്താവിന്റെ ഇമെയിൽ വിലാസം",
+    "recipient_form_name_label": "സ്വീകർത്താവിന്റെ പേര് (ഓപ്ഷണൽ)",
+    "recipient_form_message": "സന്ദേശം (ഓപ്ഷണൽ)",
+    "recipient_form_characters_used": "{{ used_chars }}/{{ max_chars }} അക്ഷരങ്ങൾ ഉപയോഗിച്ചു",
+    "recipient_form_send_on": "YYYY-MM-DD",
+    "recipient_form_send_on_label": "അയക്കുക (ഓപ്ഷണൽ)",
+    "recipient_form_fields_visible": "സ്വീകർത്താവിന്റെ ഫോം ഫീൽഡുകൾ ഇപ്പോൾ ദൃശ്യമാണ്",
+    "recipient_form_fields_hidden": "സ്വീകർത്താവിന്റെ ഫോം ഫീൽഡുകൾ ഇപ്പോൾ മറച്ചിരിക്കുന്നു",
+    "recipient_form_error": "ഫോം സമർപ്പിക്കുന്നതിൽ ഒരു പിശക് സംഭവിച്ചു",
+    "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} അക്ഷരങ്ങൾ ഉപയോഗിച്ചു"
+  },
+  "fields": {
+    "separator": "-ലേക്ക്"
+  },
+  "gift_cards": {
+    "issued": {
+      "how_to_use_gift_card": "ഗിഫ്റ്റ് കാർഡ് കോഡ് ഓൺലൈനായോ ക്യുആർ കോഡ് നേരിട്ടോ ഉപയോഗിക്കുക",
+      "title": "{{ shop }}-ലേക്കുള്ള നിങ്ങളുടെ {{ value }} ഗിഫ്റ്റ് കാർഡ് ബാലൻസ് ഇതാ!",
+      "subtext": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡ്",
+      "shop_link": "ഓൺലൈൻ സ്റ്റോർ സന്ദർശിക്കുക",
+      "add_to_apple_wallet": "ആപ്പിൾ വാലറ്റിലേക്ക് ചേർക്കുക",
+      "qr_image_alt": "QR കോഡ് — ഗിഫ്റ്റ് കാർഡ് റിഡീം ചെയ്യാൻ സ്കാൻ ചെയ്യുക",
+      "copy_code": "ഗിഫ്റ്റ് കാർഡ് കോഡ് പകർത്തുക",
+      "expiration_date": "കാലാവധി തീരും {{ expires_on }}",
+      "copy_code_success": "കോഡ് വിജയകരമായി പകർത്തി",
+      "expired": "കാലാവധി കഴിഞ്ഞു"
+    }
+  },
+  "placeholders": {
+    "password": "പാസ്‌വേഡ്",
+    "search": "തിരയുക",
+    "product_title": "ഉൽപ്പന്നത്തിന്റെ പേര്",
+    "collection_title": "ശേഖരണത്തിന്റെ പേര്",
+    "blog_posts": "ബ്ലോഗ് പോസ്റ്റുകൾ",
+    "blog_post_title": "തലക്കെട്ട്",
+    "blog_post_author": "രചയിതാവ്",
+    "blog_post_date": "തീയതി",
+    "blog_post_description": "നിങ്ങളുടെ ബ്ലോഗ് പോസ്റ്റിലെ ഉള്ളടക്കത്തിന്റെ ഒരു ഭാഗം"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "കാർട്ടിലേക്ക് ചേർക്കുക",
+      "adding_to_cart": "ചേർക്കുന്നു...",
+      "added_to_cart": "കാർട്ടിലേക്ക് ചേർത്തു",
+      "add_to_cart_error": "കാർട്ടിലേക്ക് ചേർക്കുന്നതിൽ പിശക് സംഭവിച്ചു",
+      "quantity_error_max": "ഈ ഇനത്തിന് പരമാവധി {{ maximum }}"
     }
   }
 }
