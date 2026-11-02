@@ -3752,7 +3752,16 @@
       "adding_to_cart": "ചേർക്കുന്നു...",
       "added_to_cart": "കാർട്ടിലേക്ക് ചേർത്തു",
       "add_to_cart_error": "കാർട്ടിലേക്ക് ചേർക്കുന്നതിൽ പിശക് സംഭവിച്ചു",
-      "quantity_error_max": "ഈ ഇനത്തിന് പരമാവധി {{ maximum }}"
+      "quantity_error_max": "ഈ ഇനത്തിന് പരമാവധി {{ maximum }}",
+      "sold_out": "വിറ്റുതീർന്നു",
+      "unavailable": "ലഭ്യമല്ല",
+      "quantity": "അളവ്",
+      "quantity_increments": "{{ increment }} എന്ന വർദ്ധനവ്",
+      "quantity_minimum": "കുറഞ്ഞത് {{ minimum }}",
+      "quantity_maximum": "പരമാവധി {{ maximum }}",
+      "in_cart": "കാർട്ടിൽ",
+      "default_title": "സ്ഥിരസ്ഥിതി ശീർഷകം",
+      "sticky_add_to_cart": "പെട്ടെന്ന് കാർട്ടിലേക്ക് ചേർക്കാനുള്ള ബാർ"
     }
   },
   "actions": {
