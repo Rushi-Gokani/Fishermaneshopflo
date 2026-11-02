@@ -802,6 +802,91 @@
         "order_edit_banner_items_removed": {
           "in_full": "നീക്കം ചെയ്തു",
           "with_quantities": "{{quantity}}-ൽ {{delta}} നീക്കം ചെയ്തു"
+        },
+        "order_edit_banner_items_returned": {
+          "in_full": "തിരികെ ലഭിച്ചത് {{quantity}}",
+          "with_quantities": "തിരികെ ലഭിച്ചത് {{quantity}}-ൽ {{delta}}"
+        },
+        "order_edit_banner_items_return_line_item_removed": {
+          "in_full": "തിരിച്ചയക്കുന്നതിൽ നിന്ന് ഒഴിവാക്കി",
+          "with_quantities": "റിട്ടേണിൽ നിന്ന് {{delta}} നീക്കം ചെയ്തു"
+        },
+        "order_edit_banner_single_item_added": "ചേർത്തു",
+        "order_edit_banner_multiple_items_added": "ചേർത്തു {{amount}}",
+        "order_edit_banner_single_item_removed": "നീക്കം ചെയ്തു",
+        "order_edit_banner_multiple_items_removed": "നീക്കംചെയ്തു {{amount}}",
+        "order_edit_banner_single_item_returned": "തിരികെ നൽകി",
+        "order_edit_banner_multiple_items_returned": "തിരികെ ലഭിച്ചത് {{amount}}",
+        "order_edit_banner_single_item_return_line_item_removed": "തിരിച്ചയക്കുന്നതിൽ നിന്ന് ഒഴിവാക്കി",
+        "order_edit_banner_multiple_items_return_line_item_removed": "തിരിച്ചുവരവിൽ നിന്ന് {{amount}} നീക്കം ചെയ്തു",
+        "order_edit_banner_single_item_updated": "അപ്ഡേറ്റ് ചെയ്‌തു",
+        "order_edit_banner_updated_order_label": "അപ്‌ഡേറ്റ് ചെയ്ത ഓർഡർ",
+        "order_edit_banner_previous_taxes_label": "മുൻ നികുതികൾ:",
+        "order_edit_banner_new_taxes_label": "പുതിയ നികുതികൾ:",
+        "order_edit_banner_no_taxes_label": "ഒന്നുമില്ല",
+        "gift_card_wrapper": {
+          "heading": "ഗിഫ്റ്റ് കാർഡ്",
+          "apply_gift_card_label": "ഗിഫ്റ്റ് കാർഡ് ഉപയോഗിക്കുക",
+          "apply_another_gift_card_label": "മറ്റൊരു ഗിഫ്റ്റ് കാർഡ് ഉപയോഗിക്കുക",
+          "gift_card_label": "ഗിഫ്റ്റ് കാർഡ് %{identifier}",
+          "payment_tag": "ഗിഫ്റ്റ് കാർഡ്",
+          "add_label": "ഗിഫ്റ്റ് കാർഡ് ചേർക്കുക",
+          "manage_label": "ഗിഫ്റ്റ് കാർഡുകൾ കൈകാര്യം ചെയ്യുക"
+        },
+        "gift_card_store_credit": {
+          "add_label": "ഗിഫ്റ്റ് കാർഡോ സ്റ്റോർ ക്രെഡിറ്റോ ചേർക്കുക",
+          "manage_label": "ഗിഫ്റ്റ് കാർഡുകൾ അല്ലെങ്കിൽ സ്റ്റോർ ക്രെഡിറ്റ് മാനേജ് ചെയ്യുക"
+        },
+        "gift_card_checkbox_label": "ഗിഫ്റ്റ് കാർഡ് ഉപയോഗിക്കുക",
+        "custom_onsite_payment_method_modal": {
+          "title": "കസ്റ്റം ഓൺസൈറ്റ് പേയ്‌മെന്റ് സ്ഥിരീകരണം"
+        },
+        "markets_pro_disclaimer_label": "ഓർഡർ നൽകുന്നതിലൂടെ, ഗ്ലോബൽ-ഇ (Global-e) നൽകുന്ന %{markets_pro_terms} மற்றும் %{privacy_policy} എന്നിവയ്ക്ക് വിധേയമായി, ഗ്ലോബൽ-ഇ-യിൽ നിന്ന് നിങ്ങൾ സാധനങ്ങൾ വാങ്ങുന്നതിനും, നിങ്ങളുടെ വിവരങ്ങൾ %{shop_name}-മായി പങ്കുവെക്കുന്നതിനും നിങ്ങൾ സമ്മതിക്കുന്നു.",
+        "markets_pro_disclaimer_terms_and_conditions": "നിബന്ധനകളും വ്യവസ്ഥകളും",
+        "markets_pro_disclaimer_privacy_policy": "സ്വകാര്യതാ നയം",
+        "markets_pro_disclaimer_terms_and_conditions_title": "മെർച്ചന്റ് ഓഫ് റെക്കോർഡ് നിബന്ധനകളും വ്യവസ്ഥകളും",
+        "markets_pro_disclaimer_privacy_policy_title": "മർച്ചന്റ് ഓഫ് റെക്കോർഡ് സ്വകാര്യതാ നയം",
+        "purchase_order_number": {
+          "title": "PO നമ്പർ",
+          "label": "PO നമ്പർ (ഓപ്ഷണൽ)"
+        },
+        "alternative_payment_currency_total_notice": "ശ്രദ്ധിക്കുക: നിങ്ങളിൽ നിന്ന് %{amount_due} ഈടാക്കുന്നതാണ്.",
+        "alternative_payment_currency_total_manual_payment_notice": "ശ്രദ്ധിക്കുക: പരിവർത്തനം ചെയ്ത ആകെ തുക %{amount_due} ആണ്.",
+        "waiting_on_taxes_message": "നിങ്ങളുടെ ടാക്സ് അടുത്ത ഏതാനും സെക്കൻഡുകൾക്കുള്ളിൽ കണക്കാക്കപ്പെട്ടില്ലെങ്കിൽ, പേജ് റിഫ്രഷ് ചെയ്യുക.",
+        "waiting_on_taxes_notice": "നികുതി കണക്കാക്കുന്നു",
+        "payment_method": "പണമിടപാട് രീതി",
+        "payment_method_rollup_accessibility_label": "പേയ്‌മെന്റ് രീതികൾ",
+        "expired_payment_method": "തിരഞ്ഞെടുത്ത പേയ്‌മെന്റ് രീതിയുടെ കാലാവധി കഴിഞ്ഞു",
+        "payment_method_update_failed": "പേയ്‌മെന്റ് രീതി അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു.",
+        "payment_method_incompatible_with_payment_terms": "പേയ്‌മെന്റ് രീതി പേയ്‌മെന്റ് നിബന്ധനകളുമായി പൊരുത്തപ്പെടുന്നില്ല.",
+        "proposed_gateway_unavailable": "നിർദ്ദേശിച്ചിട്ടുള്ള പേയ്‌മെന്റ് ഗേറ്റ്‌വേ ലഭ്യമല്ല.",
+        "pay_in_installments_split_pay_short": "%{amount} വീതമുള്ള 4 തവണകൾ",
+        "gift_cards_unavailable": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡ് ഇനി ഈ ഓർഡറിൽ ഉപയോഗിക്കാൻ കഴിയില്ല, അതിനാൽ അത് നീക്കം ചെയ്തിരിക്കുന്നു.",
+        "payment_flexibility_terms_id_mismatch": "പേയ്മെന്റ് ഫ്ലെക്സിബിലിറ്റി നിബന്ധനകളുടെ ഐഡി പൊരുത്തക്കേട്",
+        "payment_option": {
+          "accessibility_label": "ഒരു പേയ്‌മെന്റ് ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക"
+        },
+        "bank_account_type": {
+          "checking": "പരിശോധിക്കുന്നു",
+          "savings": "സമ്പാദ്യം"
+        },
+        "new_bank_account_disclaimer": "നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കുന്നതിലൂടെ, കാണിച്ചിരിക്കുന്ന തുകയും സമയവും അനുസരിച്ച്, താഴെ നൽകിയിരിക്കുന്ന അക്കൗണ്ടിൽ നിന്ന് ACH വഴി തുക ഈടാക്കാൻ %{shop_name}-നെ നിങ്ങൾ അധികാരപ്പെടുത്തുന്നു.",
+        "bank_account_disclaimer": "ACH പേയ്‌മെന്റുകൾ പ്രോസസ്സ് ചെയ്യുന്നതിന് 4 പ്രവൃത്തിദിവസങ്ങൾ വരെ എടുത്തേക്കാം.",
+        "bank_account_choose": "നിങ്ങളുടെ പർച്ചേസ് സുരക്ഷിതമായി പൂർത്തിയാക്കുന്നതിനായി ഒരു അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക",
+        "bank_account_connect_another": "മറ്റൊരു ബാങ്ക് അക്കൗണ്ട് കൂടി ബന്ധിപ്പിക്കുക",
+        "bank_account_connect": "ബാങ്ക് അക്കൗണ്ട് ബന്ധിപ്പിക്കുക",
+        "bank_account_missing": "ബാങ്ക് അക്കൗണ്ട് ബന്ധിപ്പിക്കേണ്ടതുണ്ട്",
+        "bank_account_generic_error": "ബാങ്ക് അക്കൗണ്ട് ചേർക്കാൻ കഴിഞ്ഞില്ല. അൽപ്പം കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക.",
+        "separate_payments_label": "നിങ്ങളുടെ സാധനങ്ങൾ ഒന്നിലധികം സ്റ്റോറുകളിൽ നിന്നുള്ളവയാണ്. നിങ്ങളിൽ നിന്ന് %{separate_payments_link} പ്രകാരം ഈടാക്കുന്നതാണ്.",
+        "separate_payments_text": "പ്രത്യേക പേയ്‌മെന്റുകൾ",
+        "payments": "പേയ്‌മെന്റുകൾ",
+        "add_payment_method": "പേയ്‌മെന്റ് രീതി ചേർക്കുക",
+        "add_new_payment_method": "പുതിയ പേയ്മെന്റ് രീതി ചേർക്കുക",
+        "choose_new_payment_method": "പുതിയൊരു പേയ്‌മെന്റ് രീതി തിരഞ്ഞെടുക്കുക",
+        "multiple_primary_payment_not_allowed": "അസാധുവായ പേയ്‌മെന്റ് രീതികൾ",
+        "vault_for_payment_later": {
+          "pay_button_label": "ഓർഡർ നൽകുക",
+          "notice": "നിങ്ങൾക്ക് ഇപ്പോൾ പണം ഈടാക്കില്ല. പേയ്‌മെൻ്റുമായി മുന്നോട്ട് പോകുന്നതിലൂടെ, നിങ്ങളുടെ ഓർഡർ പ്രോസസ്സ് ചെയ്യുമ്പോൾ പേയ്‌മെൻ്റ് രീതിയിൽ നിന്ന് പണം ഈടാക്കുന്നതിന് നിങ്ങൾ സമ്മതിക്കുന്നു."
         }
       },
       "thank_you": {
@@ -1507,7 +1592,19 @@
         "split_by_delivery_method_requires_merchandise_from_single_location": "ഡെലിവറി രീതി അനുസരിച്ച് വിഭജിക്കുന്നതിന്, ഓരോ മെർച്ചൻഡൈസ് ലൈനും ഒരൊറ്റ ലൊക്കേഷനിൽ നിന്ന് തന്നെ പൂർത്തിയാക്കേണ്ടതുണ്ട്.",
         "split_by_delivery_method_unsupported_method_type": "പിന്തുണ ലഭ്യമല്ലാത്ത ഡെലിവറി രീതി ഉപയോഗിച്ച് ഡെലിവറി ചെയ്യാൻ ശ്രമിച്ചതിലൂടെ വിഭജിച്ചിരിക്കുന്നു.",
         "split_cart_not_allowed": "അസാധുവായ സെഷൻ അല്ലെങ്കിൽ നൽകിയിട്ടുള്ള ഷോപ്പിനായി ഈ ഫീച്ചർ പ്രവർത്തനക്ഷമമാക്കിയിട്ടില്ല.",
-        "split_quantity_per_delivery_line_not_allowed": "ഏതെങ്കിലും ഒരു മെർച്ചൻഡൈസ് ലൈനിനെ ഒന്നിലധികം ഡെലിവറി ലൈനുകൾ സൂചിപ്പിക്കുന്നുണ്ട്."
+        "split_quantity_per_delivery_line_not_allowed": "ഏതെങ്കിലും ഒരു മെർച്ചൻഡൈസ് ലൈനിനെ ഒന്നിലധികം ഡെലിവറി ലൈനുകൾ സൂചിപ്പിക്കുന്നുണ്ട്.",
+        "handle_phone_invalid": "ശരിയായ ഒരു ഫോൺ നമ്പർ നൽകുക",
+        "handle_email_invalid": "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക",
+        "email_invalid": "സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക",
+        "email_or_phone_blank": "ഇമെയിൽ വിലാസമോ ഫോൺ നമ്പറോ നൽകുക",
+        "email_or_phone_invalid": "സാധുവായ ഒരു ഇമെയിൽ വിലാസമോ മൊബൈൽ ഫോൺ നമ്പറോ നൽകുക",
+        "address_first_name_blank": "ഒരു ആദ്യനാമം നൽകുക",
+        "address_first_name_too_long": "ആദ്യ പേര് വളരെ വലുതാണ് (പരമാവധി 255 അക്ഷരങ്ങൾ മാത്രം)",
+        "address_first_name_contains_emojis": "ആദ്യ നാമത്തിൽ ഇമോജികൾ പാടില്ല",
+        "address_first_name_contains_html_tags": "ആദ്യ നാമത്തിൽ HTML ടാഗുകൾ പാടില്ല",
+        "address_first_name_contains_url": "ആദ്യ നാമത്തിൽ URL ഉൾപ്പെടുത്താൻ പാടില്ല",
+        "address_first_name_contains_mathematical_symbols": "ആദ്യ നാമത്തിൽ ഗണിത ചിഹ്നങ്ങൾ പാടില്ല",
+        "address_last_name_blank": "ഒരു കുടുംബപ്പേര് നൽകുക"
       },
       "store_credit_errors": {
         "generic_error": "നിങ്ങളുടെ സ്റ്റോർ ക്രെഡിറ്റിൽ ഒരു പ്രശ്നമുണ്ടായിട്ടുണ്ട്. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ പേജ് റീലോഡ് ചെയ്യുക."
@@ -1801,6 +1898,35 @@
         "draft_order_payment_due_on_fulfillment": "നിങ്ങളുടെ ഓർഡർ സ്ഥിരീകരിക്കുകയും പൂർത്തിയാക്കുകയും ചെയ്തുകഴിഞ്ഞാൽ പണമടയ്ക്കേണ്ടി വരും.",
         "draft_order_deposit_due_later": "{{depositAmount}} നിങ്ങളുടെ ഓർഡർ സ്ഥിരീകരിക്കുമ്പോൾ അടയ്‌ക്കേണ്ടിവരും. ബാക്കിയുള്ള തുക {{translatedName}} നിബന്ധനകളിൽ ആയിരിക്കും.",
         "draft_order_deposit_due_on_fulfillment": "{{depositAmount}} നിങ്ങളുടെ ഓർഡർ സ്ഥിരീകരിക്കുമ്പോൾ അടയ്‌ക്കേണ്ടിവരും. ഓർഡർ പൂർത്തിയാകുമ്പോൾ ബാക്കിയുള്ള തുക അടയ്ക്കുക."
+      },
+      "billing": {
+        "billing_address_title": "ബിൽ ചെയ്യേണ്ടത്",
+        "billing_address_rollup_accessibility_label": "ബിൽ ചെയ്യേണ്ട ഓപ്ഷനുകൾ",
+        "same_as_shipping": "ഷിപ്പിംഗ് വിലാസം പോലെ തന്നെ",
+        "add_address": "മറ്റൊരു വിലാസം ഉപയോഗിക്കുക",
+        "edit": "തിരുത്തുക",
+        "delete": "നീക്കം ചെയ്യുക",
+        "address_more": "ഈ വിലാസത്തിനായുള്ള കൂടുതൽ പ്രവർത്തനങ്ങൾ",
+        "address_edit": "വിലാസം തിരുത്തുക",
+        "address_delete": "വിലാസം നീക്കം ചെയ്യുക",
+        "address_confirm": "ഈ വിലാസം നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് നീക്കം ചെയ്യാൻ തീർച്ചയാണോ?",
+        "address_form": {
+          "add_address": "മേൽവിലാസം ചേർക്കുക",
+          "save": "സേവ് ചെയ്യുക",
+          "cancel": "റദ്ദാക്കുക"
+        }
+      },
+      "company_location": {
+        "location_title": "കമ്പനിയുടെ സ്ഥലം",
+        "location_rollup_accessibility_label": "കമ്പനി ലൊക്കേഷൻ ഓപ്ഷനുകൾ"
+      },
+      "payment_summary": {
+        "gift_card_current_balance_notice": "നിലവിലെ ബാലൻസ് %{amount}",
+        "credit_card_expires_on_notice": "%{month}/%{year}-ൽ കാലഹരണപ്പെടുന്നു",
+        "express_payment_gateway_label": "പ്രകടിപ്പിക്കുക",
+        "manual_payment_gateway_label": "മാനുവൽ",
+        "billing_address_title": "ബില്ലിംഗ് വിലാസം",
+        "free_label": "സൗജന്യം"
       }
     },
     "notices": {
