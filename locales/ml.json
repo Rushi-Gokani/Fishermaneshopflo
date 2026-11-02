@@ -391,6 +391,156 @@
         "wechat_pay_label": "വിചാറ്റ് പേ",
         "wechat_app_label": "വിചാറ്റ്",
         "oxxo_label": "ഓക്സോ"
+      },
+      "thank_you": {
+        "track_shipment": "ഷിപ്പ്‌മെന്റ് ട്രാക്ക് ചെയ്യുക",
+        "other_options": "മറ്റ് ഓപ്ഷനുകൾ",
+        "delivery_information_label": "ഡെലിവറി വിവരങ്ങൾ:",
+        "gift_card_sent_confirmation": "ഗിഫ്റ്റ് കാർഡുകൾ അയച്ചു",
+        "qr_code": {
+          "send_link_to_phone": "അല്ലെങ്കിൽ നിങ്ങളുടെ ഫോണിലേക്ക് ഒരു ലിങ്ക് അയക്കുക",
+          "title": "നിങ്ങളുടെ ഫോണിൽ ട്രാക്ക് ചെയ്യുക"
+        },
+        "shop_qr_with_sms_upsell": {
+          "qr_code": {
+            "title": "നിങ്ങളുടെ ഫോൺ ഉപയോഗിച്ച് സ്കാൻ ചെയ്യുക"
+          },
+          "sms": {
+            "title": "അല്ലെങ്കിൽ നിങ്ങളുടെ ഫോണിലേക്ക് ഒരു ലിങ്ക് അയക്കുക"
+          }
+        },
+        "view_business_customer_account": "അക്കൗണ്ട് കാണുക",
+        "breadcrumbs_submitted": "സമർപ്പിച്ചു",
+        "breadcrumbs_in_review": "പരിശോധനയിൽ",
+        "breadcrumbs_confirmed": "സ്ഥിരീകരിച്ചു",
+        "missing_shipping_address_banner": {
+          "title": "ഓർഡറിൽ ഷിപ്പിംഗ് വിലാസം നൽകിയിട്ടില്ല",
+          "text_html": "നിങ്ങളുടെ വിലാസം ചേർക്കുന്നതിനായി %{contact_us}",
+          "contact_us": "ഞങ്ങളെ ബന്ധപ്പെടുക"
+        },
+        "first_payment_complete": "ആദ്യ ഗഡു അടച്ചു കഴിഞ്ഞു",
+        "in_store_purchase": "നേരിട്ടുള്ള പർച്ചേസ്",
+        "company_location_section_title": "കമ്പനിയും സ്ഥലവും",
+        "thank_you_ready_for_picked_up": "നിങ്ങളുടെ ഓർഡർ %{address}-ൽ നിന്ന് എടുത്തിട്ടുണ്ട്.",
+        "ready_for_delivery": "ഡെലിവറിക്കായി തയ്യാറാണ്",
+        "order_updates_subscribe_to_email_notifications_failed": "അപ്‌ഡേറ്റുകൾക്കായി ഞങ്ങൾക്ക് ഈ ഇമെയിൽ സൂക്ഷിക്കാൻ കഴിയില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു ഇമെയിൽ ഉപയോഗിക്കുക.",
+        "order_updates_subscribe_to_email_notifications_email_already_exists": "നിങ്ങൾ നൽകിയ ഇമെയിൽ ഇതിനകം നിലവിലുണ്ട്.",
+        "subscriptions_management": {
+          "title": "സബ്‌സ്‌ക്രിപ്‌ഷൻ",
+          "description": "നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ കാണാനും നിയന്ത്രിക്കാനും നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് തുടരുക.",
+          "button_label": "നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക"
+        },
+        "manage_order_label": "നിങ്ങളുടെ ഓർഡർ നിയന്ത്രിക്കുക",
+        "gift_card_confirmation_by_text_typ": {
+          "one": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡിനൊപ്പമുള്ള ടെക്സ്റ്റ് ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ നിങ്ങൾക്ക് ലഭിക്കും.",
+          "other": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡുകൾ അടങ്ങിയ സന്ദേശം കുറച്ചു മിനിറ്റുകൾക്കുള്ളിൽ നിങ്ങൾക്ക് ലഭിക്കും."
+        },
+        "gift_card_confirmation_by_email_typ": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് അടങ്ങിയ ഇമെയിൽ ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ നിങ്ങൾക്ക് ലഭിക്കും.",
+          "other": "ഏതാനും മിനിറ്റുകൾക്കുള്ളിൽ നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡുകൾ ഉൾക്കൊള്ളുന്ന ഇമെയിൽ നിങ്ങൾക്ക് ലഭിക്കും."
+        },
+        "gift_card_email_title": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് ഇമെയിൽ വഴി അയച്ചു.",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ ഇമെയിൽ വഴി അയച്ചു."
+        },
+        "gift_card_text_title": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് ടെക്സ്റ്റ് മെസേജായി അയച്ചിട്ടുണ്ട്.",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ ടെക്സ്റ്റ് മെസേജ് വഴി അയച്ചു."
+        },
+        "resend_gift_cards_by_email": "ഇമെയിൽ വീണ്ടും അയക്കുക",
+        "resend_gift_cards_by_text": "ടെക്സ്റ്റ് മെസ്സേജ് വീണ്ടും അയക്കുക",
+        "gift_card_resent_confirmation": {
+          "one": "ഗിഫ്റ്റ് കാർഡ് വീണ്ടും അയച്ചു.",
+          "other": "ഗിഫ്റ്റ് കാർഡുകൾ വീണ്ടും അയച്ചു."
+        },
+        "gift_card_resend_failure": {
+          "one": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡ് വീണ്ടും അയക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. ദയവായി വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഞങ്ങളെ ബന്ധപ്പെടുക.",
+          "other": "നിങ്ങളുടെ ഗിഫ്റ്റ് കാർഡുകൾ വീണ്ടും അയക്കുന്നതിൽ ഒരു തടസ്സമുണ്ടായി. ദയവായി വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഞങ്ങളെ ബന്ധപ്പെടുക."
+        },
+        "vat_invoices": {
+          "title": "വാറ്റ് ഇൻവോയ്സുകൾ"
+        },
+        "verify_shop_account_title": "നിങ്ങളുടെ ഷോപ്പ് അക്കൗണ്ട് വെരിഫൈ ചെയ്യുക",
+        "verify_shop_account_message": "നിങ്ങളുടെ വിവരങ്ങൾ ഷോപ്പിൽ സേവ് ചെയ്തിട്ടുണ്ട്, ദശലക്ഷക്കണക്കിന് സ്റ്റോറുകളിൽ ഇത് സ്വയമേവ ഉപയോഗിക്കുന്നതിനായി നിങ്ങളുടെ അക്കൗണ്ട് വെരിഫൈ ചെയ്യുക.",
+        "verify_shop_account_cta": "നിങ്ങളുടെ അക്കൗണ്ട് പരിശോധിച്ചുറപ്പിക്കുക",
+        "verify_shop_account_confirmation": "ചെക്ക്ഔട്ട് വിവരങ്ങൾ സേവ് ചെയ്തു",
+        "announcement": {
+          "close": "അടയ്ക്കുക",
+          "expand": "വികസിപ്പിക്കുക",
+          "collapse": "തകരുക"
+        }
+      },
+      "vaulted": {
+        "change_button": "മാറ്റം",
+        "loading_section": "{{section}} ലോഡ് ചെയ്യുന്നു…"
+      },
+      "review": {
+        "title": "അവലോകനം",
+        "review_title": "നിങ്ങളുടെ ഓർഡർ പൂർത്തിയാക്കുക",
+        "review_and_confirm_title": "പരിശോധിച്ച് സ്ഥിരീകരിക്കുക",
+        "checkout_as_guest": "ഗസ്റ്റ് ആയി തുടരുക",
+        "account_more_actions": "ഈ അക്കൗണ്ടിനായുള്ള കൂടുതൽ പ്രവർത്തനങ്ങൾ",
+        "checkout_a_different_way": "മറ്റൊരു വഴി പരിശോധിക്കൂ",
+        "blocks": {
+          "contact_method_title": "ബന്ധപ്പെടുക",
+          "billing_address_title": "ബില്ലിംഗ്",
+          "shipping_address_title": "അയക്കേണ്ട വിലാസം",
+          "shipping_method_title": "ഷിപ്പിംഗ് രീതി",
+          "payment_method_title": "പണമിടപാട് രീതി",
+          "change_link_label": "മാറ്റം",
+          "change_contact_method_link_label": "കോൺടാക്റ്റ് വിവരങ്ങൾ മാറ്റുക",
+          "change_billing_address_link_label": "ബില്ലിംഗ് വിലാസം മാറ്റുക",
+          "change_company_location_link_label": "കമ്പനിയുടെ സ്ഥാനം മാറ്റുക",
+          "change_shipping_address_link_label": "ഷിപ്പിംഗ് വിലാസം മാറ്റുക",
+          "change_shipping_method_link_label": "ഷിപ്പിംഗ് രീതി മാറ്റുക",
+          "change_payment_method_link_label": "പേയ്‌മെന്റ് രീതി മാറ്റുക",
+          "pick_up_in_store_shipping_method_html": "സ്റ്റോറിൽ നിന്ന് നേരിട്ട് കൈപ്പറ്റുക · %{location_name}",
+          "purchase_order_number_title": "PO നമ്പർ",
+          "change_purchase_order_number_label": "PO നമ്പർ മാറ്റുക",
+          "change_delivery_method_link_label": "ഡെലിവറി രീതി മാറ്റുക",
+          "no_address": "(മേൽവിലാസമില്ല)",
+          "no_purchase_order_number": "(PO നമ്പർ ഇല്ല)",
+          "no_purchase_order_number_long": "വാങ്ങൽ ഓർഡർ നമ്പർ ഇല്ല",
+          "due_after_order_reviewed_html": "ഓർഡർ പരിശോധിച്ച ശേഷം അടയ്‌ക്കേണ്ടതാണ്",
+          "review_title_free_order": "നിങ്ങളുടെ ഓർഡർ പരിശോധിച്ചു പൂർത്തിയാക്കുക",
+          "payment_method_saved_company_location": "ഈ ലൊക്കേഷനായി കാർഡ് സേവ് ചെയ്യുക",
+          "company_location": "കമ്പനിയുടെ സ്ഥലം",
+          "pickup_items_at": {
+            "one": "%{count} ഇനം ഇവിടെ നിന്ന് എടുക്കുക",
+            "other": "%{count} ഇനങ്ങൾ ഇതിൽ നിന്ന് എടുക്കുക:"
+          },
+          "ship_items_to": {
+            "one": "%{count} ഇനം ഇവിടേക്ക് അയക്കുക",
+            "other": "%{count} ഇനങ്ങൾ ഇതിലേക്ക് അയക്കുക"
+          }
+        },
+        "block_title": "നിങ്ങളുടെ വിവരങ്ങൾ പരിശോധിക്കുക",
+        "item_header": {
+          "change_value": "മൂല്യം മാറ്റുക",
+          "section": "വിഭാഗം",
+          "value": "മൂല്യം"
+        }
+      },
+      "marketing": {
+        "accept_marketing_checkbox_label": "വാർത്തകളും ഓഫറുകളും എനിക്ക് ഇമെയിൽ ചെയ്യുക",
+        "post_accept_marketing_checkbox_label": "ഇമെയിൽ വാർത്തകളും ഓഫറുകളും ലഭിക്കുന്നതിനായി നിങ്ങൾ സബ്‌സ്‌ക്രൈബ് ചെയ്തിരിക്കുന്നു",
+        "pending_accept_marketing_checkbox_label": "വാർത്തകളും ഓഫറുകളും ലഭിക്കുന്നതിനുള്ള നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ സ്ഥിരീകരിക്കുന്നതിനായി ഇമെയിൽ പരിശോധിക്കുക.",
+        "accept_sms_checkbox_label": "വാർത്തകളും ഓഫറുകളും എനിക്ക് മെസ്സേജ് അയക്കുക",
+        "accept_whatsapp_marketing_checkbox_label": "വാട്ട്സ്ആപ്പിൽ എനിക്ക് വാർത്തകളും ഓഫറുകളും അയക്കുക",
+        "disclaimer": {
+          "privacy_policy": "സ്വകാര്യതാ നയം",
+          "terms_of_service": "സേവന നിബന്ധനകൾ"
+        },
+        "sms": {
+          "disclaimer": {
+            "privacy_policy": "സ്വകാര്യതാ നയം",
+            "terms_of_service": "സേവന നിബന്ധനകൾ",
+            "description_html": "ടെക്സ്റ്റ് വഴി സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നൽകിയിട്ടുള്ള ഫോൺ നമ്പറിലേക്ക് കാർട്ട് റിമൈൻഡറുകൾ ഉൾപ്പെടെയുള്ള ആവർത്തിച്ചുള്ള ഓട്ടോമേറ്റഡ് മാർക്കറ്റിംഗ് സന്ദേശങ്ങൾ സ്വീകരിക്കാൻ നിങ്ങൾ സമ്മതിക്കുന്നു. ഈ സമ്മതം വാങ്ങലിന് ഒരു നിബന്ധനയല്ല. അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യാൻ STOP എന്ന് മറുപടി നൽകുക. സഹായത്തിന് HELP എന്ന് മറുപടി നൽകുക. സന്ദേശങ്ങളുടെ എണ്ണം വ്യത്യാസപ്പെടാം. സന്ദേശത്തിനും ഡാറ്റയ്ക്കും നിരക്കുകൾ ബാധകമായേക്കാം. ഞങ്ങളുടെ %{privacy_policy_link} ഉം %{terms_of_service_link} ഉം കാണുക.",
+            "description_transactional_html": "ഓർഡർ സ്ഥിരീകരണം, ഷിപ്പിംഗ് അപ്‌ഡേറ്റുകൾ എന്നിവയുമായി ബന്ധപ്പെട്ട സന്ദേശങ്ങൾ നിങ്ങൾക്ക് ലഭിച്ചേക്കാം. സബ്‌സ്‌ക്രിപ്‌ഷൻ ഒഴിവാക്കാൻ STOP എന്ന് മറുപടി നൽകുക. സഹായത്തിന് HELP എന്ന് മറുപടി നൽകുക. സന്ദേശങ്ങളുടെ എണ്ണം വ്യത്യാസപ്പെടാം. സന്ദേശങ്ങൾക്കും ഡാറ്റയ്ക്കും നിരക്കുകൾ ബാധകമായേക്കാം. ഞങ്ങളുടെ %{privacy_policy_modal_link}, %{terms_of_service_modal_link} എന്നിവ കാണുക."
+          },
+          "mobile_phone_number": "മൊബൈൽ ഫോൺ നമ്പർ",
+          "get_offers_by_text": "ഓഫറുകൾ മെസ്സേജായി ലഭിക്കൂ"
+        }
       }
     }
   },
@@ -528,6 +678,146 @@
     },
     "privacy_banner": {
       "cookie_preferences_link": "കുക്കി മുൻഗണനകൾ"
+    },
+    "orders": {
+      "order_status": {
+        "submitted_label": "സമർപ്പിച്ചു",
+        "submitted_description": "ഓർഡറും പേയ്‌മെന്റ് വിവരങ്ങളും പരിശോധിക്കുക.",
+        "there_was_a_problem_label": "ഒരു പ്രശ്നമുണ്ടായി",
+        "track_shipment": "ഷിപ്പ്‌മെന്റ് ട്രാക്ക് ചെയ്യുക",
+        "request_return": "തിരികെ നൽകാൻ അഭ്യർത്ഥിക്കുക",
+        "view_order_for_details": "വിശദാംശങ്ങൾക്കായി ഓർഡർ കാണുക",
+        "external_promise_manage_button_label": {
+          "buy_with_prime": "ആമസോണിൽ കൈകാര്യം ചെയ്യുക"
+        },
+        "amazon_buy_with_prime": {
+          "order_tracking_link": {
+            "text": "ആമസോൺ വഴി കൈകാര്യം ചെയ്യുക",
+            "new_window_disclaimer": "(പുതിയൊരു വിൻഡോ തുറക്കുന്നു)"
+          }
+        },
+        "delivery_promise_v2": {
+          "promise_line": {
+            "shop_promise_brand_label": "ഡെലിവറി ഉറപ്പാക്കുന്ന തീയതി:",
+            "external_promise_brand_label": "ലഭ്യമാകുന്ന തീയതി",
+            "not_delivered_by_label": "{{date}}-ന് ശേഷം ഡെലിവർ ചെയ്തു",
+            "delivery_guarantee_expired_label": "ഡെലിവറി ഗ്യാരണ്ടി കാലാവധി കഴിഞ്ഞു",
+            "modal_accessibility_button_label": "ഡെലിവറി വാഗ്ദാനത്തിന്റെ വിശദാംശങ്ങൾ",
+            "download_shop_app_button_label": "ട്രെക്ക് ചെയ്യാൻ ഷോപ്പ് ഡൗൺലോഡ് ചെയ്യുക",
+            "track_with_shop_button_label": "ഷോപ്പ് ഉപയോഗിച്ച് ട്രാക്ക് ചെയ്യുക",
+            "claim_shop_cash_button_label": "ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്യുക"
+          },
+          "details_modal": {
+            "title": "ഡെലിവറി ഗ്യാരന്റി",
+            "active_delivery_guarantee_label": "{{date}}-നുള്ള ഡെലിവറി",
+            "expired_shop_promise_guarantee_description": "ഈ ഓർഡറിന്റെ ഷോപ്പ് പ്രോമിസ് (Shop Promise) ഗ്യാരണ്ടി കാലഹരണപ്പെട്ടു.",
+            "expired_badge_label": "കാലാവധി കഴിഞ്ഞു",
+            "order_includes_guarantees_label": "നിങ്ങളുടെ ഓർഡറിൽ {{deliveryAgreementsCount}} ഗ്യാരന്റികൾ ഉൾപ്പെടുന്നു",
+            "order_includes_guarantees_description": "ഷോപ്പ് പ്രോമിസ് വേഗതയേറിയതും വിശ്വസനീയവുമായ ഡെലിവറി ഉറപ്പ് നൽകുന്നു. നിങ്ങളുടെ ഓർഡർ {{date}}-ന് ശേഷം എത്തുകയാണെങ്കിൽ ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്യുക.",
+            "delivered_after_label": "{{date}}-ന് ശേഷം ഡെലിവർ ചെയ്തു",
+            "delivered_after_description": "നിങ്ങളുടെ ഓർഡർ വൈകിയെത്തിയതിനാൽ, നിങ്ങൾക്ക് {{amount}} ഷോപ്പ് കാഷ് ക്ലെയിം ചെയ്യാൻ അർഹതയുണ്ട്.",
+            "claimed_shop_cash_description": "ഈ ഓർഡർ വൈകിയെത്തിയതുകൊണ്ട്, നിങ്ങൾ {{amount}} ഷോപ്പ് ക്യാഷ് ആവശ്യപ്പെട്ടു.",
+            "eligible_to_claim_shop_cash_description": "നിങ്ങളുടെ ഓർഡർ വൈകിയെത്തിയതിനാൽ, നിങ്ങൾക്ക് {{amount}} ഷോപ്പ് കാഷ് ക്ലെയിം ചെയ്യാൻ അർഹതയുണ്ട്.",
+            "learn_more_button_label": "കൂടുതലറിയുക",
+            "claim_shop_cash_button_label": "ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്യുക",
+            "view_balance_in_shop_button_label": "ഷോപ്പിലെ ബാലൻസ് കാണുക",
+            "scan_to_claim_shop_cash_label": "ഷോപ്പ് ക്യാഷ് സ്വന്തമാക്കാൻ സ്കാൻ ചെയ്യുക {{amount}}",
+            "buyer_trust_description": "വേഗമേറിയതും വിശ്വസനീയവുമായ ഡെലിവറിയും വിശ്വസിക്കാവുന്ന റിട്ടേൺ സൗകര്യവുമുള്ള ഷോപ്പ് പ്രോമിസ് ഹൈലൈറ്റ് സ്റ്റോറുകളിൽ ആത്മവിശ്വാസത്തോടെ ഷോപ്പിംഗ് നടത്തൂ."
+          }
+        },
+        "delivery_promise": {
+          "promise_line": {
+            "single_brand_label": "പിന്തുണയുള്ള ഡെലിവറി",
+            "mixed_brands_label": "ഡെലിവറി ഉറപ്പ്",
+            "not_delivered_by_label": "{{date}}-നകം ഡെലിവറി ചെയ്തിട്ടില്ല",
+            "modal_accessibility_button_label": "ഡെലിവറി വാഗ്ദാനത്തിന്റെ വിശദാംശങ്ങൾ"
+          },
+          "claim_shop_cash_cta": {
+            "has_shop_app_label": "നിങ്ങളുടെ ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്യൂ",
+            "no_shop_app_label": "{{appDownloadLink}} ഉപയോഗിച്ച് ഷോപ്പ് കാഷ് നേടുക",
+            "download_shop_app_label": "ഷോപ്പ് ഡൗൺലോഡ് ചെയ്യുക"
+          },
+          "details_modal": {
+            "title": "പിന്തുണയുള്ള ഡെലിവറി",
+            "modal_accessiblity_label": "ഡെലിവറി വാഗ്ദാനത്തിന്റെ വിശദാംശങ്ങൾ",
+            "delivery_guarantee_label": "ഡെലിവറി ഗ്യാരന്റി",
+            "delivery_by_label": "{{date}}-നുള്ള ഡെലിവറി",
+            "delivery_guaranteed_by_label": "{{date}}-നകം ഡെലിവറി ഉറപ്പ്",
+            "shop_cash_claim": {
+              "may_be_eligible_label": "ഷോപ്പ് പ്രോമിസ് വേഗത്തിലുള്ളതും വിശ്വസനീയവുമായ ഡെലിവറി ഉറപ്പുനൽകുന്നു. നിങ്ങളുടെ ഓർഡർ വൈകിയാണെത്തുന്നതെങ്കിൽ ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്യുക.",
+              "may_be_eligible_not_authorized_label": "ഈ ഓർഡർ വൈകിയതിനാൽ നിങ്ങൾക്ക് ഷോപ്പ് ക്യാഷ് (Shop Cash) ലഭിക്കാൻ അർഹതയുണ്ടായേക്കാം. വിശദാംശങ്ങൾ കാണുന്നതിന് ലോഗിൻ ചെയ്യുക.",
+              "redeemed_label": "ഈ ഓർഡർ വൈകിയെത്തിയതിനാൽ നിങ്ങൾ ഇതിനകം ഷോപ്പ് ക്യാഷ് ക്ലെയിം ചെയ്തിട്ടുണ്ട്.",
+              "no_shop_cash_label": "ഷോപ്പ് പേ (Shop Pay) വഴി പണമടയ്ക്കാത്തതിനാൽ ഈ ഓർഡർ വൈകിയതുമായി ബന്ധപ്പെട്ട ക്ലെയിമിന് അർഹമല്ല.",
+              "no_longer_guaranteed_label": "ഈ ഇനങ്ങൾ ഇനി ഡെലിവറി ഗ്യാരണ്ടിയിൽ ഉൾപ്പെടുന്നതല്ല.",
+              "claim_shop_cash_title": "ഷോപ്പ് കാഷിൽ {{amount}} നേടാൻ സ്കാൻ ചെയ്യുക",
+              "claim_shop_cash_description": "Shop ആപ്പിലെ ഭാവിയിലുള്ള പർച്ചേസുകൾക്കായി നിങ്ങൾക്ക് ഷോപ്പ് ക്യാഷ് (Shop Cash) ഉപയോഗിക്കാം."
+            }
+          }
+        },
+        "arrives": "എത്തും {{date}}",
+        "arrives_today": "ഇന്ന് എത്തിച്ചേരും",
+        "arrives_tomorrow": "നാളെ എത്തിച്ചേരുന്നു",
+        "delivery_estimate_backed_by": "പിന്തുണയോടെ",
+        "delivery_estimate_delayed_description": "നിങ്ങളുടെ പ്രദേശത്തേക്കുള്ള ഡെലിവറികൾ പതിവിലും മന്ദഗതിയിലാണ്. നിങ്ങളുടെ ഓർഡർ വൈകിയെത്തിയേക്കാം.",
+        "delivery_estimate_delayed_title": "വൈകി",
+        "delivery_exception_shop_promise_delivered_late_description": "നിങ്ങളുടെ ഓർഡറിന് ഷോപ്പ് പ്രോമിസ് പിന്തുണയുണ്ട്. ഇത് വൈകിയെത്തിയതിനാൽ, ഷോപ്പ് ക്യാഷായി {{amount}} ക്ലെയിം ചെയ്യുക.",
+        "pickup_address_map_link_accessibility_label": "{{address}} എന്ന പിക്കപ്പ് ലൊക്കേഷൻ മാപ്പിൽ കാണുക (പുതിയ വിൻഡോയിൽ തുറക്കുന്നു)",
+        "pickup_location_label": "എടുക്കേണ്ട സ്ഥലം:",
+        "predicted_by_shop": "ഷോപ്പ് പ്രവചിച്ചത്",
+        "confirmed_description_awaiting_payment": "നിങ്ങളുടെ പേയ്‌മെന്റ് ലഭിച്ചുകഴിഞ്ഞാൽ ഞങ്ങൾ ഈ ഇനങ്ങൾ തയ്യാറാക്കുന്നതാണ്."
+      },
+      "fulfillment_status_title": "പൂർത്തീകരണ നില: {{status}}",
+      "buy_again": "വീണ്ടും വാങ്ങുക",
+      "buy_again_accessibility_label": "{{orderId}} ഓർഡറിനായി വീണ്ടും വാങ്ങുക",
+      "manage": "നിയന്ത്രിക്കുക",
+      "manage_accessiblity_label": "ഓർഡർ മാനേജ് ചെയ്യുക {{orderId}}"
+    },
+    "order_details": {
+      "order_details": "ഓർഡർ വിവരങ്ങൾ",
+      "order_details_skeleton_accessibility_label": "എല്ലാ ഓർഡർ വിവരങ്ങളും കാണുന്നതിനായി സൈൻ ഇൻ ചെയ്യുക.",
+      "billing_address": "ബില്ലിംഗ് വിലാസം",
+      "contact": "ബന്ധപ്പെടുക",
+      "company": "കമ്പനി",
+      "fulfillment_images": {
+        "one_products_accessibility_label": "നിറവേറ്റലിൽ ഉൾപ്പെടുന്നവ: {{lineItemName1}} എണ്ണം {{lineItemQuantity1}}",
+        "two_products_accessibility_label": "നിറവേറ്റലിൽ {{lineItemName1}} അളവ് {{lineItemQuantity1}}, {{lineItemName2}} അളവ് {{lineItemQuantity2}} എന്നിവ ഉൾപ്പെടുന്നു",
+        "three_products_accessibility_label": "പൂർത്തീകരണത്തിൽ ഇവ ഉൾപ്പെടുന്നു: {{lineItemName1}} എണ്ണം {{lineItemQuantity1}}, {{lineItemName2}} എണ്ണം {{lineItemQuantity2}}, {{lineItemName3}} എണ്ണം {{lineItemQuantity3}}",
+        "four_products_accessibility_label": "നിറവേറ്റലിൽ {{lineItemName1}} അളവ് {{lineItemQuantity1}}, {{lineItemName2}} അളവ് {{lineItemQuantity2}}, {{lineItemName3}} അളവ് {{lineItemQuantity3}}, {{lineItemName4}} അളവ് {{lineItemQuantity4}} എന്നിവ ഉൾപ്പെടുന്നു",
+        "five_products_accessibility_label": "പൂർത്തീകരണത്തിൽ ഉൾപ്പെടുന്നത് {{lineItemName1}} എണ്ണം {{lineItemQuantity1}}, {{lineItemName2}} എണ്ണം {{lineItemQuantity2}}, {{lineItemName3}} എണ്ണം {{lineItemQuantity3}}, {{lineItemName4}} എണ്ണം {{lineItemQuantity4}}, {{lineItemName5}} എണ്ണം {{lineItemQuantity5}}",
+        "six_products_accessibility_label": "പൂർത്തീകരണത്തിൽ {{lineItemName1}} അളവ് {{lineItemQuantity1}}, {{lineItemName2}} അളവ് {{lineItemQuantity2}}, {{lineItemName3}} അളവ് {{lineItemQuantity3}}, {{lineItemName4}} അളവ് {{lineItemQuantity4}}, {{lineItemName5}} അളവ് {{lineItemQuantity5}}, {{lineItemName6}} അളവ് {{lineItemQuantity6}} എന്നിവ ഉൾപ്പെടുന്നു",
+        "six_and_more_products_accessibility_label": "Fulfillment includes {{lineItemName1}} quantity {{lineItemQuantity1}}, {{lineItemName2}} quantity {{lineItemQuantity2}}, {{lineItemName3}} quantity {{lineItemQuantity3}}, {{lineItemName4}} quantity {{lineItemQuantity4}}, {{lineItemName5}} quantity {{lineItemQuantity5}}, {{lineItemName6}} quantity {{lineItemQuantity6}} and more"
+      },
+      "group_title_label": "ഭാഗം: {{groupTitle}}",
+      "group_title_label_with_parent": "ഇതിനായി: {{groupTitle}}",
+      "grouped_view_components": {
+        "expand_line_items": "{{count}} ഇനങ്ങൾ കാണിക്കുക",
+        "collapse_line_items": "{{count}} ഇനങ്ങൾ മറയ്ക്കുക",
+        "line_item_summary_list_accessibility_label": "{{productTitle}} ബണ്ടിലിലുള്ള ഇനങ്ങൾ"
+      },
+      "discount": "കിഴിവ്",
+      "discount_order_stacking": {
+        "one": "ഓർഡർ ഡിസ്കൗണ്ട്",
+        "other": "ഓർഡർ ഡിസ്കൗണ്ടുകൾ"
+      },
+      "price_before_discount_accessibility_label": "യഥാർത്ഥ വില",
+      "price_after_discount_accessibility_label": "കിഴിവ് വില",
+      "compare_at_sale": "വിൽക്കുന്നു ({{saleAmount}})",
+      "loading": "ഓർഡർ വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു",
+      "loading_finished_accessibility_message": "ഓർഡർ വിവരങ്ങൾ ലോഡ് ചെയ്തു കഴിഞ്ഞു",
+      "location": "സ്ഥലം",
+      "image_gallery": {
+        "next": "അടുത്ത ഇനങ്ങൾ കാണിക്കുക",
+        "previous": "മുമ്പുള്ളവ കാണിക്കുക",
+        "additional_items": {
+          "one": "+ {{count}} അധിക ഇനം",
+          "other": "+ {{count}} ഇനങ്ങൾക്ക് കൂടി"
+        }
+      },
+      "no_data_provided_accessibility_label": "{{fieldName}} ഒഴിഞ്ഞതാണ്",
+      "paid_amount": "പണമടച്ചു",
+      "payment_confirmation": {
+        "payment_received": "നന്ദി! നിങ്ങളുടെ {{amount}} പേയ്‌മെൻ്റ് ലഭിച്ചു."
+      }
     }
   }
 }
