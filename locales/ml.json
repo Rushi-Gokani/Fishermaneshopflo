@@ -830,7 +830,17 @@
           },
           "mobile_phone_number": "മൊബൈൽ ഫോൺ നമ്പർ",
           "get_offers_by_text": "ഓഫറുകൾ മെസ്സേജായി ലഭിക്കൂ"
-        }
+        },
+        "whatsapp": {
+          "disclaimer": {
+            "description_html": "WhatsApp വഴി സൈൻ അപ്പ് ചെയ്യുന്നതിലൂടെ, നൽകിയിട്ടുള്ള ഫോൺ നമ്പറിലേക്ക് WhatsApp മാർക്കറ്റിംഗ് സന്ദേശങ്ങൾ ലഭിക്കുന്നതിന് നിങ്ങൾ സമ്മതിക്കുന്നു. ഇത് വാങ്ങലിനുള്ള ഒരു വ്യവസ്ഥയല്ല. അൺസബ്‌സ്‌ക്രൈബ് ചെയ്യാൻ STOP എന്ന് മറുപടി നൽകുക. സന്ദേശങ്ങളുടെ എണ്ണം വ്യത്യാസപ്പെടാം. സന്ദേശത്തിനും ഡാറ്റയ്ക്കും നിരക്കുകൾ ബാധകമായേക്കാം. ഞങ്ങളുടെ %{privacy_policy_link}, %{terms_of_service_link} എന്നിവ കാണുക."
+          }
+        },
+        "unsubscribe": {
+          "title": "നിങ്ങൾ അൺസബ്‌സ്‌ക്രൈബ് ചെയ്തു",
+          "description": "ഇനി ഞങ്ങളിൽ നിന്ന് നിങ്ങൾക്ക് കാർട്ട് റിമൈൻഡറുകൾ ലഭിക്കില്ല."
+        },
+        "accept_shop_pay_marketing_checkbox_label": "ഈ സ്റ്റോറിൽ നിന്നുള്ള വാർത്തകളും ഓഫറുകളും ലഭിക്കുന്നതിനായി എന്നെയും ഉൾപ്പെടുത്തുക."
       },
       "contact": {
         "street_number_label": "കെട്ടിട നമ്പർ",
@@ -1096,6 +1106,168 @@
               "one": "എല്ലാ ആഴ്ചയും"
             }
           }
+        }
+      },
+      "shop_policies": {
+        "policy_label": "നയം",
+        "policies_label": "നയങ്ങൾ",
+        "select_policy_label": "ഒരു പോളിസി തിരഞ്ഞെടുക്കുക",
+        "refund_policy": "റീഫണ്ട് പോളിസി",
+        "privacy_policy": "സ്വകാര്യതാനയം",
+        "terms_of_service": "സേവന നിബന്ധനകൾ",
+        "legal_notice": "നിയമപരമായ നോട്ടീസ്",
+        "shipping_policy": "ഷിപ്പിംഗ്",
+        "terms_of_sale": "വിൽപന നിബന്ധനകൾ",
+        "subscription_policy": "റദ്ദാക്കലുകൾ",
+        "purchase_options_policy": "പർച്ചേസ് ഓപ്ഷൻ നയം",
+        "contact_information": "ബന്ധപ്പെടുക",
+        "purchase_options_cancellation_policy": "റദ്ദാക്കലുകൾ",
+        "cookie_preferences": "കുക്കികൾ",
+        "terms_and_policies": "നിബന്ധനകളും നയങ്ങളും"
+      },
+      "remote_policies": {
+        "unavailable_policy": "ഈ സ്റ്റോറിനായി %{policy_name} ഒന്നും നൽകിയിട്ടില്ല. കൂടുതൽ വിവരങ്ങൾക്ക്, %{shop_name}-മായി നേരിട്ട് ബന്ധപ്പെടുക."
+      },
+      "mor_policies": {
+        "terms_and_conditions": "മെർച്ചന്റ് ഓഫ് റെക്കോർഡ് നിബന്ധനകളും വ്യവസ്ഥകളും",
+        "privacy_policy": "മർച്ചന്റ് ഓഫ് റെക്കോർഡ് സ്വകാര്യതാ നയം"
+      },
+      "markets": {
+        "invalid_market_manager_error": "പണമടയ്ക്കുന്നതിന് മുൻപ് നിങ്ങളുടെ കോൺടാക്റ്റ് വിവരങ്ങൾ പരിശോധിക്കുക"
+      },
+      "notifications": {
+        "title": "അറിയിപ്പുകൾ"
+      },
+      "order_payment_collection": {
+        "custom_line_item_description": "%{order_name} ഓർഡറിനായി അടയ്‌ക്കേണ്ട തുക",
+        "changes_summary": {
+          "added": {
+            "one": "ചേർത്തു",
+            "other": "%{count} എണ്ണം ചേർത്തു"
+          },
+          "removed": "നീക്കം ചെയ്തു",
+          "subtracted": "%{count} എണ്ണം നീക്കം ചെയ്തു",
+          "returned": "തിരികെ നൽകിയത് %{count}",
+          "return_line_item_removed": "റിട്ടേണിൽ നിന്ന് %{count} നീക്കം ചെയ്തു"
+        },
+        "additional_payment_requested": "%{total_outstanding} അടയ്ക്കേണ്ടതുണ്ട്",
+        "checkout_review_and_pay": "നിങ്ങളുടെ ഓർഡർ %{order_name} അപ്‌ഡേറ്റ് ചെയ്‌തിരിക്കുന്നു. മാറ്റങ്ങൾ പരിശോധിച്ച ശേഷം, ഓർഡർ സ്ഥിരീകരിക്കുന്നതിനായി പണമടയ്ക്കുക.",
+        "order_updated_on": "നിങ്ങളുടെ ഓർഡർ %{last_edited_at}-ൽ അപ്‌ഡേറ്റ് ചെയ്തു.",
+        "order_review_and_pay": "നിങ്ങളുടെ ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു. ഓർഡർ സ്ഥിരീകരിക്കുന്നതിനായി പരിശോധിക്കുകയും പേയ്‌മെന്റ് നടത്തുകയും ചെയ്യുക.",
+        "pay_now": "ഇപ്പോൾ പണമടയ്ക്കുക"
+      },
+      "change_currency": {
+        "currency_button_label": "%{currency} (%{currency_symbol})",
+        "credit_card_will_be_charged_html": "നിങ്ങളുടെ ക്രെഡിറ്റ് കാർഡിൽ നിന്ന് %{amount} ഈടാക്കുന്നതാണ്.",
+        "payment_total_label": "ആകെ അടയ്‌ക്കേണ്ട തുക",
+        "conversion_rate": "1 %{from_currency_code} = %{rate} %{to_currency_code}",
+        "change_currency_link": "%{currency_name}-ലേക്ക് മാറ്റുക",
+        "card_provider_fx_charges_warning": "%{currency_code} ഇടപാടുകൾക്ക് നിങ്ങളുടെ കാർഡ് ദാതാവ് ഫീസ് ഈടാക്കിയേക്കാം.",
+        "currency_not_supported_by_shop": "നിങ്ങൾ തിരഞ്ഞെടുത്ത കറൻസി ഇപ്പോൾ ലഭ്യമല്ല. എല്ലാ വിലകളും ഇപ്പോൾ %{currency_code}-ൽ ആണ്."
+      },
+      "change_country": {
+        "cart_updated_based_on_country": "നിങ്ങൾ തിരഞ്ഞെടുത്ത ഷിപ്പിംഗ് രാജ്യത്തിനനുസരിച്ച് നിങ്ങളുടെ കാർട്ട് അപ്‌ഡേറ്റ് ചെയ്തിരിക്കുന്നു.",
+        "cart_and_currency_updated_based_on_country": "നിങ്ങളുടെ ഷിപ്പിംഗ് രാജ്യത്തിനനുസരിച്ച് നിങ്ങളുടെ കാർട്ടും കറൻസിയും അപ്‌ഡേറ്റ് ചെയ്തിട്ടുണ്ട്.",
+        "currency_updated_for_country": "%{country}-ലേക്കുള്ള കറൻസി അപ്‌ഡേറ്റ് ചെയ്തു"
+      },
+      "change_cart_localization": {
+        "verify_shipping_address": "നിങ്ങളുടെ രാജ്യം/പ്രദേശം അപ്‌ഡേറ്റ് ചെയ്‌തു. ചെക്കൗട്ട് തുടരുന്നതിനായി നിങ്ങളുടെ ഷിപ്പിംഗ് വിലാസം നൽകുക."
+      },
+      "tips": {
+        "title": "ടിപ്പ് ചേർക്കുക",
+        "description": "%{shop_name}-ലെ ടീമിന് നിങ്ങളുടെ പിന്തുണ അറിയിക്കൂ",
+        "presets_description": "ഒരു ടിപ്പ് ശതമാനം തിരഞ്ഞെടുക്കുക",
+        "custom_label": "കസ്റ്റം ടിപ്പ്",
+        "add_tip": "ടിപ്പ് ചേർക്കുക",
+        "update_tip": "അപ്‌ഡേറ്റ് ടിപ്പ്",
+        "message": "നന്ദി, ഞങ്ങൾ ഇത് വിലമതിക്കുന്നു.",
+        "preset_label": "%{tip_percent}%",
+        "no_tip_label": "ഒന്നുമില്ല",
+        "not_available_with_spi": "ഷോപ്പ് പേ ഇൻസ്റ്റാൾമെൻ്റുകളിൽ ലഭ്യമല്ല"
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "zero": "%{product_name} വാങ്ങുക",
+          "one": "%{product_name} ഉം മറ്റ് %{count} ഇനങ്ങളും വാങ്ങുക",
+          "other": "%{product_name}-ഉം മറ്റ് %{count} ഇനങ്ങളും വാങ്ങുക"
+        }
+      },
+      "subscriptions": {
+        "recurring_total_intervals": {
+          "day": {
+            "one": "ദിവസം",
+            "other": "%{count} ദിവസങ്ങൾ"
+          },
+          "week": {
+            "one": "ആഴ്ച",
+            "other": "%{count} ആഴ്ചകൾ"
+          },
+          "month": {
+            "one": "മാസം",
+            "other": "%{count} മാസം"
+          },
+          "year": {
+            "one": "വർഷം",
+            "other": "%{count} വർഷങ്ങൾ"
+          }
+        },
+        "recurring_totals": "ഓരോ %{interval}-ലും %{total_price}",
+        "recurring_totals_with_initial_order_shipping_discount": "ആദ്യ പേയ്‌മെന്റ് %{total_price_with_discount}, തുടർന്ന് %{recurring_total}",
+        "recurring_totals_with_policies": {
+          "first_cycles": {
+            "one": "ആദ്യ ഗഡു %{total_price}",
+            "other": "ആദ്യത്തെ %{count} പേയ്‌മെന്റുകൾ, ഓരോന്നും %{total_price} വീതം"
+          },
+          "following_cycles": ", തുടർന്ന് %{interval} കൂടുമ്പോൾ %{total_price} വീതം"
+        },
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "one": ", തുടർന്ന് %{total_price} നിരക്കിൽ %{count} തവണകളായുള്ള പേയ്‌മെന്റ്",
+            "other": ", തുടർന്ന് %{total_price} വീതമുള്ള %{count} തവണകൾ"
+          }
+        }
+      },
+      "customer_payment_methods": {
+        "page_title": "പേയ്‌മെന്റ് രീതികൾ",
+        "title": "പേയ്‌മെന്റ് രീതികൾ",
+        "update_card_button_label": "കാർഡ് അപ്‌ഡേറ്റ് ചെയ്യുക",
+        "delete_customer_mandate": {
+          "generic_error": "നിങ്ങളുടെ അഭ്യർത്ഥന പ്രോസസ്സ് ചെയ്യുന്നതിൽ ഒരു പിശക് സംഭവിച്ചിട്ടുണ്ട്.",
+          "success_message": "നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി വിജയകരമായി നീക്കം ചെയ്‌തു."
+        }
+      },
+      "throttle": {
+        "too_many_attempts": {
+          "message": "അമിതമായ ശ്രമങ്ങൾ",
+          "description": "കുറച്ച് മിനിറ്റുകൾക്ക് ശേഷം വീണ്ടും ശ്രമിക്കുക"
+        },
+        "line_to_check_out": "നിങ്ങൾ ബില്ലിംഗ് ക്യൂവിലാണ്",
+        "cart_summary_heading": "നിങ്ങളുടെ കാർട്ട്",
+        "merchandise": {
+          "available": "ലഭ്യമാണ്",
+          "sold_out": "വിറ്റുതീർന്നു"
+        },
+        "inventory": {
+          "partial_inventory_banner": "നിങ്ങളുടെ കാർട്ടിലുള്ള ചില ഉൽപ്പന്നങ്ങൾ വിറ്റുതീർന്നതിനാൽ, അവ പർച്ചേസ് ചെയ്യാൻ സാധിക്കില്ല.",
+          "sold_out": {
+            "heading": "നിങ്ങളുടെ കാർട്ടിലെ സാധനങ്ങൾ തീർന്നുപോയിരിക്കുന്നു",
+            "storefront_body": "ഷോപ്പിംഗ് തുടരുന്നതിനായി സ്റ്റോറിലേക്ക് തിരികെ പോകുക",
+            "no_storefront_body": "നിങ്ങൾ വാങ്ങാൻ ആഗ്രഹിക്കുന്ന ഉൽപ്പന്നം ഇപ്പോൾ ലഭ്യമല്ല.",
+            "link": "സ്റ്റോറിലേക്ക് തിരികെ പോകുക"
+          }
+        },
+        "title": "ക്യൂ",
+        "time_to_checkout_title": "പുറപ്പെടുന്ന സമയം - {{shopName}}",
+        "estimated_wait_time": {
+          "calculating": "ഏകദേശ കാത്തിരിപ്പ് സമയം കണക്കാക്കുന്നു",
+          "less_than_one": "ഏകദേശ കാത്തിരിപ്പ് സമയം: ഒരു മിനിറ്റിൽ താഴെ",
+          "one": "പ്രതീക്ഷിക്കുന്ന കാത്തിരിപ്പ് സമയം: {{count}} മിനിറ്റ്",
+          "other": "പ്രതീക്ഷിക്കുന്ന കാത്തിരിപ്പ് സമയം: {{count}} മിനിറ്റ്"
+        },
+        "last_checked": "(അവസാനം പരിശോധിച്ചത്: {{time}})",
+        "footer": {
+          "heading": "ഈ പേജ് റിഫ്രഷ് ചെയ്യരുത്, ഇത് തനിയെ അപ്‌ഡേറ്റ് ആകും.",
+          "body": "നിങ്ങൾ ചെക്ക്ഔട്ട് പൂർത്തിയാക്കുന്നത് വരെ നിങ്ങളുടെ കാർട്ടിലുള്ള ഇനങ്ങൾ റിസർവ് ചെയ്യപ്പെടുന്നതല്ല."
         }
       }
     },
