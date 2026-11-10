@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_yhR6GL": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "<p>Notice – There will be No Dispatches on 09/11/2026 on the occasion of Diwali. All the orders received during these days will be Dispatched from 10/11/2026.</p>"
           }
